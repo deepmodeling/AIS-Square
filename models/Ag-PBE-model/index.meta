@@ -1,6 +1,5 @@
 Link: https://aisquare.oss-us-east-1.aliyuncs.com/AIS-Square/models/Ag-PBE-model/Ag-PBE-model.pb
-Author: Linfeng Zhang, Han Wang, Roberto Car, Weinan E, z
+Author: Linfeng Zhang, Han Wang, Roberto Car, Weinan E
 Update: "2022-01-19"
 Reference:
   - datasets/Ag-PBE
-  - workflows/dflow_SMI2FF
