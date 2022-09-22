@@ -1,5 +1,5 @@
 ## Introduction
-This is the dataset of Ag–Au nanoalloys DFT data for training a long range DeepMD model in **[1]**. 1
+This is the dataset of Ag–Au nanoalloys DFT data for training a long range DeepMD model in **[1]**. 
 
 ## Generation Approach
 This data set is generated with DPGEN **[2,3]**,  a concurrent learning scheme that generates the DP training dataset iteratively.
