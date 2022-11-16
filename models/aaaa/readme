@@ -1,0 +1,161 @@
+# common
+
+## 快速开始
+
+### 示例项目
+
+增加改查 web 服务:
+
+- [example: helloworld](https://gitee.com/dptech-dev/common/blob/master/docs/example/README-HELLOWORLD.md)
+
+定时统计 count 任务:
+
+- [example: count](https://gitee.com/dptech-dev/common/blob/master/docs/example/README-COUNT.md)
+
+### account
+
+- [用户中台](https://gitee.com/dptech-dev/common/blob/master/docs/account/)
+
+### admin
+
+### bohrium
+
+- [科学计算: API server](https://gitee.com/dptech-dev/common/blob/master/docs/bohrium/README-APISERVER.md)
+
+### clouserver
+
+### finance
+
+### hermite
+
+### lebesgue
+
+## 应用接入标准
+
+[生产环境应用接入标准](https://dptechnology.feishu.cn/wiki/wikcncZlxCdWU94NGCQnTOfqSQc)
+
+### 公共依赖
+
+- [环境变量解析 env 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-ENV.md)
+
+- [日志 logger 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-LOGGER.md)
+
+- [mysql 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-MYSQL.md)
+
+- [redis 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-REDIS.md)
+
+- [go 调用 py 包 gopy 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-GOPY.md)
+
+- [web 框架 kin 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-KIN.md)
+
+- [链路追踪 trace 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-TRACE.md)
+
+- [统一错误码 ecode 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-ECODE.md)
+
+- [报表输出 reporter 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-REPORTER.md)
+
+- [hbase 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-HBASE.md)
+
+- [rocketmq 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-ROCKET.md)
+
+- [http 请求文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-HTTP.md)
+
+- [信号处理 signal 文档](https://gitee.com/dptech-dev/common/blob/master/docs/pkg/README-SIGNAL.md)
+
+## 目录结构
+
+```text
+├── CHANGELOG(改动日志)
+│   ├── CHANGELOG-EXAMPLE
+│   │   └── CHANGELOG-HELLOWORLD.md
+│   └── CHANGELOG-PKG
+│       └── CHANGELOG-PKG.md
+├── README.md
+├── api(api 文档)
+│   └── example
+├── build(构建配置)
+│   ├── ci
+│   └── docker
+│       └── example
+│           └── Dockerfile
+├── cmd(编译命令入口)
+│   ├── admin
+│   ├── bohrium
+│   ├── example
+│   │   └── helloworld
+│   │       └── helloworld.go
+│   └── lebesgue
+├── deployment(部署配置)
+├── docs(文档)
+│   ├── example(平台)
+│   │   └── README-HELLOWORLD.md(helloworld文档)
+│   └── pkg
+│       └── README-PKG.md
+├── go.mod(module依赖)
+├── go.sum
+├── init(初始化脚本)
+├── internal(业务实现代码)
+│   ├── admin
+│   ├── bohrium
+│   ├── example(示例项目)
+│   │   └── helloworld
+│   │       ├── api(api接口)
+│   │       │   └── apiv1
+│   │       │       └── apiv1.go
+│   │       ├── conf(配置)
+│   │       │   └── conf.go
+│   │       ├── constant(常量)
+│   │       │   └── strings.go
+│   │       ├── model(模型)
+│   │       │   ├── account.go
+│   │       │   └── user.go
+│   │       ├── dao(数据接口)
+│   │       │   ├── account.go
+│   │       │   └── user.go
+│   │       └── service(服务)
+│   │           └── user.go
+│   └── lebesgue
+├── pkg(公共依赖)
+│   ├── cache(缓存)
+│   │   └── redis
+│   │       └── redis.go
+│   ├── conf(配置)
+│   │   ├── env(环境变量解析)
+│   │   │   ├── env.go
+│   │   │   ├── env_test.go
+│   │   │   └── meta.go
+│   │   └── meta(元信息)
+│   │       └── meta.go
+│   ├── db(数据库)
+│   │   └── mysql
+│   │       └── mysql.go
+│   ├── gopy(go调用python)
+│   │   ├── gyo(go调用)
+│   │   │   ├── caller.go
+│   │   │   ├── dialer.go
+│   │   │   └── gyo.go
+│   │   └── pyo(py函数注册导出)
+│   │       ├── __init__.py
+│   │       ├── callee.py
+│   │       ├── log
+│   │       │   └── __init__.py
+│   │       └── service.py
+│   ├── kin(web框架)
+│   │   ├── code.go
+│   │   └── ctx.go
+│   ├── logger(日志)
+│   │   ├── logger.go
+│   │   └── logger_test.go
+│   ├── out(命令行输出，用于cli彩色输出)
+│   │   ├── color.go
+│   │   └── out.go
+│   ├── queue(队列)
+│   │   └── rocket
+│   │       └── rocket.go
+│   └── trace(链路追踪)
+│       ├── extra.go
+│       └── trace.go
+├── script(脚本)
+├── test(测试)
+└── tool(工具)
+```
