@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/3b276bba-a853-498a-938f-a213d351d4c8
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/3b276bba-a853-498a-938f-a213d351d4c8
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/models/3b276bba-a853-498a-938f-a213d351d4c8
+Author: tl
+Reference:
+    - models/LiGePS-SSE-PBEsol-model
+    - models/LiSiPS-SSE-PBE-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: Au-PBE-model.pb
+readmename: readme.md
+licence: LGPL-3.0
