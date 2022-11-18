@@ -1,0 +1,16 @@
+# 常见问题
+
+1. **为什么Utility查不到任务相关信息？**
+   
+   Lebesgue Utility首次使用时需要指定项目，请确保当前项目ID是正确的。
+
+   查看所有项目：
+
+   ``` bash
+   lbg project ls
+   ```
+   
+   修改默认项目：
+   ``` bash
+   lbg project switch <project>
+   ```
