@@ -1,0 +1,75 @@
+## Introduction
+Catalyst discovery and optimization is key to solving many societal and energy challenges including solar fuels synthesis, long-term energy storage, and renewable fertilizer production. A critical factor in building Machine Learning (ML) models is the data used for training. Much of the progress in applying ML in heterogeneous catalysis has been driven by increasingly large and diverse datasets of electronic structure calculations.
+
+OC20 dataset is from `ocp`, the [Open Catalyst Project](https://opencatalystproject.org/)'s library of state-of-the-art machine learning algorithms for catalysis. OC20 consists of 1,281,040 Density Functional Theory (DFT) relaxations (∼264,890,000 single point evaluations) across a wide swath of materials, surfaces, and adsorbates (nitrogen, carbon, and oxygen chemistries) **[1]**. OC20 dataset is publicly available at http://opencatalystproject.org.
+
+This dataset is a subset of OC20, named OC2M, consists of around 2 million DFT data samples covering 56 elements with energy and force labels processed in DeePMD's **[2]** [`mixed_type`](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format) format. A standard input script to train the DPA-1 model **[3]** is also attached in the file.
+
+## Generation Approach
+Open Catalyst 2020 (OC20) dataset (Figure 1 below) comprises over 1.2 million DFT relaxations of molecular adsorptions onto surfaces (*ca.* 250 million single-point calculations) across a substantially large structure and chemistry space (Figure 2 below). 
+
+While a dataset of this magnitude will lead to significant improvements in ML models, this is still an extremely sparse sampling of all possibilities. OC20 considers 82 different adsorbates (small adsorbates, C1/C2 compounds, and N/O-containing intermediates) that are relevant for renewable energy and environmental applications. Relaxations are performed on randomly sampled low-Miller-index facets of stable materials from the Materials Project **[4]**, resulting in surfaces from 55 different elements and mixtures thereof. For each of the calculations, OC20 includes relaxation trajectories, Bader charges, and LOBSTER **[5]**-calculated orbital information. 
+
+To aid in training more robust models, OC20 additionally includes computations in short, high-temperature *ab initio* Molecular Dynamics (MD) trajectories on a randomly sampled subset of the relaxed states.  Random perturbations are conducted on the atomic positions in a subset of the structures along the relaxation pathways and single point DFT calculations are also performed for these perturbed/rattled structures.
+
+This dataset for download is a subset of OC20, named OC2M, containing around 2 million DFT data points which are randomly sampled from OC20. This dataset with energy and force labels is proper for training potential energy models and predicting the energy and force for a given state.
+
+See **[1]** for more details on generation approach of OC20.
+
+## Data Format
+The directory tree is as follows:
+
+```
+OC2M
+-- train
+-- -- [num_atom]
+-- -- -- sys.xxxx
+-- valid
+-- -- [num_atom]
+-- -- -- sys.xxxx
+-- input.json
+```
+
+where each subdirectory (`[num_atom]`) consists of several systems `sys.xxxx` in DeePMD's  [`mixed_type`](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format)  format, each of which contains `num_atom` atoms. `input.json` is a standard input script to train the DPA-1 model **[3]**.
+
+Each unit system  `sys.xxxx` in mixed_type format usually has the following substructure:
+
+```
+-- sys.xxxx
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/box.npy
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+-- -- set.000/virial.npy
+-- -- set.000/real_atom_types.npy
+```
+
+Format Description
+
+| Name     | Property                         | Raw file            | Unit | Shape                  | Description                                                  |
+| -------- | -------------------------------- | ------------------- | ---- | ---------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes                | real_atom_types.npy |      | Nframes \* Natoms      | Integers that describe atom types in each frame, corresponding to indexes in type_map |
+| type_map | Atom type names                  | type_map.raw        |      | Ntypes                 | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord    | Atomic coordinates               | coord.npy           | Å    | Nframes \* Natoms \* 3 | The atomic coordinates                                       |
+| box      | Boxes                            | box.npy             | Å    | Nframes \* 3 \* 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
+| energy   | Frame energies                   | energy.npy          | eV   | Nframes                | The potential energy of snapshot                             |
+| force    | Atomic forces                    | force.npy           | eV/Å | Nframes \* Natoms \* 3 | The atomic forces                                            |
+| virial   | Frame virial                     | virial.npy          | eV   | Nframes * 9            | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+| /        | Atom type indexes (place holder) | type.raw            |      | Natoms                 | All zeros to fake the type input                             |
+
+Check [here](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format) for more details.
+
+
+## References
+**[1]** Chanussot, Lowik, et al. "Open catalyst 2020 (OC20) dataset and community challenges." *ACS Catalysis* 11.10 (2021): 6059-6072.
+
+**[2]** Zhang, Linfeng, et al. "End-to-end symmetry preserving inter-atomic potential energy model for finite and extended systems." Advances in Neural Information Processing Systems 31 (2018).
+
+**[3]** Zhang, Duo, et al. "DPA-1: Pretraining of Attention-based Deep Potential Model for Molecular Simulation." *arXiv preprint arXiv:2208.08236* (2022).
+
+**[4]** Jain, A., et al. "The Materials Project: A Materials Genome Approach to Accelerating Materials Innovation." APL Materials, 1 (1): 011002, 2013.
+
+**[5]** Henkelman, Graeme, Andri Arnaldsson, and Hannes Jónsson. "A fast and robust algorithm for Bader decomposition of charge density." *Computational Materials Science* 36.3 (2006): 354-360.
+
