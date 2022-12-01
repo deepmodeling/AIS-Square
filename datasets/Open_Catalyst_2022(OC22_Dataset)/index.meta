@@ -1,0 +1,11 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/1fb1eebd-854f-40b2-94b9-eb5f41b8306b
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/1fb1eebd-854f-40b2-94b9-eb5f41b8306b
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/1fb1eebd-854f-40b2-94b9-eb5f41b8306b
+Author: Zhanghao Zhouyin,Duo Zhang
+Reference:
+    - datasets/Open_Catalyst_2020(OC20_Dataset)
+ImageLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/AIS-Square/datasets/Open_Catalyst_2022(OC22_Dataset)/OC22.jpg
+ImageName: OC22.jpg
+LinkFileName: OC22.tar.gz
+readmename: readme.md
+licence: MIT
