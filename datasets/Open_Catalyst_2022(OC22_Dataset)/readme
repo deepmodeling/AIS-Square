@@ -1,0 +1,73 @@
+# README
+
+## Introduction
+
+OC22 **[1]** is one of the Open Catalyst Project's datasets containing chemical structures of oxides as well as their energies / forces / positions, which is used to train machine learning potential models, and can be used as a base scaffold for research projects. OC22 consists of 62,521 Density Functional Theory (DFT) relaxations (∼9,884,504 single-point calculations) across a range of oxide materials, coverages, and adsorbates (*H, *O, *N, *C, *OOH, *OH, *OH2, *O2, *CO). The data is processed in DeePMD's **[2]** [`mixed_type`](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format) format. A standard input script to train the DPA-1 model **[3]** is also attached in the file.
+
+## Generation Approach
+OC22 structures files is generated with four steps process: 
+- (1) bulk selection
+- (2) surface selection
+- (3) adsorbate+slab generation
+- (4) structure relaxation.
+
+The dataset contains isolated surfaces (a.k.a slabs) and surface and adsorbate combinations (a.k.a adsorbate+slabs), 19,086 and 43,435 systems, respectively. This resulted in 9,884,504 single-point step calculations, each of which yielded forces and energies which were later partitioned into suitable train, validation, and test validation splits.
+
+The training set split is downloaded and transformed to DeePMD's **[2]** [`mixed_type`](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format) format, which has over 8 million single point snapshots of system configurations. Then, we split 80% of the samples into training set and the rest into the validation set.
+
+
+
+
+## Data Format
+The directory tree is as follows:
+
+```
+OC22
+-- train
+-- -- [num_atom]
+-- -- -- sys.xxxx
+-- valid
+-- -- [num_atom]
+-- -- -- sys.xxxx
+-- input.json
+```
+
+where each subdirectory (`[num_atom]`) consists of several systems `sys.xxxx` in DeePMD's  [`mixed_type`](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format)  format, each of which contains `num_atom` atoms. `input.json` is a standard input script to train the DPA-1 model **[3]**.
+
+Each unit system  `sys.xxxx` in mixed_type format usually has the following substructure:
+
+```
+-- sys.xxxx
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/box.npy
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+-- -- set.000/virial.npy
+-- -- set.000/real_atom_types.npy
+```
+
+Format Description
+
+| Name     | Property                         | Raw file            | Unit | Shape                  | Description                                                  |
+| -------- | -------------------------------- | ------------------- | ---- | ---------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes                | real_atom_types.npy |      | Nframes \* Natoms      | Integers that describe atom types in each frame, corresponding to indexes in type_map |
+| type_map | Atom type names                  | type_map.raw        |      | Ntypes                 | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord    | Atomic coordinates               | coord.npy           | Å    | Nframes \* Natoms \* 3 | The atomic coordinates                                       |
+| box      | Boxes                            | box.npy             | Å    | Nframes \* 3 \* 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
+| energy   | Frame energies                   | energy.npy          | eV   | Nframes                | The potential energy of snapshot                             |
+| force    | Atomic forces                    | force.npy           | eV/Å | Nframes \* Natoms \* 3 | The atomic forces                                            |
+| virial   | Frame virial                     | virial.npy          | eV   | Nframes * 9            | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+| /        | Atom type indexes (place holder) | type.raw            |      | Natoms                 | All zeros to fake the type input                             |
+
+Check [here](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format) for more details.
+
+
+## References
+
+**[1]** Tran, Richard, et al. "The Open Catalyst 2022 (OC22) Dataset and Challenges for Oxide Electrocatalysis." arXiv preprint arXiv:2206.08917 (2022).
+
+**[2]** Zhang, Linfeng, et al. "End-to-end symmetry preserving inter-atomic potential energy model for finite and extended systems." Advances in Neural Information Processing Systems 31 (2018).
+
+**[3]** Zhang, Duo, et al. "DPA-1: Pretraining of Attention-based Deep Potential Model for Molecular Simulation." *arXiv preprint arXiv:2208.08236* (2022).
