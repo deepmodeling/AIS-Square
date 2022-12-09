@@ -1,0 +1,66 @@
+## 测试
+
+- `class` 词语高亮
+
+```
+from pymatgen.io.cif import CifFile, CifParser
+from pymatgen.core.lattice import Lattice
+from pymatgen.core.structure import Structure
+import re
+
+def optimize (file: str):
+  file_list = file.split('\n')
+  for i in range(len(file_list)):
+    line_1 = file_list[i - 2]
+    line_2 = file_list[i - 1]
+    if line_1 and line_1.startswith('loop_') and line_2 and line_2.startswith('loop_'):
+      del file_list[i - 1]
+  
+  return '\n'.join(file_list)
+```
+
+``` python
+from pymatgen.io.cif import CifFile, CifParser
+from pymatgen.core.lattice import Lattice
+from pymatgen.core.structure import Structure
+import re
+
+def optimize (file: str):
+  file_list = file.split('\n')
+  for i in range(len(file_list)):
+    line_1 = file_list[i - 2]
+    line_2 = file_list[i - 1]
+    if line_1 and line_1.startswith('loop_') and line_2 and line_2.startswith('loop_'):
+      del file_list[i - 1]
+  
+  return '\n'.join(file_list)
+```
+
+
+``` json
+{
+  "name": "dp-material-benchmark",
+  "version": "1.0.0",
+  "description": "## data",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "build-tool": "cd ./dependency/dp-material-test/ && npm install && tsc",
+    "dp-test": "node ./dependency/dp-material-test/build/bin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.dp.tech/bohrium/dp-material-benchmark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.8.3",
+    "fs-extra": "^11.1.0",
+    "glob": "^8.0.3",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.8.4"
+  }
+}
+
+```
