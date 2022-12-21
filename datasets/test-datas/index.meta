@@ -1,0 +1,11 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/2ffb29b6-5744-4db9-ad01-3a06dea275de
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/2ffb29b6-5744-4db9-ad01-3a06dea275de
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/2ffb29b6-5744-4db9-ad01-3a06dea275de
+Author: zx
+Reference:
+    - workflows/ops/dpec_DFT_tasks
+ImageLink: ""
+ImageName: ""
+LinkFileName: b.sh
+readmename: 测试用.md
+licence: MIT
