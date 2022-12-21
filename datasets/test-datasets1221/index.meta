@@ -1,0 +1,13 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/e1fd6312-9cad-45c0-9dbb-61d2ab549b35
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/e1fd6312-9cad-45c0-9dbb-61d2ab549b35
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/e1fd6312-9cad-45c0-9dbb-61d2ab549b35
+Author: zx
+Reference:
+    - models/LiGePS-SSE-PBEsol-model
+    - workflows/instances/dflow-OLED-energy-homo_lumo
+    - datasets/Open_Catalyst_2020(OC20_Dataset)
+ImageLink: ""
+ImageName: ""
+LinkFileName: b.sh
+readmename: 测试用.md
+licence: MIT
