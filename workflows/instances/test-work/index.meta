@@ -1,0 +1,13 @@
+Link: https://github.com/Migooooooo/AIS-Square-test
+USLink: ""
+CNLink: ""
+Author: dd
+Reference:
+    - workflows/instances/dflow-OLED-energy-homo_lumo
+    - datasets/LiGePS-SSE-PBE
+    - models/LiSnPS-SSE-PBEsol-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: ""
+readmename: 测试用.md
+licence: MIT
