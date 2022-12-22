@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![image](./figs/screenshot.png)
+![image](https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/zzwtest/workflows-instances-DeepMD-EM-figs-screenshot.png)
 
 Scanning transmission electron microscopy (STEM) is widely used for probing the crystal structure, chemistry and electronic structure at the atomic scale. To quantify the observed signals, we need to run detailed electron scattering simulations using the multislice algorithm -- treating materials as collections of slices (i.e. atomic planes) that electrons get scattered at those slices and freely propagate between slices. 
 
