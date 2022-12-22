@@ -1,0 +1,11 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/ee4b3317-8a70-4090-bb85-74052a4ddcb7
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/ee4b3317-8a70-4090-bb85-74052a4ddcb7
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/models/ee4b3317-8a70-4090-bb85-74052a4ddcb7
+Author: Duo Zhang
+Reference:
+    - datasets/Open_Catalyst_2020(OC20_Dataset)
+ImageLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/AIS-Square/models/DPA_1_OC2M/DPA-1-OC2M.png
+ImageName: DPA-1-OC2M.png
+LinkFileName: OC_10M.pb
+readmename: readme.md
+licence: LGPL-3.0
