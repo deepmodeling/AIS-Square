@@ -1,0 +1,57 @@
+## Introduction
+Here we propose DPA-1, a Deep Potential model with a novel attention mechanism, which is highly effective for representing the conformation and chemical spaces of atomic systems and learning the PES. Fig.1 shows the model structure of DPA-1. See **[1]** for more information. 
+
+This model, named DPA-1-OC2M, was trained on OC2M dataset **[2]** which consists of around 2 million DFT data samples covering 56 elements with energy and force labels. 
+
+Fig.2 is the 3-dimensional PCA visualization of the learned type embeddings of DPA-1 pretrained on OC2M. These 56 elements are roughly arranged on a spiral in the latent space. Elements belonging to the same period are lined up in the direction of the spiral; while elements belonging to the same family are listed in the direction orthogonal to the spiral. Even though some transition metal elements are almost bounded together, this rule still roughly holds, which confirms the interpretability of the pretrained DPA-1-OC2M model.
+
+Fig.3 shows the elemental space of DPA-1-OC2M pretrained model. Any system within these 56 elements can directly use this model as a training start point, or even use the model for MD.
+
+
+
+<p align="center">
+<img src="https://aisquare.oss-us-east-1.aliyuncs.com/AIS-Square/models/DPA_1_OC2M/elemental.png" width=80% />
+</p>    
+
+## Training information
+DPA-1 is implemented as a new descriptor `"se_atten"` in the DeePMD-kit package **[3]** for model training, which can be used after simply editing the input.json. See [here](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md) for more details.
+
+The dataset and the corresponding input script to train this model can be downloaded [here](https://www.aissquare.com/datasets/detail?pageType=datasets&name=Open_Catalyst_2020(OC20_Dataset)).
+
+This model is trained on V100 GPU for 10 million steps before convergence.
+
+**The energy rmse: 8.41 meV/atom, force rmse: 117meV/Å**.
+
+
+## Use model
+### Fine-tune the model on your data system
+
+1. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+
+2. Prepare your training data in DeePMD data format for training
+
+3. Prepare your input script `input.json` for fine-tune: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/train/finetuning.md
+
+4. Download this model and put it together with your input script.
+
+5. Run fine-tuning command:
+
+   ```bash
+   dp train input.json --finetune OC_10M.pb
+   ```
+
+### Directly run MD
+
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+
+## References
+**[1]** Zhang, Duo, et al. "DPA-1: Pretraining of Attention-based Deep Potential Model for Molecular Simulation." *arXiv preprint arXiv:2208.08236* (2022).
+
+**[2]** Chanussot, Lowik, et al. "Open catalyst 2020 (OC20) dataset and community challenges." *ACS Catalysis* 11.10 (2021): 6059-6072.
+
+**[3]** Zhang, Linfeng, et al. "End-to-end symmetry preserving inter-atomic potential energy model for finite and extended systems." Advances in Neural Information Processing Systems 31 (2018).
+
