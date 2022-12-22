@@ -9,7 +9,7 @@ This dflow proposal is for molecule energy and properties (homo and lumo) calcul
 ### Workflow based on dflow
 However, with the aid of dflow, we only need to prepare the gaussian 16 input file which contains the structure informations, and then the remain steps are automatically. The dflow workflow diagram is shown in Figure 1.
 
-![alt 文字](./figs/dflow_diagram.jpg)
+![alt 文字](https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/static-image/workflows-instances-dflow-OLED-energy-homo_lumo-figs-dflow_diagram.jpg)
 <center> Figure 1. The dflow diagram for molecule energy and properties calculations based on Gaussian16</center>
 
 ### How to run the program
