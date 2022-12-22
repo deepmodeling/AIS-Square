@@ -17,7 +17,7 @@ Traditionally, we build the flame structure database (i.e., a file called flare.
 
 However, with the aid of dflow, the workflow can be accomplished automatically. the flareDflow workflow diagram is shown in Figure 1.
 
-![image](./figs/flareDflow_EN.jpg)
+![image](https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/static-image/workflows-instances-flareDflow-figs-flareDflow_EN.jpg)
 
 <center><p>Figure 1 . flareDflow workflow diagram</p></center>
 

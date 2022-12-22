@@ -53,7 +53,7 @@ Installation of the computation enviroment can be found in
 
 # Workflow Synopsis
 
-- ![image](./figs/rid_workflow.jpg)
+- ![image](https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/static-image/workflows-instances-dflow_rid-kit-figs-rid_workflow.jpg)
 
 # Troubleshooting
 - [Installation](https://github.com/Dead-fisher/rid-kit/tree/dflow/docs/source/troubleshooting/installation.md)

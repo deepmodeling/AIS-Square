@@ -2,7 +2,7 @@
 This is a simple introduction to dflow, materials screening and machine learning.
 The target of this work flow is to combine machine learning and high-throughput screening for materials discovery. 
 
-![Picture1](https://user-images.githubusercontent.com/47341079/187360757-daa63ae8-9f6f-493b-b0f0-541125c517f6.png)
+![Picture1](https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/static-image/workflows-instances-dflow-MP_cgcnn_jupyter.png)
 
 
 ## Setup

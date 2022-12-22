@@ -7,7 +7,7 @@ The whole workflow process is shown as follows:
 # details
 <a name="93xcm"></a>
 ## workflow
-![](./figs/flowchart.jpg)
+![](https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/static-image/workflows-instances-dflow_SMI2FF-figs-flowchart.jpg)
 <a name="8rToP"></a>
 ## step1  generate g16 input file from SMILEs
 
