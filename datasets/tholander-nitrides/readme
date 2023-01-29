@@ -1,0 +1,60 @@
+# **tholander_nitrides**
+
+## Introduction
+
+A challenging data set for quantum machine learning containing a diverse set of 12.8k polymorphs in the Zn-Ti-N, Zn-Zr-N and Zn-Hf-N chemical systems. The phase diagrams of the Ti-Zn-N, Zr-Zn-N, and Hf-Zn-N systems are determined using large-scale high-throughput density functional calculations (DFT-GGA) (PBE), as shown in **FIG. 1**. In total 12,815 relaxed structures are shared alongside their energy calculated using the VASP DFT code. The High-Throughput Toolkit was used to manage the calculations. Data adapted and deduplicated from the original data on Zenodo at [**[1]**](https://zenodo.org/record/5530535#.YjJ3ZhDMJLQ), published under MIT licence. Collated from separate files of chemical systems and deduplicated according to identical structures matching ht_ids. 
+
+![FIG. 1. Calculated 0 K and 0 GPa phase diagrams for (a) Ti-Zn-N, (b) Zr-Zn-N, and (c) Hf-Zn-N. Blue points mark stable compositions, and red squares mark unstable phases](https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/AIS-Square/datasets/tholander_nitrides/image-20230113110045772.png)
+
+**FIG. 1. Calculated 0 K and 0 GPa phase diagrams for (a) Ti-Zn-N, (b) Zr-Zn-N, and (c) Hf-Zn-N. Blue points mark stable compositions, and red squares mark unstable phases.**
+
+## Generation Approach
+
+Density functional theory (DFT) was used to study the TM-Zn-N alloys (TM = Ti, Zr, Hf). The calculations were performed using projected augmented wave (PAW) type pseudopotentials using the Perdew-Burke-Ernhofer generalized gradient approximation (PBE-GGA) for the exchange-correlation functional as implemented in the Vienna Ab-initio Simulation Package (VASP) (v5.4.1). **[2]**
+
+All calculations were done using a 600 eV plane-wave energy cutoff. The bandgap calculations were performed using PBEGGA and a $21 \times 21 \times 21$ Monkhorst-Pack type k-mesh. The piezoelectric and elastic tensors for the TiZnN~2~ structure were calculated with a $11 \times 11 \times 11$ Monkhorst-Pack k-mesh. The ZrZnN~2~ and HfZnN~2~ tensors were calculated using a $15 \times 15 \times 15$ k-mesh. The piezoelectric calculations were performed using density functional perturbation theory as implemented in VASP in order to calculate the proper piezoelectric constants.
+
+## Data Format
+
+The original data can be downloaded from [[1]](https://doi.org/10.5281/zenodo.5530535) and stored in a `pandas` `DataFrame` with the structures being serialised as `pymatgen` `Structure` objects. The easiest way to load the data is to use the convenience method from `matminer` to decode the `pymatgen` objects.
+
+```python
+from matminer.utils.io import load_dataframe_from_json
+
+df_Ti = load_dataframe_from_json("Zn-Ti-N.json.gz")
+df_Zr = load_dataframe_from_json("Zn-Zr-N.json.gz")
+df_Hf = load_dataframe_from_json("Zn-Hf-N.json.gz")
+```
+
+Each `DataFrame` contains the following columns:
+
+1. `material_id` - A human readable unique identifier for each material
+2. `ht_id` - The unique hash used to track the material in `httk`
+3. `initial_structure` - The initial structure before relaxation
+4. `final_structure` - The final structure after relaxation
+5. `E_vasp_per_atom` - The VASP calculated energy per atom for the final structure
+
+Or you can download the organized dataset from [here](https://figshare.com/ndownloader/files/34423997), and load the data as `pandas` `DataFrame` as follows: 
+
+```python
+from matminer.datasets import load_dataset
+
+df = load_dataset("tholander_e_form.json.gz")
+```
+
+**Number of entries:** 12815
+
+| Column              | Description                                                  |
+| :------------------ | :----------------------------------------------------------- |
+| `material_id`       | Human readable identifier for each material.                 |
+| `ht_id`             | Unique identifier to track the calculation in httk           |
+| `initial_structure` | A pymatgen structure object representing the structure before relaxation. |
+| `final_structure`   | A pymatgen structure object representing the structure after relaxation. |
+| `E_vasp_per_atom`   | The VASP calculated energy per atom for the final structure, in eV/atom |
+| `chemical_system`   | The chemical system represented by the atoms actually contained in the structure |
+
+## References
+
+[1] Tholander, Christopher, Andersson, Carl, Armiento, Rickard, Tasnadi, Ferenc, & Alling, Bjorn. (**2016**). Strong piezoelectric response in stable TiZnN2, ZrZnN2, and HfZnN2 found by ab initio high-throughput approach [Data set]. *Zenodo*. https://doi.org/10.5281/zenodo.5530535
+
+[2] Tholander, C.; Andersson, C. B. A.; Armiento, R.; Tasnádi, F.; Alling, B. Strong Piezoelectric Response in Stable TiZnN2, ZrZnN2, and HfZnN2 Found by Ab Initio High-Throughput Approach. *Journal of Applied Physics* **2016**, *120* (22), 225102. https://doi.org/10.1063/1.4971248.
