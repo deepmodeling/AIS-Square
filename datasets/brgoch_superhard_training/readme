@@ -1,0 +1,42 @@
+# brgoch_superhard_training
+
+## Introduction
+
+3,248 elastic moduli (B and G) were extracted from the Materials Project database. **[1]** The Materials Project implements a high-throughput framework based on DFPT **[2]** using Vienna ab initio Simulation Package (VASP) with the Perdew, Becke and Ernzerhof (PBE) functional used for exchange and correlation while the DFT+U (Hubbard parameter) scheme is employed for highly correlated systems. [**3**] The elastic constants are determined using DFPT coupled with the Voigt-Reuss-Hill approximation to convert the elastic tensors into the elastic moduli.[**4**] Finally, we create a dataset including 2574 materials with their shear and bulk modulus. ****
+
+## Generation Approach
+
+The compositions extracted from the Materials Project were first cross-referenced against an inorganic crystal structure database, Pearson’s Crystal Database (PCD), to ensure only phases accessible at ambient pressure and temperature were used in the machine-learning model. Additionally, the data extracted from Materials Project was manually checked for unreasonable values, e.g., negative moduli. Only binary, ternary, and quaternary compositions were considered and compounds containing group 18 (noble gases) were excluded, as were any phases with the elements hydrogen, Tc, and Z >83 (except for U and Th).Any crystal structures reported as thin films, foils, or suspensions were not included. These criteria reduced the final training dataset by ≈20% to 2574 elastic moduli. To distinguish between polymorphs present in the training set, each compound was labeled as “composition, space group number.” For example, PtV adopts both an orthorhombic (space group number 51) crystal structure as well as a tetragonal (space group number 123) crystal structure, which we label accordingly as PtV,51 and PtV,123. **[1]**
+
+## Data Format
+
+You can download the organized dataset from this page, and load the data as `pandas` `DataFrame` as follows:
+
+```python
+from matminer.datasets import load_dataset
+
+df = load_dataset("brgoch_superhard_training.json.gz")
+```
+
+**Number of entries:** 2574
+
+| Column          | Description                                                  |
+| :-------------- | :----------------------------------------------------------- |
+| `brgoch_feats`  | features used in brgoch study compressed to a dictionary     |
+| `bulk_modulus`  | VRH bulk modulus                                             |
+| `composition`   | pymatgen composition object                                  |
+| `formula`       | Chemical formula as a string                                 |
+| `material_id`   | materials project id                                         |
+| `structure`     | pymatgen structure object                                    |
+| `shear_modulus` | VRH shear modulus                                            |
+| `suspect_value` | True if bulk or shear value did not closely match (within 5%/1GPa of MP) materials project value at time of cross reference or if no material could be found |
+
+## References
+
+[1] Mansouri Tehrani, A.; Oliynyk, A. O.; Parry, M.; Rizvi, Z.; Couper, S.; Lin, F.; Miyagi, L.; Sparks, T. D.; Brgoch, J. Machine Learning Directed Search for Ultraincompressible, Superhard Materials. *J. Am. Chem. Soc.* **2018**, *140* (31), 9844–9853. https://doi.org/10.1021/jacs.8b02717.
+
+[2] Jain, A.; Ong, S. P.; Hautier, G.; Chen, W.; Richards, W. D.; Dacek, S.; Cholia, S.; Gunter, D.; Skinner, D.; Ceder, G.; Persson, K. A. Commentary: The Materials Project: A Materials Genome Approach to Accelerating Materials Innovation. *APL Mater.* **2013**, 1 (1), 011002.
+
+[3] Anisimov, V. I.; Zaanen, J.; Andersen, O. K. Band Theory and Mott Insulators: Hubbard U Instead of Stoner I. *Phys. Rev. B* **1991**, 44 (3), 943–954.
+
+[4] Hill, R. The Elastic Behaviour of a Crystalline Aggregate. Proc. Phys. *Soc. Sect. A* **1952**, 65 (5), 349–354.
