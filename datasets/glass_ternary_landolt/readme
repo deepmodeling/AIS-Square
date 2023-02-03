@@ -1,0 +1,36 @@
+# glass_ternary_landolt
+
+## **Introduction**
+
+Metallic glass formation dataset for ternary alloys, collected from the “Nonequilibrium Phase Diagrams of Ternary Amorphous Alloys,’ a volume of the Landolt– Börnstein collection. This dataset contains experimental measurements of whether it is possible to form a glass using a variety of processing techniques at thousands of compositions from hundreds of ternary systems. The processing techniques are designated in the “processing” column. 
+
+## **Generation Approach**
+
+There are originally 7191 experiments records from literatures in this dataset,which will be reduced to 6203 after deduplicated, and will be further reduced to 6118 if combining multiple data for one composition. There are originally 6780 melt-spinning experiments in this dataset,which will be reduced to 5800 if deduplicated, and will be further reduced to 5736 if combining multiple experimental data for one composition.
+
+## **Data Format**
+
+You can download the original datasets from the supplementary in [2].
+
+Or you can download the organized dataset from [here](https://ndownloader.figshare.com/files/28231785), and load the data as `pandas` `DataFrame` as follows: 
+
+```Bash
+from matminer.datasets import load_dataset
+
+df = load_dataset("glass_ternary_landolt.json.gz")
+```
+
+**Number of entries:** 7191
+
+| Column     | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| formula    | Chemical formula of the entry                                |
+| gfa        | Glass forming ability: 1 means glass forming and corresponds to AM, 0 means non full glass forming and corresponds to CR AC or QC |
+| phase      | “AM”: amorphous phase. “CR”: crystalline phase. “AC”: amorphous-crystalline composite phase. “QC”: quasi-crystalline phase. Phases obtained from glass producing experiments |
+| processing | processing method, meltspin or sputtering                    |
+
+## **References**
+
+[1] Y. Kawazoe, T. Masumoto, A.-P. Tsai, J.-Z. Yu, T. Aihara Jr. (1997) Y. Kawazoe, J.-Z. Yu, A.-P. Tsai, T. Masumoto (ed.) SpringerMaterials Nonequilibrium Phase Diagrams of Ternary Amorphous Alloys · 1 Introduction Landolt-Börnstein - Group III Condensed Matter 37A (Nonequilibrium Phase Diagrams of Ternary Amorphous Alloys) https://www.springer.com/gp/book/9783540605072 (Springer-Verlag Berlin Heidelberg © 1997) Accessed: 03-09-2019
+
+[2] Ward, L., Agrawal, A., Choudhary, A. et al. A general-purpose machine learning framework for predicting properties of inorganic materials. npj Comput Mater 2, 16028 (2016). https://doi.org/10.1038/npjcompumats.2016.28
