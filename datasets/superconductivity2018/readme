@@ -1,0 +1,40 @@
+# superconductivity2018
+
+## Introduction
+
+Dataset of ~16,000 experimental superconductivity records (critical temperatures) from Stanev et al., **[1]** originally from the Japanese National Institute for Materials Science. **[2]** Does not include structural data. Includes ~300 measurements from materials found without superconductivity (T~c~=0). **[3]** Reproduced under [the Creative Commons 4.0 license](https://creativecommons.org/licenses/by/4.0/).
+
+**Fig. 1 SuperCon dataset .** Histogram of materials categorized by Tc (bin size is 2 K, only those with finite Tc are counted). Blue, green, and red denote low-Tc, iron-based, and cuprate superconductors, respectively. In the inset: histogram of materials categorized by ln(T~c~) restricted to those with T~c~ >10K. 
+
+## Generation Approach
+
+Data used in this work is extracted from the SuperCon database, **[2]** created and maintained by the Japanese National Institute for Materials Science. It houses information such as the T~c~ and reporting journal publication for superconducting materials known from experiment. Assembled within it is a uniquely exhaustive list of all reported superconductors, as well as related non-superconducting compounds. 
+
+From SuperCon, we have extracted a list of ~16,400 compounds, of which 4000 have no T~c~ reported, materials without reported critical temperatue have been assigned T~c~=0. Of these, roughly 5700 compounds are cuprates and 1500 are iron-based (about 35 and 9%, respectively), reflecting the significant research efforts invested in these two families. The remaining set of about 8000 is a mix of various materials, including conventional phonon-driven superconductors (e.g., elemental superconductors, A15 compounds), known unconventional superconductors like the layered nitrides and heavy fermions, and many materials for which the mechanism of superconductivity is still under debate (such as bismuthates and borocarbides). The distribution of materials by T~c~ for the three groups is shown in Fig. 1 Otherwise, we incorporate about 300 materials found by H. Hosono’s group not to display superconductivity. **[3]**
+
+## Data Format
+
+The data used to generate the results in this work can be downloaded from https://github.com/vstanev1/Supercon.
+
+Or you can download the organized dataset from [here](https://figshare.com/ndownloader/files/31614956), and load the data as `pandas` `DataFrame` as follows: 
+
+```python
+from matminer.datasets import load_dataset
+
+df = load_dataset("superconductivity2018.json.gz")
+```
+
+**Number of entries:** 16414
+
+| Column        | Description                                                  |
+| :------------ | :----------------------------------------------------------- |
+| `composition` | Chemical formula.                                            |
+| `Tc`          | Experimental superconducting temperature, in K. Materials without reported critical temperatue have been assigned T~c~=0. |
+
+## References
+
+[1] Stanev, V.; Oses, C.; Kusne, A. G.; Rodriguez, E.; Paglione, J.; Curtarolo, S.; Takeuchi, I. Machine Learning Modeling of Superconducting Critical Temperature. *npj Comput. Mater.* **2018**, *4* (1), 1–14. https://doi.org/10.1038/s41524-018-0085-8.
+
+[2] National Institute of Materials Science, Materials Information Station, SuperCon, http://supercon.nims.go.jp/index_en.html (**2011**).
+
+[3] Hosono, H.; Tanabe, K.; Takayama-Muromachi, E.; Kageyama, H.; Yamanaka, S.; Kumakura, H.; Nohara, M.; Hiramatsu, H.; Fujitsu, S. Exploration of New Superconductors and Functional Materials, and Fabrication of Superconducting Tapes and Wires of Iron Pnictides. *Sci. Technol. Adv. Mater.* **2015**, *16* (3), 033503. https://doi.org/10.1088/1468-6996/16/3/033503.
