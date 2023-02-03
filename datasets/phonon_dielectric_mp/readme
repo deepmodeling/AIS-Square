@@ -1,0 +1,52 @@
+# phonon_dielectric_mp
+
+## Introduction
+
+The knowledge of the vibrational properties of a material is of key importance to understand physical phenomena such as thermal conductivity, superconductivity, and ferroelectricity among others. However, detailed experimental phonon spectra are available only for a limited number of materials, which hinders the large-scale analysis of vibrational properties and their derived quantities. 
+
+In this work, we perform ab initio calculations of the full phonon dispersion (**Fig. 1**) and vibrational density of states for 1296 semiconductor compounds in the harmonic approximation based on density functional perturbation theory. The data is collected along with derived dielectric and thermodynamic properties. Here, we provide this full set of second order derivatives in an open database. The schematic overview of available properties and the procedure to obtain them is outlined in **Fig. 2**. **[1]**
+
+<center><b>FIG.1 The average phonon frequency ω versus the average atomic mass m.</b></center>
+
+<center><b>FIG.2 Schematic overview of the quantities calculated in this work.</b></center>
+
+This derivatives database offers the possibility to analyze the lattice dynamics of a large number of compounds, generated with uniform approximations and under a validated procedure. These results are part of the Materials Project **[3]** (MP) which uses HT methods to predict material properties for the discovery and design of new compounds. The second order derivatives of the energy in the ABINIT derivative database file format (DDB) and the processed results in the JSON format can be downloaded from the Figshare repository. **[2]**
+
+## Generation Approach
+
+The workflow employed to handle our HT calculation is outlined in **Fig. 3**. The structures present in the MP database are taken as starting point, considering only semiconducting and insulating materials. Since these have been optimized within the projector augmented wave framework and for a different XC functional (PBE), we first perform a full relaxation of the system with strict convergence parameters. The following step consists in running the DFPT simulations to obtain the second derivatives of the energy with respect to the different perturbations considered. These calculations are carried out in parallel over all the perturbations and all the q-points. If the calculations are completed correctly, the set of derivatives is then used to generate the phonon band structure and DOS, along with the derived quantities, using a Fourier interpolation scheme. Unsuccessful calculations are analyzed and rerun if possible or discarded otherwise. The open source code ABINIT is used throughout this work for calculations of phonon properties.
+
+![image-20230116120356267](assets/phonon_dielectric_mp.assets/image-20230116120356267.png)
+
+<center><b>FIG.3 Workflow scheme used for calculating the phonon properties.</b></center>
+
+## Data Format
+
+All the records are inserted into the MP database. From this they will be made available on the MP website and a JSON (JavaScript Object Notation) data document is generated for each record. A copy of all the JSON documents is available for download from the Figshare repository. **[2]**
+
+You can download the source data [here](https://ndownloader.figshare.com/files/13297571), and load the data as `pandas` `DataFrame` as follows: 
+
+```python
+from matminer.datasets import load_dataset
+
+df = load_dataset("phonon_dielectric_mp.json.gz")
+```
+
+**Number of entries:** 1296
+
+| Column            | Description                                                  |
+| :---------------- | :----------------------------------------------------------- |
+| `eps_electronic`  | A target variable of the dataset, electronic contribution to the calculated dielectric constant; unitless. |
+| `eps_total`       | A target variable of the dataset, total calculated dielectric constant. Unitless: it is a ratio over the dielectric constant at vacuum. |
+| `formula`         | The chemical formula of the material                         |
+| `last phdos peak` | A target variable of the dataset, the frequency of the last calculated phonon density of states in 1/cm; may be used as an estimation of dominant longitudinal optical phonon frequency, a descriptor. |
+| `mpid`            | The Materials Project identifier for the material            |
+| `structure`       | A pymatgen Structure object describing the chemical strucutre of the material |
+
+## References
+
+[1] Petretto, G.; Dwaraknath, S.; P. C. Miranda, H.; Winston, D.; Giantomassi, M.; van Setten, M. J.; Gonze, X.; Persson, K. A.; Hautier, G.; Rignanese, G.-M. High-Throughput Density-Functional Perturbation Theory Phonons for Inorganic Materials. *Sci. Data* **2018**, *5* (1), 180065. https://doi.org/10.1038/sdata.2018.65.
+
+[2] Petretto, Guido; Dwaraknath, Shyam; Miranda, Henrique P. C.; Winston, Donald; Giantomassi, Matteo; Rignanese, Gian-Marco; et al. (**2018**): High-throughput Density-Functional Perturbation Theory phonons for inorganic materials. figshare. Collection. https://doi.org/10.6084/m9.figshare.c.3938023.v1 
+
+[3] Jain, A.; Ong, S. P.; Hautier, G.; Chen, W.; Richards, W. D.; Dacek, S.; Cholia, S.; Gunter, D.; Skinner, D.; Ceder, G.; Persson, K. A. Commentary: The Materials Project: A Materials Genome Approach to Accelerating Materials Innovation. *APL Mater.* **2013**, *1* (1), 011002. https://doi.org/10.1063/1.4812323. 
