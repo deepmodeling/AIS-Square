@@ -1,0 +1,118 @@
+# Sn-SCAN
+
+## Introduction
+
+This is the dataset  for Sn deepmd SCAN functional model used in **[1]**. The dataset contains 578,731 structures and their energies and forces under MN15/6-31G level. 
+
+## Generation Approach
+
+Several bulk properties of solid Sn phases are listed in Table 1.1~ 1.4, which includes the cohesive energy $E_c$ , the lattice constants (a, c, and the c/a ratio), the equilibrium volume $V_0$ , the bulk modulus B 0 , and the elastic constants of the α-Sn, β -Sn, bct-Sn and bcc-Sn structures. The data were obtained from the DP-SCAN model, the DFT method with the SCAN XC functional, four empirical force fields (RB [2], Vella [3], Etesami [4], and Ko [5]) as well as the available experimental data.
+
+**Table 1.** Properties of the α-Sn, β-Sn, bct-Sn, and bcc-Sn structures including the cohesive energy Ec (in eV), the lattice constants a and c (in  ̊A) and the c/a ratio, the equilibrium volume V0 (in  ̊A3), the bulk modulus B0 (in GPa), and the elastic constants C11, C12, C13, C33, C44, and C66 (in GPa) as computed by the DFT with the SCAN functional, the deep potential model (DP-SCAN), four empirical force fields (RB [2], Vella [3], Etesami [4], and Ko [5]), as well as the available experimental data (Exp.).
+
+| α-Sn | DFT    | DP-SCAN | RB [27] | Vella [28] | Etesami [29] | Ko [30] | Exp.        |
+| ---- | ------ | ------- | ------- | ---------- | ------------ | ------- | ----------- |
+| Ec   | -3.46  | -3.464  | -3.14   | -3.219     | -3.209       | -3.135  | -3.140 [59] |
+| a    | 6.566  | 6.56    | 6.483   | 6.304      | 6.43         | 6.581   | 6.483 [60]  |
+| V0   | 35.384 | 35.285  | 34.059  | 31.315     | 33.231       | 35.628  | 34.059 [60] |
+| B0   | 38.2   | 42.6    | 42.2    | 44.2       | 43.6         | 40.6    | 42.6 [61]   |
+| C11  | 52.7   | 63.2    | 70.4    | 64.9       | 82           | 50.4    | 69.1 [61]   |
+| C12  | 31.4   | 32.3    | 28.2    | 33.9       | 24.5         | 35.7    | 21.3 [61]   |
+| C44  | 22.5   | 29.6    | 36.7    | 42.5       | 94.8         | 10.5    | 42.6 [61]   |
+
+| β-Sn | DFT    | DP-SCAN | RB [27] | Vella [28] | Etesami [29] | Ko [30] | Exp.                    |
+| ---- | ------ | ------- | ------- | ---------- | ------------ | ------- | ----------------------- |
+| Ec   | -3.385 | -3.397  | -3.085  | -3.115     | -3.091       | -3.102  | -3.10 [62],-3.130 [63]  |
+| a    | 5.909  | 5.895   | 5.92    | 5.682      | 5.914        | 5.859   | 5.831 [60],5.8119 [64]  |
+| c    | 3.164  | 3.17    | 3.235   | 3.334      | 3.237        | 3.206   | 3.184 [60],3.1559 [64]  |
+| c/a  | 0.536  | 0.538   | 0.546   | 0.587      | 0.547        | 0.547   | 0.546 [60],0.543 [64]   |
+| V0   | 27.619 | 27.543  | 28.345  | 26.911     | 28.301       | 27.514  | 27.064 [60],26.650 [64] |
+| B0   | 53.1   | 52.5    | 64.6    | 65.6       | 64.8         | 57.1    | 57.0 [61],57.037 [65]   |
+| C11  | 108.6  | 110.6   | 109     | 123.2      | 132.6        | 89.8    | 73.2 [61]               |
+| C12  | 11.5   | 19.2    | 62.7    | 34.4       | 47.1         | 46.7    | 59.8 [61]               |
+| C13  | 33.6   | 27.6    | 24.5    | 54.1       | 16.7         | 36.9    | 39.1 [61]               |
+| C33  | 103.4  | 101.8   | 139.8   | 59.2       | 157.3        | 93.8    | 90.6 [61]               |
+| C44  | 24.4   | 23.1    | 0.8     | 4.1        | 1.2          | 7.8     | 21.9 [61]               |
+| C66  | 24.7   | 28.5    | 22.3    | 21.3       | 27.8         | 10.6    | 23.8 [61]               |
+
+| bct-Sn | DFT    | DP-SCAN | RB [27] | Vella [28] | Etesami [29] | Ko [30] | Exp.                   |
+| ------ | ------ | ------- | ------- | ---------- | ------------ | ------- | ---------------------- |
+| Ec     | -3.278 | -3.29   | -3.08   | -3.084     | -3.08        | -3.082  | -                      |
+| a      | 4.016  | 4.008   | 3.433   | 3.055      | 3.439        | 3.276   | 3.70 [10]              |
+| c      | 3.361  | 3.365   | 4.87    | 5.924      | 4.853        | 4.634   | 3.37 [10]              |
+| c/a    | 0.837  | 0.84    | 1.419   | 1.939      | 1.411        | 1.414   | 0.911 [10]             |
+| V0     | 27.104 | 27.027  | 28.698  | 27.645     | 28.698       | 24.872  | 23.068 [10],26.25 [14] |
+| B0     | 53.2   | 46.2    | 73.5    | 70.1       | 73.5         | 68      | 63 [14]                |
+| C11    | 61.4   | 57.3    | 99.1    | 125.7      | 103.9        | 172.5   | -                      |
+| C12    | 37.3   | 34.9    | 48      | 35.6       | 49.3         | -19.8   | -                      |
+| C13    | 49.1   | 38.5    | 73.5    | 59         | 73.5         | 51.2    | -                      |
+| C33    | 84.6   | 74.3    | 73.6    | 72.3       | 73.5         | 101.9   | -                      |
+| C44    | 11.3   | 11.3    | 24.6    | 0.5        | 30.8         | 95.8    | -                      |
+| C66    | 26.9   | 23.7    | 0.03    | 12.2       | 0.03         | 25.5    | -                      |
+
+| bcc-Sn | DFT    | DP-SCAN | RB [27] | Vella [28] | Etesami [29] | Ko [30] | Exp.       |
+| ------ | ------ | ------- | ------- | ---------- | ------------ | ------- | ---------- |
+| Ec     | -3.265 | -3.274  | -3.08   | -3.075     | -3.08        | -3.082  | -          |
+| a      | 3.774  | 3.78    | 3.847   | 3.791      | 3.847        | 3.752   | 3.659 [14] |
+| V0     | 26.879 | 27.002  | 28.458  | 27.252     | 28.468       | 26.415  | 24.5 [14]  |
+| B0     | 47.9   | 46.5    | 73.9    | 74.9       | 73.9         | 63.2    | 92 [14]    |
+| C11    | 42.3   | 34.7    | 81.9    | 90.4       | 83.8         | 72.9    | -          |
+| C12    | 50.3   | 52.4    | 69.9    | 67.1       | 69           | 58.4    | -          |
+| C44    | 28.6   | 7.1     | 29.7    | 6          | 36.5         | 26.4    | -          |
+
+## Data Format
+
+The directory tree is as follows:
+
+```bash
+.
+├── INCAR_Sn_md
+├── INCAR_Sn_rlx
+├── INCAR_Sn_scf_dpgen
+├── Sn16
+├── Sn32
+├── Sn8
+└── param_Sn.json
+```
+
+where each subdirectory(`sn{x}`) contains unit systems in DeePMD format.
+
+A pbc unit system usually has the following substructure:
+
+```bash
+Sn8
+├── set.000
+│   ├── box.npy
+│   ├── coord.npy
+│   ├── energy.npy
+│   ├── force.npy
+│   └── virial.npy
+├── type.raw
+└── type_map.raw
+```
+
+Format Description
+
+| Name     | Property           | Raw file     | Unit | Shape                | Description                                                  |
+| -------- | ------------------ | ------------ | ---- | -------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes  | type.raw     |      | Natoms               | Integers that start with 0, represent the atomic type corresponding to type_map.raw |
+| type_map | Atom type names    | type_map.raw |      | Ntypes               | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord    | Atomic coordinates | coord.npy    | Å    | Nframes * Natoms * 3 | The atomic coordinates                                       |
+| box      | Boxes              | box.npy      | Å    | Nframes * 3 * 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
+| energy   | Frame energies     | energy.npy   | eV   | Nframes              | The potential energy of snapshot                             |
+| force    | Atomic forces      | force.npy    | eV/Å | Nframes * Natoms * 3 | The atomic forces                                            |
+| virial   | Frame virial       | virial.npy   | eV   | Nframes * 9          | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+
+Check [here](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/data/system.md) for more details.
+
+## References
+
+[1] Chen, T.; Yuan, F.; Liu, J.; Geng, H.; Zhang, L.; Wang, H.; Chen, M. Modeling the High-Pressure Solid and Liquid Phases of Tin from Deep Potentials with Ab Initio Accuracy. ***[Preprint]***
+
+[2] R. Ravelo, M. Baskes, Equilibrium and thermodynamic properties of grey, white, and liquid tin, Phys. Rev. Lett. 79 (1997) 2482–2485.
+
+[3] J. R. Vella, M. Chen, F. H. Stillinger, E. A. Carter, P. G. Debenedetti, A. Z. Panagiotopoulos, Structural and dynamic properties of liquid tin from a new modified embedded-atom method force field, Phys. Rev. B 95 (2017) 064202.
+
+[4] S. A. Etesami, M. I. Baskes, M. Laradji, E. Asadi, Thermodynamics of solid sn and pbsn liquid mixtures using molecular dynamics simulations, Acta Materialia 161 (2018) 320 – 330.
+
+[5] W.-S. Ko, D.-H. Kim, Y.-J. Kwon, M. Lee, Atomistic simulations of pure tin based on a new modified embedded-atom method interatomic potential, Metals 8 (11) (2018) 900.
