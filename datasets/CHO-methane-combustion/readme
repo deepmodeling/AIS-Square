@@ -1,0 +1,66 @@
+# CHO-methane-combustion
+
+## Introduction
+
+This is the dataset  for methane combustion used in **[1]**. The dataset contains 578,731 structures and their energies and forces under MN15/6-31G level.
+
+## Generation Approach
+
+In this study, a workﬂow was developed for making reference datasets (Fig. 1). The details of each module in the workﬂow are given below.
+
+To increase the efﬁciency of dataset construction, reactive MD simulation with ReaxFF was used to sample an initial dataset. A model combustion system containing a lot of CH4 and H2 molecules was built by using the Amorphous Cell module in the Material Studio software package. Then the LAMMPS program was used to perform the MD simulation. The NVT ensemble was used and the temperature was set to 3000 K with the Berendsen thermostat. The ReaxFF parameter of Chenoweth et al. (CHO-2008 parameter set) was employed. The Open Babel software and the Depth-First Search algorithm were used to detect species in every snapshot of the trajectory. Then, for each atom in each snapshot, we build a molecular cluster that contains this atom and species that within a speciﬁed cutoff centered on it. In this work, the cutoff was set to 5 Å.
+
+The initial dataset contains about 22.5 million structures, which is too large to perform QM calculations for every molecular cluster it contains. Therefore, it is necessary to resample it to remove redundant structures while ensuring its completeness. To this end, we ﬁrst classiﬁed the initial dataset into sub-datasets based on the chemical bond information of the central atom. For example, the central H atom can be classiﬁed into two different types: a single H atom (H0) and an H atom formed a single chemical bond with another atom (H1).
+
+Further treatment is still needed for large sub-datasets. For a given large subdataset, we ﬁrst expressed each molecular cluster it contains as a Coulomb matrix:
+$$
+\mathbf{C}_{i j}=\left\{\begin{array}{l}
+\frac{1}{2} Z_i^{2.4}, i=j \\
+\frac{Z_i Z_j}{\left|\mathbf{R}_i-\mathbf{R}_j\right|}, i \neq j
+\end{array}\right.
+$$
+where Zi and Zj are nuclear charges of atom i and j, Ri and Rj are their Cartesian coordinates. The minimum image convention was used to consider the periodic boundary condition. “Invisible atoms” were introduced to fix the dimension of the Coulomb matrix. These invisible atoms do not influence the physics of the molecule of interest and make the total number of atoms in the molecule sum to a constant. To lower the dimension of the dataset and keep as much structural information as possible, the Coulomb matrix was further represented by the eigen-spectrum, which is obtained by solving the eigenvalue problem Cv = λv under the constraint $λ_{i} ≥ λ_{i+1}$. The clustering algorithm Mini Batch KMeans was then used to cluster the given sub-datasets into smaller clusters according to the eigen-spectrum. Then we randomly selected 10,000 structures from each cluster (If the cluster contains no more than 10,000 structures, then all of them were selected).
+
+Large amplitude collisions and reactions in the combustion can produce a lot of unpredictable species and intermediates. To ensure the completeness of the reference dataset, an active learning approach was used. Four different NN PES models were trained based on the dataset from the last step. Then several short MD simulations were performed based on these NN models. During the simulation, the atomic forces are evaluated by these four NN PES models simultaneously. For a specific atom, if the predicted forces by these four models are consistent with each other, then the molecular cluster that centered on this atom should be found in the dataset. On the contrary, if the results of these four models are inconsistent with each other and the error between them is in a specific range (0.5 eV/Å < error < 1.0 eV/Å in this work), the corresponding molecular cluster will be added into the dataset. The update of the dataset will be continued until the predictions of the four models are always consistent.
+
+## Data Format
+
+The directory tree is as follows:
+
+```bash
+-- C{xx}H{xx}O{xx}
+...
+```
+
+where each subdirectory contains unit systems in DeePMD format.
+
+A pbc unit system usually has the following substructure:
+
+```
+-- system
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/box.npy
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+-- -- set.000/virial.npy
+```
+
+Format Description
+
+| Name     | Property           | Raw file     | Unit | Shape                | Description                                                  |
+| -------- | ------------------ | ------------ | ---- | -------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes  | type.raw     |      | Natoms               | Integers that start with 0, represent the atomic type corresponding to type_map.raw |
+| type_map | Atom type names    | type_map.raw |      | Ntypes               | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord    | Atomic coordinates | coord.npy    | Å    | Nframes * Natoms * 3 | The atomic coordinates                                       |
+| box      | Boxes              | box.npy      | Å    | Nframes * 3 * 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
+| energy   | Frame energies     | energy.npy   | eV   | Nframes              | The potential energy of snapshot                             |
+| force    | Atomic forces      | force.npy    | eV/Å | Nframes * Natoms * 3 | The atomic forces                                            |
+| virial   | Frame virial       | virial.npy   | eV   | Nframes * 9          | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+
+Check [here](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/data/system.md) for more details.
+
+# References
+
+(1) Zeng, J.; Cao, L.; Xu, M.; Zhu, T.; Zhang, J. Z. H. Complex Reaction Processes in Combustion Unraveled by Neural Network-Based Molecular Dynamics Simulation. *Nat. Commun.* **2020**, *11* (1), 5713. https://doi.org/10.1038/s41467-020-19497-z.
