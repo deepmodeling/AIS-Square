@@ -1,0 +1,784 @@
+# V-PBE
+
+## Introduction
+
+This is the PBE functional DFT dataset for training a DP model for V in **[1]**.
+
+## General Approach
+
+We first perform DFT calculations to determine the lattice parameters of the BCC, FCC and HCP structures of V. Based on these lattice parameters, we construct three supercells of 2 × 2 × 2 BCC, FCC, and HCP structures containing 16, 32, and 16 atoms, respectively. These supercells are affinely scaled by s from −4% to 6% with a step size of 2%, resulting in 6 configurations for each phase. These scaled supercells are then perturbed 3 times by adding some random vectors δ = 3% to each of the supercell vectors ci and 0.01 Å to atom positions Ri, which creates some distorted supercells. Ab initio MD (AIMD) simulations are then performed for 2 steps for each configuration. In AIMD, the NVT ensemble is employed with the temperature maintained at 100 K using the Nosé-Hoover thermostat. At the end of AIMD steps, a total of 104 configurations from the converged ionic steps are prepared with atomistic information including the total energy, atom coordinates Ri , atomic forces fi , and virial tensors. To enhance the description of the BCC structure near equilibrium, we create 20 more perturbations from each uniformly scaled BCC supercells and perform 5 AIMD steps, resulting in an additional 600 training datasets to represent the BCC V.
+
+In the exploration step of the DP-GEN loop, one DP model is selected to explore different bulk and surface structures using DP-based MD (DPMD) interfaced with the LAMMPS package. We use fully periodic supercells of 2 × 2 × 2 BCC, FCC and HCP structures and applied perturbations δ. The bulk configurations are explored using the NPT ensemble with fixed box shape. The temperature and pressure are controlled using the Nosé-Hoover thermostat and barostat. For the bulk structures, DPMD explores four temperature range sets from 50 K to 1.9 Tm (Tm = 2183 K):
+(a) 50 K, [0.1, 0.2, 0.3, 0.4]Tm,
+(b) [0.5, 0.6, 0.7, 0.8, 0.9]Tm ,
+(c) [1.0,1.1,1.2,1.3,1.4]Tm,
+(d) [1.5,1.6,1.7,1.8,1.9]Tm. (12)
+In each temperature, DPMD are performed under eight pressures [0.001, 0.01, 0.1, 1, 5, 10, 20, 50] kBar.
+
+The DP-GEN loop, with the surface structures, follows the bulk structures exploration. For surface structures, the initial supercells are constructed for the {100}, {110}, and {111} surfaces in the BCC and FCC structures, and the {0001} and {10-10} surfaces in the HCP structure. The surface structures are then uniformly scaled by s and perturbed by δ. The surface configurations are explored within the NVT ensemble from 50 K to 0.9 Tm. For exploring the surface structures, σ low and σ high are 0.20 and 0.35 in the entire temperature range. 
+
+More details can be found in **[1]**.
+
+## Data Format
+```bash
+V_training_data
+├── bcc_equi
+│   └── deepmd
+│       ├── box.raw
+│       ├── coord.raw
+│       ├── energy.raw
+│       ├── force.raw
+│       ├── set.000
+│       │   ├── box.npy
+│       │   ├── coord.npy
+│       │   ├── energy.npy
+│       │   ├── force.npy
+│       │   └── virial.npy
+│       ├── type.raw
+│       ├── type_map.raw
+│       └── virial.raw
+├── bcc_large_no
+│   ├── 0.75
+│   │   └── deepmd_100
+│   │       └── V2
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   └── energy.npy
+│   │           ├── type.raw
+│   │           └── type_map.raw
+│   ├── 1.1
+│   │   └── deepmd_100
+│   │       └── V2
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   └── energy.npy
+│   │           ├── type.raw
+│   │           └── type_map.raw
+│   ├── 1.2
+│   │   └── deepmd_100
+│   │       └── V2
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   └── energy.npy
+│   │           ├── type.raw
+│   │           └── type_map.raw
+...
+│   ├── 2.0
+│   │   └── deepmd_100
+│   │       └── V2
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   └── energy.npy
+│   │           ├── type.raw
+│   │           └── type_map.raw
+│   └── deepmd
+│       ├── box.raw
+│       ├── coord.raw
+│       ├── energy.raw
+│       ├── force.raw
+│       ├── set.000
+│       │   ├── box.npy
+│       │   ├── coord.npy
+│       │   ├── energy.npy
+│       │   └── force.npy
+│       ├── type.raw
+│       └── type_map.raw
+├── bulk_dpgen_0322
+│   ├── iter.000000
+│   │   └── 02.fp
+│   │       ├── data.000
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.008
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       └── data.016
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── force.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   ├── energy.npy
+│   │           │   ├── force.npy
+│   │           │   └── virial.npy
+│   │           ├── type.raw
+│   │           ├── type_map.raw
+│   │           └── virial.raw
+...
+│   └── iter.000026
+│       └── 02.fp
+│           └── data.002
+│               ├── box.raw
+│               ├── coord.raw
+│               ├── energy.raw
+│               ├── force.raw
+│               ├── set.000
+│               │   ├── box.npy
+│               │   ├── coord.npy
+│               │   ├── energy.npy
+│               │   ├── force.npy
+│               │   └── virial.npy
+│               ├── type.raw
+│               ├── type_map.raw
+│               └── virial.raw
+├── defect_dpgen_0315
+│   ├── iter.000000
+│   │   └── 02.fp
+│   │       ├── data.000
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.004
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       └── data.008
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── force.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   ├── energy.npy
+│   │           │   ├── force.npy
+│   │           │   └── virial.npy
+│   │           ├── type.raw
+│   │           ├── type_map.raw
+│   │           └── virial.raw
+...
+│   └── iter.000009
+│       └── 02.fp
+│           └── data.009
+│               ├── box.raw
+│               ├── coord.raw
+│               ├── energy.raw
+│               ├── force.raw
+│               ├── set.000
+│               │   ├── box.npy
+│               │   ├── coord.npy
+│               │   ├── energy.npy
+│               │   ├── force.npy
+│               │   └── virial.npy
+│               ├── type.raw
+│               ├── type_map.raw
+│               └── virial.raw
+├── defect_dpgen_smallV_0325
+│   ├── iter.000000
+│   │   └── 02.fp
+│   │       ├── data.012
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.016
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.020
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.024
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.028
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.032
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.036
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.040
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       └── data.044
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── force.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   ├── energy.npy
+│   │           │   ├── force.npy
+│   │           │   └── virial.npy
+│   │           ├── type.raw
+│   │           ├── type_map.raw
+│   │           └── virial.raw
+...
+│   └── iter.000005
+│       └── 02.fp
+│           ├── data.009
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           ├── data.013
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           ├── data.017
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           ├── data.021
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           ├── data.025
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           ├── data.029
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           ├── data.033
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           ├── data.037
+│           │   ├── box.raw
+│           │   ├── coord.raw
+│           │   ├── energy.raw
+│           │   ├── force.raw
+│           │   ├── set.000
+│           │   │   ├── box.npy
+│           │   │   ├── coord.npy
+│           │   │   ├── energy.npy
+│           │   │   ├── force.npy
+│           │   │   └── virial.npy
+│           │   ├── type.raw
+│           │   ├── type_map.raw
+│           │   └── virial.raw
+│           └── data.045
+│               ├── box.raw
+│               ├── coord.raw
+│               ├── energy.raw
+│               ├── force.raw
+│               ├── set.000
+│               │   ├── box.npy
+│               │   ├── coord.npy
+│               │   ├── energy.npy
+│               │   ├── force.npy
+│               │   └── virial.npy
+│               ├── type.raw
+│               ├── type_map.raw
+│               └── virial.raw
+├── gamma_line_100
+│   ├── 110
+│   │   └── deepmd
+│   │       └── V24
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── force.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   ├── energy.npy
+│   │           │   └── force.npy
+│   │           ├── type.raw
+│   │           └── type_map.raw
+│   ├── 112
+│   │   └── deepmd
+│   │       └── V20
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── force.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   ├── energy.npy
+│   │           │   └── force.npy
+│   │           ├── type.raw
+│   │           └── type_map.raw
+│   └── 123
+│       └── deepmd
+│           └── V20
+│               ├── box.raw
+│               ├── coord.raw
+│               ├── energy.raw
+│               ├── force.raw
+│               ├── set.000
+│               │   ├── box.npy
+│               │   ├── coord.npy
+│               │   ├── energy.npy
+│               │   └── force.npy
+│               ├── type.raw
+│               └── type_map.raw
+├── init_bulk_0321
+│   ├── bcc
+│   │   └── POSCAR.bcc.02x02x02
+│   │       └── 02.md
+│   │           └── sys-0016
+│   │               └── deepmd
+│   │                   ├── box.raw
+│   │                   ├── coord.raw
+│   │                   ├── energy.raw
+│   │                   ├── force.raw
+│   │                   ├── set.000
+│   │                   │   ├── box.npy
+│   │                   │   ├── coord.npy
+│   │                   │   ├── energy.npy
+│   │                   │   ├── force.npy
+│   │                   │   └── virial.npy
+│   │                   ├── type.raw
+│   │                   ├── type_map.raw
+│   │                   └── virial.raw
+│   ├── fcc
+│   │   └── POSCAR.fcc.02x02x02
+│   │       └── 02.md
+│   │           └── sys-0032
+│   │               └── deepmd
+│   │                   ├── box.raw
+│   │                   ├── coord.raw
+│   │                   ├── energy.raw
+│   │                   ├── force.raw
+│   │                   ├── set.000
+│   │                   │   ├── box.npy
+│   │                   │   ├── coord.npy
+│   │                   │   ├── energy.npy
+│   │                   │   ├── force.npy
+│   │                   │   └── virial.npy
+│   │                   ├── type.raw
+│   │                   ├── type_map.raw
+│   │                   └── virial.raw
+│   └── hcp
+│       └── POSCAR.hcp.02x02x02
+│           └── 02.md
+│               └── sys-0016
+│                   └── deepmd
+│                       ├── box.raw
+│                       ├── coord.raw
+│                       ├── energy.raw
+│                       ├── force.raw
+│                       ├── set.000
+│                       │   ├── box.npy
+│                       │   ├── coord.npy
+│                       │   ├── energy.npy
+│                       │   ├── force.npy
+│                       │   └── virial.npy
+│                       ├── type.raw
+│                       ├── type_map.raw
+│                       └── virial.raw
+├── surf_dpgen_0416
+│   ├── iter.000000
+│   │   └── 02.fp
+│   │       ├── data.000
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.004
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.008
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.012
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.016
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.020
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       ├── data.024
+│   │       │   ├── box.raw
+│   │       │   ├── coord.raw
+│   │       │   ├── energy.raw
+│   │       │   ├── force.raw
+│   │       │   ├── set.000
+│   │       │   │   ├── box.npy
+│   │       │   │   ├── coord.npy
+│   │       │   │   ├── energy.npy
+│   │       │   │   ├── force.npy
+│   │       │   │   └── virial.npy
+│   │       │   ├── type.raw
+│   │       │   ├── type_map.raw
+│   │       │   └── virial.raw
+│   │       └── data.028
+│   │           ├── box.raw
+│   │           ├── coord.raw
+│   │           ├── energy.raw
+│   │           ├── force.raw
+│   │           ├── set.000
+│   │           │   ├── box.npy
+│   │           │   ├── coord.npy
+│   │           │   ├── energy.npy
+│   │           │   ├── force.npy
+│   │           │   └── virial.npy
+│   │           ├── type.raw
+│   │           ├── type_map.raw
+│   │           └── virial.raw
+...
+│   └── iter.000007
+│       └── 02.fp
+│           └── data.027
+│               ├── box.raw
+│               ├── coord.raw
+│               ├── energy.raw
+│               ├── force.raw
+│               ├── set.000
+│               │   ├── box.npy
+│               │   ├── coord.npy
+│               │   ├── energy.npy
+│               │   ├── force.npy
+│               │   └── virial.npy
+│               ├── type.raw
+│               ├── type_map.raw
+│               └── virial.raw
+└── vacancy_333_0419
+    ├── deepmd
+    │   └── V53
+    │       ├── box.raw
+    │       ├── coord.raw
+    │       ├── energy.raw
+    │       ├── force.raw
+    │       ├── set.000
+    │       │   ├── box.npy
+    │       │   ├── coord.npy
+    │       │   ├── energy.npy
+    │       │   ├── force.npy
+    │       │   └── virial.npy
+    │       ├── type.raw
+    │       ├── type_map.raw
+    │       └── virial.raw
+    ├── deepmd_10
+    │   └── V53
+    │       ├── box.raw
+    │       ├── coord.raw
+    │       ├── energy.raw
+    │       ├── force.raw
+    │       ├── set.000
+    │       │   ├── box.npy
+    │       │   ├── coord.npy
+    │       │   ├── energy.npy
+    │       │   ├── force.npy
+    │       │   └── virial.npy
+    │       ├── type.raw
+    │       ├── type_map.raw
+    │       └── virial.raw
+    └── deepmd_20
+        └── V53
+            ├── box.raw
+            ├── coord.raw
+            ├── energy.raw
+            ├── force.raw
+            ├── set.000
+            │   ├── box.npy
+            │   ├── coord.npy
+            │   ├── energy.npy
+            │   ├── force.npy
+            │   └── virial.npy
+            ├── type.raw
+            ├── type_map.raw
+            └── virial.raw
+```
+
+Format Description
+
+| Name     | Property           | Raw file     | Unit | Shape                | Description                                                  |
+| -------- | ------------------ | ------------ | ---- | -------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes  | type.raw     |      | Natoms               | Integers that start with 0, represent the atomic type corresponding to type_map.raw |
+| type_map | Atom type names    | type_map.raw |      | Ntypes               | Atom names that map to atom type |
+| coord    | Atomic coordinates | coord.npy    | Å    | Nframes * Natoms * 3 | The atomic coordinates                                       |
+| box      | Boxes              | box.npy      | Å    | Nframes * 3 * 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
+| energy   | Frame energies     | energy.npy   | eV   | Nframes              | The potential energy of snapshot                             |
+| force    | Atomic forces      | force.npy    | eV/Å | Nframes * Natoms * 3 | The atomic forces                                            |
+| virial   | Frame virial       | virial.npy   | eV   | Nframes * 9          | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+
+Check [here](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/data/system.md) for more details.
+
+## References
+
+[1] Wang, Rui, et al. "Classical and machine learning interatomic potentials for BCC vanadium." Physical Review Materials 6 (2022): 113603.
+
+[2] Wen, Tongqi, et al. "Specialising neural network potentials for accurate properties and application to the mechanical response of titanium." npj Computational Materials 7 (2021): 206.
+
+[3] Zhang, Linfeng, et al. "Active learning of uniformly accurate interatomic potentials for materials simulation." Physical Review Materials 3.2 (2019): 023804.
+
+[4] Zhang, Yuzhi, et al. "DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models." Computer Physics Communications 253 (2020): 107206.
