@@ -1,0 +1,23 @@
+# V-PBE
+
+## Introduction
+
+This is the DP model for V PBE functional model used in **[1]**.
+
+## Training
+
+For DP-HYB-V, we use the general Deep potential generator (DP-GEN) scheme with the new hybrid descriptor and a “specialization” strategy to generate the training datasets. The new hybrid descriptor includes two- and three-body functions modelled by embedding neural networks of sizes (20,40,80) and (4,8,16), respectively. The fitting neural network size is (240, 240, 240). The cutoff radii for the two- and three-body embedding neural networks are 6 and 4 Å, respectively. In all the training stages, four models are trained on the same training datasets with the same neural network sizes but starting from different random seeds.
+
+More details can be found in **[1]**.
+
+
+
+## References
+
+[1] Wang, Rui, et al. "Classical and machine learning interatomic potentials for BCC vanadium." Physical Review Materials 6 (2022): 113603.
+
+[2] Wen, Tongqi, et al. "Specialising neural network potentials for accurate properties and application to the mechanical response of titanium." npj Computational Materials 7 (2021): 206.
+
+[3] Zhang, Linfeng, et al. "Active learning of uniformly accurate interatomic potentials for materials simulation." Physical Review Materials 3.2 (2019): 023804.
+
+[4] Zhang, Yuzhi, et al. "DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models." Computer Physics Communications 253 (2020): 107206.
