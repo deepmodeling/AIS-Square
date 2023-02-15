@@ -1,0 +1,23 @@
+## Introduction
+
+A DeepMD model for Sn SCAN used in **[1]**.
+
+## Training
+
+The concurrent learning procedure called deep potential generator (DP-GEN) **[2, 3]** is applied to perform iterations in order to refine the DP model. We set up 32 iterations in the DP-GEN workflow. For each iteration, a set of initial configurations are chosen from the α-Sn, β -Sn, bct-Sn and bcc-Sn structures. Next, five temperatures are chosen for each iteration and the temperatures arise after every 8 iterations. In total, 20 temperatures ranging from 50 to 1950 K with the interval being 100 K are set. For each temperature, nine different pressures including 0, 5, 10, 15, 20, 25, 30, 40, and 50 GPa are set. Detailed setups of the exploration strategy are listed in Table S1 of SI. Finally, three steps, i.e., the exploration, labeling, and training processes are performed in each iteration to generate a new DP model.
+
+## Use model
+
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+
+## References
+
+**[1]** Chen, T.; Yuan, F.; Liu, J.; Geng, H.; Zhang, L.; Wang, H.; Chen, M. Modeling the High-Pressure Solid and Liquid Phases of Tin from Deep Potentials with Ab Initio Accuracy. ***[Preprint]***
+
+**[2]** L. Zhang, D.-Y. Lin, H. Wang, R. Car, W. E, Active learning of uniformly accurate interatomic potentials for materials simulation, Phys. Rev. Materials 3 (2019) 023804. doi:10.1103/ PhysRevMaterials.3.023804.
+
+**[3]** Y. Zhang, H. Wang, W. Chen, J. Zeng, L. Zhang, H. Wang, W. E, Dp-gen: A concurrent learning platform for the generation of reliable deep learning based potential energy models, Computer Physics Communications (2020) 107206doi:https://doi.org/10. 1016/j.cpc.2020.107206.
