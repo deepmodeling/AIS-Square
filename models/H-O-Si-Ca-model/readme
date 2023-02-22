@@ -1,0 +1,28 @@
+## Introduction
+
+A DeePMD model for H-O-Si-Ca used in **[1]**.
+
+Quantitative analyses of the thermodynamics and kinetics of silicate minerals dissolution at atomic level are difficult currently, both experimentally and computationally. Here, we apply the deep learning, enhancing sampling molecular dynamics and density functional theory to build up a deep neural network potential with quantum mechanics accuracy, which can determine the free energy surfaces, minimum free-energy reaction pathways and kinetic rates for Ca dissolution from the water/dicalcium silicate interface at different temperatures. We find that the Ca dissolution is a multi-directional reaction and follows different reaction pathways at different temperatures. The dissolution rate of Ca ions is on the order of hundreds of seconds at ambient temperature and increases to nanoseconds after heating. The relatively slow dissolution kinetics comparing to the low free energy barrier is caused by the multi-directional nature of the dissolution reaction. The new atomistic insight promotes the understanding of the dicalcium silicate and cement hydration.
+
+## Training
+
+The DP-GEN package **[2]** was used to perform the iterative procedure for training dataset construction. Each iteration includes three steps: training, exploring, and labeling.
+
+For training, the DNN potential was trained using the DeepMD-kit package **[3]** with a smooth version. A cut-off radius of 6.0 Å was adopted to represent the local internal structure around any atom. At the same time, to remove the discontinuity caused by this cut-off setting, smoothing with a cosine shape function started at 1 Å. The sizes of embedding and fitting networks are (25, 50, 100) and (240, 240, 240), respectively. The learning rate exponentially decays from $1.0 × 10^3$ to $1.0 × 10^8$ every 5000 training steps. The batch size was set automatically during the training procedure. The perfectors of the en ergy and force in the loss function changed during the optimization process from 0.02 to 2 and from 1000 to 1, respectively. Each DNN potential was trained for $2.0 × 10^6$ steps in their iterative training procedure. We trained four DNN potentials in every iteration based on the same training dataset but with different initial weights.
+
+## Use model
+
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+
+## References
+
+**[1]** Li, Y.; Pan, H.; Li, Z. Unravelling the Dissolution Dynamics of Silicate Minerals by Deep Learning Molecular Dynamics Simulation: A Case of Dicalcium Silicate. *Cem. Concr. Res.* **2023**, *165*, 107092. https://doi.org/10.1016/j.cemconres.2023.107092.
+
+**[2]** Y. Zhang, H. Wang, W. Chen, J. Zeng, L. Zhang, H. Wang, W. E, Dp-gen: A concurrent learning platform for the generation of reliable deep learning based potential energy models, Computer Physics Communications (2020) 107206doi:https://doi.org/10. 1016/j.cpc.2020.107206.
+
+**[3]** H. Wang, L. Zhang, J. Han, WE, DeePMD-kit: A deep learning package for manybody potential energy representation and molecular dynamics, Computer Physics Communications 228 (2018) 178–184.
+
