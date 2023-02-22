@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/891431ba-f325-4ad5-ab5b-60a4ae4e881b
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/891431ba-f325-4ad5-ab5b-60a4ae4e881b
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/models/891431ba-f325-4ad5-ab5b-60a4ae4e881b
+Author: Tongqi Wen
+Reference:
+    - datasets/Ti-dislocation
+    - models/Ti-model
+ImageLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/AIS-Square/models/Ti-dislocation-model/Ti_dislocation_fig1.png
+ImageName: Ti_dislocation_fig1.png
+LinkFileName: frozen_model_Ti-dislocation.pb
+readmename: Ti-dislocation-model.md
+licence: LGPL-3.0
