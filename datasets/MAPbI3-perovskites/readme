@@ -1,0 +1,5 @@
+This is the deep potential model used to reproduce the phase transition between cubic, tetragonal and orthorhombic phases of MAPbI3.
+
+The data were generated using DPGEN based on npt-MD. The cover temperature range is 50~800K. The covered pressure range is below 1GPa.
+
+Please cite the paper: "Tuo P, Li L, Wang X, et al. Hybrid nano-domain structures of organic-inorganic perovskites from molecule-cage coupling effects[J]. arXiv preprint arXiv:2209.12445, 2022."
