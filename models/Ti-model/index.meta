@@ -1,0 +1,11 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/8d9dbfe8-dee5-4ef6-88fe-52c49204ef31
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/8d9dbfe8-dee5-4ef6-88fe-52c49204ef31
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/models/8d9dbfe8-dee5-4ef6-88fe-52c49204ef31
+Author: Tongqi Wen
+Reference:
+    - datasets/Ti
+ImageLink: ""
+ImageName: ""
+LinkFileName: Ti_frozen_model.pb
+readmename: Ti-model.md
+licence: LGPL-3.0

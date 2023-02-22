@@ -1,0 +1,29 @@
+## Introduction
+
+A DeePMD model for Ti used in **[1]**.
+
+## Training
+
+The workflow consists of three steps: Initialisation, DPGEN Loop, and Specialisation. In the Initialisation step, primitive cells of BCC, FCC, and HCP Ti are constructed and equilibrated at zero stress and 0 K using the Vienna Ab initio Simulation Package (VASP). Super cells consisting of 2 × 2 × 2 equilibrated primitive cells are constructed and scaled (strained) by ±2, ±4, and ±6% uniformly in all directions. Additional random perturbations are applied to ion positions and super cell vectors. Ab initio MD (AIMD) simulations are performed for 5 time steps at 100 K for each structure. Atom coordinates, forces, total energies, and virial tensors of each AIMD simulation configuration are recorded to form training sets “0".
+
+In the DP-GEN Loop step, training sets “0" are input into the DeePMD-kit package[2-4] to train an ensemble of first trial DPs (DP^1{α}) based on different random seeds. MD simulations of different structures (perturbed bulk or structures with free surfaces) are performed at selected temperatures (50–3687.9 K) using the LAMMPS MD package with potential DP^1{α}. The simulations explore thousands of different configurations along the MD trajectory. For each MD configuration (using DP^1{α}), the atomic force on atom i using the different DP^1{α}, f^α_i , is computed, as well as its standard deviation σffα i g over the ensemble of trial DP models. If the maximum of σffα i g falls within a selected range [εlo, εhi], the corresponded configuration is chosen as a “candidate configuration”. The total energy, virial tensor, and atomic forces for candidate configurations are then computed using DFT to form additional training datasets. Another DP-GEN iteration is performed using all current training datasets to generate another ensemble of trial DPs. The DP-GEN Loop iterates and is considered converged when no “candidate configurations” are added. All training data generated in this DP-GEN Loop form the “Classic" training set, which serve as input to the Specialisation step.
+
+In the Specialisation step, “special" structures relevant to the intended applications are created (e.g., sheared configurations along the γ-lines). The atomic forces, total energy, and virial tensor are calculated for each special structure using DFT; these are the “Special" training sets. DeePMD-kit13–15 is used again to train a final ensemble of DPs based on the “Classic" and “Special" training sets. The final DPs are further tested and the DP model with the best overall performance is selected. While the Initialisation and DP-GEN Loop step settings are described in the Supplementary Methods, the DFT calculations and the Specialisation step settings are in the Methods section. We refer to the specialised DP approach as “DPspecX”, where X refers to the properties for which it is specialised; here, specialisation is for the mechanical response of Ti, i.e., “Ti-DPspecMech”.
+
+## Use model
+
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+
+## References
+
+**[1]** Wen, T.; Wang, R.; Zhu, L.; Zhang, L.; Wang, H.; Srolovitz, D. J.; Wu, Z. Specialising Neural Network Potentials for Accurate Properties and Application to the Mechanical Response of Titanium. npj Comput. Mater. 2021, 7 (1), 206. https://doi.org/10.1038/s41524-021-00661-y.
+
+**[2]** Zhang, L., Han, J., Wang, H., Car, R. & E, W. Deep potential molecular dynamics: a scalable model with the accuracy of quantum mechanics. Phys. Rev. Lett. **120**, 143001 (2018). 
+
+**[3]** Wang, H., Zhang, L., Han, J. & E, W. Deepmd-kit: A deep learning package for many-body potential energy representation and molecular dynamics. Comput. Phys. Commun. **228**, 178 (2018).
+
+**[4]** Zhang, L. et al. End-to-end symmetry preserving inter-atomic potential energy model for finite and extended systems. In Bengio, S. et al. (eds.) Advances in Neural Information Processing Systems, vol. 31, 4436–4446 (Curran Associates, Inc., 2018).
