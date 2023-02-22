@@ -1,0 +1,23 @@
+## Introduction
+
+A DeePMD model for Ti-dislocation used in **[1]**.
+
+## Training
+
+Atomistic modelling of Ti is challenging as empirical and semi-empirical interatomic potentials have limited capabilities in describing the bonding characteristics in different Ti allotropes (ω, α and β ). An MEAM interatomic potential and a recent ML Deep Potential **[2]** have been shown to possess the necessary attributes for modelling dislocations in multiphase Ti in a self-consistent manner **[2]**. In particular, these two potentials accurately capture the cohesive energies, elastic constants and generalised stacking fault energies of both the HCP-α and BCC- β phases. In the current work, we employ an improved version of the Deep Potential for Ti (DP-Ti). DP-Ti is trained using the DeePMD-kit **[3]** through a workﬂow consisting of “Initialisation”, “DP-GEN loop”, and “Specialisation” steps. The detailed training process and benchmarks are described in Ref. **[2]**. Here, we brieﬂy describe the improvements made relative to the earlier version **[2]**. The current training datasets include additional ab initio MD-based 2×2×2 super cells of the ω-phase. In the specialisation-step, the training datasets include segments of the γ -line in the 〈 a 〉 direction on the { 10¯10 } -prism I wide plane and in the 〈 c + a 〉 direction on the pyramidal II plane (Fig. 1). 
+
+## Use model
+
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+
+## References
+
+**[1]** Wen, T.; Liu, A.; Wang, R.; Zhang, L.; Han, J.; Wang, H.; Srolovitz, D. J.; Wu, Z. Atomistic Modelling of All Dislocations and Twins in HCP and BCC Ti. arXiv November 25, 2022. https://doi.org/10.48550/arXiv.2211.14072.
+
+**[2]** Wen, T.; Wang, R.; Zhu, L.; Zhang, L.; Wang, H.; Srolovitz, D. J.; Wu, Z. Specialising Neural Network Potentials for Accurate Properties and Application to the Mechanical Response of Titanium. npj Comput. Mater. 2021, 7 (1), 206. https://doi.org/10.1038/s41524-021-00661-y.
+
+**[3]** Wang, H., Zhang, L., Han, J. & E, W. Deepmd-kit: A deep learning package for many-body potential energy representation and molecular dynamics. Comput. Phys. Commun. **228**, 178 (2018).
