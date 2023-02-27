@@ -1,0 +1,11 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/81131aef-985c-465b-ba4c-773984ec6bb1
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/81131aef-985c-465b-ba4c-773984ec6bb1
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/models/81131aef-985c-465b-ba4c-773984ec6bb1
+Author: Yinan Wang
+Reference:
+    - datasets/W-DP-HYB
+ImageLink: ""
+ImageName: ""
+LinkFileName: W-DP-HYB.pb
+readmename: W-DP-HYB-model.md
+licence: LGPL-3.0
