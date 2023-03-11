@@ -1,0 +1,49 @@
+# Introduction
+This dataset cnontains DFT samples in DeepMD format used in [1].
+# Generation Approach
+
+The deep potential generator (DP-GEN) is employed to produce the dataset for crystalline and amorphous Li, Si, and Li-Si systems. The DP-GEN is a concurrent learning scheme that works in an iterative way. Data generation in each iteration consists of three steps: training, exploration, and labeling. The detailed workflow is displayed as follows.
+
+Initial dataset. The main purpose of creating the initial data set was to give a DP model with initial guess. The stable ground state structures of the Li, Si and Li-Si crystalline (c-LixSi) from Materials Project were considered to establish a general initial guessed DP potential as follows: BCC, FCC and HCP Li structures, Fd3̅m Si of diamond and I4₁/amd Si, a series of c-LixSi (0<x<4.5) phases including c-LiSi3, c-Li1Si1, c-Li12Si7, c-Li2Si, c-Li7Si3, c-Li13Si4, c-Li7Si2, c-Li15Si4, c-Li21Si5, and c-Li22Si5.
+
+Exploration. In this step, the LAMMPS package was performed to sample new configuration space of Li, Si and Li-Si systems with Deep potential molecular dynamics (DeePMD). For crystalline Li-Si systems, a series of conventional cells and perturbed c-LixSi (0<x<4.5) configurations above were also employed as initial configurations to run DeePMD simulations. The explored temperature range were [200, 2000] K with an increment of 200 K and pressure range were fixed values of [10^−4^, 5] GPa. For Li systems, the corresponding temperature range were [50, 800] K with an increment of 40 K and pressure range were fixed values of [10^−4^, 5] GPa. For Si system, the corresponding temperature range were 50 K and [200, 3200] K with an increment of 200 K and pressure range were [10^−4^, 20] GPa with an increment of half an order of magnitude. For c-LixSi systems, the σflow and σfhigh were set to 0.15 and 0.35 eV/Å in the first 64 iterations. In the remaining iterations, the σflow and σfhigh were set to 0.20 and 0.35 eV/Å. 
+
+The amorphous exploration contains two stages. In the first stage, nine amorphous Li-Si (a-LixSi) phases was explored.These a-LixSi (0<x<4.5) phases need to be produced based on DP model constructed by c-LixSi phases. Specifically, nine kinds of c-LixSi phases with 100000 and 500000 steps were simulated by DeePMD at 2500 K, respectively. Then, the corresponding last snapshot from DeePMD trajectories can be selected as the initial configuration to build the DP model for a-LixSi. Secondly, it should be considered that the low-lithium configuration space of a-LixSi (0<x<1) is still lacking. For this purpose, the c-Si with 2 × 2 × 2 supercells run DeePMD at 3000 K and 5 GPa, and the corresponding last snapshots use grand canonical Monte Carlo (GCMC) simulation to insert Li atom, and obtain a series of a-LixSi (0<x<1.33) configurations. Then, 33 a-LixSi (0<x<1.33) configurations were invoked to run 88-145 iterations. The temperature range were set to [2000, 2500] K with an increment of 100 K, and the pressure range were fixed values of [10^−3^, 1, 5, 10] GPa. The corresponding σflow and σfhigh were set to 0.20 and 0.40 eV/Å. 
+
+# Data Format
+The directory tree is as follows:
+data
+```
+-- aLiSi_configs
+-- -- iter.xxxxxxx
+-- -- -- 02.fp
+-- -- -- -- data.xxx
+-- cLiSi_configs
+-- -- iter.xxxxxxx
+-- -- -- 02.fp
+-- -- -- -- data.xxx
+-- init_configs/
+…
+-- Li_configs/
+…
+-- model_DP/
+-- Si_configs
+…
+```
+where each subdirectory (data.xxx or deepmd) contains unit systems in DeePMD format.
+
+A pbc unit system usually has the following substructure:
+```
+-- system
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/box.npy
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+```
+
+
+# References
+Unraveling the Mechanism of Phase Transformation and Structural Evolution in Si Anode with Deep-Potential Molecular Dynamics | Materials Chemistry | ChemRxiv | Cambridge Open Engage
+
