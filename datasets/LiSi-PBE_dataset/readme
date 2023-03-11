@@ -1,0 +1,51 @@
+# Introduction
+This dataset cnontains DFT samples in DeepMD format used in [1].
+# Generation Approach
+
+The deep potential generator (DP-GEN) is employed to produce the dataset for crystalline and amorphous Li, Si, and Li-Si systems. The DP-GEN is a concurrent learning scheme that works in an iterative way. Data generation in each iteration consists of three steps: training, exploration, and labeling. The detailed workflow is displayed as follows.
+
+Initial dataset. The main purpose of creating the initial data set was to give a DP model with initial guess. The stable ground state structures of the Li, Si and Li-Si crystalline (c-LixSi) from Materials Project were considered to establish a general initial guessed DP potential as follows: BCC, FCC and HCP Li structures, Fd3̅m Si of diamond and I4₁/amd Si, a series of c-LixSi (0<x<4.5) phases including c-LiSi3, c-Li1Si1, c-Li12Si7, c-Li2Si, c-Li7Si3, c-Li13Si4, c-Li7Si2, c-Li15Si4, c-Li21Si5, and c-Li22Si5. It should be noted that initial dataset needs to go through next several steps. Firstly, the BCC, HCP and FCC Li were constructed to 2 × 2 × 2 supercells with 16, 16, 32 atoms, respectively. The diamond Si and I4₁/amd Si were constructed as 2 × 2 × 2 with 64 atoms and 2 × 2 × 3 supercell with 48 atoms, respectively. The various c-LixSi phases were selected from 32 and 32 atoms of two c-LiSi3, 16, 32 and 32 atoms of three c-Li1Si1, 152 atoms of c-Li12Si7, 18 atoms of c-Li2Si, 60 atoms of c-Li7Si3, 34 atoms of c-Li13Si4, 36 atoms of c-Li7Si2, 76 atoms of c-Li15Si4, 104 atoms of c-Li21Si5, and 108 atoms of c-Li22Si5, respectively. All systems were optimized by the density functional theory (DFT) calculations. Secondly, the corresponding optimized atomic coordinates were perturbed by a random number in the range ±0.01 Å, and the cell vectors were randomly disturbed in the range of ±3% of the original matrix. Finally, each randomly perturbed structure was used 10 steps ab initio MD (AIMD) simulation to collect the corresponding energy and force along the trajectories as the initial datasets.
+
+Exploration. In this step, the LAMMPS package was performed to sample new configuration space of Li, Si and Li-Si systems with Deep potential molecular dynamics (DeePMD). For crystalline Li-Si systems, a series of conventional cells and perturbed c-LixSi (0<x<4.5) configurations above were also employed as initial configurations to run DeePMD simulations. The explored temperature range were [200, 2000] K with an increment of 200 K and pressure range were fixed values of [10−4, 5] GPa. In addition, For Li systems, the BCC, HCP and FCC conventional and perturbed structures in 2 × 2 × 2 supercells were provided as the initial configurations with 48 DP-GEN iterations. The corresponding temperature range were [50, 800] K with an increment of 40 K and pressure range were fixed values of [10−4, 5] GPa. For Si system, the diamond and I4₁/amd structures were served as the initial configurations with 64 DP-GEN iterations. The corresponding temperature range were 50 K and [200, 3200] K with an increment of 200 K and pressure range were [10−4, 20] GPa with an increment of half an order of magnitude.
+
+Previous studies[1,5] have shown that the model deviation predicted by the DP model with the maximum force can be used to screen the candidates of all sampled configurations in MD trajectories. The value between the lower σflow and upper σfhigh limits of model deviation is called trust level, where the configuration can be labeled from DFT-based calculation, which can improve the DP model accuracy of next iteration. For Li and Si systems, the trust levels were set to 0.05-0.20 eV/Å and 0.20-0.35 eV/Å, respectively. For c-LixSi systems, the σflow and σfhigh were set to 0.15 and 0.35 eV/Å in the first 64 iterations. In the remaining iterations, the σflow and σfhigh were set to 0.20 and 0.35 eV/Å. In details, in the first 28 iterations, the c-Li1Si1, c-Li7Si3, c-Li13Si4 and large cell c-Li12Si7 were explored. In iterations of 29-68, the remaining c-LixSi (0<x3.75) configurations as the first batch were sampled. Further, a series of c-LixSi/vacancy (0<x<4.5) configurations of all components with randomly deleting Li atoms were also considered to enlarge the configuration space in the iterations 69-120. In the iterations 121-166, the c-Li21Si5 and c-Li22Si5 were added, and the second batch of c-LixSi (0<x3.75) configurations were further supplemented to expand the dataset. Therefore, for the c-LixSi (0<x<4.5), Li and Si systems. In addition, the time steps were set to 1, 2, and 2 fs in isothermal-isobaric (NPT) DeePMD simulation of the Li-Si, Li and Si systems, respectively. In the iterations167-210, a series of c-LixSi/vacancy configurations were added, and the trained conditions are the same as above.
+
+The amorphous exploration contains two stages. In the first stage, 87 iterations were employed to explore nine amorphous Li-Si (a-LixSi) phases, which includes a-Li1Si1, a-Li12Si7, a-Li2Si, a-Li7Si3, a-Li13Si4, a-Li7Si2, a-Li15Si4, a-Li21Si5, and a-Li22Si5.These a-LixSi (0<x<4.5) phases need to be produced based on DP model constructed by c-LixSi phases. Specifically, nine kinds of c-LixSi phases with 100000 and 500000 steps were simulated by DeePMD at 2500 K, respectively. Then, the corresponding last snapshot from DeePMD trajectories can be selected as the initial configuration to build the DP model for a-LixSi. Secondly, it should be considered that the low-lithium configuration space of a-LixSi (0<x<1) is still lacking. For this purpose, the c-Si with 2 × 2 × 2 supercells run DeePMD at 3000 K and 5 GPa, and the corresponding last snapshots use grand canonical Monte Carlo (GCMC)[6] simulation to insert Li atom, and obtain a series of a-LixSi (0<x<1.33) configurations. Then, 33 a-LixSi (0<x<1.33) configurations were invoked to run 88-145 iterations. The temperature range were set to [2000, 2500] K with an increment of 100 K, and the pressure range were fixed values of [10−3, 1, 5, 10] GPa. The corresponding σflow and σfhigh were set to 0.20 and 0.40 eV/Å. The time step was set to 1 fs. It should be illustrated that the amorphous phase contains more microstructures than crystalline phase, which leads to more sampling are necessary to describe the amorphous phases.
+
+# Data Format
+The directory tree is as follows:
+data
+```
+-- aLiSi_configs
+-- -- iter.xxxxxxx
+-- -- -- 02.fp
+-- -- -- -- data.xxx
+-- cLiSi_configs
+-- -- iter.xxxxxxx
+-- -- -- 02.fp
+-- -- -- -- data.xxx
+-- init_configs/
+…
+-- Li_configs/
+…
+-- model_DP/
+-- Si_configs
+…
+```
+where each subdirectory (data.xxx or deepmd) contains unit systems in DeePMD format.
+
+A pbc unit system usually has the following substructure:
+```
+-- system
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/box.npy
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+```
+
+
+# References
+Unraveling the Mechanism of Phase Transformation and Structural Evolution in Si Anode with Deep-Potential Molecular Dynamics | Materials Chemistry | ChemRxiv | Cambridge Open Engage
+
