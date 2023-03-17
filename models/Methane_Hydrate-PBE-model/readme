@@ -1,0 +1,23 @@
+# Readme
+# Introduction
+A DP-PBE model for Methane_Hydrate. [1]
+
+Here, an accurate machine-learning force field (ML-FF), named as Methane_Hydrate-PBE-model, is developed for MHsI systems based on extensive quantum mechanics (QM) simulations.We apply this ML-FF to investigate the decomposition process of MHsI in the pressure range of 0 to 10 kbar. Our simulation results indicated that the incubation time for the decomposition of MHsI first increases and then decreases with the increase of pressure, reaching the maximum at 2 kbar. The analyses on MD simulations shows that the decomposition process of MHsI is mainly dominated by ice cages, i.e., the water molecules first leave the equilibrium position, causing the rupture of the cages, and then methane molecules escape, causing the decomposition of MHsI. In addition, ice cages retain the most stable configuration under a certain pressure (~2 kbar), leading to the highest stability of MHsI. This work elucidates the effect of pressure on the stability and decomposition of MHsI at the molecular level and illustrates the importance of the water molecule framework for the energy applications of MHsI.
+
+# Training
+The Methane_Hydrate-PBE-model is constructed using DeePMD-kit package [2]. The DeePMD-kit package is used for training. The sizes of the embedding and fitting nets are set to (25, 50, 100) and (120, 120, 120), respectively. The cut-off radius is set to 6 Å and the smoothing starts from 5.0 Å. The Adam stochastic gradient descent method with the default hyperparameter settings provided by the TensorFlow packag was used to train the DP models.The learning rate varies from 0.001 to 3.51 × 10<sup>–8</sup> with an exponential decay in the total of 5 × 10<sup>5<s/up> training steps. The model compression scheme was applied in this work for boosting the computational efficiency of the MD simulation [3].
+More details can be found in [1].
+
+# Use model
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+
+References
+[1] Luo, Kun; Shen,Yidi; Li, Jun; An, Qi “Pressure-Induced Stability of Methane Hydrate from Machine Learning Force Field Simulations.” J. Phys. Chem. C 2023.
+
+[2] Wang, H.; Zhang, L.; Han, J.; E, W. DeePMD-Kit: A Deep Learning Package for Many-Body Potential Energy Representation and Molecular Dynamics. Comput. Phys. Commun. 2018, 228, 178–184. https://doi.org/10.1016/j.cpc.2018.03.016.
+
+[3] Lu, D.; Jiang, W.; Chen, Y.; Zhang, L.; Jia, W.; Wang, H.; Chen, M. DP Compress: A Model Compression Scheme for Generating Efficient Deep Potential Models. J. Chem. Theory Comput. 2022, 18 (9), 5559–5567. https://doi.org/10.1021/acs.jctc.2c00102.
