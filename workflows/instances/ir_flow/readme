@@ -1,0 +1,3 @@
+# IR spectrum calculation workflow
+## Introduction
+This is a workflow of the IR spectrum calculation. It uses DeepPotential and DeepWannier model to sample and calculate the dipole. Then it calculates the correlation function, and finally gets the IR spectrum by fourier transform.
