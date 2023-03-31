@@ -1,0 +1,52 @@
+# dflow-phonon
+## Overview
+This workflow is a part of [AI Square](https://aissquare.com/).I want to make the process of computing phonon more automatic.So I write this workflow based on [dflow](https://github.com/deepmodeling/dflow).The related computational tasks are submitted to the [Bohrium](https://bohrium.dp.tech/) platform.
+
+This workflow supports phonon calculations based on both DFT and DP potential.More specifically, DFT calculations support VASP code and ABACUS code.The part of phonon computation is implemented by using Phonopy code and Phonolammps code.
+## Easy Install：
+```
+pip install --index-url https://pypi.org/simple/ dflow-phonon
+```
+## Quick Start
+You can go to the `example` folder . You can see that there are some examples for reference . You can go to one of them and fill in the `global.json` file . Then you can submit the workflow.
+
+If you want to use VASP code to do the DFT calculation , like the folder `vasp_dfpt_demo` and `vasp_displacement_demo` . You need to prepare `INCAR` , `POSCAR` , `POTCAR` , `global.json` and `param.json` , then ：
+``` 
+dflowphonon --vasp
+```
+If you want to use ABACUS code,like the folder `abacus_demo`.You need to prepare `INPUT` , `STRU` , `*.UPF` , `global.json` and `param.json` ( notice that `*.orb` and `KPT` is optional ) , then ：
+```
+dflowphonon --abacus
+```
+If you want to use DP potential,like the folder `dp_demo` , you need to prepare `POSCAR` , `frozen_model.pb` , `global.json` and `param.json` , then :
+```
+dflowphonon --dp
+```
+
+Then you can monitor the workflow process on the [website](https://workflows.deepmodeling.com).
+
+If you want to watch the phonon band structure , you can go to the folder where `band.dat` exists , then
+```
+dflowphonon-plot
+```
+The file named `phonon_band_structure` is the result picture.
+
+## Details of Workflow
+If you want to use VASP code,you can choose from two calculation methods.One is `linear response method` and anothers is `finite displacement method`.
+
+One advantage of the `linear response method` over the `finite displacement method` is that one does not need to create super-cells, which can be in some cases computationally more efficient. Moreover, in systems where the phonon dispersions behave in an anomalous way (like systems with Kohn anomalies) the linear response method is more suitable, because it is capable of calculating the exact phonons at the requested points.
+
+One advantage of the `finite displacement method` is that it is an add on that can work with any code, also non-density functional theory codes. All is needed is the ability of the external code to compute forces (codes like ABACUS and wien2k for example do not include an implementation of the linear response method, but the finite displacement method implemented in phon can be used in conjunction with these codes).
+
+You can read this paper<sup>[1]</sup> to get more information about these methods.
+
+Unlike VASP code, ABACUS code does not support `linear response method` for now, so the `finite displacement method` is used by default when using ABACUS code.
+
+In order to calculate phonon structure band using DP potential,I use [phonolammps](https://github.com/abelcarreras/phonolammps) code to achieve it.
+
+In order to handle force constants obtained by `finite displacement method` and `linear response method`.I use [phonopy](https://github.com/phonopy/phonopy) code which is a robust and easy-to-use open-source code for first principles phonon calculations.You can read this paper<sup>[2]</sup> for more information.
+
+## Reference
+[1] Alfe, D. (2007). Tutorial on calculating phonons: comparing the linear response and the small displacement methods. Department of Earth Sciences and Department of Physics and Astronomy, University College, London.
+
+[2]Togo, A., & Tanaka, I. (2015). First principles phonon calculations in materials science. Scripta Materialia, 108, 1-5.
