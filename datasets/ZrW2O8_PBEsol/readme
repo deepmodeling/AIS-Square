@@ -1,14 +1,12 @@
-#Readme
-
-
 ##  Introduction
 This dataset cnontains DFT samples in DeepMD format used in [1].
 
 ##  Generation Approach
-We use the DP Generator (DP-Gen)[2] to generate a set of training data that covers an enough wide range of relevant configurational space efficiently.We start with DFT optimized ground-state structures of P213 cubic phase ZrW2O8. The DFT calculated lattice constant with Perdew-Burke-Ernzerhof solid (PBEsol)is 9.215 angstrom.The initial training dataset in the first iteration is obtained by performing a 10-step ab initio MD simulation for randomly perturbed 44 atoms cubic cell at 50 K. After labeling candidate configurations, self-consistent DFT calculations were performed subsequently. The DFT calculations were performed using a plane-wave basis set with a cutoff energy of 500 eV as implemented in the Vienna Ab initio Simulation Package[3,4] and the electron exchange-correlation potential was described using the generalized gradient approximation and PBEsol scheme[5]. The Brillouin zone was sampled with a 4 4 4 Monkhorst-Pack k-point grid for the cubic unit cell.
+We use the DP Generator (DP-GEN)[2] to generate a set of training data that covers an enough wide range of relevant configurational space efficiently.We start with DFT optimized ground-state structures of P213 cubic phase ZrW2O8. The DFT calculated lattice constant with Perdew-Burke-Ernzerhof solid (PBEsol)is 9.215 angstrom.The initial training dataset in the first iteration is obtained by performing a 10-step ab initio MD simulation for randomly perturbed 44 atoms cubic cell at 50 K. After labeling candidate configurations, self-consistent DFT calculations were performed subsequently. The DFT calculations were performed using a plane-wave basis set with a cutoff energy of 500 eV as implemented in the Vienna Ab initio Simulation Package[3,4] and the electron exchange-correlation potential was described using the generalized gradient approximation and PBEsol scheme[5]. The Brillouin zone was sampled with a 4 4 4 Monkhorst-Pack k-point grid for the cubic unit cell.
 
-##Data Format
-```
+## Data Format
+
+```bash
 data
 -- dataset
 -- -- init.xxx
@@ -20,7 +18,8 @@ data
 where each subdirectory contains unit systems in DeePMD format.
 
 A pbc unit system usually has the following substructure:
-```
+
+```bash
 -- system
 -- -- type_map.raw
 -- -- type.raw
@@ -32,9 +31,14 @@ A pbc unit system usually has the following substructure:
 
 
 
-##References
+## References
+
 [1] He, Ri, et al. "Origin of negative thermal expansion and pressure-induced amorphization in zirconium tungstate from a machine-learning potential" Physical Review B 106 (2022): 174101.
+
 [2] Zhang, Yuzhi, et al. "DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models." Computer Physics Communications 253 (2020): 107206.
+
 [3] Kresse, Georg, and Jurgen Furthmuller. "Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set." Physical review B 54.16 (1996): 11169.
+
 [4] Kresse, Georg, and Jurgen Furthmuller. "Efficiency of ab-initio total energy calculations for metals and semiconductors using a plane-wave basis set." Computational materials science 6.1 (1996): 15-50.
+
 [5] J. P. Perdew, K. Burke, and M. Ernzerhof, Phys. Rev. Lett. 78, 1396 (1997).
