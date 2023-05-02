@@ -1,0 +1,17 @@
+#Readme
+
+A DP model for negative thermal expansion material ZrW2O8. [1]
+Before runing the Deep Potential MD simulation, you sould install the DeePMD-kit package (v2.1.0) in your servers (https://github.com/deepmodeling/deepmd-kit).
+
+  In LAMMPS input file, one needs to specify the pair style as follows:
+
+    pair_style     deepmd frozen_model.pb
+    pair_coeff     * *
+
+
+where frozen_model.pb is the file name of the ZWO DP model. This is ordinary model, and its computational efficiency is relatively low. So if you need to  perform large supercell MD simulations (i.e. ten thousand atoms supoercell), the compression model is needed (model_compress.pb). The  For more details, please see the manual in GitHub.
+
+
+
+#References
+[1] He, Ri, et al. "Origin of negative thermal expansion and pressure-induced amorphization in zirconium tungstate from a machine-learning potential" Physical Review B 106 (2022): 174101.
