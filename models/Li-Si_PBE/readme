@@ -1,0 +1,6 @@
+# Introduction
+A DP model for Li-Si cystalline and amorphous system.
+DFT dataset covering a broad range of configurational space of Li-Si system is necessary to train a DP model. A concurrent learning scheme, named DP-GEN, is carried out to explore an extensive configuration space and collect the dataset for the DP model. 
+
+# Training
+This step is to train the corresponding DP model according to the initial and labels of the exploration dataset. Four DP models in each iteration were trained by the DeePMD-kit package. Except for random seed, those models share the same training parameters. The embedding and fitting nets were pick to three hidden layers with (25, 50, 100) and (240, 240, 240) neurons, respectively. The cut-off radius was set to 6 Å. The hyper parameters start pref_e, limit pref_e, start pref_f and limit pref_f were weight coefficients of energy and force tensor in the total loss function, which were set to increase from 0.02 to 1.0, and from 1000 to 1.0, respectively. The starting learning rate was 0.001, and the decay rate was 0.95 every 4 × 10^3 steps. In each DP-GEN iteration, the DP model was trained with 8.0 ×105 steps. After the DP-GEN iterations converge, the final effective models were trained with 16.0 × 10^6 steps.
