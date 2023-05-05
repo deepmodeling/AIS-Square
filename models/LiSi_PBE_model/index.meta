@@ -1,0 +1,11 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/fdb1594a-3e6d-4d0c-8fee-55e63d45abae
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/models/fdb1594a-3e6d-4d0c-8fee-55e63d45abae
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/models/fdb1594a-3e6d-4d0c-8fee-55e63d45abae
+Author: Fu Fangjia,Zhang Linfeng,Dai Fuzhi
+Reference:
+    - datasets/LiSi-PBE_dataset
+ImageLink: ""
+ImageName: ""
+LinkFileName: frozen_model_iterltr.pb
+readmename: ReadME.md
+licence: LGPL-3.0
