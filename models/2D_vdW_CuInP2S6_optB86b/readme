@@ -1,0 +1,7 @@
+
+#Readme
+The monolayer, bilayer, and bulk configurations were included in the training dataset.
+For details of this model, please see the reference[1].
+
+#References
+[1] He Ri, et al. "Unconventional ferroelectric domain switching dynamics in CuInP2S6 from first principles", arXiv:2305.08321 (2023).
