@@ -1,0 +1,7 @@
+# DeePKS model for halide perovskites with the accuracy of the HSE06 functional
+
+A generalized DeePKS model based on the PBE functional is trained for a family of halide perovskites (ABX3, A=Cs, MA, FA; B=Sn, Pb; X=Cl, Br, I) as well as the organic-inorganic alternatives with the capability of generating closely-matched potential energy surfaces, forces, stress, and density-of-states (DOS) as compared to the HSE06 funcitonal. 
+
+The training and test data sets are provided here, i.e., group.00-11 correspond to the training sets and group.a0-a3 correspond to the test sets. All required labels for DeePKS training procedure are provided in each group folder, while the applied atomic orbitals and pseudopotentials are provided in `orbitals_and_upfs`. The projector file is `jle.orb`, and the converged DeePKS model is `model.ptg`. 
+
+A sample job is provided with the instruction posted via this [notebook](https://bohrium.dp.tech/notebook/840c08b82f234dae95a84b2d42da51fb%20%20#deepks.ipynb).  
