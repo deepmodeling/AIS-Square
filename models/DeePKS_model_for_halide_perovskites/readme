@@ -1,0 +1,5 @@
+# DeePKS model for halide perovskites with the accuracy of the HSE06 functional
+
+A generalized DeePKS model based on the PBE functional is trained for a family of halide perovskites (ABX3, A=Cs, MA, FA; B=Sn, Pb; X=Cl, Br, I) as well as the organic-inorganic alternatives with the capability of generating closely-matched potential energy surfaces, forces, stress, and density-of-states (DOS) as compared to the HSE06 funcitonal. 
+
+A sample job applying such DeePKS model to a self-consistent field (SCF) calculation is provided here. Instructions of running such job is given by this [notebook](https://bohrium.dp.tech/notebook/840c08b82f234dae95a84b2d42da51fb%20%20#deepks.ipynb). 
