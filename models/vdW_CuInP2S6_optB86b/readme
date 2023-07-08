@@ -1,0 +1,29 @@
+## Introduction
+
+A Deep Potential model for van der Waals CuInP2S6. **[1]**
+
+The DPs also provide results with accuracy that is comparable to that of AIMD and efficiency that is similar to that of empirical potentials. The partial radial distribution functions and angle distribution functions predicted using the DPs are in close agreement with those derived from AIMD. The estimated densities, self-diffusion coefficients, shear viscosities, and electrical conductivities also matched well with the AIMD and experimental data.
+
+## DFT calculations
+
+We use the Vienna ab initio simulation package (VASP) with projector augmented wave method. We adopt a plane-wave cutoff energy of 600 eV in the structural relaxation calculations. A large distance of c > 15 Å along the out-of-plane direction eliminates interlayer interactions. To obtain an accurate deep potential model for layered hexagonal boron nitride, we employ the Van der Waals correction with optB86b functional in DFT calculations.
+
+## Training
+
+The sizes of the embedding and fitting networks are (25, 50, 100) and (240, 240, 240), respectively. The descriptor characterizes the local environment of an atom within a cutoff radius set here to Rc = 6 Å that includes a maximum number of 200 B and N atoms. The weight coefficients of the energy, atomic force and virial terms in the loss functions change during the optimization process from 0.2 to 1, 500 to 1, and 0.02 to 0.2, respectively.
+
+More details can be found in **[1]**.
+
+## Use model
+
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+
+## References
+
+[1] Ri He, Hua Wang, Fucai Liu, Shi Liu, Houfang Liu, Zhicheng Zhong. arXiv: 2305.08321 (2023).
+
+ 
