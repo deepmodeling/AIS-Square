@@ -1,0 +1,71 @@
+# Outline
+
+> Introduction: 
+> 
+> free-standing membrane --> aisotropic strain engineering
+> 
+> Ruijuan Xu, Jiawei Huang, 2020, NC,  STO free-standing membrance
+> 
+> Nie --> PTO, BFO 
+
+> PTO thin film clamping reduce d33 
+> 
+> a. is it possible to realize MPB-like mechanism in free-standing membrane
+> 
+> simple composition 
+
+> LaWN3, Nitride technolgy 
+
+> Computational Method 
+> 
+> constrained VCNEB 
+> 
+> study d33 and switching path
+
+![](C:\Users\70922\AppData\Roaming\marktext\images\2022-07-18-04-50-45-image.png)
+
+![](C:\Users\70922\AppData\Roaming\marktext\images\2022-07-18-04-51-28-image.png)
+
+> Results
+> 
+> PTO
+> 
+> Phase Diagram 
+
+![](C:\Users\70922\AppData\Roaming\marktext\images\2022-07-18-03-56-43-image.png)
+
+> Pick some strain states, and explain the presence of multiple polar states
+> 
+> compare their d33
+
+![](C:\Users\70922\AppData\Roaming\marktext\images\2022-07-18-03-55-54-image.png)
+
+> Plot experimental  d33 versus strain 
+
+> Plot d33 versus strain
+
+![](C:\Users\70922\AppData\Roaming\marktext\images\2022-07-18-03-20-13-image.png)
+
+> LaWN, repeat
+
+# Draft
+
+通过调节chemical composition，使这个体系处于两个相的边界，那这个会带来什么效果呢？T-phase，就是极化沿着001方向，和这个Rphase，体对角线方向，能量会非常接近，一旦这两个相的能量非常接近，我去施加一个不大的电场，就可能把极化从T到R。由于这个能垒很低，但是我这个极化方向又变了，极化和strain和晶格常数高度耦合，我们可以用一个比较小的电场来induce一个比较大的晶格的变化，那这就是一个比较大的压电效应。这就是为什么极化旋转这么重要，相界这么重要。因为需要creat一个能量接近，极化方向、晶格常数又很不一样的一个状态。
+
+M-phase，必须经过，目前对其有很多猜测。实验上没有办法真的知道极化是通过哪种路径旋转过去的。沿着c轴方向加电场，可能使得c变cprime，这个就是极化伸缩，但也可能会是CDA极化旋转。理论上可以计算这两个路径的压电系数。
+
+经历了一个中间状态，得到一个旋转路径，能垒真的非常低。如果不经过，需要跨越一个比较大的能垒。也就是说，(我们)应该是第一次fully support这个旋转需要中间状态，以及证明了这个中间状态的重要性。如果没有intermediate phase，能垒差不多是有intermediate phase的两倍左右。那么，找到这样的一个rotation path，我是可以计算它这个对应的压电系数。
+
+怎么计算rotation path的压电系数呢？在这个地方，我们可以计算结构的极化和stress，斜率就是压电系数d33。c2d2a这个斜率是比较大的，那么我不经过d的话，斜率比较小，也就是说这个旋转路径的压电系数比较大。同样，我们可以计算c2cprime的压电系数，确实，极化伸缩导致的压电系数，远小于极化旋转导致的压电系数，这是(第一次)用一个非常简便的方法，不用真实地引入电场，就能获得这个路径地压电系数是多少。
+
+在这个方法之下，回到相图，我们就可以探索，到底哪一个strain的条件下，d33会非常大。这是一个thin film，压电系数一般40~60pC/N，但是我们可以把它提高到100pC/N多，这已经是一个非常可观的提高。我们手机里面也有这种压电材料，比如AlN它的压电系数只有20pC/N左右，如果我们能把薄膜技术结合起来，我们可以把压电系数提高3-4倍。
+
+现在的一个趋势是2D 钙钛矿，就是我可以做一个比较薄的自支撑的薄膜（聂越峰），优势是可以引入anisotropic strain，以前薄膜工艺只能在对角线玩花样，即a=b施加相同应力，现在有了自支撑薄膜，可以在a、b轴施加不同的应力，那么就可以在平时我们没法实现的状态，探索这些区域的d33。
+
+后续可以引入那种nitride钙钛矿，可以对其进行近似的计算。
+
+这种所谓的直接比较极化伸缩和极化旋转d33的这个压力系数这个东西实际上不常见，至少阿刘是没有读到过文章(?)可以这么简单系数获得。我们可能是第一次结合这个constraint VCNEB去做这件事情。我们把能垒最低的路径找出来，从而计算d33。
+
+压电响应是一个weak field response，施加electric field是做一个Perturbation，初始状态c，加一个电场会发生旋转，电场并不是那么大，并没有真的旋转到别的状态，所以显然在c点附近的斜率是我们care的。强场，极化会旋转过去，是另一回事。研究压电效应的时候我们更多关注的是weak field response，而不是强场。强场是做存储的东西，改变极化方向。
+
+MPB。这工作为什么能到nature呢？就是因为之前大家都认为，必须要非常复杂的组分才能逼近这些相界，但是这个工作发现，就是用钛酸铅，然后用pressure，也能够出现所谓的相界，那么所谓的chemical doping和pressure关联起来了。就提出了chemical pressure的概念，就是掺杂，不同原子半径的大小，给体系加了一个化学压。
