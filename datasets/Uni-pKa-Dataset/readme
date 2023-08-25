@@ -1,0 +1,11 @@
+# Datasets
+
+The datasets is in two formats, tsv files in `./tsv` and pickle files in `./pickle`. ChemBL datasets for pretraining has been already splitted into training set and validation set as `chembl_train` and `chembl_valid`.
+
+## tsv files
+
+They can be read by any csv parser with `sep=\t`. The `SMILES` column stores the microstate structures, and the `TARGET` column stores the pKa values.
+
+## pickle files
+
+They can be read under `python==3.8.13` and `pandas==1.5.2` by `pandas.read_pickle()` as `pandas.DataFrame`. Every row of `FEATURES_A` and `FEATURES_B` columns stores the input feature of the A macrostate and the B macrostate of one data point respectively. Every input feature is a list, whose elements is a feature dictionary of a microstate in the macrostate. In the dictionary, the key "atoms"'s value is a atom-type list of a molecule, the key "coordinates"'s value is a `numpy.ndarray` of the xtb-GFN2-optimized conformation with a shape of 3xN, and the key "charges" is a list of xtb-GFN2-calculated partial atomic charge. The atomic order of the three values above is aligned.
