@@ -1,0 +1,6 @@
+# Introduction
+we develop a machine-learning potential, DP-WH, for the tungsten-hydrogen binary system based on the Deep Potential method. We demonstrate that the DP-WH potential is able to describe, as accurately as ab-initio calculations, the basic properties of BCC tungsten, the solute hydrogen properties in tungsten, adsorption and migration of hydrogen on tungsten free surfaces, interactions between hydrogen atoms and vacancy, dislocations, the interaction between
+neighboring interstitial hydrogen atoms, and the formation energy of H self-clusters. Nano-second-long molecular dynamics simulation predicts the formation of planar self-cluster of tetrahedral-interstitial-site hydrogen atoms normal to {001} tungsten planes at a hydrogen concentration of ∼ 10 at.%. This form of the H self-cluster is highly possible to be the early nucleates of the crack-shaped H blisters observed in recent experiments.
+
+The DP-WH is thus proven as a good candidate potential for the atomistic simulations to unveil the formation mechanisms of the intra-granular hydrogen blisters in tungsten under the relevant working conditions.
+
