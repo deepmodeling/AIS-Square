@@ -44,7 +44,6 @@ Each unit system  `sys.xxxx` in mixed_type format usually has the following subs
 -- -- set.000/coord.npy
 -- -- set.000/energy.npy
 -- -- set.000/force.npy
--- -- set.000/virial.npy
 -- -- set.000/real_atom_types.npy
 ```
 
@@ -58,7 +57,6 @@ Format Description
 | box      | Boxes                            | box.npy             | Å    | Nframes \* 3 \* 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
 | energy   | Frame energies                   | energy.npy          | eV   | Nframes                | The potential energy of snapshot                             |
 | force    | Atomic forces                    | force.npy           | eV/Å | Nframes \* Natoms \* 3 | The atomic forces                                            |
-| virial   | Frame virial                     | virial.npy          | eV   | Nframes * 9            | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
 | /        | Atom type indexes (place holder) | type.raw            |      | Natoms                 | All zeros to fake the type input                             |
 
 Check [here](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/model/train-se-atten.md#data-format) for more details.
