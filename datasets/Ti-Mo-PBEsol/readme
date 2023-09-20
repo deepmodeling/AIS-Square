@@ -1,0 +1,35 @@
+## Introduction
+
+This is the dataset of DFT data in Ti-Mo alloys for training DeepMD model.
+
+
+
+## General Approach
+
+The DFT data from a previous study on pure Ti [1] — proven to accurately depict thermodynamic phase transformations — was included in the training dataset for Ti-Mo potentials. We prepared the new DFT data for Ti-Mo alloys using a concurrent-learning scheme implemented in DP-GEN (Deep Generator) [2, 3], which explores the configurational space through training, exploration, and labeling steps.
+
+In the **training** step, we used DeepMD-kit [4] and built four DP models using different activation functions and initialization parameters based on an existing DFT dataset. The initial dataset for the first training step included BCC, HCP, and FCC phases with random distortions, atomic displacements, and Mo arrangements. 
+
+The **exploration** step involved conducting hybrid Monte Carlo/molecular dynamics simulations under various temperature and pressure conditions using LAMMPS [5]. Our dataset incorporated supercells of 6~32 atoms for BCC, HCP, and FCC structures, with compositions up to 30% Mo, and the temperature gradually increased from 100 K to 3500 K during DP-GEN iterations. Pressures ranged from -5 to 20 GPa. We noted a significant model deviation when a configuration was inadequately described by the current DP models, defined as the maximum standard deviation of predicted atomic forces by the four trained DP models. The configurations with model deviations from 0.15 eV/Å to 0.35 eV/Å were randomly selected for the training dataset; for liquid structures, this range was adjusted to 0.30-0.60 eV/Å. An upper limit for the model deviation was set to prevent the inclusion of potentially unphysical configurations in the dataset. 
+
+In the **labeling** step, we calculated the energy, atomic forces, and virials of selected configurations using the Vienna ab initio simulation package (VASP) [6, 7] with the PBEsol exchange-correlation functional [8]. We set the plane-wave cutoff at 650 eV and a Monkhorst-Pack k-mesh with a k-spacing of 0.10 Å-1 to ensure convergence of energies, atomic forces, and virials for both the distorted crystals and liquid structures of Ti-Mo alloys.
+
+The user can refer to the supplementary material in the Ref. [9] for details
+
+[1] T. Wen, R. Wang, L. Zhu, L. Zhang, H. Wang, D.J. Srolovitz, Z. Wu, Specialising neural network potentials for accurate properties and application to the mechanical response of titanium, npj Comput. Mater. 7(1) (2021) 206
+
+[2]  L. Zhang, D.-Y. Lin, H. Wang, R. Car, W. E, Active learning of uniformly accurate interatomic potentials for materials simulation, Phy. Rev. Mater. 3(2) (2019) 023804
+
+[3] Y. Zhang, H. Wang, W. Chen, J. Zeng, L. Zhang, H. Wang, W. E, DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models, Comput. Phys. Commun. 253 (2020) 107206
+
+[4] H. Wang, L. Zhang, J. Han, W. E, DeePMD-kit: A deep learning package for many-body potential energy representation and molecular dynamics, Comput. Phys. Commun. 228 (2018) 178-184
+
+[5] A.P. Thompson, H.M. Aktulga, R. Berger, D.S. Bolintineanu, W.M. Brown, P.S. Crozier, P.J. in 't Veld, A. Kohlmeyer, S.G. Moore, T.D. Nguyen, R. Shan, M.J. Stevens, J. Tranchida, C. Trott, S.J. Plimpton, LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales, Comput. Phys. Commun. 271 (2022) 108171
+
+[6] G. Kresse, J. Furthmüller, Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set, Phys. Rev. B 54(16) (1996) 11169-11186
+
+[7] G. Kresse, J. Furthmüller, Efficiency of ab-initio total energy calculations for metals and semiconductors using a plane-wave basis set, Comput. Mater. Sci. 6(1) (1996) 15-50
+
+[8] J.P. Perdew, A. Ruzsinszky, G.I. Csonka, O.A. Vydrov, G.E. Scuseria, L.A. Constantin, X. Zhou, K. Burke, Restoring the Density-Gradient Expansion for Exchange in Solids and Surfaces, Phys. Rev. Lett. 100(13) (2008) 136406
+
+[9] J.-Y. Zhang, Z.-P. Sun, D. Qiu, Y.-S. Zhang, D. Xu, W.-Z Zhang, Dislocation-mediated migration of the α/β interfaces in titanium, Acta Mater. (2023) (in press)
