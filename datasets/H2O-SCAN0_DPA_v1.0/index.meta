@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/195312c9-afa9-4a37-8b01-7be654f54acb
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/195312c9-afa9-4a37-8b01-7be654f54acb
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/195312c9-afa9-4a37-8b01-7be654f54acb
+Author: Chunyi Zhang,Fujie Tang,Mohan Chen,Jianhang Xu,Linfeng Zhang,Diana Y Qiu,John P Perdew,Michael L Klein,Xifan Wu
+Reference:
+    - datasets/H2O-SCAN0
+    - models/H2O-SCAN0-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: H2O-SCAN0.tar.gz
+readmename: H2O-SCAN0.md
+licence: LGPL-3.0
