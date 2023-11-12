@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/50239341-14e2-43b1-9195-c6f239660c3c
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/50239341-14e2-43b1-9195-c6f239660c3c
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/50239341-14e2-43b1-9195-c6f239660c3c
+Author: Xiaoyang Wang,Yinan Wang,Linfeng Zhang,Fuzhi Dai,Han Wang
+Reference:
+    - datasets/W-DP-HYB
+    - models/W-DP-HYB-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: W.tar.gz
+readmename: W.md
+licence: LGPL-3.0
