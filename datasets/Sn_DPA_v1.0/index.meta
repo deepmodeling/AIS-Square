@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/ab4a856e-ff6b-452b-a489-7bf3439e5807
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/ab4a856e-ff6b-452b-a489-7bf3439e5807
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/ab4a856e-ff6b-452b-a489-7bf3439e5807
+Author: Fengbo Yuan
+Reference:
+    - datasets/Sn-SCAN
+    - models/Sn-SCAN-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: Sn.tar.gz
+readmename: Sn.md
+licence: LGPL-3.0
