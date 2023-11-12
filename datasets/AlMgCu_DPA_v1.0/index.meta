@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/3ed172cd-bc61-4b33-8e57-993d0db2cd42
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/3ed172cd-bc61-4b33-8e57-993d0db2cd42
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/3ed172cd-bc61-4b33-8e57-993d0db2cd42
+Author: Wanrun Jiang,Yuzhi Zhang,Linfeng Zhang,Han Wang
+Reference:
+    - datasets/AlMgCu-full-consentration
+    - models/AlMgCu-full-consentration-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: AlMgCu.tar.gz
+readmename: AlMgCu.md
+licence: LGPL-3.0
