@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/ec7197fa-75db-4781-bfb2-76f4f58c9c0f
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/ec7197fa-75db-4781-bfb2-76f4f58c9c0f
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/ec7197fa-75db-4781-bfb2-76f4f58c9c0f
+Author: Linfeng Zhang,Han Wang,Roberto Car,Weinan E
+Reference:
+    - datasets/H2O-Phase-Diagram
+    - models/H2O-Phase-Diagram-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: H2O-PD.tar.gz
+readmename: H2O-PD.md
+licence: LGPL-3.0
