@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/6263807c-aa7e-4d26-be17-7885309aa5f7
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/6263807c-aa7e-4d26-be17-7885309aa5f7
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/6263807c-aa7e-4d26-be17-7885309aa5f7
+Author: Jinzhe Zeng,Linfeng Zhang,Han Wang,Tong Zhu
+Reference:
+    - datasets/C12H26-dodecane
+    - models/C12H26-dodecane-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: C12H26.tar.gz
+readmename: C12H26.md
+licence: LGPL-3.0
