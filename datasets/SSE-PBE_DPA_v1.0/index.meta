@@ -1,0 +1,16 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/6e1167f5-82d7-4976-aa82-a75165374984
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/6e1167f5-82d7-4976-aa82-a75165374984
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/6e1167f5-82d7-4976-aa82-a75165374984
+Author: Jianxing Huang
+Reference:
+    - datasets/LiSiPS-SSE-PBE
+    - datasets/LiGePS-SSE-PBE
+    - datasets/LiSnPS-SSE-PBE
+    - models/LiSiPS-SSE-PBE-model
+    - models/LiGePS-SSE-PBE-model
+    - models/LiSnPS-SSE-PBE-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: SSE-PBE.tar.gz
+readmename: SSE-PBE.md
+licence: LGPL-3.0
