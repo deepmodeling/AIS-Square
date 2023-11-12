@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/8988cae7-330f-49d7-97d2-433dc7c62624
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/8988cae7-330f-49d7-97d2-433dc7c62624
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/8988cae7-330f-49d7-97d2-433dc7c62624
+Author: Yuzhi Zhang,Haidi Wang,Weijie Chen,Jinzhe Zeng,Linfeng Zhang
+Reference:
+    - datasets/Cu-dpgen
+    - models/Cu-dpgen-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: Cu.tar.gz
+readmename: Cu.md
+licence: LGPL-3.0
