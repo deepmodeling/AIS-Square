@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/410c3a07-b976-4f93-b4a5-7aa2c18f04d4
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/410c3a07-b976-4f93-b4a5-7aa2c18f04d4
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/410c3a07-b976-4f93-b4a5-7aa2c18f04d4
+Author: Jing Wu,Jiyuan Yang,YuanJinsheng Liu,Duo Zhang,Yudi Yang,Yuzhi Zhang,Linfeng Zhang,Shi Liu
+Reference:
+    - datasets/Perovskite_oxides-PBEsol
+    - models/DPA-1_perovskite_oxides
+ImageLink: ""
+ImageName: ""
+LinkFileName: FerroEle.tar.gz
+readmename: FerroEle.md
+licence: LGPL-3.0
