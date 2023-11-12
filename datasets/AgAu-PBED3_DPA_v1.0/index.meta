@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/3fd8c8ca-c9ba-4399-a0f8-beb3561465b0
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/3fd8c8ca-c9ba-4399-a0f8-beb3561465b0
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/3fd8c8ca-c9ba-4399-a0f8-beb3561465b0
+Author: Yinan Wang,LinFeng Zhang,Ben Xu,Xiaoyang Wang,Han Wang
+Reference:
+    - datasets/AgAu-nanoalloy
+    - models/AgAu-nanoalloy-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: AgAu-PBED3.tar.gz
+readmename: AgAu-PBED3.md
+licence: LGPL-3.0
