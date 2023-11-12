@@ -1,0 +1,66 @@
+# README
+
+## Introduction
+
+**Description**
+
+The dataset employed in this study is generated using DPGEN [1,2], a concurrent learning scheme that iteratively produces the DP training dataset.
+
+ This dataset encompasses more than 1,400,000 structures of various elements, including H, C, N, O, F, Cl, S, and P, with up to 70 heavy atoms (N). The initial training data was obtained by optimizing small molecules (N≤10 and 10<N≤20) derived from the ChEMBL database, utilizing Gaussian 16 at the wB97XD/6-31G** level. This optimization process resulted in over 385,000 conformations. 
+
+Subsequently, additional conformations of molecules (N≤10 and 10<N≤20) were explored through high-temperature (750K) DeePMD simulations using DPGEN + DPA-1 [3], which expanded the training set to approximately 750,000 conformations. The training set was further augmented by optimizing larger molecules from the ChEMBL database (N≤70) and conducting additional 750K DeePMD simulations on these optimized samples. Moreover, unoptimized structures generated from RD-kit with 20<N≤70 were randomly selected from the ChEMBL database and subjected to 750K DeePMD simulations, eventually enlarging the training set to around 1,100,000 conformations. 
+
+In order to enhance torsion coverage, structures with a relative energy greater than 1.0 kcal/mol from the ChEMBL torsion scans dataset were optimized and simulated via 750K DeePMD simulations. Lastly, enhanced sampling MD simulations with structures obtained from a set of 1,473 molecules (N=20) further improved conformation sampling, ultimately contributing more than 25,000 structures to the dataset.
+
+## Data Format
+
+The directory tree is as follows:
+
+```
+sys_dir (optional)
+-- train.txt
+-- valid.txt
+sys_dir_downstream (optional)
+-- train.txt
+-- valid.txt
+*other_data_dirs
+```
+
+The dataset encompasses upstream and/or downstream splits, which are used for training DPA [3] models. Each system is represented as a single line in *.txt files in the DeePMD [4] format for training/validation. To obtain system paths from unstructured *$other\_data\_dirs$, one can refer to these *.txt files.
+
+A nopbc unit system in DeePMD format usually has the following substructure:
+
+```
+-- system
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+-- -- set.000/virial.npy
+```
+
+Format Description
+
+| Name     | Property           | Raw file     | Unit | Shape                  | Description                                                  |
+| -------- | ------------------ | ------------ | ---- | ---------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes  | type.raw     |      | Natoms                 | Integers that start with 0, represent the atomic type corresponding to type_map.raw |
+| type_map | Atom type names    | type_map.raw |      | Ntypes                 | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord    | Atomic coordinates | coord.npy    | Å    | Nframes \* Natoms \* 3 | The atomic coordinates                                       |
+| energy   | Frame energies     | energy.npy   | eV   | Nframes                | The potential energy of snapshot                             |
+| force    | Atomic forces      | force.npy    | eV/Å | Nframes \* Natoms \* 3 | The atomic forces                                            |
+| virial   | Frame virial       | virial.npy   | eV   | Nframes * 9            | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+
+Check [here](https://github.com/iProzd/deepmd-kit/blob/devel/doc/data/system.md) for more details.
+
+
+
+## References
+
+[1] Zhang, Linfeng, et al. "Active learning of uniformly accurate interatomic potentials for materials simulation." *Physical Review Materials* 3.2 (2019): 023804.
+
+[2] Zhang, Yuzhi, et al. "DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models." *Computer Physics Communications* 253 (2020): 107206.
+
+[3] Zhang, Duo, et al. "DPA-1: Pretraining of Attention-based Deep Potential Model for Molecular Simulation." *arXiv preprint arXiv:2208.08236* (2022).
+
+[4] Wang, Han, et al. "DeePMD-kit: A deep learning package for many-body potential energy representation and molecular dynamics." *Computer Physics Communications* 228 (2018): 178-184.
