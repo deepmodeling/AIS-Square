@@ -1,0 +1,74 @@
+# README
+
+## Introduction
+
+**Description**
+
+This data set is generated with DPGEN [1,2],  a concurrent learning scheme that generates the DP training dataset iteratively.
+
+The set of data contains structure-to-energy-force labels of 31 metal clusters, namely, Au, Ag, Cu, Pt, Pd, Ni, Si, Al, Ru, AuAg, AuCu, AgCu, AuPt, AgPt, CuPt, AuPd, AgPd, CuPd, AuNi, AgNi, CuNi, PtPd, PtNi, NiPd, AgCuPt  AuAgCu, AuAgPd, AuAgPt, AuCuPd, AuCuPt, PtPdNi. The total number of frames is 158,805 (154,192 for upstream pretaining and 4,613 for downstream fine-tuning).
+
+**DFT**
+
+The DFT-based electronic structure calculations are computed by CP2K with Perdew-Burke-Ernzerhof (PBE) exchange-correlation functional with the Grimme D3 dispersion correction. The core electrons of all atoms are described by Goedecker-Teter-Hutter (GTH) type pseudopotentials. For valence electrons (5d10 6s1 for Au, 4d10 6s1 for Ag, 3d10 4s1 for Cu, 5s2 5p6 5d9 6s1 for Pt, 4s2 4p6 5d10 for Pd, 3s2 3p6 3d8 4s2 for Ni, 3s2 3p2 for Si, 3s2 3p1 for Al, 4s2 4p6 4d7 5s1 for Ru), the Gaussian basis sets are triple-ζ basis functions with two sets of polarization functions (TZV2P). The energy cutoffs of the plane wave are set to be 800Ry (Au,Ag,Cu,AuAg,AuCu,AgCu), 600Ry (Pt), 500Ry (Pd), 1300Ry (Ni), 400Ry (Si,Al), 1000Ry (Ru), 600Ry (AuPt,AgPt,CuPt,AuPd,AgPd,CuPd,AuNi,AgNi,CuNi,PtPd,PtNi,NiPd). SCF wavefunction optimization uses orbital transformation (OT) algorithm for Au, Ag, Cu, AuAg, AuCu, AgCu, AuPt, AgPt, CuPt, AuNi, AgNi, CuNi, Al and Si, and Fermi-Dirac smearing method with electronic temperature set to be 300 K for Pt, Pd, Ni, PtPd, PtNi and NiPd, while SCF convergence thresholds for all the systems are set 1×10−6 a.u.(the tolerance of the charge density residual).
+
+**Data generation**
+
+se_e2_a model is used in DP-GEN for Au, Ag, Cu, Pt, Pd, Ni, Al, Si, Ru; 
+
+se_atten model is used for AuAg, AuCu, AgCu, AuPt, AgPt, CuPt, AuPd, AgPd, CuPd, AuNi, AgNi, CuNi, PtPd, PtNi, NiPd, AgCuPt  AuAgCu, AuAgPd, AuAgPt, AuCuPd, AuCuPt, PtPdNi.
+
+## Data Format
+
+The directory tree is as follows:
+
+```
+sys_dir (optional)
+-- train.txt
+-- valid.txt
+sys_dir_downstream (optional)
+-- train.txt
+-- valid.txt
+*other_data_dirs
+```
+
+The dataset encompasses upstream and/or downstream splits, which are used for training DPA [3] models. Each system is represented as a single line in *.txt files in the DeePMD [4] format for training/validation. To obtain system paths from unstructured *$other\_data\_dirs$, one can refer to these *.txt files.
+
+A pbc unit system in DeePMD format usually has the following substructure:
+
+```
+-- system
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/box.npy
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+-- -- set.000/virial.npy
+```
+
+Format Description
+
+| Name     | Property           | Raw file     | Unit | Shape                  | Description                                                  |
+| -------- | ------------------ | ------------ | ---- | ---------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes  | type.raw     |      | Natoms                 | Integers that start with 0, represent the atomic type corresponding to type_map.raw |
+| type_map | Atom type names    | type_map.raw |      | Ntypes                 | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord    | Atomic coordinates | coord.npy    | Å    | Nframes \* Natoms \* 3 | The atomic coordinates                                       |
+| box      | Boxes              | box.npy      | Å    | Nframes \* 3 \* 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
+| energy   | Frame energies     | energy.npy   | eV   | Nframes                | The potential energy of snapshot                             |
+| force    | Atomic forces      | force.npy    | eV/Å | Nframes \* Natoms \* 3 | The atomic forces                                            |
+| virial   | Frame virial       | virial.npy   | eV   | Nframes * 9            | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+
+Check [here](https://github.com/iProzd/deepmd-kit/blob/devel/doc/data/system.md) for more details.
+
+
+
+## References
+
+[1] Zhang, Linfeng, et al. "Active learning of uniformly accurate interatomic potentials for materials simulation." *Physical Review Materials* 3.2 (2019): 023804.
+
+[2] Zhang, Yuzhi, et al. "DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models." *Computer Physics Communications* 253 (2020): 107206.
+
+[3] Zhang, Duo, et al. "DPA-1: Pretraining of Attention-based Deep Potential Model for Molecular Simulation." *arXiv preprint arXiv:2208.08236* (2022).
+
+[4] Wang, Han, et al. "DeePMD-kit: A deep learning package for many-body potential energy representation and molecular dynamics." *Computer Physics Communications* 228 (2018): 178-184.
