@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/2de3e4c9-3421-4a47-9ed5-c1fddc413e96
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/2de3e4c9-3421-4a47-9ed5-c1fddc413e96
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/2de3e4c9-3421-4a47-9ed5-c1fddc413e96
+Author: Linfeng Zhang,Han Wang,Maria Carolina Muniz,Athanassios Z Panagiotopoulos,Roberto Car,Weinan E
+Reference:
+    - datasets/H2O-DPLR
+    - models/H2O-DPLR-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: H2O-DPLR.tar.gz
+readmename: H2O-DPLR.md
+licence: LGPL-3.0
