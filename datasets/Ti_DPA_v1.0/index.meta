@@ -1,0 +1,12 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/577ed59f-1828-4404-a920-ab73f7671c3d
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/577ed59f-1828-4404-a920-ab73f7671c3d
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/577ed59f-1828-4404-a920-ab73f7671c3d
+Author: Tongqi Wen,Rui Wang,Lingyu Zhu,Linfeng Zhang,Han Wang,David J Srolovitz,Zhaoxuan Wu
+Reference:
+    - datasets/Ti
+    - models/Ti-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: Ti.tar.gz
+readmename: Ti.md
+licence: LGPL-3.0
