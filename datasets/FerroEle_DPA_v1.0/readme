@@ -1,0 +1,72 @@
+# README
+
+## Introduction
+
+**Description**
+
+This data set is used in [1] for training DPA-1 [2] models, generated with DPGEN [3,4],  a concurrent learning scheme that generates the DP training dataset iteratively.
+
+**Systems**:
+
+The dataset contains structure-to-energy-force-virial labels for 19 ABO3 type perovskite oxides, namely PbTiO3, SrTiO3, BaTiO3, CaTiO3, BaxCa(1-x)TiO3, BaxSr(1-x)TiO3, CaxSr(1-x)TiO3, Bi0.5Na0.5TiO3, K0.5Na0.5NbO3, BaxPb(1-x)TiO3, CaxPb(1-x)TiO3, PbxSr(1-x)TiO3, Pb(Zr1-xTix)O3, Pb(Mg1/3Nb2/3)O3, Pb(Zn1/3Nb2/3)O3, Pb(In1/2Nb1/2)O3, xBi0.5Na0.5TiO3-(1-x)BaTiO3, xBa(Zr0.2Ti0.8)O3-(1-x)Ba0.7Ca0.3TiO3, and xBa(Hf0.2Ti0.8)O3-(1-x)Ba0.7Ca0.3TiO3. The total number of frames is 11724.
+
+**DFT**:
+
+All DFT calculations are performed with ABACUS software. The Perdew-Burke-Ernzerhof functional modified for solids (PBEsol) within the generalized gradient approximation (GGA) is used as the exchange-correlation functional. The Norm-Conserving Vanderbilt (ONCV) multi-projector pseudopotentials were used. The numerical atomic orbitals were 4s2p2d for Ba, 2s2p2d1f for Pb, 2s2p2d1f for Ca, 4s2p1d for Sr, 2s2p2d1f for Bi, 4s2p1d for K, 4s2p1d for Na, 4s2p2d2f1g for Hf, 4s2p2d1f for Ti, 4s2p2d1f for Zr, 4s2p2d1f for Nb, 4s2p1d for Mg, 2s2p2d1f for In,4s2p2d1f for Zn, 2s2p1d for O. An energy cutoff of 100Ry and a k-point spacing of 0.1 have been set.
+
+## Data Format
+
+The directory tree is as follows:
+
+```
+sys_dir (optional)
+-- train.txt
+-- valid.txt
+sys_dir_downstream (optional)
+-- train.txt
+-- valid.txt
+*other_data_dirs
+```
+
+The dataset encompasses upstream and/or downstream splits, which are used for training DPA [2] models. Each system is represented as a single line in *.txt files in the DeePMD [5] format for training/validation. To obtain system paths from unstructured *$other\_data\_dirs$, one can refer to these *.txt files.
+
+A pbc unit system in DeePMD format usually has the following substructure:
+
+```
+-- system
+-- -- type_map.raw
+-- -- type.raw
+-- -- set.000/box.npy
+-- -- set.000/coord.npy
+-- -- set.000/energy.npy
+-- -- set.000/force.npy
+-- -- set.000/virial.npy
+```
+
+Format Description
+
+| Name     | Property           | Raw file     | Unit | Shape                  | Description                                                  |
+| -------- | ------------------ | ------------ | ---- | ---------------------- | ------------------------------------------------------------ |
+| type     | Atom type indexes  | type.raw     |      | Natoms                 | Integers that start with 0, represent the atomic type corresponding to type_map.raw |
+| type_map | Atom type names    | type_map.raw |      | Ntypes                 | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord    | Atomic coordinates | coord.npy    | Å    | Nframes \* Natoms \* 3 | The atomic coordinates                                       |
+| box      | Boxes              | box.npy      | Å    | Nframes \* 3 \* 3      | The box axes in the order `XX XY XZ YX YY YZ ZX ZY ZZ`       |
+| energy   | Frame energies     | energy.npy   | eV   | Nframes                | The potential energy of snapshot                             |
+| force    | Atomic forces      | force.npy    | eV/Å | Nframes \* Natoms \* 3 | The atomic forces                                            |
+| virial   | Frame virial       | virial.npy   | eV   | Nframes * 9            | The virial frames are in the order `XX XY XZ YX YY YZ ZX ZY ZZ` |
+
+Check [here](https://github.com/iProzd/deepmd-kit/blob/devel/doc/data/system.md) for more details.
+
+
+
+## References
+
+[1] Wu, Jing, et al. "A universal interatomic potential for perovskite oxides." *arXiv preprint arXiv:2309.06391* (2023).
+
+[2] Zhang, Duo, et al. "DPA-1: Pretraining of Attention-based Deep Potential Model for Molecular Simulation." *arXiv preprint arXiv:2208.08236* (2022).
+
+[3] Zhang, Linfeng, et al. "Active learning of uniformly accurate interatomic potentials for materials simulation." *Physical Review Materials* 3.2 (2019): 023804.
+
+[4] Zhang, Yuzhi, et al. "DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models." *Computer Physics Communications* 253 (2020): 107206.
+
+[5] Wang, Han, et al. "DeePMD-kit: A deep learning package for many-body potential energy representation and molecular dynamics." *Computer Physics Communications* 228 (2018): 178-184.
