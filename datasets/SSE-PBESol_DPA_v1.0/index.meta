@@ -1,0 +1,16 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/da17a7db-b4c6-464b-9458-91038cfddbc1
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/da17a7db-b4c6-464b-9458-91038cfddbc1
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/da17a7db-b4c6-464b-9458-91038cfddbc1
+Author: Jianxing Huang
+Reference:
+    - datasets/LiSiPS-SSE-PBEsol
+    - datasets/LiGePS-SSE-PBEsol
+    - datasets/LiSnPS-SSE-PBEsol
+    - models/LiSiPS-SSE-PBEsol-model
+    - models/LiGePS-SSE-PBEsol-model
+    - models/LiSnPS-SSE-PBEsol-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: SSE-PBESol.tar.gz
+readmename: SSE-PBESol.md
+licence: LGPL-3.0
