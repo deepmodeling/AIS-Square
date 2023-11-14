@@ -1,0 +1,14 @@
+Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/011f1567-f521-45d7-aac9-3b2d0092b3b4
+USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/011f1567-f521-45d7-aac9-3b2d0092b3b4
+CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/011f1567-f521-45d7-aac9-3b2d0092b3b4
+Author: Yinan Wang,LinFeng Zhang,Ben Xu,Xiaoyang Wang,Han Wang
+Reference:
+    - datasets/Au-PBE
+    - datasets/Ag-PBE
+    - models/Au-PBE-model
+    - models/Ag-PBE-model
+ImageLink: ""
+ImageName: ""
+LinkFileName: AgAu-PBE.tar.gz
+readmename: AgAu-PBE.md
+licence: LGPL-3.0
