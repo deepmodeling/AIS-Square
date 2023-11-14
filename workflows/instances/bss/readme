@@ -1,0 +1,81 @@
+# 目录结构说明
+
+## 介绍
+
+示例项目旨在提供一个通用合理的目录结构，方便后续项目的开发和迭代
+
+## 各级目录及对应描述如下
+
+```
+├── README.md
+├── app
+│   ├── app.go
+│   ├── controller
+│   ├── entity
+│   ├── router
+│   └── service
+├── bootstrap
+│   └── bootstrap.go
+├── build
+│   └── Dockerfile
+├── config
+│   ├── config.go
+│   ├── meta.go
+│   ├── mysql.go
+│   ├── reader
+│   ├── redis.go
+│   └── rocket_mq.go
+├── constant
+│   ├── code
+│   └── common.go
+├── cron
+├── dao
+    ├── mysql
+│   └── redis
+├── go.mod
+├── go.sum
+├── main.go
+├── middleware
+│   └── auth
+└── pkg
+    ├── kin
+    ├── logger
+    └── signal
+```
+### app
+业务代码层，所有业务相关代码都在app目录下
+#### controller
+api 入口，接口请求的对应的 func 都放在 controller 中
+#### entity
+api 接口的请求参数、响应参数，对应的 struct 结构体，都放在 entity 中
+#### router
+api 接口地址定义
+#### service
+业务逻辑层，具体的业务逻辑代码都放在 service 中
+
+### bootstrap
+项目初始化相关代码都放 bootstrap 中，例如 配置加载，创建数据库连接等等
+
+### build
+构建相关的文件，例如 Dockerfile
+
+### config
+配置文件
+
+### constant
+常量
+
+### cron
+定时任务
+
+### dao
+数据交互层，与 mysql、redis 等中间件进行数据交互的逻辑，都再 dao 里面实现
+
+### middleware
+中间件，例如 auth 等
+
+### pkg
+通用包，例如 日志，第三方调用等
+
+# 启动服务
+mysql_database=hermite_beta mysql_host=rm-8vba57qgdu49m9h3v.mysql.zhangbei.rds.aliyuncs.com mysql_user=root mysql_password='2KPe)RL!7Xaa!(pEhXbFO'  redis_host=r-8vbqb7qtjjf3auxpry.redis.zhangbei.rds.aliyuncs.com  env=test platform=hermite service=hermite version=1.0 log_path=/Users/wangxiangfei/Documents/workspace/example/logs port=9999  go run main.go
