@@ -1,0 +1,31 @@
+# Introduction
+This is the DFT dataset of Hf-Ta-C-N rocksalt ceramics for training DeepMD model.
+
+# General Approach
+ We prepared the DFT data for Hf-Ta-C-N rocksalt ceramics using a concurrent-learning scheme implemented in DP-GEN (Deep Generator) [1, 2], which explores the configurational space through training, exploration, and labeling steps.
+
+In the training step, we used DeepMD-kit [3] and built four DP models using different activation functions and initialization parameters based on an existing DFT dataset. The initial dataset for the first training step included  rocksalt phases with random distortions, atomic displacements, and element arrangements.
+
+The exploration step involved conducting hybrid Monte Carlo/molecular dynamics simulations under various temperature and pressure conditions using LAMMPS [4]. Our dataset incorporated supercells of 42~64 atoms for rocksalt structures with metal sites randomly occupied by Hf and Ta and the nonmetal site randomly occupied by C, N (less than 50%) or vacancy (less than 30%), and the temperature gradually increased from 300 K to 6000 K during DP-GEN iterations. Pressures ranged from -5 to 20 GPa. 
+
+In the labeling step, we calculated the energy, atomic forces, and virials of selected configurations using the Vienna ab initio simulation package (VASP) [5, 6] with the PBE exchange-correlation functional [7]. We set the plane-wave cutoff at 900 eV and a Monkhorst-Pack k-mesh with a k-spacing of 0.15 Å-1 to ensure convergence of energies, atomic forces, and virials for both the distorted crystals and liquid structures.
+
+The user can refer to the ref. [8] for details. Any publication using this dataset should cite the paper [8].
+
+# References
+[1] L. Zhang, D.-Y. Lin, H. Wang, R. Car, W. E, Active learning of uniformly accurate interatomic potentials for materials simulation, Phy. Rev. Mater. 3(2) (2019) 023804
+
+[2] Y. Zhang, H. Wang, W. Chen, J. Zeng, L. Zhang, H. Wang, W. E, DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models, Comput. Phys. Commun. 253 (2020) 107206
+
+[3] H. Wang, L. Zhang, J. Han, W. E, DeePMD-kit: A deep learning package for many-body potential energy representation and molecular dynamics, Comput. Phys. Commun. 228 (2018) 178-184
+
+[4] A.P. Thompson, H.M. Aktulga, R. Berger, D.S. Bolintineanu, W.M. Brown, P.S. Crozier, P.J. in 't Veld, A. Kohlmeyer, S.G. Moore, T.D. Nguyen, R. Shan, M.J. Stevens, J. Tranchida, C. Trott, S.J. Plimpton, LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales, Comput. Phys. Commun. 271 (2022) 108171
+
+[5] G. Kresse, J. Furthmüller, Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set, Phys. Rev. B 54(16) (1996) 11169-11186
+
+[6] G. Kresse, J. Furthmüller, Efficiency of ab-initio total energy calculations for metals and semiconductors using a plane-wave basis set, Comput. Mater. Sci. 6(1) (1996) 15-50
+
+[7] J.P. Perdew, K. Burke, M. Ernzerhof, Generalized Gradient Approximation Made Simple, Phys. Rev. Lett. 77(18) (1996) 3865-3868
+
+**<font color=red>[8] Y. Wang, B. Wen, X. Jiao, Y. Li, L. Chen, Y. Wang, F.-Z. Dai, The Highest Melting Point Material: Searched by Bayesian Global Optimization with Deep Potential Molecular Dynamics. J. Adv. Ceram. 12(4), (2023) 803–814.</font>**
+
