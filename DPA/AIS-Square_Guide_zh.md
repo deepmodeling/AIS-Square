@@ -1,6 +1,6 @@
 # 在 AIS-Square 贡献 DPA 数据集
 
-> See Introduction in English, Please click [here](https://aissquare.com).
+> See Introduction in English, Please click [here](https://github.com/deepmodeling/AIS-Square/blob/main/DPA/AIS-Square_Guide_en.md).
 
 ## 1. 什么是 DPA？
 
@@ -14,7 +14,7 @@
 
 收集您的 DFT 计算的结果数据文件，并将他们压缩为一个**小于 4G** 的压缩文件。
 
-> 需使用受支持的 DFT 数据格式。网站目前支持 dpdata 软件内置的所有数据格式，你可以在[上传页面](https://aissquare.com)或[这里](https://github.com/deepmodeling/dpdata/blob/master/README.md)查看目前支持的数据格式。
+> 需使用受支持的 DFT 数据格式。网站目前支持 dpdata 软件内置的部分数据格式，你可以在[上传页面](https://aissquare.com)或[这里](https://github.com/deepmodeling/dpdata/blob/master/README.md)查看目前支持的数据格式。
 
 ### 2.2 **在 AIS-Square 网站上传数据：**
 
@@ -71,4 +71,4 @@
 
 ## 5. 使用训练好的 DPA 模型？
 
-想要使用已经训练好的 DPA 模型？欢迎查看 AIS-Square 官方的[ Notebook 教程](https://bohrium.dp.tech)，在线运行 DPA 模型。
+想要使用已经训练好的 DPA 模型？欢迎查看 AIS-Square 官方的 [Notebook 教程](https://nb.bohrium.dp.tech/detail/7145731165)，在线运行 DPA 模型。
