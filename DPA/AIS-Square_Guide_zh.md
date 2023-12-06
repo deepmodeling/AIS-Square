@@ -1,4 +1,4 @@
-# 在 AIS-Square 贡献 DPA 数据集
+# OpenLAM｜在 AIS-Square 贡献 DPA 数据集
 
 > See Introduction in English, Please click [here](https://github.com/deepmodeling/AIS-Square/blob/main/DPA/AIS-Square_Guide_en.md).
 
@@ -40,7 +40,7 @@
 
 您可以点击导航栏右上角的头像，在“我的上传”中查看自己上传的条目。
 
-| ![img](./assets/AIS-Square_Guide_zh.assets/(null)-20231127085041746.jpg)图｜我的上传页面 | ![img](./assets/AIS-Square_Guide_zh.assets/(null)-20231127085021997.jpg)图｜详情页面的进程部分 |
+| ![Fig.1](./assets/AIS-Square_Guide_zh.assets/(null)-20231127085041746.jpg)图｜我的上传页面 | ![img](./assets/AIS-Square_Guide_zh.assets/(null)-20231127085021997.jpg)图｜详情页面的进程部分 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 现在，让我们点击刚刚上传的条目进入详情页面，让我们来关注下右侧的训练【进程】（您可以将鼠标悬浮在【进程】部分每个阶段后的“感叹号”查看更多信息），您的数据集将主要经历以下两个阶段：
