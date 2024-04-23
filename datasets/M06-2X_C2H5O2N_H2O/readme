@@ -1,6 +1,6 @@
 ## Introduction
 
-This dataset [1] contained systems for a glycine molecule in water (M06-2X_1C2H5O2N_54H2O_ion) and water (M06-2X_58H2O_ion). All system include 0-1 pairs of hydronium and hydroxide ions, utilizing enhanced sampling for water autoionization.
+This dataset [1] contained systems for a glycine molecule in water (M06-2X_1C2H5O2N_54H2O_ion) and water (M06-2X_58H2O_ion). All system include 0-1 pairs of hydronium and hydroxide ions, utilizing enhanced sampling for water autoionization. [2]
 
 ## Data Format
 
