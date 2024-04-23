@@ -1,10 +1,9 @@
-Link: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/49efbb56-9b7b-4422-9ea4-3a311d6e72a1
-USLink: https://aisquare.oss-us-east-1.aliyuncs.com/data/datasets/49efbb56-9b7b-4422-9ea4-3a311d6e72a1
-CNLink: https://aisquare-zjk.oss-cn-zhangjiakou.aliyuncs.com/data/datasets/49efbb56-9b7b-4422-9ea4-3a311d6e72a1
-Author: Fuzhi Dai,Jinyu Zhang
-Reference: []
-ImageLink: ""
-ImageName: ""
-LinkFileName: TiMo_training_data.zip
-readmename: Readme_TiMo-dataset.md
-licence: LGPL-3.0
+title: TiMo-PBE
+publisher: ZHANG-JINYU-1994
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/datasets/45616b38-db9c-11ee-9b22-506b4b2349d8/TiMo_training_data.zip
+reference:
+    - models/TiMo-PBE-model
+    - datasets/TiMo-PBE
+author: Fuzhi Dai,Jinyu Zhang
