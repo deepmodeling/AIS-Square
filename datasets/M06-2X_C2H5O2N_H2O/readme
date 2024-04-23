@@ -1,10 +1,12 @@
 ## Introduction
 
-This dataset [1] contained systems for a glycine molecule in water (M06-2X_1C2H5O2N_54H2O_ion.tgz) and water (M06-2X_58H2O_ion.tgz). All system include 0-1 pairs of hydronium and hydroxide ions, utilizing enhanced sampling for water autoionization.
+This dataset [1] contained systems for a glycine molecule in water (M06-2X_1C2H5O2N_54H2O_ion) and water (M06-2X_58H2O_ion). All system include 0-1 pairs of hydronium and hydroxide ions, utilizing enhanced sampling for water autoionization.
 
 ## Data Format
 
 The directory is as follows:
+
+`M06-2X_1C2H5O2N_54H2O_ion M06-2X_58H2O_ion`
 
 `train  valid`
 
@@ -35,3 +37,5 @@ Check [here](https://github.com/iProzd/deepmd-kit/blob/devel/doc/data/system.md)
 
 [1] Zhang, Pengchao, et al. "[Intramolecular and Water Mediated Tautomerism of Solvated
 Glycine](https://doi.org/10.1021/acs.jcim.4c00273)." *J. Chem. Inf. Model.* (2024).
+
+[2] Zhang, Pengchao, et al. "[Propensity of water self-ions at air (oil)-water interfaces revealed by deep potential molecular dynamics with enhanced sampling](https://arxiv.org/abs/2404.07027)" *arXiv preprint arXiv:2404.07027* (2024).
