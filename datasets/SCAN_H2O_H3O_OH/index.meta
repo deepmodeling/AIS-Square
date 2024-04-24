@@ -1,0 +1,9 @@
+title: SCAN_H2O_H3O_OH
+publisher: Zhang-pchao
+license: CC BY NC 4.0
+repo:
+    - https://store.aissquare.com/datasets/a5d02519-7376-4189-b812-7b08e6b9baf0/SCAN_H2O_H3O_OH.tgz
+reference:
+    - datasets/SCAN_H2O_H3O_OH
+    - models/SCAN_H2O_H3O_OH
+author: '[{"email":"pc-zhang20@foxmail.com","firstName":"Pengchao","lastName":"Zhang","position":0,"id":0},{"email":"fengmuye@njtech.edu.cn","firstName":"Muye","lastName":"Feng","position":1,"id":1},{"email":"xuxuefei@tsinghua.edu.cn","firstName":"Xuefei","lastName":"Xu","position":2,"id":2}]'
