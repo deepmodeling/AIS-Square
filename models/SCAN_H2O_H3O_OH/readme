@@ -1,6 +1,6 @@
 ## Introduction
 
-This model accurately describes hydronium and hydroxide diffusion in water [1] with high precision using the SCAN functional. The compressed format is more efficient for conducting molecular dynamics. For more details, see the paper and supporting information. [1]
+This model accurately describes hydronium and hydroxide diffusion in water [1] with high precision using the SCAN functional. The compressed model is more efficient for conducting molecular dynamics. For more details, see the paper and supporting information. [1]
 
 ## References
 
