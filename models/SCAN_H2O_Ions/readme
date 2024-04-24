@@ -1,0 +1,7 @@
+## Introduction
+
+This model accurately describes hydronium and hydroxide diffusion in water [1] with high precision using the SCAN functional. The compressed format is more efficient for conducting molecular dynamics. For more details, see the paper and supporting information. [1]
+
+## References
+
+[1] Zhang, Pengchao, et al. "[Double-Layer Distribution of Hydronium and Hydroxide Ions in the Air–Water Interface](https://pubs.acs.org/doi/10.1021/acsphyschemau.3c00076)" *ACS Phys. Chem Au* (2024).
