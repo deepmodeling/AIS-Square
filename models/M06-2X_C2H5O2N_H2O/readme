@@ -1,6 +1,6 @@
 ## Introduction
 
-This model can describe glycine tautomerism in water [1] and water autoionization [2] with M06-2X (hybrid meta-GGA functional) precision. The compressed format is more efficient for conducting molecular dynamics. for more information, see the citation and supporting information. [1]
+This model can describe glycine tautomerism in water [1] and water autoionization [2] with M06-2X (hybrid meta-GGA functional) precision. The compressed format is more efficient for conducting molecular dynamics. For more details, see the paper and supporting information. [1]
 
 ## References
 
