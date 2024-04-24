@@ -1,0 +1,9 @@
+## Introduction
+
+This model can describe glycine tautomerism in water [1] and water autoionization [2] with M06-2X (hybrid meta-GGA functional) precision. The compressed format is more efficient for conducting molecular dynamics. for more information, see the citation and supporting information. [1]
+
+## References
+
+[1] Zhang, Pengchao, et al. "[Intramolecular and Water Mediated Tautomerism of Solvated Glycine](https://doi.org/10.1021/acs.jcim.4c00273)." *J. Chem. Inf. Model.* (2024).
+
+[2] Zhang, Pengchao, et al. "[Propensity of water self-ions at air (oil)-water interfaces revealed by deep potential molecular dynamics with enhanced sampling](https://arxiv.org/abs/2404.07027)" *arXiv preprint arXiv:2404.07027* (2024).
