@@ -1,0 +1,28 @@
+## Introduction
+
+**Description**
+
+The dataset[1] encompasses long-range parameters for all single-molecule protein fragments with less than eight heavy atoms, specifically including atomic charges, atomic dipole moments, atomic quadrupole moments, atomic polarizabilities, and dispersion coefficients (c6, c8, c10) as calculated by the CAMCASP software[2]. The dataset also include atomic charges, atomic dipole moments and atomic quadrupole moments calculated by the Multiwfn[3]. The selected elements include C, H, O, N, S. All the QM calculations are performed at PBE0/aug-cc-pVTZ.
+
+The multipole moments calculated with CAMCASP are saved in camcasp_multipole.hdf5, the multipole moments calculated with Multiwfn are saved in hirshfeld_multipole.hdf5. The polarizability, c6, c8, c10 calculated with CAMCASP are saved in polar.hdf5, c6.hdf5, c8.hdf5, c10.hdf5, respectively.
+
+## Data Format
+
+we can use h5py to read the dataset, e.g. 
+
+```
+import h5py
+data = h5py.File('quadrupole.hdf5')
+```
+
+data['_n_nodes'] save the number of atoms for each molecule, data['monopole'] save the monopole parameters like charge, polarizability, c6, c8, c10; data['dipole'] save the dipole moment; datga['quadrupole_2'] save the quadrupole moment; data['pos'] save the coordinate of the molecules; data['species'] save the atomic numbers of the molecules. 
+
+## References
+
+[1] Zheng, Cheng et al. "Developing Differentiable Long-Range Force Field for Proteins with E (3) Neural Network Predicted Asymptotic Parameters." ChemRxiv. 2024; doi:10.26434/chemrxiv-2024-kkb5h.
+
+[2] Alston J. Misquitta et al. "Ab initio atom–atom potentials using CamCASP: Theory
+and application to many-body models for the pyridine dimer." Journal of chemical theory
+and computation 2016, 12, 4184–4208.
+
+[3] Tian Lu. et al. "A multifunctional wavefunction analyzer." Journal of computational chemistry 2012, 33, 580–592.
