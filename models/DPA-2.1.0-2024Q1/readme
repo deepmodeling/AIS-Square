@@ -1,4 +1,4 @@
-**First of all,  we are excited to announce the first alpha version of DeePMD-kit v3. DeePMD-kit v3 allows you to train and run deep potential models on top of TensorFlow or PyTorch. DeePMD-kit v3 also supports the [DPA-2 model](https://arxiv.org/abs/2312.15492), a novel architecture for large atomic models. If you have any problems, ideas or suggestions about OpenLAM, welcome to have a discussion in this page or [GitHub Discussions](https://github.com/deepmodeling/deepmd-kit/discussions/3772) **
+**First of all,  we are excited to announce the first alpha version of DeePMD-kit v3. DeePMD-kit v3 allows you to train and run deep potential models on top of TensorFlow or PyTorch. DeePMD-kit v3 also supports the [DPA-2 model](https://arxiv.org/abs/2312.15492), a novel architecture for large atomic models. If you have any problems, ideas or suggestions about OpenLAM, welcome to have a discussion in this page or [GitHub Discussions](https://github.com/deepmodeling/deepmd-kit/discussions/3772).**
 
 The pretrained model provided is compatible with [DeePMD-kit v3 2024Q1 version](https://github.com/deepmodeling/deepmd-kit/tree/2024Q1).
 
