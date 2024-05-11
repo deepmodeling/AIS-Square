@@ -1,1 +1,204 @@
-To be completed.
+Still work in progress.
+
+# Data Description for Pretrained Model
+
+```
+| Pre-training datasets | Name | element #train | #test | #total | weight |
+|-----------------------|------|---------------|-------|--------|--------|
+| Alloy                 | 53   | 71,482       | 1,240 | 72,722 | 2.0    |
+| Cathode-P             | Li,Na,O,Mn,Fe,Co,Cr,Ni | 58,690 | 6,451 | 65,141 | 1.0    |
+| Cluster-P             | Pd,Ru,Al,Au,Ag,Pt,Si,Cu,Ni | 139,200 | 14,936 | 154,136 | 1.0    |
+| Drug                  | H, C, N, O, F, Cl, S, P | 1,379,956 | 24,257 | 1,404,213 | 2.0    |
+| FerroEle-P            | 15   | 6,966         | 760   | 7,726  | 1.0    |
+| OC2M                  | 56   | 2,000,000     | 999,866 | 2,999,866 | 2.0    |
+| SSE-PBE-P            | Li, P, S, Si, Ge | 15,019 | 755   | 15,774 | 1.0    |
+| SemiCond-P           | 14   | 136,867       | 14,848 | 151,715 | 1.0    |
+| H2O-PD               | H, O | 46,077       | 2,342 | 48,419 | 1.0    |
+| Ag∪Au-PBE           | Ag, Au | 16,696       | 812   | 17,508 | 0.2    |
+| Al∪Mg∪Cu            | Al, Mg, Cu | 24,252       | 1,145 | 25,397 | 0.3    |
+| Cu                    | Cu   | 14,596        | 770   | 15,366 | 0.1    |
+| Sn                    | Sn   | 6,449         | 276   | 6,725  | 0.1    |
+| Ti                    | Ti   | 10,054        | 474   | 10,528 | 0.1    |
+| V                     | V    | 14,935        | 738   | 15,673 | 0.1    |
+| W                     | W    | 42,297        | 2,100 | 44,397 | 0.1    |
+| C12H26                | H, C | 33,898       | 1,598 | 35,496 | 0.1    |
+| HfO2                  | O, Hf | 27,660       | 917   | 28,577 | 0.1    |
+| sum                   | 73   | 4,045,094     | 1,074,285 | 5,119,379 | 13.2   |
+
+| Downstream datasets | Name | element #train | #test | #total | weight |
+|---------------------|------|---------------|-------|--------|--------|
+| Cathode-D          | Li, Na, O, Mn, Fe, Co, Cr | 30,002 | 3,244 | 33,246 | –     |
+| Cluster-D          | Pd, Au, Ag, Pt, Cu, Ni | 4,218 | 395 | 4,613 | –     |
+| FerroEle-D         | 15   | 7,521         | 597   | 8,118  | –     |
+| SSE-PBE-D         | Li, P, S, Sn | 2,563 | 131 | 2,694 | –     |
+| SSE-PBESol        | Li, P, S, Si, Ge, Sn | 7,502 | 384 | 7,886 | –     |
+| SemiCond-D        | P, N, Al, Te, In, Se, Sb, B, As | 78,614 | 8,495 | 87,109 | –     |
+| ANI-1x            | H, C, N, O | 4,872,049 | 83,956 | 4,956,005 | –     |
+| Transition-1x     | H, C, N, O | 7,632,328 | 967,454 | 8,599,782 | –     |
+| H2O-DPLR          | H, O | 557 | 46 | 603 | –     |
+| H2O-SCAN0         | H, O | 7,002 | 347 | 7,349 | –     |
+| H2O-PBE0TS       | H, O | 133,000 | 7,000 | 140,000 | –     |
+| H2O-PBE0TS-MD    | H, O | 38,000 | 2,000 | 40,000 | –     |
+| AgAu-PBED3        | Ag, Au | 64,239 | 2,256 | 66,495 | –     |
+| AlMgCu-D         | Al, Mg, Cu | 113,942 | 2,820 | 116,762 | –     |
+| In2Se3            | In, Se | 11,621 | 568 | 12,189 | –     |
+| sum                | 39   | 13,003,158   | 1,079,693 | 14,082,851 | –     |
+```
+
+
+# Model Evaluation
+
+## Validation Error
+
+## Zero-shot performance
+
+1. GST
+2. SPICE
+3. ZrO2/Dai
+
+
+# How to use
+
+## The pretrained model is compatible with DeePMD-kit-v3 !
+
+
+## Zero-shot
+
+## Single-task Finetune
+
+## Multi-task Finetune
+
+
+Now we have a multi-task model `model_.pt` with 18 fitting heads, with different branches such as `Domains_Alloy`, `Domains_Anode`, `Domains_Cluster`, `Domains_Drug`, etc.
+
+The content of `input.json` is different from single-task training. Includes a `model/shared_dict <model/shared_dict>`shared by all models, such as `dpa2_descriptor`, and multiple model definitions `model/model_dict/model_key <model/model_dict/model_key>`instead of a single model definition `model <model>`.
+
+For example, we want to run finetune on a new system while continuing to train on the relevant data set of the pretrain model such as `Domains_Alloy` to prevent overfitting. We can define model_dict as follows:
+
+```json
+"model_dict": {
+            "Domains_Alloy": {
+                "type_map": "type_map_all",
+                "descriptor": "dpa2_descriptor",
+                "fitting_net": {
+                    "neuron": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "activation_function": "tanh",
+                    "resnet_dt": true,
+                    "seed": 1,
+                    "_comment": " that's all"
+                }
+            },
+            "new_system": {
+                "type_map": "type_map_all",
+                "descriptor": "dpa2_descriptor",
+                "fitting_net": {
+                    "neuron": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "activation_function": "tanh",
+                    "resnet_dt": true,
+                    "seed": 1,
+                    "_comment": " that's all"
+                }
+            }
+        }
+```
+
+Correspondingly, we need to define `loss_dict <loss_dict>` and `training/data_dict <training/data_dict>` for each task, and control the weights between different heads through `training/model_prob <training/model_prob>`:
+
+```json
+    "loss_dict": {
+        "Domains_Alloy": {
+            "type": "ener",
+            "start_pref_e": 0.02,
+            "limit_pref_e": 1,
+            "start_pref_f": 1000,
+            "limit_pref_f": 1,
+            "start_pref_v": 0,
+            "limit_pref_v": 0
+        },
+        "new_system": {
+            "type": "ener",
+            "start_pref_e": 0.02,
+            "limit_pref_e": 1,
+            "start_pref_f": 1000,
+            "limit_pref_f": 1,
+            "start_pref_v": 0,
+            "limit_pref_v": 0
+        }
+    },
+```
+
+```json
+    "training": {
+        "model_prob": {
+            "Domains_Alloy": 2.0,
+            "new_system": 2.0
+        },
+        "data_dict": {
+            "Domains_Alloy": {
+                "training_data": {
+                    "systems": [
+                        "/home/data/Domains/Alloy/train/9",
+                        "/home/data/Domains/Alloy/train/10",
+                        "/home/data/Domains/Alloy/train/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                },
+                "validation_data": {
+                    "systems": [
+                        "/home/data/Domains/Alloy/val/9",
+                        "/home/data/Domains/Alloy/val/10",
+                        "/home/data/Domains/Alloy/val/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                }
+            },
+            "new_system": {
+                "training_data": {
+                    "systems": [
+                        "/home/data/new_system/train/9",
+                        "/home/data/new_system/train/10",
+                        "/home/data/new_system/train/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                },
+                "validation_data": {
+                    "systems": [
+                        "/home/data/new_system/val/9",
+                        "/home/data/new_system/val/10",
+                        "/home/data/new_system/val/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                }
+            },
+        }
+    }
+```
+
+Once we have finished setting up `input.json`, we are ready to train:
+
+```bash
+$ dp --pt train input.json --finetune model_18heads.pt
+```
+
+
+
+# FAQ
+
+
+
+
+
+
+#
