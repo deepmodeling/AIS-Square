@@ -101,7 +101,6 @@ To make sure the migration of codes will not affect the training performance, we
 Then, we add all downstream data (including ANI-1x, Transition-1x) to the pretraining, and thus bring a 27head-training. We also extended the 27head training to 5-million steps on 8 GPU cards to achieve a better accuracy.
 
 
-
 | Datasets              | Weight | 18heads-1m E | 18heads-1m F | 27heads-5m E | 27heads-5m F |
 | --------------------- | ------ | ------------ | ------------ | ------------ | ------------ |
 | **Domains\_Alloy**    | 2.0    | 2.90E-02     | 1.64E-01     | 2.17E-02     | 1.53E-01     |
@@ -139,7 +138,7 @@ pip install git+https://github.com/deepmodeling/deepmd-kit@2024Q1
 
 ## Zero-shot
 
-Zero-shot learning is a machine learning scenario in which an AI model is trained to recognize and categorize objects or concepts without having seen any examples of those categories or concepts beforehand. 
+Zero-shot learning is a machine learning scenario in which an AI model is trained to recognize and categorize objects or concepts without having seen any examples of those categories or concepts beforehand.
 
 In the context of large atomic models, zero-shot can be considered as a test of model's generalization. For example, we can compare it with the standard deviation of the orginal data.  If the zero-shot RMSE is smaller than the corresponding standard deviation, the model shows the ability of zero-shot generalization.
 
@@ -149,13 +148,49 @@ An instruction for zeroshot can be found at https://bohrium.dp.tech/notebooks/57
 
 To be specific, given a new downstream system, we perform a 0-steps training with DeePMD-kit via `dp train`, to determine the energy bias of the downstream task, instead of those used in the pretraining stage. Then we can directly test the zero-shot of the model by selecting the head via `dp test`.
 
-We also use GST_GAP_22 as a practical example. The main training dataset for GST\_GAP\_22,is  calculated using the PBEsol functional. GST-GAP-22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to https://materials.colabfit.org/id/DS\_r3hav37ufnmb\_0. 
+We also use GST_GAP_22 as a practical example. The main training dataset for GST\_GAP\_22,is  calculated using the PBEsol functional. GST-GAP-22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to https://materials.colabfit.org/id/DS\_r3hav37ufnmb\_0. Notice that in the SemiCond branch of the pretrained model, the set of data contains structure-to-energy-force labels for 20 semiconductors, namely, Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. We first test the 18heads-1m-model's zero-genralization. 
 
 
+|                       | zero-shot rmse\_e | zero-shot rmse\_f |
+| --------------------- | ----------------- | ----------------- |
+| Domains\_Alloy        | 7.82E-01          | 2.01E+00          |
+| Domains\_Anode        | 6.16E-01          | 1.04E+00          |
+| Domains\_Cluster      | 6.43E-01          | 2.90E+00          |
+| Domains\_Drug         | 6.13E-01          | 1.24E+00          |
+| Domains\_FerroEle     | 6.59E-01          | 1.24E+00          |
+| **Domains\_OC2M**     | **7.85E-01**      | **3.77E-01**      |
+| Domains\_SSE-PBE      | 4.60E-01          | 1.98E+00          |
+| **Domains\_SemiCond** | **6.79E-01**      | **3.84E-01**      |
+| H2O\_H2O-PD           | 7.61E-01          | 9.70E-01          |
+| Metals\_AgAu-PBE      | 8.46E-01          | 1.98E+00          |
+| Metals\_AlMgCu        | 8.58E-01          | 1.59E+00          |
+| Metals\_Cu            | 7.50E-01          | 1.29E+00          |
+| Metals\_Sn            | 7.83E-01          | 1.10E+00          |
+| Metals\_Ti            | 7.07E-01          | 1.01E+00          |
+| Metals\_V             | 8.77E-01          | 1.26E+00          |
+| Metals\_W             | 8.95E-01          | 1.93E+00          |
+| Others\_C12H26        | 5.97E-01          | 1.99E+00          |
+| Others\_HfO2          | 6.71E-01          | 1.62E+00          |
+
+The energy and force std of this system is 0.96 eV/atom, and 0.73 eV/Angstrom. For 18heads-1m model, the SemiCond branch's zero-shot RMSE for energy and force is 0.69 eV/atom. and 0.38 eV/Angstrom, which indicate a good zero-shot generalization of the pretrained-model. Besides, this test also demonstrates that the selection of model branch in zero-shot has a large influence on the performance. Meanwhile, OC2M head also performs well in GeTe-Sb2Te3(GST) system. Last but not least,  in the 27heads-5m model, the SemiCond branch's zero-shot RMSE is 0.59 eV/atom, and 0.34 eV/Angstrom, illustrating a better accuracy.
 
 ## Single-task Finetune
 
+Pretraining-and-finetuning is a widely used approach in other fields such as Computer Vision (CV) or Natural Language Processing (NLP) to vastly reduce the training cost, while it’s not trivial in potential models. Compositions and configurations of data samples or even computational parameters in upstream software (such as VASP) may be different between the pretrained and target datasets, leading to energy shifts or other diversities of training data.
+
+The finetune procedure will inherit the neural network parameters of descriptor in pretrained multitask model. The fitting net can either reinit or inherit the fitting net from any branch of the pre-trained model depending on the argument *-m*.
+
+- -m (--model-branch): Model branch chosen for fine-tuning if multi-task. If not specified, it will re-init the fitting net.
+
+```bash
+dp train input.json --finetune OpenLAM_2.1.0_27heads_2024Q1.pt -m <model-branch>
+```
+
+**If it's your first-time to try the finetuning, we would suggest you perform the se_2 from-scratch training, the DPA-2 from-scratch training, choose the proper head for finetuning (you can also perform the zero-shot test), and then compare their performances.**
+
 ## Multi-task Finetune
+
+In come circumstances, single-task finetuning may be not enough. First in few-shot cases, where the downstream training data is quite few,  a single-task finetuning may "forget" the information in the pretrained model and cause an over-fitting problem. Second, if we find there'are multiple dataset and multiple pretrained branches proper for our new task, we may want to include all these information. In consequence of these reasons, in DeePMD-kit we also support a multi-task finetuning mode. In the following parts, we will provide instructions on how to perform the multi-task finetuning procedure.
 
 Now we have a multi-task model `model_.pt` with 18 fitting heads, with different branches such as `Domains_Alloy`, `Domains_Anode`, `Domains_Cluster`, `Domains_Drug`, etc.
 
@@ -279,6 +314,17 @@ Once we have finished setting up `input.json`, we are ready to train:
 ```bash
 $ dp --pt train input.json --finetune model_18heads.pt
 ```
+
+At last we also use the GST case to compare the performances of from-scratch training, single-task finetuning, and multitask-finetuning. In this case, we construct a few-shot training systems which contains only 40 frames from an iteration from previous data-cleaning work. The test systems contain 144 frames. The training steps are all 20w steps. The bad performace of from-scratch and single-task finetuning attributes the overfitting problem in few-shot cases. 
+
+
+| <br/>                                            | Energy RMSE/Natoms (eV) | Force RMSE (eV/atom) |
+| ------------------------------------------------ | ----------------------- | -------------------- |
+| From Scratch                                     | 0.52                    | 2.49                 |
+| Finetune with SemiCond head                      | 0.32                    | 0.56                 |
+| **Multitask finetune along with SemiCond heads** | **0.30**                | **0.33**<br/>        |
+| Data std                                         | 0.96                    | 0.73                 |
+| Zero shot (SemiCond head) RMSE                   | 0.68                    | 0.38                 |
 
 # FAQ
 
