@@ -1,52 +1,93 @@
-Still work in progress.
+Still work in progress
 
 # Data Description for Pretrained Model
 
-```
-| Pre-training datasets | Name | element #train | #test | #total | weight |
-|-----------------------|------|---------------|-------|--------|--------|
-| Alloy                 | 53   | 71,482       | 1,240 | 72,722 | 2.0    |
-| Cathode-P             | Li,Na,O,Mn,Fe,Co,Cr,Ni | 58,690 | 6,451 | 65,141 | 1.0    |
-| Cluster-P             | Pd,Ru,Al,Au,Ag,Pt,Si,Cu,Ni | 139,200 | 14,936 | 154,136 | 1.0    |
-| Drug                  | H, C, N, O, F, Cl, S, P | 1,379,956 | 24,257 | 1,404,213 | 2.0    |
-| FerroEle-P            | 15   | 6,966         | 760   | 7,726  | 1.0    |
-| OC2M                  | 56   | 2,000,000     | 999,866 | 2,999,866 | 2.0    |
-| SSE-PBE-P            | Li, P, S, Si, Ge | 15,019 | 755   | 15,774 | 1.0    |
-| SemiCond-P           | 14   | 136,867       | 14,848 | 151,715 | 1.0    |
-| H2O-PD               | H, O | 46,077       | 2,342 | 48,419 | 1.0    |
-| Ag∪Au-PBE           | Ag, Au | 16,696       | 812   | 17,508 | 0.2    |
-| Al∪Mg∪Cu            | Al, Mg, Cu | 24,252       | 1,145 | 25,397 | 0.3    |
-| Cu                    | Cu   | 14,596        | 770   | 15,366 | 0.1    |
-| Sn                    | Sn   | 6,449         | 276   | 6,725  | 0.1    |
-| Ti                    | Ti   | 10,054        | 474   | 10,528 | 0.1    |
-| V                     | V    | 14,935        | 738   | 15,673 | 0.1    |
-| W                     | W    | 42,297        | 2,100 | 44,397 | 0.1    |
-| C12H26                | H, C | 33,898       | 1,598 | 35,496 | 0.1    |
-| HfO2                  | O, Hf | 27,660       | 917   | 28,577 | 0.1    |
-| sum                   | 73   | 4,045,094     | 1,074,285 | 5,119,379 | 13.2   |
+## Alloy
 
-| Downstream datasets | Name | element #train | #test | #total | weight |
-|---------------------|------|---------------|-------|--------|--------|
-| Cathode-D          | Li, Na, O, Mn, Fe, Co, Cr | 30,002 | 3,244 | 33,246 | –     |
-| Cluster-D          | Pd, Au, Ag, Pt, Cu, Ni | 4,218 | 395 | 4,613 | –     |
-| FerroEle-D         | 15   | 7,521         | 597   | 8,118  | –     |
-| SSE-PBE-D         | Li, P, S, Sn | 2,563 | 131 | 2,694 | –     |
-| SSE-PBESol        | Li, P, S, Si, Ge, Sn | 7,502 | 384 | 7,886 | –     |
-| SemiCond-D        | P, N, Al, Te, In, Se, Sb, B, As | 78,614 | 8,495 | 87,109 | –     |
-| ANI-1x            | H, C, N, O | 4,872,049 | 83,956 | 4,956,005 | –     |
-| Transition-1x     | H, C, N, O | 7,632,328 | 967,454 | 8,599,782 | –     |
-| H2O-DPLR          | H, O | 557 | 46 | 603 | –     |
-| H2O-SCAN0         | H, O | 7,002 | 347 | 7,349 | –     |
-| H2O-PBE0TS       | H, O | 133,000 | 7,000 | 140,000 | –     |
-| H2O-PBE0TS-MD    | H, O | 38,000 | 2,000 | 40,000 | –     |
-| AgAu-PBED3        | Ag, Au | 64,239 | 2,256 | 66,495 | –     |
-| AlMgCu-D         | Al, Mg, Cu | 113,942 | 2,820 | 116,762 | –     |
-| In2Se3            | In, Se | 11,621 | 568 | 12,189 | –     |
-| sum                | 39   | 13,003,158   | 1,079,693 | 14,082,851 | –     |
-```
+**model-branch** : `Domains_Alloy`
+
+This dataset is generated using the DP-GEN scheme and comprises structure-energy- force-virial data for 53 typical metallic elements (Li, Be, Na, Mg, Al, Si, K, Ca, Sc, Ti, V, Cr, Mn,Fe,Co,Ni,Cu,Zn,Ga,Ge,Sr,Y,Zr,Nb,Mo,Ru,Rh,Pd,Ag,Cd,In,Sn,La,Hf,Ta,W, Re, Os, Ir, Pt, Au, Pb, Ce, Pr, Nd, Sm, Gd, Tb, Dy, Ho, Er, Tm, Lu) The dataset encompasses a diverse array of crystal configurations, featuring FCC, BCC, and HCP structures, as well as intermetallic compounds and amorphous structures with stochastic vacancies. The dataset contains three categories, random substitutional solid solutions, elementary substances, and intermetallic compounds. All density functional theory (DFT) calculations were conducted using the ABACUS package. The exchange-correlation functional was described by the generalized gradient approximation (GGA) in the Perdew-Burke-Ernzerhof (PBE) form. Norm-conserving pseudopotentials were adopted. The cutoff energy of the plane wave basis was set to be 100 Rydberg, and the Monkhorst-Pack k-point mesh was chosen with a reciprocal space resolution of 0.05 Bohr−1. The self-consistent field iteration stops when the difference in total electron density of consecutive iterations is less than 10−6.
+
+## SemiCond
+
+**model-branch** : `Domains_SemiCond`
+
+This dataset encompasses 20 semiconductors spanning from group IIB to VIA, namely Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. The configurations are explored by the DPGEN scheme in a temperature range of approximately 50.0 K to ∼4000 K and a pressure range of circa 1 bar to 50000 bar. DFT calculations, employed during the DP-GEN process, are computed utilizing the ABACUS software package. The energy cutoff of the DFT calculations was set to 100 Ry (∼ 1361 eV) and the mesh grid for K-space sampling was 0.08 Bohr−1 (∼ 0.15 Å−1).
+
+## Cathode
+
+**model-branch** : `Domains_Anode`
+
+This dataset explores O3-type layered oxide cathodes employed in lithium-ion and sodium- ion batteries. It has been generated utilizing the DP-GEN scheme. Specifically, the systems analyzed include LixTMO2 and NaxTMO2, where TM represents transition metal elements including Ni, Mn, Fe, Co, and Cr. The configuration space is explored by NPT MD simula- tions in a wide range of temperatures and pressures, varying from 50.0 K to 1250.0 K and 0 bar to 3000 bar, respectively. The DFT calculations for this dataset were conducted using the VASP software, incorporating the PBE-GGA functional. The dataset comprises su-percells containing twelve formula units for various systems, including LiTMO2, NaTMO2, Li0.5TMO2, Na0.5TMO2, and TMO2. 
+
+## Cluster
+
+**model-branch** : `Domains_Cluster`
+
+This dataset is composed of metal nano-clusters. The dataset is decomposed in a non- overlapping way into two subsets, Cluster-P and Cluster-D, which are used for pre-training and downstream tasks, respectively. The Cluster-P dataset encompasses 9 types of clusters that are composed of one element, namely Au, Ag, Al, Cu, Ni, Pt, Pd, Si, and Ru, and 15 types of clusters composed of a combination of 2 elements, namely AgCu, AgNi, AgPd, AgPt, AuAg, AuCu, AuNi, AuPd, AuPt, CuNi, CuPd, CuPt, NiPd, PtNi, and PtPd. The Cluster-D dataset includes 7 types of clusters composed of ternary combination of metal elements, i.e. AgCuPt, AuAgCu, AuAgPd, AuAgPt, AuCuPd, AuCuPt, and PtPdNi. The configurations of the clusters in the Cluster-P and Cluster-D datasets are explored using the DPGEN scheme. The DFT calculations are performed using CP2K with PBE exchange-correlation functional and Grimme D3 dispersion correction.
+
+## Drug
+
+**model-branch**: `Domains_Drug`
+
+This dataset is generated using the DP-GEN approach and encompasses an extensive col- lection of over 1.4 million structures, comprising 8 elements H, C, N, O, F, Cl, S, and P, with the inclusion of up to 70 heavy atoms. The foundation for the initial training data was established by optimizing small molecules procured from the ChEMBL database with the aid of Gaussian software. To expand the dataset, high-temperature simulations were employed, and the data pool was further augmented by optimizing larger molecules from the ChEMBL database, followed by conducting supplementary simulations. In addition, unoptimized structures were randomly selected and subjected to simulations, resulting in the enlargement of the training set to encompass over 1 million conformations. To ensure comprehensive torsion coverage, structures originating from the ChEMBL torsion scans dataset were optimized and simulated, while enhanced sampling MD simulations performed with molecules contributed additional structures to the dataset.
+
+## FerroEle
+
+**model-branch** :  `Domains_FerroEle`
+
+This dataset comprises 26 ABO3-type perovskite oxides, which span an extensive composition space containing elements such as Pb, Sr, Ba, Ca, Bi, K, Na, and their various combinations for the A-site, in addition to Ti, Nb, Zr, Mg, Zn, In, Hf, and their respective combinations for the B-site. The configurations of the materials were generated utilizing the DPGEN method and subsequently employed for the training of a universal interatomic potential for perovskite oxides, referred to as UniPero. All DFT calculations were executed with the aid of the ABACUS software, utilizing the PBEsol functional within the GGA framework and ONCV multi-projector pseudopotentials. This dataset is divided into four distinct segments according to data complexity.
+
+## OC2M
+
+**model-branch** : `Domains_OC2M`
+
+This dataset constitutes a subset derived from the Open Catalyst Project’s comprehensive OC20 dataset, which is inclusive of approximately 2 million DFT data samples. This particular dataset comprises 56 distinct elements, with the samples depicting DFT relaxations associated with molecular adsorptions on various surfaces, spanning an extensive structure and chemical space. The principal focus of these samples is directed toward 82 adsorbates that hold significance in the context of renewable energy production and environmental applications.
+
+
+## SSE-PBE
+
+**model-branch** : `Domains_SSE-PBE`
+
+This dataset comprises solid-state electrolytes generated through the DP-GEN method. It is composed of three distinct chemical formulas, namely Li10GeP2S12, Li10SiP2S12, and Li10SnP2S12. All DFT calculations were conducted employing the VASP software, with the application of PBE exchange-correlation functional.
+
+
+## H2O-PD
+
+**model-branch** : `H2O_H2O-PD`
+
+The water/ice dataset is used to train a DP model for the calculation of the phase diagram of water in the thermodynamic range of 0 to 2400 K and 0 to 50 GPa. The dataset was labeled by the VASP software [73, 74] with the SCAN exchange-correlation functional. The energy cutoff was set to 1500 eV and the spacing of the K-space lattice was 0.5 Å−1. This dataset is used for pre-training.
+
+
+## AgAu-PBE
+
+**model-branch** : `Metals_AgAu-PBE`
+
+This dataset contains Ag, Au and AgAu configurations that were generated by the DP-GEN scheme. DFT calculations were conducted employing VASP software [73, 74], in conjunction with PBE functional.
+
+
+## AlMgCu
+
+This dataset contains unitary, binary, and ternary alloys of Al, Cu, and Mg, i.e. AlxCuyMgz with a concentration range of 0 ≤ x,y,z ≤ 1,x + y + z = 1. The configurations are explored by the DP-GEN scheme in a temperature range of 50.0 K to 2579.8 K and a pressure range of 1 to 50,000 bar (5 GPa). Energy, force, and virial labels are obtained by DFT calculations adopting the PBE fucntional using VASP [73, 74]. The energy cut-off for PAW basis sets is 650 eV. K-points are sampled by Monkhorst-Pack mesh with a grid spacing of 0.1 Å−1. Order 1 Methfessel-Paxton smearing is used with σ = 0.22 eV. SCF convergence criterion for DFT calculation is 1 × 10−6 eV.
+
+
+## ANI-1x
+
+This dataset is generated through iterative active learning to efficiently sample chemical space relevant for machine-learned potentials. It contains over 5 million conformations of organic molecules with up to 13 heavy atoms. Initial data came from small GDB-11 molecules. More complex chemical space was then explored by conformational sampling of progressively larger molecules from databases like ChEMBL and GDB-13. Techniques included diverse normal mode sampling, trajectory sampling, and dimer sampling to capture molecular diversity. By combining automated active learning of molecules and conforma- tions with rigorous sampling methods, ANI-1x provides comprehensive coverage of organic chemical space.
+
+
+## Transition-1x
+
+The dataset comprises over 9.6 million conformations of organic small molecules, spanning more than 10,000 distinct organic chemical reactions. Each reaction involves up to seven heavy atoms, including carbon, nitrogen, and oxygen. Originating from the GDB-7 [101] database, the dataset selects structures that serve as reactants; potential products are then generated via the Growing String Method. Reaction trajectories for these reactant-product pairs are computed employing the Nudged Elastic Band (NEB) method. By selectively sampling structures produced during the NEB procedure and discarding non-physical conformations, the dataset effectively encapsulates the chemical space pertinent to reaction pathways.
+
+
+## Other datasets
+
+To provide a clearer understanding, detailed descriptions of the datasets can be found in the respective links attached to them. Additional datasets Cu [11]url, Sn [102]url, Ti [103]url, V [104]url, W [105]url, C12H26 [106]url and HfO2 [107]url are used for pre-training, while In2Se3 [108]url, H2O-DPLR [109]url, H2O-SCAN0 [110]url, H2O-PBE0TS [38]url and H2O-PBE0TS-MD [79]url, are utilized for downstream tasks. Notably, four H2O downstream datasets (H2O-DPLR, H2O-SCAN0, H2O-PBE0TS and H2O-PBE0TS-MD) significantly differ from the pre-training dataset H2O-PD.
 
 
 # Model Evaluation
+
 
 ## Validation Error
 
@@ -56,18 +97,15 @@ Still work in progress.
 2. SPICE
 3. ZrO2/Dai
 
-
 # How to use
 
 ## The pretrained model is compatible with DeePMD-kit-v3 !
-
 
 ## Zero-shot
 
 ## Single-task Finetune
 
 ## Multi-task Finetune
-
 
 Now we have a multi-task model `model_.pt` with 18 fitting heads, with different branches such as `Domains_Alloy`, `Domains_Anode`, `Domains_Cluster`, `Domains_Drug`, etc.
 
@@ -192,13 +230,6 @@ Once we have finished setting up `input.json`, we are ready to train:
 $ dp --pt train input.json --finetune model_18heads.pt
 ```
 
-
-
 # FAQ
-
-
-
-
-
 
 #
