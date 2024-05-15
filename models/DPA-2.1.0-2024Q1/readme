@@ -324,6 +324,7 @@ At last we also use the GST case to compare the performances of from-scratch tra
 | Data std                                         | 0.96                    | 0.73                 |
 | Zero shot (SemiCond head) RMSE                   | 0.68                    | 0.38                 |
 
-# FAQ
+
+The developer team thanks Bowen Li, Qiming Xie for completing this report.
 
 #
