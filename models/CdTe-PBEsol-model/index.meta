@@ -1,0 +1,8 @@
+title: CdTe-PBEsol-model
+publisher: hiluokun
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/7aaada61-4bcc-4801-9dfd-f247464d9747/CdTe-PBEsol.pb
+    - https://store.aissquare.com/models/7aaada61-4bcc-4801-9dfd-f247464d9747/CdTe-PBEsol_compressed.pb
+reference: []
+author: '[{"email":"hiluokun@gmail.com","firstName":"Kun","lastName":"Luo","institution":"Iowa State University","contribution":"KL trained and developed the machine-learning force field","position":0,"id":0},{"email":"qan@iastate.edu","firstName":"Qi","lastName":"An","institution":"Iowa State University","contribution":"QA led the project","position":1,"id":1}]'
