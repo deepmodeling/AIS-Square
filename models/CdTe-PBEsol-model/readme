@@ -1,0 +1,36 @@
+# Introduction
+
+A DP-PBEsol model for CdTe. [1,2]
+
+Here, an accurate machine-learning force field (ML-FF), named the CdTe-PBEsol-model, is developed for CdTe systems based on extensive quantum mechanics (QM) simulations. We apply this ML-FF to investigate the structural phase transitions and the behavior of dislocation decomposition and movement in CdTe during deformation. Additionally, we examine Homoepitaxial Film Growth. Our simulation results elucidate the atomic mechanisms underlying experimental phenomena in CdTe materials, thereby demonstrating the accuracy of the developed ML-FF.
+
+# Training
+
+the main training datasets are generated using a concurrent learning algorithm, as implemented in the Deep Potential GENerator (DP-GEN) [3]. The DeePMD-kit package is used for training [4]. The sizes of the embedding and fitting nets are set to (25, 50, 100) and (120, 120, 120), respectively. The cut-off radius is set to 6 Å and the smoothing starts from 5.0 Å. The Adam stochastic gradient descent method with the default hyperparameter settings provided by the TensorFlow packag was used to train the DP models.The learning rate varies from 0.001 to 3.51 × 10<sup>–8</sup> with an exponential decay in the total of 1 × 10<sup>6</sup> training steps. The model compression scheme was applied in this work for boosting the computational efficiency of the MD simulation [5].
+More details can be found in [1].
+
+# Use model
+
+1. Download and install LAMMPS: https://docs.lammps.org/Manual.html
+2. Download and install DeePMD-kit: https://github.com/deepmodeling/deepmd-kit
+3. Prepare input data for LAMMPS
+4. Download the model. note: "type_map": ["Cd","Te"]
+5. Run MD with LAMMPS: https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md
+   for example:
+   read_data	./CdTe.data
+   mass            1 112.414 # Cd
+   mass            2 127.60 #Te
+   pair_style	deepmd ./CdTe-PBEsol.pb
+   pair_coeff      * *
+
+# References
+
+[1] Luo, Kun, Xiao Han, Jonathan Cappola, Dian Li, Yufeng Zheng, Lin Li, Feng Yan, and Qi An. "Hyper‐Elastic Deformation via Martensitic Phase Transformation in Cadmium Telluride." Advanced Engineering Materials (2024): 2302076.
+
+[2] Li, Jun, Kun Luo, and Qi An. "Atomic structure, stability, and dissociation of dislocations in cadmium telluride." International Journal of Plasticity 163 (2023): 103552.
+
+[3] Zhang, Yuzhi, Haidi Wang, Weijie Chen, Jinzhe Zeng, Linfeng Zhang, Han Wang, and E. Weinan. "DP-GEN: A concurrent learning platform for the generation of reliable deep learning based potential energy models." Computer Physics Communications 253 (2020): 107206.
+
+[4] Wang, H.; Zhang, L.; Han, J.; E, W. DeePMD-Kit: A Deep Learning Package for Many-Body Potential Energy Representation and Molecular Dynamics. Comput. Phys. Commun. 2018, 228, 178–184. https://doi.org/10.1016/j.cpc.2018.03.016.
+
+[5] Lu, D.; Jiang, W.; Chen, Y.; Zhang, L.; Jia, W.; Wang, H.; Chen, M. DP Compress: A Model Compression Scheme for Generating Efficient Deep Potential Models. J. Chem. Theory Comput. 2022, 18 (9), 5559–5567. https://doi.org/10.1021/acs.jctc.2c00102.
