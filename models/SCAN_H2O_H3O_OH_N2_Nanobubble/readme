@@ -1,0 +1,7 @@
+## Introduction
+
+This model accurately describes the diffusion of nitrogen gas, hydronium ion, and hydroxide ion in water, along with the dynamic evolution of nitrogen nanobubbles [1] with high precision using the SCAN functional. The compressed model is more efficient for conducting molecular dynamics. For more details, see the paper and supporting information. [1]
+
+## References
+
+[1] Zhang, Pengchao, et al. [Hydroxide and Hydronium Ions Modulate the Dynamic Evolution of Nitrogen Nanobubbles in Water](https://pubs.acs.org/doi/10.1021/jacs.4c06641) *J. Am. Chem. Soc.* (2024).
