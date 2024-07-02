@@ -1,0 +1,7 @@
+title: SCAN_H2O_H3O_OH_N2_Nanobubble
+publisher: Zhang-pchao
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/8c7e7d88-fe94-4d00-b363-bbd19de6a21d/frozen_model_compressed.pb
+reference: []
+author: '[{"email":"zpc20@mails.tsinghua.edu.cn","firstName":"Pengchao","lastName":"Zhang","position":0,"id":0},{"email":"chenchangsheng@tsinghua.edu.cn","firstName":"Changsheng","lastName":"Chen","position":1,"id":1},{"email":"fengmuye@njtech.edu.cn","firstName":"Muye","lastName":"Feng","position":2,"id":2},{"email":"chaosun@tsinghua.edu.cn","firstName":"Chao","lastName":"Sun","position":3,"id":3},{"email":"xuxuefei@mail.tsinghua.edu.cn","firstName":"Xuefei","lastName":"Xu","position":4,"id":4}]'
