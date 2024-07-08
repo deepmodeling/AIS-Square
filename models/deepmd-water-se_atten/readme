@@ -1,0 +1,12 @@
+This model is trained using the input file under `deepmd-kit/examples/water/se_atten`. The training takes 73,350 seconds using 1 V100-SXM2 GPU.
+
+The output of `dp test` is listed below:
+
+```yaml
+# number of test data : 30
+Energy RMSE        : 3.510479e-02 eV
+Energy RMSE/Natoms : 1.828375e-04 eV
+Force  RMSE        : 2.210830e-02 eV/A
+Virial RMSE        : 6.055581e+00 eV
+Virial RMSE/Natoms : 3.153949e-02 eV
+```
