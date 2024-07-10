@@ -1,0 +1,38 @@
+## Introduction
+
+This dataset contains the diffusion of nitrogen gas, hydronium ion, and hydroxide ion in water to train the DP model to describe the dynamic evolution of nitrogen nanobubbles with high precision using the SCAN functional.[1] Additional information of all subsystems in the dataset is available in the SI.[2]
+
+## Data Format
+
+The directory is as follows:
+
+`train test`
+
+`./train: set.000 type_map.raw type.raw`
+
+`./train/set.000: box.npy coord.npy energy.npy force.npy`
+
+`./test: set.000 type_map.raw type.raw`
+
+`./test/set.000: box.npy coord.npy energy.npy force.npy`
+
+A pbc unit system in DeePMD format usually has the following substructure:
+
+
+| Name      | Property           | Raw file      | Unit  | Shape                 | Description                                                                                  |
+| --------- | ------------------ | ------------- | ----- | --------------------- | -------------------------------------------------------------------------------------------- |
+| type      | Atom type indexes  | type.raw      |       | Natoms                | Integers that start with 0, represent the atomic type corresponding to type\_map.raw         |
+| type\_map | Atom type names    | type\_map.raw |       | Ntypes                | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord     | Atomic coordinates | coord.npy     | Å    | Nframes\* Natoms \* 3 | The atomic coordinates                                                                       |
+| box       | Boxes              | box.npy       | Å    | Nframes\* 3 \* 3      | The box axes in the order`XX XY XZ YX YY YZ ZX ZY ZZ`                                        |
+| energy    | Frame energies     | energy.npy    | eV    | Nframes               | The potential energy of snapshot                                                             |
+| force     | Atomic forces      | force.npy     | eV/Å | Nframes\* Natoms \* 3 | The atomic forces                                                                            |
+| virial    | Frame virial       | virial.npy    | eV    | Nframes\* 9           | The virial frames are in the order`XX XY XZ YX YY YZ ZX ZY ZZ`                               |
+
+Check [here](https://github.com/iProzd/deepmd-kit/blob/devel/doc/data/system.md) for more details.
+
+## References
+
+[1] Zhang, Pengchao, et al. [Hydroxide and Hydronium Ions Modulate the Dynamic Evolution of Nitrogen Nanobubbles in Water](https://pubs.acs.org/doi/10.1021/jacs.4c06641) *J. Am. Chem. Soc.* (2024).
+
+[2] [https://pubs.acs.org/doi/suppl/10.1021/jacs.4c06641/suppl_file/ja4c06641_si_001.pdf](https://pubs.acs.org/doi/suppl/10.1021/jacs.4c06641/suppl_file/ja4c06641_si_001.pdf)
