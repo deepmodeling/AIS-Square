@@ -1,6 +1,7 @@
 title: DPA-DynaCat
 publisher: Cloudac7
 license: LGPL-3.0
-repo: []
+repo:
+    - https://store.aissquare.com/models/dc785862-03a0-4f5f-9108-6d84b5cfdab5/atten_v2-energy_up-1000w.pb
 reference: []
 author: '[{"email":"fqgong@stu.xmu.edu.cn","firstName":"Fu-Qiang","lastName":"Gong","position":0,"id":0},{"email":"mljia@xmu.edu.cn","firstName":"Meng-Lei","lastName":"Jia","position":1,"id":1},{"email":"ypliu@stu.xmu.edu.cn","firstName":"Yun-Pei","lastName":"Liu","position":2,"id":2},{"email":"cxwang@stu.xmu.edu.cn","firstName":"Cheng-Xuan","lastName":"Wang","position":3,"id":3}]'
