@@ -1,0 +1,27 @@
+## Introduction
+
+DynaCat-Model is a universal MLP for dynamic catalytic elementary reactions on surface of metallic clusters. It is trained from data on elementary reactions such as H2/O2/H2O/CO/CO2/CH4 dissociation that occur on the surface of Au/Ag/Cu/Pt/Pd/Ni pure metals and binary alloy clusters, and is suitable for preliminary simulation and prediction of the above system.
+
+The MLP can provide accurate predictions compared to the results calculated from DFT, and can achieve good predictions on energy and force. It can obtain approximate reaction free energy compared to the MLP for single reaction systems. The MLP can be used for MLMD with enhanced sampling, considering the contributions of various isomers during the reaction process, and can be used to calculate reaction energy barrier and reaction free energy.
+
+## DFT calculations
+
+We use CP2K with PBE functional and TZV2P basis sets. We first use a rather low planewave cutoff (e.g. 450 Rydberg) and relevant cutoff (e.g. 50 Rydberg) to warm up and then use the wave function to restart with higher cutoff. For most systems, we adopt a cutoff energy of 800 Rydberg and a relevant cutoff of 90 Rydberg, to acquire enough precision, while for specific systems the value should be tested following the tutorial on https://manual.cp2k.org/trunk/methods/dft/cutoff.html
+
+## Training
+
+We use \`se\_atten\_v2\` descriptor and \`attn\_layer\` is set to 0 for MLP training. The sizes of the embedding and fitting networks are (25, 50, 100) and (240, 240, 240), respectively. The descriptor characterizes the local environment of an atom within a cutoff radius set here to Rc = 8 Å that includes atoms of the cluster. The weight coefficients of the energy and atomic force in the loss functions change during the optimization process from 1 to 100, 1000 to 1, respectively. The virial terms are not applied in the training.
+
+## Use model
+
+1. Download and install LAMMPS: [https://docs.lammps.org/Manual.html](https://docs.lammps.org/Manual.html)
+2. Download and install DeePMD-kit: [https://github.com/deepmodeling/deepmd-kit](https://github.com/deepmodeling/deepmd-kit)
+   The current version of MLP is trained with DeePMD-kit v2.2.9, so please choose the proper version to run the simulation.
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: [https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md)
+   For free energy calculation of dynamic catalysis reaction, please make sure Plumed plugin for LAMMPS is installed.
+
+## References
+
+[1] Gong, F.-Q.; Liu, Y.-P.; Wang, Y.; E, W.; Tian, Z.-Q.; Cheng, J. Machine  Learning Molecular Dynamics Shows Anomalous Entropic Effect on  Catalysis through Surface Pre-Melting of Nanoclusters. *Angew. Chem. Int. Ed.***2024**, e202405379. [https://doi.org/10.1002/anie.202405379](https://doi.org/10.1002/anie.202405379).
