@@ -16,8 +16,6 @@ To simulate a Pt/TiO2 system, follow these steps:
 2. The LAMMPS software must have the plugin that supports DeePMD installed. Specific installation instructions and further information can be found from the DeePMD community.
 3. You can learn more details about the development of this potential from the following literature.
 
-
-
 **Reference:**
 
 Caoran Li, Xianbao Duan*, Yuzheng Li, Rongli Ye, Fangwen Ye, Liuqing Chen, Chun Du, Kun Cao, Yuzhi Zhang, Bin Shan*, Exploring the impact of separation wall characteristics on Pt particle sintering inhibition: A theoretical study, Journal of Catalysis, 2024, 437: 115638.
