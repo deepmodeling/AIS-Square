@@ -1,0 +1,13 @@
+**Usage Instructions:**
+To simulate a Pt/TiO2 system, follow these steps:
+
+1. Download the potential file from the link above.
+2. Place the potential file in the same directory as the LAMMPS script.
+3. Include the following commands in the LAMMPS script to set up the potential:
+   pair_style deepmd Pt-Ti-O.pb
+   pair_coeff * *
+
+**Important Notes:**
+
+1. Ensure that the order of elements in the atomic model is Pt, Ti, O.
+2. The LAMMPS software must have the plugin that supports DeePMD installed. Specific installation instructions and further information can be found from the DeePMD community.
