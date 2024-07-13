@@ -6,10 +6,9 @@ To simulate a Pt/TiO2 system, follow these steps:
 2. Place the potential file in the same directory as the LAMMPS script.
 3. Include the following commands in the LAMMPS script to set up the potential:
 
-   ```
-   pair_style deepmd Pt-Ti-O.pb
-   pair_coeff * *
-   ```
+`pair_style deepmd Pt-Ti-O.pb`
+`pair_coeff * *`
+
 
 **Important Notes:**
 
