@@ -1,0 +1,8 @@
+title: Hydrogen/Ru_PBE
+publisher: WenyeXuan
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/8d7be370-8382-4794-a163-ba4bcb514396/deepmd_test.tar.gz
+    - https://store.aissquare.com/datasets/8d7be370-8382-4794-a163-ba4bcb514396/deepmd_train.tar.gz
+reference: []
+author: '[{"email":"wenye.xuan@liverpool.ac.uk","firstName":"Wenye","lastName":"Xuan","institution":"University of Liverpool","position":0,"id":0}]'
