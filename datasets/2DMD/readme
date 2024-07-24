@@ -4,7 +4,7 @@ Huang, P., Lukin, R., Faleev, M. et al. Unveiling the complex structure-property
 
 # Dataset contents
 
-A dataset contains 16k structures of 2D materials with point defects, vacancies v(X) and substitutions X(Y).
+A dataset contains 16k structures of 2D materials with point defects, vacancies v(X) and substitutions X(Y). The refined dataset has unrelaxed structures, relaxed energies and HOMO-LUMO gap.
 
 **High defect concentration dataset:**
 
@@ -33,6 +33,8 @@ Total defect concentrations:
 
 https://github.com/HSE-LAMBDA/ai4material_design/blob/main/docs/DATA.md
 
-# Raw VASP
+# DFT settings
 
-https://github.com/HSE-LAMBDA/ai4material_design/blob/main/docs/DATA.md
+Our calculations are based on density functional theory (DFT) using the PBE functional as implemented in the Vienna Ab Initio Simulation Package (VASP). The interaction between the valence electrons and ionic cores is described within the projector-augmented (PAW) approach with a plane‐wave energy cutoff of 500 eV. Spin polarization was included in all the calculations. The initial crystal structures were obtained from the Material Project database and the supercell sizes and the computational parameters for each materials are listed in the supplemental materials. Since very large supercells are used for the calculation of defect, the Brillouin zone was sampled using Γ-point only Monkhorst‐Pack grid for structural relaxation and denser grids for further electronic structure calculations. A vacuum space of at least 15 Å was used to avoid interaction between neighboring layers. In the structural energy minimization, the atomic coordinates are allowed to relax until the forces on all the atoms are less than 0.01 eV/Å. The energy tolerance is 10−6 eV. For defect structures with unpaired electrons, we utilize standard collinear spin-polarized calculations with magnetic ions in a high-spin ferromagnetic initialization (the ion moments can, of course, relax to a low spin state during the ionic and electronic relaxations). Currently, we are focusing on the basic properties of defects and did not include spin–orbit coupling (SOC) and charged states calculations.
+
+Raw VASP data are available (~30Gb): https://github.com/HSE-LAMBDA/ai4material_design/blob/main/docs/DATA.md
