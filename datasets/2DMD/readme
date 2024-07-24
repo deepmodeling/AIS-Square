@@ -1,3 +1,7 @@
+# Paper to read and cite
+
+Huang, P., Lukin, R., Faleev, M. et al. Unveiling the complex structure-property correlation of defects in 2D materials based on high throughput datasets. npj 2D Mater Appl 7, 6 (2023). https://doi.org/10.1038/s41699-023-00369-1
+
 # Dataset contents
 
 A dataset contains 16k structures of 2D materials with point defects, vacancies v(X) and substitutions X(Y).
