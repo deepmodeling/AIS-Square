@@ -1,0 +1,34 @@
+# Dataset contents
+
+A dataset contains 16k structures of 2D materials with point defects, vacancies v(X) and substitutions X(Y).
+
+**High defect concentration dataset:**
+
+1. hBN; v(B), v(N), C(B), C(N)
+2. InSe; v(In), V(Se), Ga(In), S(Se)
+3. GaSe; v(Ga), v(Se), In(Ga), S(Se)
+4. P; v(P), C(P)
+5. MoS2; v(Mo), v(S), W(Mo), Se(S)
+6. WSe2; v(W), v(Se), Mo(W), S(Se)
+
+Total defect concentrations:
+2.5%, 5%, 7.5%, 10%, 12.5%
+
+500 structures per material, 3500 in total
+
+**Low defect concentration dataset**
+
+1. MoS2; v(Mo), v(S), W(Mo), Se(S)
+2. WSe2; v(W), v(Se), Mo(W), S(Se)
+
+1 – 3 defects
+
+5934 structures with per material, 11868 in total
+
+# Data format
+
+https://github.com/HSE-LAMBDA/ai4material_design/blob/main/docs/DATA.md
+
+# Raw VASP
+
+https://github.com/HSE-LAMBDA/ai4material_design/blob/main/docs/DATA.md
