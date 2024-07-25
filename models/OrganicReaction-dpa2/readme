@@ -1,0 +1,26 @@
+# Dataset
+
+The model is trained on [Organic_reactions_dataset](https://www.aissquare.com/datasets/detail?name=Organic_reactions_dataset&id=218&pageType=datasets) dataset, containing 265 organic molecular chemical reactions with energy barrier below 50 kcal/mol, and approximately 250,000 molecular configurations, each with up to seven heavy atoms, including carbon, nitrogen, and oxygen. The raw data is obtained from the Transition1x dataset, and the uncovered chemical space is supplemented by active learning. Energy and force calculations are performed at the DFT level of wb97x-d/def2-tzvp.
+
+# Parameters
+
+The main parameters of training process include a batch size of 1, 1,000,000 steps, and the DPA-2 descriptor with cutoff radii (rcut) and selected numbers of neighbors (nsel) in the repinit layer and the repformer layer are 9.0 Å and 120, 4.0 Å and 40, respectively.
+
+# Performances
+
+||Energy RMSE (eV/atom)|Force RMSE (eV/Å)|
+|-|-|-|
+|Data std.|1.37E-01|3.03E-01|
+|From scratch|9.17E-02|5.82E-01|
+
+# Usage
+
+One can use the following command to test the performance of the model in <test_system>.
+
+```bash
+dp --pt test -m OrganicReaction-dpa2.pt -s <test_system>
+```
+
+
+
+
