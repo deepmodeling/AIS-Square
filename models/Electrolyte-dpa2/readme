@@ -1,0 +1,25 @@
+# Dataset
+
+The model is trained on [Electrolyte](https://www.aissquare.com/datasets/detail?name=Electrolyte&id=216&pageType=datasets) dataset, meticulously curated using the DPGEN method and encompasses six distinct elements: Li, P, F, C, H, and O. The selection of samples is derived from a set of systems including lithium hexafluorophosphate (LiPF6), ethylene carbonate (EC), propylene carbonate (PC), diethyl carbonate (DEC), ethyl methyl carbonate (EMC), and dimethyl carbonate (DMC). This comprehensive dataset spans a wide temperature range of 0 to 450 K and a pressure spectrum extending from 0 to 1 GPa. The concentration of LiPF6 in the system is meticulously adjusted to fall within the range of approximately 0.8 to 1.2 mol/L.
+
+# Parameters
+
+The main parameters of training process include a batch size of 1, 1,000,000 steps, and the DPA-2 descriptor with cutoff radii (rcut) and selected numbers of neighbors (nsel) in the repinit layer and the repformer layer are 9.0 Å and 120, 4.0 Å and 40, respectively.
+
+# Performances
+
+||Energy RMSE (eV/atom)|Force RMSE (eV/Å)|
+|-|-|-|
+|Data std.|2.04E-02|9.32E-01|
+|From scratch|2.26E-03|4.69E-02|
+
+# Usage
+
+One can use the following command to test the performance of the model in <test_system>.
+
+```bash
+dp --pt test -m Electrolyte-dpa2.pt -s <test_system>
+```
+
+
+
