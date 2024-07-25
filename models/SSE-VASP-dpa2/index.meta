@@ -1,7 +1,8 @@
 title: SSE-VASP-dpa2
 publisher: 1azyking
 license: LGPL-3.0
-repo: []
+repo:
+    - https://store.aissquare.com/models/48477085-3018-4831-aefd-a616b795d555/SSE-VASP-dpa2.pt
 reference:
     - models/SSE-VASP-dpa2
     - datasets/Solid_State_Electrolyte
