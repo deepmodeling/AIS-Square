@@ -1,7 +1,8 @@
 title: OrganicReaction-dpa2
 publisher: 1azyking
 license: LGPL-3.0
-repo: []
+repo:
+    - https://store.aissquare.com/models/e9ef1179-3475-493c-842a-ee75d4641962/OrganicReaction-dpa2.pt
 reference:
     - models/OrganicReaction-dpa2
     - datasets/Organic_reactions_dataset
