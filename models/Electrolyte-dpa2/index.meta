@@ -1,7 +1,8 @@
 title: Electrolyte-dpa2
 publisher: 1azyking
 license: LGPL-3.0
-repo: []
+repo:
+    - https://store.aissquare.com/models/88a44545-0260-4659-a49b-e018206f3647/Electrolyte-dpa2.pt
 reference:
     - models/Electrolyte-dpa2
     - datasets/Electrolyte
