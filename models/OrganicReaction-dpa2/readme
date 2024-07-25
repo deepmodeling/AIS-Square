@@ -4,14 +4,15 @@ The model is trained on [Organic_reactions_dataset](https://www.aissquare.com/da
 
 # Parameters
 
-The main parameters of training process include a batch size of 1, 1,000,000 steps, and the DPA-2 descriptor with cutoff radii (rcut) and selected numbers of neighbors (nsel) in the repinit layer and the repformer layer are 9.0 Å and 120, 4.0 Å and 40, respectively.
+The main parameters of training process include a batch size of 1, 1,000,000 steps (5 epochs), and the DPA-2 descriptor with cutoff radii (rcut) and selected numbers of neighbors (nsel) in the repinit layer and the repformer layer are 9.0 Å and 120, 4.0 Å and 40, respectively.
 
 # Performances
 
-||Energy RMSE (eV/atom)|Force RMSE (eV/Å)|
-|-|-|-|
-|Data std.|1.37E-01|3.03E-01|
-|From scratch|9.17E-02|5.82E-01|
+
+|              | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
+| ------------ | --------------------- | ------------------ |
+| Data std.    | 1.37E-01              | 3.03E-01           |
+| From scratch | 9.17E-02              | 5.82E-01           |
 
 # Usage
 
@@ -20,7 +21,3 @@ One can use the following command to test the performance of the model in <test_
 ```bash
 dp --pt test -m OrganicReaction-dpa2.pt -s <test_system>
 ```
-
-
-
-
