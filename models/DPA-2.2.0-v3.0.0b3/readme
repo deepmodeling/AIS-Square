@@ -126,7 +126,7 @@ It is worth noting that the weighted logarithmic mean is used to calculate the W
 
 # How to use
 
-## The pretraineed model is compatible with DeePMD-kit-v3 !
+## The pretrained model is compatible with DeePMD-kit-v3 !
 
 To utilize the pretrained model, you need to first install the corresponding version of DeePMD-kit. Please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.0.0b3) page to download the off-line package for **deepmd-kit v3.0.0b3**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0b3/install/easy-install.html) for off-line installation instructions.
 
@@ -226,6 +226,7 @@ For example, we want to run finetune on a new system while continuing to train o
                 }
             },
             "new_system": {
+                "finetune_head": "Domains_Alloy",
                 "type_map": "type_map_all",
                 "descriptor": "dpa2_descriptor",
                 "fitting_net": {
