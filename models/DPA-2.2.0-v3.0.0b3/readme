@@ -220,7 +220,7 @@ For example, we want to run finetune on a new system while continuing to train o
                         240
                     ],
                     "activation_function": "tanh",
-                    "resnet_dt": "true",
+                    "resnet_dt": true\,
                     "seed": 1,
                     "_comment": " that's all"
                 }
@@ -236,7 +236,7 @@ For example, we want to run finetune on a new system while continuing to train o
                         240
                     ],
                     "activation_function": "tanh",
-                    "resnet_dt": "true",
+                    "resnet_dt": true\,
                     "seed": 1,
                     "_comment": " that's all"
                 }
