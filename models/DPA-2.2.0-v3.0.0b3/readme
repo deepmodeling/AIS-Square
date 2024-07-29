@@ -208,7 +208,7 @@ The content of `input.json` is different from single-task training. Includes a `
 
 For example, we want to run finetune on a new system while continuing to train on the relevant data set of the pretrain model such as `Domains_Alloy` to prevent overfitting. We can define model_dict as follows:
 
-```JSON
+```
 "model_dict": {
             "Domains_Alloy": {
                 "type_map": "type_map_all",
@@ -220,7 +220,7 @@ For example, we want to run finetune on a new system while continuing to train o
                         240
                     ],
                     "activation_function": "tanh",
-                    "resnet_dt": true\,
+                    "resnet_dt": true,
                     "seed": 1,
                     "_comment": " that's all"
                 }
@@ -236,7 +236,7 @@ For example, we want to run finetune on a new system while continuing to train o
                         240
                     ],
                     "activation_function": "tanh",
-                    "resnet_dt": true\,
+                    "resnet_dt": true,
                     "seed": 1,
                     "_comment": " that's all"
                 }
