@@ -100,8 +100,8 @@ To make sure the migration of codes will not affect the training performance, we
 
 Then, we add all downstream data (including ANI-1x, Transition-1x) to the pretraining, and thus bring a 27head-training. We also extended the 27head training to 5-million steps on 8 GPU cards to achieve a better accuracy.
 
-| Datasets              | Weight | 18heads-1m E | 18heads-1m F | 27heads-5m E | 27heads-5m F |
-| --------------------- | ------ | ------------ | ------------ | ------------ | ------------ |
+| Datasets             | Weight | 18heads-1m E | 18heads-1m F | 27heads-5m E | 27heads-5m F |
+| -------------------- | ------ | ------------ | ------------ | ------------ | ------------ |
 | **Domains_Alloy**    | 2.0    | 3.60E-02     | 1.57E-01     | 2.01E-02     | 1.41E-01     |
 | **Domains_Anode**    | 1.0    | 2.59E-03     | 5.03E-02     | 1.94E-03     | 4.36E-02     |
 | **Domains_Cluster**  | 1.0    | 4.98E-02     | 1.50E-01     | 4.75E-02     | 1.40E-01     |
@@ -120,7 +120,7 @@ Then, we add all downstream data (including ANI-1x, Transition-1x) to the pretra
 | **Metals_W**         | 0.1    | 1.36E-02     | 1.80E-01     | 1.70E-02     | 1.65E-01     |
 | **Others_C12H26**    | 0.1    | 6.27E-02     | 6.66E-01     | 5.53E-02     | 5.46E-01     |
 | **Others_HfO2**      | 0.1    | 2.74E-03     | 1.19E-01     | 2.12E-03     | 1.04E-01     |
-| **Weighted Error**    |   | **1.11E-02** | **1.09E-01** | **7.99E-03** | **9.17E-02** |
+| **Weighted Error**   |        | **1.11E-02** | **1.09E-01** | **7.99E-03** | **9.17E-02** |
 
 It is worth noting that the weighted logarithmic mean is used to calculate the Weighted Error for each column, rather than the weighted arithmetic mean reported in the [DPA-2](https://arxiv.org/abs/2312.15492) paper.
 
@@ -128,14 +128,7 @@ It is worth noting that the weighted logarithmic mean is used to calculate the W
 
 ## The pretraineed model is compatible with DeePMD-kit-v3 !
 
-To utlize the pretrained model, you need to first install the corresponding version of DeePMD-kit.
-
-The version should be **[https://github.com/deepmodeling/deepmd-kit/tree/v3.0.0b3](https://github.com/deepmodeling/deepmd-kit/tree/v3.0.0b3)**.
-
-```bash
-pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1
-pip install git+https://github.com/deepmodeling/deepmd-kit@v3.0.0b3
-```
+To utilize the pretrained model, you need to first install the corresponding version of DeePMD-kit. Please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.0.0b3) page to download the off-line package for **deepmd-kit v3.0.0b3**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0b3/install/easy-install.html) for off-line installation instructions.
 
 ## Zero-shot
 
@@ -159,26 +152,26 @@ to determine the energy bias of the downstream task, instead of those used in th
 
 We also use GST_GAP_22 as a practical example. The main training dataset for GST_GAP_22,is calculated using the PBEsol functional. GST_GAP_22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to [https://materials.colabfit.org/id/DS\\\_r3hav37ufnmb\\\_0](https://materials.colabfit.org/id/DS%5C_r3hav37ufnmb%5C_0). Notice that in the SemiCond branch of the pretrained model, the set of data contains structure-to-energy-force labels for 20 semiconductors, namely, Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. We first test the 18heads-1m-model's zero-genralization.
 
-| Model Branch               | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
-| -------------------------- | --------------------- | ------------------- |
-| Domains_Alloy              | 6.10E-01              | 4.35E-01            |
-| Domains_Anode              | 9.35E-01              | 5.81E-01            |
-| Domains_Cluster            | 4.08E-01              | 7.99E-01            |
-| Domains_Drug               | 6.39E-01              | 6.00E-01            |
-| Domains_FerroEle           | 9.41E-01              | 6.09E-01            |
-| **Domains_OC2M**     | **6.29E-01**    | **3.93E-01**  |
-| Domains_SSE-PBE            | 5.98E-01              | 4.76E-01            |
-| **Domains_SemiCond** | **5.85E-01**    | **4.08E-01**  |
-| H2O_H2O-PD                 | 7.55E-01              | 5.33E-01            |
-| Metals_AgAu-PBE            | 4.64E-01              | 8.38E-01            |
-| Metals_AlMgCu              | 5.71E-01              | 6.90E-01            |
-| Metals_Cu                  | 4.75E-01              | 7.46E-01            |
-| Metals_Sn                  | 5.79E-01              | 5.50E-01            |
-| Metals_Ti                  | 4.79E-01              | 6.42E-01            |
-| Metals_V                   | 5.52E-01              | 8.71E-01            |
-| Metals_W                   | 5.86E-01              | 9.70E-01            |
-| Others_C12H26              | 5.23E-01              | 8.18E-01            |
-| Others_HfO2                | 8.96E-01              | 6.69E-01            |
+| Model Branch         | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
+| -------------------- | --------------------- | ------------------- |
+| Domains_Alloy        | 6.10E-01              | 4.35E-01            |
+| Domains_Anode        | 9.35E-01              | 5.81E-01            |
+| Domains_Cluster      | 4.08E-01              | 7.99E-01            |
+| Domains_Drug         | 6.39E-01              | 6.00E-01            |
+| Domains_FerroEle     | 9.41E-01              | 6.09E-01            |
+| **Domains_OC2M**     | **6.29E-01**          | **3.93E-01**        |
+| Domains_SSE-PBE      | 5.98E-01              | 4.76E-01            |
+| **Domains_SemiCond** | **5.85E-01**          | **4.08E-01**        |
+| H2O_H2O-PD           | 7.55E-01              | 5.33E-01            |
+| Metals_AgAu-PBE      | 4.64E-01              | 8.38E-01            |
+| Metals_AlMgCu        | 5.71E-01              | 6.90E-01            |
+| Metals_Cu            | 4.75E-01              | 7.46E-01            |
+| Metals_Sn            | 5.79E-01              | 5.50E-01            |
+| Metals_Ti            | 4.79E-01              | 6.42E-01            |
+| Metals_V             | 5.52E-01              | 8.71E-01            |
+| Metals_W             | 5.86E-01              | 9.70E-01            |
+| Others_C12H26        | 5.23E-01              | 8.18E-01            |
+| Others_HfO2          | 8.96E-01              | 6.69E-01            |
 
 The energy and force std of this system is 0.96 eV/atom, and 0.73 eV/Å. For 18heads-1m model, the SemiCond branch's zero-shot RMSE for energy and force is 0.58 eV/atom. and 0.41 eV/Å, which indicate a good zero-shot generalization of the pretrained-model. Besides, this test also demonstrates that the selection of model branch in zero-shot has a large influence on the performance. Meanwhile, OC2M head also performs well in GeTe-Sb2Te3(GST) system. Last but not least, in the 27heads-5m model, the SemiCond branch's zero-shot RMSE is 0.50 eV/atom, and 0.32 eV/Angstrom, illustrating a better accuracy.
 
@@ -334,12 +327,10 @@ dp --pt train input.json --finetune model.pt
 
 At last we also use the GST case to compare the performances of from-scratch training, single-task finetuning, and multitask-finetuning. In this case, we construct a few-shot training systems which contains only 40 frames from an iteration from previous data-cleaning work. The test systems contain 144 frames. The training steps are all 10w steps. The bad performace of from-scratch and single-task finetuning attributes the overfitting problem in few-shot cases.
 
-|                                                        | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
-| ------------------------------------------------------ | --------------------- | ------------------- |
-| From-scratch                                           | 0.52                  | 2.49                |
-| Finetune with SemiCond head                            | 0.31                  | 0.45                |
-| **Multitask finetune along with SemiCond heads** | **0.19**        | **0.35**      |
-| Data std                                               | 0.96                  | 0.73                |
-| Zero shot (SemiCond head) RMSE                         | 0.58                  | 0.41                |
-
-
+|                                                  | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
+| ------------------------------------------------ | --------------------- | ------------------- |
+| From-scratch                                     | 0.52                  | 2.49                |
+| Finetune with SemiCond head                      | 0.31                  | 0.45                |
+| **Multitask finetune along with SemiCond heads** | **0.19**              | **0.35**            |
+| Data std                                         | 0.96                  | 0.73                |
+| Zero shot (SemiCond head) RMSE                   | 0.58                  | 0.41                |
