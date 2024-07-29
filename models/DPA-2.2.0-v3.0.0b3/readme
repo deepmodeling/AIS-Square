@@ -208,7 +208,7 @@ The content of `input.json` is different from single-task training. Includes a `
 
 For example, we want to run finetune on a new system while continuing to train on the relevant data set of the pretrain model such as `Domains_Alloy` to prevent overfitting. We can define model_dict as follows:
 
-```
+```JSON
 "model_dict": {
             "Domains_Alloy": {
                 "type_map": "type_map_all",
@@ -243,6 +243,46 @@ For example, we want to run finetune on a new system while continuing to train o
             }
         }
 ```
+
+<pre><code>
+{
+  &quot;model_dict&quot;: {
+    &quot;Domains_Alloy&quot;: {
+      &quot;type_map&quot;: &quot;type_map_all&quot;,
+      &quot;descriptor&quot;: &quot;dpa2&quot;,
+      &quot;fitting_net&quot;: {
+        &quot;neuron&quot;: [
+          240,
+          240,
+          240
+        ],
+        &quot;activation_function&quot;: &quot;tanh&quot;,
+        &quot;resnet_dt&quot;: true,
+        &quot;seed&quot;: 1,
+        &quot;_comment&quot;: &quot; that's all&quot;
+      }
+    },
+    &quot;new_system&quot;: {
+      &quot;finetune_head&quot;: &quot;Domains_Alloy&quot;,
+      &quot;type_map&quot;: &quot;type_map_all&quot;,
+      &quot;descriptor&quot;: &quot;dpa2_descriptor&quot;,
+      &quot;fitting_net&quot;: {
+        &quot;neuron&quot;: [
+          240,
+          240,
+          240
+        ],
+        &quot;activation_function&quot;: &quot;tanh&quot;,
+        &quot;resnet_dt&quot;: true,
+        &quot;seed&quot;: 1,
+        &quot;_comment&quot;: &quot; that's all&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
 
 Correspondingly, we need to define `loss_dict <loss_dict>` and `training/data_dict <training/data_dict>` for each task, and control the weights between different heads through `training/model_prob <training/model_prob>`:
 
