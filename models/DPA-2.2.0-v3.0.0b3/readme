@@ -1,0 +1,345 @@
+# Description
+
+**First of all, we are excited to announce the beta3 version of DeePMD-kit v3. DeePMD-kit v3 allows you to train and run deep potential models on top of TensorFlow or PyTorch. DeePMD-kit v3 also supports the [DPA-2 model](https://arxiv.org/abs/2312.15492), a novel architecture for large atomic models. If you have any problems, ideas or suggestions about OpenLAM, welcome to have a discussion in this page or [GitHub Discussions](https://github.com/deepmodeling/deepmd-kit/discussions/3772).**
+
+The pretrained model provided is compatible with [DeePMD-kit v3 beta3 version](https://github.com/deepmodeling/deepmd-kit/tree/v3.0.0b3). In this page, we systematically report the data for pretraining, the evaluation of the model, and the usage method of the pretrained model.
+
+# Data included in the pretraining
+
+A general overview is going to be provided.
+
+## Alloy
+
+**model-branch** : `Domains_Alloy`
+
+* This dataset is generated using the DP-GEN scheme and comprises structure-energy- force-virial data for 53 typical metallic elements (Li, Be, Na, Mg, Al, Si, K, Ca, Sc, Ti, V, Cr, Mn,Fe,Co,Ni,Cu,Zn,Ga,Ge,Sr,Y,Zr,Nb,Mo,Ru,Rh,Pd,Ag,Cd,In,Sn,La,Hf,Ta,W, Re, Os, Ir, Pt, Au, Pb, Ce, Pr, Nd, Sm, Gd, Tb, Dy, Ho, Er, Tm, Lu) The dataset encompasses a diverse array of crystal configurations, featuring FCC, BCC, and HCP structures, as well as intermetallic compounds and amorphous structures with stochastic vacancies. The dataset contains three categories, random substitutional solid solutions, elementary substances, and intermetallic compounds. All density functional theory (DFT) calculations were conducted using the ABACUS package. The exchange-correlation functional was described by the generalized gradient approximation (GGA) in the Perdew-Burke-Ernzerhof (PBE) form. Norm-conserving pseudopotentials were adopted. The cutoff energy of the plane wave basis was set to be 100 Rydberg, and the Monkhorst-Pack k-point mesh was chosen with a reciprocal space resolution of 0.05 Bohr−1. The self-consistent field iteration stops when the difference in total electron density of consecutive iterations is less than 1e−6 eV.
+
+More details and data access can be refered to [Alloy-data](https://www.aissquare.com/datasets/detail?pageType=datasets&name=Alloy_DPA_v1_0&id=147)
+
+## SemiCond
+
+**model-branch** : `Domains_SemiCond`
+
+* This dataset encompasses 20 semiconductors spanning from group IIB to VIA, namely Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. The configurations are explored by the DPGEN scheme in a temperature range of approximately 50.0 K to ∼4000 K and a pressure range of circa 1 bar to 50000 bar. DFT calculations, employed during the DP-GEN process, are computed utilizing the ABACUS software package. The energy cutoff of the DFT calculations was set to 100 Ry (∼ 1361 eV) and the mesh grid for K-space sampling was 0.08 Bohr−1 (∼ 0.15 Å−1).
+
+## Cathode
+
+**model-branch** : `Domains_Anode`
+
+* This dataset explores O3-type layered oxide cathodes employed in lithium-ion and sodium- ion batteries. It has been generated utilizing the DP-GEN scheme. Specifically, the systems analyzed include LixTMO2 and NaxTMO2, where TM represents transition metal elements including Ni, Mn, Fe, Co, and Cr. The configuration space is explored by NPT MD simula- tions in a wide range of temperatures and pressures, varying from 50.0 K to 1250.0 K and 0 bar to 3000 bar, respectively. The DFT calculations for this dataset were conducted using the VASP software, incorporating the PBE-GGA functional. The dataset comprises su-percells containing twelve formula units for various systems, including LiTMO2, NaTMO2, Li0.5TMO2, Na0.5TMO2, and TMO2.
+
+## Cluster
+
+**model-branch** : `Domains_Cluster`
+
+* This dataset is composed of metal nano-clusters. The dataset is decomposed in a non- overlapping way into two subsets, Cluster-P and Cluster-D, which are used for pre-training and downstream tasks, respectively. The Cluster-P dataset encompasses 9 types of clusters that are composed of one element, namely Au, Ag, Al, Cu, Ni, Pt, Pd, Si, and Ru, and 15 types of clusters composed of a combination of 2 elements, namely AgCu, AgNi, AgPd, AgPt, AuAg, AuCu, AuNi, AuPd, AuPt, CuNi, CuPd, CuPt, NiPd, PtNi, and PtPd. The Cluster-D dataset includes 7 types of clusters composed of ternary combination of metal elements, i.e. AgCuPt, AuAgCu, AuAgPd, AuAgPt, AuCuPd, AuCuPt, and PtPdNi. The configurations of the clusters in the Cluster-P and Cluster-D datasets are explored using the DPGEN scheme. The DFT calculations are performed using CP2K with PBE exchange-correlation functional and Grimme D3 dispersion correction.
+
+## Drug
+
+**model-branch**: `Domains_Drug`
+
+* This dataset is generated using the DP-GEN approach and encompasses an extensive col- lection of over 1.4 million structures, comprising 8 elements H, C, N, O, F, Cl, S, and P, with the inclusion of up to 70 heavy atoms. The foundation for the initial training data was established by optimizing small molecules procured from the ChEMBL database with the aid of Gaussian software. To expand the dataset, high-temperature simulations were employed, and the data pool was further augmented by optimizing larger molecules from the ChEMBL database, followed by conducting supplementary simulations. In addition, unoptimized structures were randomly selected and subjected to simulations, resulting in the enlargement of the training set to encompass over 1 million conformations. To ensure comprehensive torsion coverage, structures originating from the ChEMBL torsion scans dataset were optimized and simulated, while enhanced sampling MD simulations performed with molecules contributed additional structures to the dataset.
+
+## FerroEle
+
+**model-branch** : `Domains_FerroEle`
+
+* This dataset comprises 26 ABO3-type perovskite oxides, which span an extensive composition space containing elements such as Pb, Sr, Ba, Ca, Bi, K, Na, and their various combinations for the A-site, in addition to Ti, Nb, Zr, Mg, Zn, In, Hf, and their respective combinations for the B-site. The configurations of the materials were generated utilizing the DPGEN method and subsequently employed for the training of a universal interatomic potential for perovskite oxides, referred to as UniPero. All DFT calculations were executed with the aid of the ABACUS software, utilizing the PBEsol functional within the GGA framework and ONCV multi-projector pseudopotentials. This dataset is divided into four distinct segments according to data complexity.
+
+## OC2M
+
+**model-branch** : `Domains_OC2M`
+
+* This dataset constitutes a subset derived from the Open Catalyst Project’s comprehensive OC20 dataset, which is inclusive of approximately 2 million DFT data samples. This particular dataset comprises 56 distinct elements, with the samples depicting DFT relaxations associated with molecular adsorptions on various surfaces, spanning an extensive structure and chemical space. The principal focus of these samples is directed toward 82 adsorbates that hold significance in the context of renewable energy production and environmental applications.
+
+## SSE-PBE
+
+**model-branch** : `Domains_SSE-PBE`
+
+* This dataset comprises solid-state electrolytes generated through the DP-GEN method. It is composed of three distinct chemical formulas, namely Li10GeP2S12, Li10SiP2S12, and Li10SnP2S12. All DFT calculations were conducted employing the VASP software, with the application of PBE exchange-correlation functional.
+
+## H2O-PD
+
+**model-branch** : `H2O_H2O-PD`
+
+* The water/ice dataset is used to train a DP model for the calculation of the phase diagram of water in the thermodynamic range of 0 to 2400 K and 0 to 50 GPa. The dataset was labeled by the VASP software with the SCAN exchange-correlation functional. The energy cutoff was set to 1500 eV and the spacing of the K-space lattice was 0.5 Å−1.
+
+## AgAu-PBE
+
+**model-branch** : `Metals_AgAu-PBE`
+
+* This dataset contains Ag, Au and AgAu configurations that were generated by the DP-GEN scheme. DFT calculations were conducted employing VASP software, in conjunction with PBE functional.
+
+## AlMgCu
+
+**model-branch** : `Metals_AlMgCu`
+
+* This dataset contains unitary, binary, and ternary alloys of Al, Cu, and Mg, i.e. AlxCuyMgz with a concentration range of 0 ≤ x,y,z ≤ 1,x + y + z = 1. The configurations are explored by the DP-GEN scheme in a temperature range of 50.0 K to 2579.8 K and a pressure range of 1 to 50,000 bar (5 GPa). Energy, force, and virial labels are obtained by DFT calculations adopting the PBE fucntional using VASP. The energy cut-off for PAW basis sets is 650 eV. K-points are sampled by Monkhorst-Pack mesh with a grid spacing of 0.1 Å−1. Order 1 Methfessel-Paxton smearing is used with σ = 0.22 eV. SCF convergence criterion for DFT calculation is 1 × 1e−6 eV.
+
+## ANI-1x
+
+**model-branch** : `Domains_ANI`
+
+* This dataset is generated through iterative active learning to efficiently sample chemical space relevant for machine-learned potentials. It contains over 5 million conformations of organic molecules with up to 13 heavy atoms. Initial data came from small GDB-11 molecules. More complex chemical space was then explored by conformational sampling of progressively larger molecules from databases like ChEMBL and GDB-13. Techniques included diverse normal mode sampling, trajectory sampling, and dimer sampling to capture molecular diversity. By combining automated active learning of molecules and conforma- tions with rigorous sampling methods, ANI-1x provides comprehensive coverage of organic chemical space.
+
+## Transition-1x
+
+**model-branch** : `Domains_Transition1x`
+
+* The dataset comprises over 9.6 million conformations of organic small molecules, spanning more than 10,000 distinct organic chemical reactions. Each reaction involves up to seven heavy atoms, including carbon, nitrogen, and oxygen. Originating from the GDB-7 database, the dataset selects structures that serve as reactants; potential products are then generated via the Growing String Method. Reaction trajectories for these reactant-product pairs are computed employing the Nudged Elastic Band (NEB) method. By selectively sampling structures produced during the NEB procedure and discarding non-physical conformations, the dataset effectively encapsulates the chemical space pertinent to reaction pathways.
+
+## Other datasets
+
+Additional datasets include Cu, Sn, Ti , V, W, C12H26, HfO2, In2Se3 H2O-DPLR, H2O-SCAN0, H2O-PBE0TS and H2O-PBE0TS-MD.# Model Evaluation
+
+# Model Evaluation
+
+## Test on 18 baseline systems in Q0 report
+
+To make sure the migration of codes will not affect the training performance, we first trained the model with 18heads, and the test error is very close to the previous version. (Refer to [https://aissquare.com/openlam?tab=Statistics](https://aissquare.com/openlam?tab=Statistics) ).
+
+Then, we add all downstream data (including ANI-1x, Transition-1x) to the pretraining, and thus bring a 27head-training. We also extended the 27head training to 5-million steps on 8 GPU cards to achieve a better accuracy.
+
+| Datasets              | Weight | 18heads-1m E | 18heads-1m F | 27heads-5m E | 27heads-5m F |
+| --------------------- | ------ | ------------ | ------------ | ------------ | ------------ |
+| **Domains_Alloy**    | 2.0    | 3.60E-02     | 1.57E-01     | 2.01E-02     | 1.41E-01     |
+| **Domains_Anode**    | 1.0    | 2.59E-03     | 5.03E-02     | 1.94E-03     | 4.36E-02     |
+| **Domains_Cluster**  | 1.0    | 4.98E-02     | 1.50E-01     | 4.75E-02     | 1.40E-01     |
+| **Domains_Drug**     | 2.0    | 1.86E-02     | 1.54E-01     | 1.23E-02     | 1.18E-01     |
+| **Domains_FerroEle** | 1.0    | 2.02E-03     | 5.39E-02     | 1.64E-03     | 4.54E-02     |
+| **Domains_OC2M**     | 2.0    | 3.46E-02     | 1.89E-01     | 2.39E-02     | 1.59E-01     |
+| **Domains_SSE-PBE**  | 1.0    | 2.24E-03     | 8.19E-02     | 1.90E-03     | 6.51E-02     |
+| **Domains_SemiCond** | 1.0    | 7.08E-03     | 1.50E-01     | 5.70E-03     | 1.33E-01     |
+| **H2O_H2O-PD**       | 1.0    | 1.12E-03     | 4.48E-02     | 8.32E-04     | 3.49E-02     |
+| **Metals_AgAu-PBE**  | 0.2    | 9.40E-03     | 3.60E-02     | 6.80E-03     | 3.05E-02     |
+| **Metals_AlMgCu**    | 0.3    | 3.80E-02     | 3.25E-02     | 2.16E-02     | 2.58E-02     |
+| **Metals_Cu**        | 0.1    | 3.42E-03     | 2.31E-02     | 2.56E-03     | 1.90E-02     |
+| **Metals_Sn**        | 0.1    | 1.56E-02     | 8.15E-02     | 1.17E-02     | 7.25E-02     |
+| **Metals_Ti**        | 0.1    | 2.19E-02     | 1.17E-01     | 1.11E-02     | 1.07E-01     |
+| **Metals_V**         | 0.1    | 8.63E-03     | 1.16E-01     | 7.57E-03     | 1.09E-01     |
+| **Metals_W**         | 0.1    | 1.36E-02     | 1.80E-01     | 1.70E-02     | 1.65E-01     |
+| **Others_C12H26**    | 0.1    | 6.27E-02     | 6.66E-01     | 5.53E-02     | 5.46E-01     |
+| **Others_HfO2**      | 0.1    | 2.74E-03     | 1.19E-01     | 2.12E-03     | 1.04E-01     |
+| **Weighted Error**    |   | **1.11E-02** | **1.09E-01** | **7.99E-03** | **9.17E-02** |
+
+It is worth noting that the weighted logarithmic mean is used to calculate the Weighted Error for each column, rather than the weighted arithmetic mean reported in the [DPA-2](https://arxiv.org/abs/2312.15492) paper.
+
+# How to use
+
+## The pretraineed model is compatible with DeePMD-kit-v3 !
+
+To utlize the pretrained model, you need to first install the corresponding version of DeePMD-kit.
+
+The version should be **[https://github.com/deepmodeling/deepmd-kit/tree/v3.0.0b3](https://github.com/deepmodeling/deepmd-kit/tree/v3.0.0b3)**.
+
+```bash
+pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1
+pip install git+https://github.com/deepmodeling/deepmd-kit@v3.0.0b3
+```
+
+## Zero-shot
+
+Zero-shot learning is a machine learning scenario in which an AI model is trained to recognize and categorize objects or concepts without having seen any examples of those categories or concepts beforehand.
+
+In the context of large atomic models, zero-shot can be considered as a test of model's generalization. For example, we can compare it with the standard deviation of the orginal data. If the zero-shot RMSE is smaller than the corresponding standard deviation, the model shows the ability of zero-shot generalization.
+
+Furthermore, if we want to know whether the pretrained model is suitable for a new circumstance, or which head should be selected for finetuning, we can also perform the zero-shot test.
+
+An instruction for zeroshot can be found at [https://bohrium.dp.tech/notebooks/57552161357](https://bohrium.dp.tech/notebooks/57552161357) via Bohrium Notebook which is a cloud-native computing platform.
+
+To be specific, given a new downstream system, we perform a 0-steps training with DeePMD-kit via `dp --pt change-bias`. The zero-shot procedure will inherit the neural network parameters of descriptor in pretrained multitask model. The fitting net can either reinit or inherit the fitting net from any branch of the pre-trained model depending on the argument *-m*.
+
+* -m (--model-branch): Model branch chosen for fine-tuning if multi-task. If not specified, it will re-init the fitting net.
+
+```bash
+dp --pt change-bias model.pt -s <system> -m <model-branch>
+```
+
+to determine the energy bias of the downstream task, instead of those used in the pretraining stage. Then we can directly test the zero-shot of the model by selecting the head via `dp --pt test`.
+
+We also use GST_GAP_22 as a practical example. The main training dataset for GST_GAP_22,is calculated using the PBEsol functional. GST_GAP_22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to [https://materials.colabfit.org/id/DS\\\_r3hav37ufnmb\\\_0](https://materials.colabfit.org/id/DS%5C_r3hav37ufnmb%5C_0). Notice that in the SemiCond branch of the pretrained model, the set of data contains structure-to-energy-force labels for 20 semiconductors, namely, Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. We first test the 18heads-1m-model's zero-genralization.
+
+| Model Branch               | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
+| -------------------------- | --------------------- | ------------------- |
+| Domains_Alloy              | 6.10E-01              | 4.35E-01            |
+| Domains_Anode              | 9.35E-01              | 5.81E-01            |
+| Domains_Cluster            | 4.08E-01              | 7.99E-01            |
+| Domains_Drug               | 6.39E-01              | 6.00E-01            |
+| Domains_FerroEle           | 9.41E-01              | 6.09E-01            |
+| **Domains_OC2M**     | **6.29E-01**    | **3.93E-01**  |
+| Domains_SSE-PBE            | 5.98E-01              | 4.76E-01            |
+| **Domains_SemiCond** | **5.85E-01**    | **4.08E-01**  |
+| H2O_H2O-PD                 | 7.55E-01              | 5.33E-01            |
+| Metals_AgAu-PBE            | 4.64E-01              | 8.38E-01            |
+| Metals_AlMgCu              | 5.71E-01              | 6.90E-01            |
+| Metals_Cu                  | 4.75E-01              | 7.46E-01            |
+| Metals_Sn                  | 5.79E-01              | 5.50E-01            |
+| Metals_Ti                  | 4.79E-01              | 6.42E-01            |
+| Metals_V                   | 5.52E-01              | 8.71E-01            |
+| Metals_W                   | 5.86E-01              | 9.70E-01            |
+| Others_C12H26              | 5.23E-01              | 8.18E-01            |
+| Others_HfO2                | 8.96E-01              | 6.69E-01            |
+
+The energy and force std of this system is 0.96 eV/atom, and 0.73 eV/Å. For 18heads-1m model, the SemiCond branch's zero-shot RMSE for energy and force is 0.58 eV/atom. and 0.41 eV/Å, which indicate a good zero-shot generalization of the pretrained-model. Besides, this test also demonstrates that the selection of model branch in zero-shot has a large influence on the performance. Meanwhile, OC2M head also performs well in GeTe-Sb2Te3(GST) system. Last but not least, in the 27heads-5m model, the SemiCond branch's zero-shot RMSE is 0.50 eV/atom, and 0.32 eV/Angstrom, illustrating a better accuracy.
+
+Additionally, we also conducted zero-shot tests with the OC2M head on several Q2-datasets, including [SSE-ABACUS](https://www.aissquare.com/datasets/detail?name=SSE-abacus&id=260&pageType=datasets), [SSE-VASP](https://www.aissquare.com/datasets/detail?name=Solid_State_Electrolyte&id=217&pageType=datasets), and [Electrolyte](https://www.aissquare.com/datasets/detail?name=Electrolyte&id=216&pageType=datasets). The performances are compared with from-scratch training and presented below.
+
+| Dataset     | Type                     | Energy RMSE (eV/atom) | Force RMSE (eV/A) |
+| ----------- | ------------------------ | --------------------- | ----------------- |
+| SSE-ABACUS  | Zero-shot with OC2M head | 2.21E-01              | 6.76E-01          |
+|             | From-scratch             | 1.40E-02              | 1.06E-01          |
+| SSE-VASP    | Zero-shot with OC2M head | 1.57E-01              | 5.89E-01          |
+|             | From-scratch             | 3.58E-03              | 5.32E-02          |
+| Electrolyte | Zero-shot with OC2M head | 2.32E-02              | 4.65E-01          |
+|             | From-scratch             | 2.26E-03              | 4.69E-02          |
+
+## Single-task Finetune
+
+Pretraining-and-finetuning is a widely used approach in other fields such as Computer Vision (CV) or Natural Language Processing (NLP) to vastly reduce the training cost, while it’s not trivial in potential models. Compositions and configurations of data samples or even computational parameters in upstream software (such as VASP) may be different between the pretrained and target datasets, leading to energy shifts or other diversities of training data.
+
+Similar to the zero-shot, the finetune procedure will also inherit the neural network parameters of descriptor in pretrained multitask model.
+
+```bash
+dp --pt train input.json --finetune model.pt -m <model-branch>
+```
+
+**If it's your first-time to try the finetuning, we would suggest you perform the se_e2_a from-scratch training, the DPA-2 from-scratch training, choose the proper head for finetuning (you can also perform the zero-shot test), and then compare their performances.**
+
+## Multi-task Finetune
+
+In come circumstances, single-task finetuning may be not enough. First in few-shot cases, where the downstream training data is quite few, a single-task finetuning may "forget" the information in the pretrained model and cause an over-fitting problem. Second, if we find there'are multiple dataset and multiple pretrained branches proper for our new task, we may want to include all these information. In consequence of these reasons, in DeePMD-kit we also support a multi-task finetuning mode. In the following parts, we will provide instructions on how to perform the multi-task finetuning procedure.
+
+Now we have a multi-task model `model.pt` with 18 fitting heads, with different branches such as `Domains_Alloy`, `Domains_Anode`, `Domains_Cluster`, `Domains_Drug`, etc.
+
+The content of `input.json` is different from single-task training. Includes a `model/shared_dict <model/shared_dict>`shared by all models, such as `dpa2_descriptor`, and multiple model definitions `model/model_dict/model_key <model/model_dict/model_key>`instead of a single model definition `model <model>`.
+
+For example, we want to run finetune on a new system while continuing to train on the relevant data set of the pretrain model such as `Domains_Alloy` to prevent overfitting. We can define model_dict as follows:
+
+```JSON
+"model_dict": {
+            "Domains_Alloy": {
+                "type_map": "type_map_all",
+                "descriptor": "dpa2",
+                "fitting_net": {
+                    "neuron": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "activation_function": "tanh",
+                    "resnet_dt": true,
+                    "seed": 1,
+                    "_comment": " that's all"
+                }
+            },
+            "new_system": {
+                "type_map": "type_map_all",
+                "descriptor": "dpa2_descriptor",
+                "fitting_net": {
+                    "neuron": [
+                        240,
+                        240,
+                        240
+                    ],
+                    "activation_function": "tanh",
+                    "resnet_dt": true,
+                    "seed": 1,
+                    "_comment": " that's all"
+                }
+            }
+        }
+```
+
+Correspondingly, we need to define `loss_dict <loss_dict>` and `training/data_dict <training/data_dict>` for each task, and control the weights between different heads through `training/model_prob <training/model_prob>`:
+
+```JSON
+"loss_dict": {
+        "Domains_Alloy": {
+            "type": "ener",
+            "start_pref_e": 0.02,
+            "limit_pref_e": 1,
+            "start_pref_f": 1000,
+            "limit_pref_f": 1,
+            "start_pref_v": 0,
+            "limit_pref_v": 0
+        },
+        "new_system": {
+            "type": "ener",
+            "start_pref_e": 0.02,
+            "limit_pref_e": 1,
+            "start_pref_f": 1000,
+            "limit_pref_f": 1,
+            "start_pref_v": 0,
+            "limit_pref_v": 0
+        }
+    },
+```
+
+```JSON
+"training": {
+        "model_prob": {
+            "Domains_Alloy": 2.0,
+            "new_system": 2.0
+        },
+        "data_dict": {
+            "Domains_Alloy": {
+                "training_data": {
+                    "systems": [
+                        "/home/data/Domains/Alloy/train/9",
+                        "/home/data/Domains/Alloy/train/10",
+                        "/home/data/Domains/Alloy/train/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                },
+                "validation_data": {
+                    "systems": [
+                        "/home/data/Domains/Alloy/val/9",
+                        "/home/data/Domains/Alloy/val/10",
+                        "/home/data/Domains/Alloy/val/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                }
+            },
+            "new_system": {
+                "training_data": {
+                    "systems": [
+                        "/home/data/new_system/train/9",
+                        "/home/data/new_system/train/10",
+                        "/home/data/new_system/train/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                },
+                "validation_data": {
+                    "systems": [
+                        "/home/data/new_system/val/9",
+                        "/home/data/new_system/val/10",
+                        "/home/data/new_system/val/11"
+                    ],
+                    "batch_size": "auto",
+                    "_comment": "that's all"
+                }
+            },
+        }
+    }
+```
+
+Once we have finished setting up `input.json`, we are ready to train:
+
+```bash
+dp --pt train input.json --finetune model.pt
+```
+
+At last we also use the GST case to compare the performances of from-scratch training, single-task finetuning, and multitask-finetuning. In this case, we construct a few-shot training systems which contains only 40 frames from an iteration from previous data-cleaning work. The test systems contain 144 frames. The training steps are all 10w steps. The bad performace of from-scratch and single-task finetuning attributes the overfitting problem in few-shot cases.
+
+|                                                        | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
+| ------------------------------------------------------ | --------------------- | ------------------- |
+| From-scratch                                           | 0.52                  | 2.49                |
+| Finetune with SemiCond head                            | 0.31                  | 0.45                |
+| **Multitask finetune along with SemiCond heads** | **0.19**        | **0.35**      |
+| Data std                                               | 0.96                  | 0.73                |
+| Zero shot (SemiCond head) RMSE                         | 0.58                  | 0.41                |
+
+
