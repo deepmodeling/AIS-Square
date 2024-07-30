@@ -1,4 +1,11 @@
-## Introduction
+## Contributors
+
+Cheng Jun Group, Xiamen University & IKKEM AI4EC LAB
+Participants: Fu-Qiang Gong, Meng-Lei Jia, Yun-Pei Liu, Cheng-Xuan Wang
+
+Contact us: [ai4ec@xmu.edu.cn](mailto:ai4ec@xmu.edu.cn)
+
+ Introduction
 
 DynaCat-Model is a universal MLP for dynamic catalytic elementary reactions on surface of metallic clusters. It is trained from data on elementary reactions such as H2/O2/H2O/CO/CO2/CH4 dissociation that occur on the surface of Au/Ag/Cu/Pt/Pd/Ni pure metals and binary alloy clusters, and is suitable for preliminary simulation and prediction of the above system.
 
