@@ -6,4 +6,5 @@ repo:
 reference:
     - datasets/CeO2-ZrO2-SCAN+rVV10
     - datasets/CeO2-ZrO2-PBEsol
+    - models/CeO2-ZrO2-SCAN+rVV10-model
 author: '[{"email":"zhangjinyuchengqi@gmail.com","firstName":"Jin-Yu","lastName":"Zhang","position":0,"id":0},{"email":"gael.huynh@univ-lyon1.fr","firstName":"Gaël","lastName":"Huynh","position":1,"id":1},{"email":"tristan.albaret@univ-lyon1.fr","firstName":"Tristan","lastName":"Albaret","position":2,"id":2},{"email":"dfzshiwo@163.com","firstName":"Fu-Zhi","lastName":"Dai","position":3,"id":3},{"email":"david.rodney@univ-lyon1.fr","firstName":"David","lastName":"Rodney","position":4,"id":4}]'
