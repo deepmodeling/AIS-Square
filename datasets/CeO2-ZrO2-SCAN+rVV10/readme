@@ -4,9 +4,7 @@ This is the dataset of DFT-SCAN+rVV10 data in CeO$_2$-ZrO$_2$ ceramics for train
 
 ## General Approach
 
-The DFT dataset was prepared using "dpgen simplify" implemented in DP-GEN (Deep Generator) [2]. 1,968 representative structures were picked up from the structures in the relevant DFT-PBEsol dataset (dataset CeO2-ZrO2-PBEsol from Ref. [3]).
-
-In the labeling phase, the energy, atomic forces, and stresses of the chosen configurations were computed using the Vienna ab initio simulation package (VASP) [4,5], employing the SCAN+rVV10 functional [6]. The calculations were set with a plane-wave cutoff of 1200 eV and a 3×3×3 Monkhorst-Pack k-mesh to ensure convergence of the energies, atomic forces, and virials for the distorted crystals and liquid configurations of CeO$_2$-ZrO$_2$ systems. To accelerate the DFT calculations, a sequential two-step strategy is implemented. In the first step, wavefunctions of electrons are brought to a preliminary level of convergence rapidly with reduced precision, facilitated by enabling specific computational efficiency settings in VASP (see Supplementary Materials in Ref. [1] for details). Following this, the calculation is advanced to a high precision, commencing from the initially preconverged wavefunctions. This approach effectively reduces the overall computational time while maintaining  accuracy of the results.
+To be released after the manuscript is published.
 
 ## References
 
