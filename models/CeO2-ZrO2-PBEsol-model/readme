@@ -1,0 +1,35 @@
+## Introduction
+
+A DP-PBEsol model for CeO$_2$-ZrO$_2$ ceramics. Type 1, 2, and 3 are O, Zr, and Ce respectively. Users can find more details of its training, validation and application in Ref. [1].
+
+## Training
+
+We used the smooth edition of the DeepPot descriptor [2] as implemented in the DeePMD-kit package [3,4]. The cutoff was set to 7.5 Å with a smoothing function starting at 2.0 Å. The embedding network is composed of three hidden layers with sizes (25, 50, 100) and the fitting network comprises three hidden layers with sizes (240, 240, 240). The dimension of the descriptor matrix is 16×100. During the training process, the following loss function was minimized [3,4]:
+
+$$
+\left(p_{\epsilon}, p_{f}, p_{\xi}\right)=\frac{p_{\epsilon}}{N} \Delta \epsilon^{2}+\frac{p_{f}}{3 N} \sum_{i}\left|\Delta \boldsymbol{F}_{i}\right|^{2}+\frac{p_{\xi}}{9 N}\|\Delta \xi\|^{2}
+$$
+
+where $N$ is the number of atoms. $\Delta \epsilon$, $\left|\Delta \boldsymbol{F}_{i}\right|$, and $\|\Delta \xi\|$ denote the differences between DP model and DFT calculations on energy, atomic force, and virial tensors, respectively. $p_{\epsilon}$, $p_{f}$, and $p_{\xi}$ are corresponding prefactors and are adjusted during the training process, which is performed in two stages, each consisting of eight million steps. During the first stage, the prefactors of $p_{\epsilon}$, $p_{f}$, and $p_{\xi}$ change gradually from 0.02 to 1, 1000 to 1, and 0.02 to 1, respectively. In the second stage, the pretrained DP model is fine-tuned with prefactors $p_{\epsilon}$, $p_{f}$, and $p_{\xi}$ fixed to 10, 1, and 1, respectively. With an initial prefactor of 1000, forces are already well predicted at the end of stage 1. Stage 2 is then a fine-tuning step where the accuracy on energies and stresses is improved without degrading the force accuracy [5,6].
+
+## Use model
+
+1. Download and install LAMMPS: [https://docs.lammps.org/Manual.html](https://docs.lammps.org/Manual.html)
+2. Download and install DeePMD-kit: [https://github.com/deepmodeling/deepmd-kit](https://github.com/deepmodeling/deepmd-kit)
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: [https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md)
+
+## References
+
+[1] J.-Y. Zhang, G. Huynh, A. Tristan, F.-Z. Dai, D. Rodney, Transformation-induced plasticity in CeO**\_2**-ZrO**\_2** ceramics: atomic-scale insights using a deep neural network potential (under review)
+
+[2] L. Zhang, J. Han, H. Wang, W. Saidi, R. Car, W. E, End-to-end symmetry preserving inter-atomic potential energy model for finite and extended systems, in: Advances in neural information processing systems, Vol. 31, Curran Associates, Inc., 2018, pp. 4441–4451.
+
+[3] H. Wang, L. Zhang, J. Han, W. E, DeePMD-Kit: A deep learning package for many-body potential energy representation and molecular dynamics, Comput. Phys. Commun. 228 (2018) 178–184.
+
+[4] J. Zeng, D. Zhang, D. Lu, P. Mo, Z. Li, Y. Chen, M. Rynik, L. Huang, Z. Li, S. Shi, Y. Wang, H. Ye, P. Tuo, J. Yang, Y. Ding, Y. Li, D. Tisi, Q. Zeng, H. Bao, Y. Xia, J. Huang, K. Muraoka, Y. Wang, J. Chang, F. Yuan, S. L. Bore, C. Cai, Y. Lin, B. Wang, J. Xu, J.-X. Zhu, C. Luo, Y. Zhang, R. E. A. Goodall, W. Liang, A. K. Singh, S. Yao, J. Zhang, R. Wentzcovitch, J. Han, J. Liu, W. Jia, D. M. York, W. E, R. Car, L. Zhang, H. Wang, DeePMD-kit v2: A software package for deep potential models, J. Chem. Phys. 159 (5) (2023) 054801.
+
+[5] L. Zhang, H. Wang, R. Car, W. E, Phase diagram of a deep potential water model, Phys. Rev. Lett. 126 (23) (2021) 236001.
+
+[6] T. Wen, L. Zhang, H. Wang, W. E, D. J. Srolovitz, Deep potentials for materials science, Mater. Futures 1 (2) (2022) 022601.
