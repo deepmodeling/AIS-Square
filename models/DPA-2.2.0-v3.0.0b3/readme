@@ -20,7 +20,7 @@ More details and data access can be refered to [Alloy-data](https://www.aissquar
 
 **model-branch** : `Domains_SemiCond`
 
-* This dataset encompasses 20 semiconductors spanning from group IIB to VIA, namely Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. The configurations are explored by the DPGEN scheme in a temperature range of approximately 50.0 K to ∼4000 K and a pressure range of circa 1 bar to 50000 bar. DFT calculations, employed during the DP-GEN process, are computed utilizing the ABACUS software package. The energy cutoff of the DFT calculations was set to 100 Ry (∼ 1361 eV) and the mesh grid for K-space sampling was 0.08 Bohr−1 (∼ 0.15 Å−1).
+* This dataset encompasses 20 semiconductors spanning from group IIB to VIA, namely Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. The configurations are explored by the DPGEN scheme in temperatures up to twice the melting point and a pressure range of circa 1 bar to 50000 bar. DFT calculations, employed during the DP-GEN process, are computed utilizing the ABACUS software package. The energy cutoff of the DFT calculations was set to 100 Ry (∼ 1361 eV) and the mesh grid for K-space sampling was 0.08 Bohr−1 (∼ 0.15 Å−1).
 
 ## Cathode
 
@@ -100,6 +100,7 @@ To make sure the migration of codes will not affect the training performance, we
 
 Then, we add all downstream data (including ANI-1x, Transition-1x) to the pretraining, and thus bring a 27head-training. We also extended the 27head training to 5-million steps on 8 GPU cards to achieve a better accuracy.
 
+
 | Datasets             | Weight | 18heads-1m E | 18heads-1m F | 27heads-5m E | 27heads-5m F |
 | -------------------- | ------ | ------------ | ------------ | ------------ | ------------ |
 | **Domains_Alloy**    | 2.0    | 3.60E-02     | 1.57E-01     | 2.01E-02     | 1.41E-01     |
@@ -152,6 +153,7 @@ to determine the energy bias of the downstream task, instead of those used in th
 
 We also use GST_GAP_22 as a practical example. The main training dataset for GST_GAP_22,is calculated using the PBEsol functional. GST_GAP_22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to [https://materials.colabfit.org/id/DS\\\_r3hav37ufnmb\\\_0](https://materials.colabfit.org/id/DS%5C_r3hav37ufnmb%5C_0). Notice that in the SemiCond branch of the pretrained model, the set of data contains structure-to-energy-force labels for 20 semiconductors, namely, Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. We first test the 18heads-1m-model's zero-genralization.
 
+
 | Model Branch         | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
 | -------------------- | --------------------- | ------------------- |
 | Domains_Alloy        | 6.10E-01              | 4.35E-01            |
@@ -176,6 +178,7 @@ We also use GST_GAP_22 as a practical example. The main training dataset for GST
 The energy and force std of this system is 0.96 eV/atom, and 0.73 eV/Å. For 18heads-1m model, the SemiCond branch's zero-shot RMSE for energy and force is 0.58 eV/atom. and 0.41 eV/Å, which indicate a good zero-shot generalization of the pretrained-model. Besides, this test also demonstrates that the selection of model branch in zero-shot has a large influence on the performance. Meanwhile, OC2M head also performs well in GeTe-Sb2Te3(GST) system. Last but not least, in the 27heads-5m model, the SemiCond branch's zero-shot RMSE is 0.50 eV/atom, and 0.32 eV/Angstrom, illustrating a better accuracy.
 
 Additionally, we also conducted zero-shot tests with the OC2M head on several Q2-datasets, including [SSE-ABACUS](https://www.aissquare.com/datasets/detail?name=SSE-abacus&id=260&pageType=datasets), [SSE-VASP](https://www.aissquare.com/datasets/detail?name=Solid_State_Electrolyte&id=217&pageType=datasets), and [Electrolyte](https://www.aissquare.com/datasets/detail?name=Electrolyte&id=216&pageType=datasets). The performances are compared with from-scratch training and presented below.
+
 
 | Dataset     | Type                     | Energy RMSE (eV/atom) | Force RMSE (eV/A) |
 | ----------- | ------------------------ | --------------------- | ----------------- |
@@ -325,6 +328,7 @@ dp --pt train input.json --finetune model.pt
 ```
 
 At last we also use the GST case to compare the performances of from-scratch training, single-task finetuning, and multitask-finetuning. In this case, we construct a few-shot training systems which contains only 40 frames from an iteration from previous data-cleaning work. The test systems contain 144 frames. The training steps are all 10w steps. The bad performace of from-scratch and single-task finetuning attributes the overfitting problem in few-shot cases.
+
 
 |                                                  | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
 | ------------------------------------------------ | --------------------- | ------------------- |
