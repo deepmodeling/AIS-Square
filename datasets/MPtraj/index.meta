@@ -1,6 +1,7 @@
 title: MPtraj
 publisher: iProzd
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/909d0a73-b8eb-4d71-bf2b-e8abce6fe343/mptrj.tar
 reference: []
 author: '[{"email":"zhduodyx@pku.edu.cn","firstName":"Duo","lastName":"Zhang","institution":"AISI","position":0,"id":0},{"email":"pengay@bjaisi.com","firstName":"Anyang","lastName":"Peng","position":1,"id":1}]'
