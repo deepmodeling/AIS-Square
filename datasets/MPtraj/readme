@@ -1,5 +1,5 @@
 **Info**
 
-MPtraj datasets in dpdata [mixed type format]().
+MPtraj datasets in dpdata [mixed type format](https://github.com/deepmodeling/deepmd-kit/blob/devel/doc/data/system.md#mixed-type).
 
 MultiSystems (115408 systems containing 1580395 frames)
