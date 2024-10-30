@@ -1,5 +1,3 @@
-# Description
-
 First of all, we are excited to announce the **beta4 version of DeePMD-kit v3**. DeePMD-kit v3 allows you to train and run deep potential models on top of TensorFlow or PyTorch. DeePMD-kit v3 also supports the [DPA-2 model](https://arxiv.org/abs/2312.15492), a novel architecture for large atomic models.
 
 ## Highlight
@@ -12,12 +10,12 @@ We compared both the models from scratch (`DPA2-b4-medium` and `DPA2-b3`) and th
 
 ### Efficiency comparison
 
-| Model                                      | DPA2-b4-medium | DPA2-b3 |
-|--------------------------------------------|----------------|---------|
-| Training speed  (s/100 steps)         | **8.4**        | 15.9    |
+| Model                         | DPA2-b4-medium | DPA2-b3 |
+| ----------------------------- | -------------- | ------- |
+| Training speed  (s/100 steps) | **8.4**        | 15.9    |
 
-| Pretrained Model                           | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) |
-|--------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Pretrained Model                      | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | Python inference speed  (s/100 times) | **3.7**                                                                                                   | 6.3                                                                                                |
 
 * Python inference and training speed are measured on water systems with 192 atoms.
@@ -30,15 +28,15 @@ Weighted test RMSEs of single-task trained models on 27 pretrain datasets used i
 (energy: ev/atom, force: eV/Å)
 
 | Datasets           | DPA2-b4-medium E | DPA2-b3 E | DPA2-b4-medium F | DPA2-b3 F    |
-|--------------------|------------------|----------|------------------|--------------|
-| **Weighted Error** | **1.31E-02**     | 1.85E-02 | **1.13E-01**     | **1.31E-01** |
+| ------------------ | ---------------- | --------- | ---------------- | ------------ |
+| **Weighted Error** | **1.31E-02**     | 1.85E-02  | **1.13E-01**     | **1.31E-01** |
 
 Weighted test RMSEs of **pretrained models** on 18 baseline systems, see [below](#model-evaluation) for details:
 
 (energy: ev/atom, force: eV/Å)
 
 | Datasets           | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) E | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) E | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) F | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) F |
-|--------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| ------------------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | **Weighted Error** | **8.52E-03**                                                                                                | **7.99E-03**                                                                                         | **1.06E-01**                                                                                                | **9.17E-02**                                                                                         |
 
 This table demonstrates that this DPA2 medium model has **comparable accuracy to the older version of DPA2, but is twice as efficient**.
@@ -171,25 +169,25 @@ to determine the energy bias of the downstream task, instead of those used in th
 We also use GST_GAP_22 as a practical example. The main training dataset for GST_GAP_22,is calculated using the PBEsol functional. GST_GAP_22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to [https://materials.colabfit.org/id/DS_r3hav37ufnmb_0](https://materials.colabfit.org/id/DS_r3hav37ufnmb_0). Notice that in the SemiCond branch of the pretrained model, the set of data contains structure-to-energy-force labels for 20 semiconductors, namely, Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. We first test the 28heads-10m-model's zero-genralization.
 
 | Model Branch         | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
-| -------------------- | --------------------- | ----------------- |
-| Domains_Alloy        | 4.13E-01              | 7.44E-01          |
-| Domains_Anode        | 6.71E-01              | 1.04E+00          |
-| Domains_Cluster      | 1.03E+00              | 1.71E+00          |
-| Domains_Drug         | 6.67E-01              | 7.86E-01          |
-| Domains_FerroEle     | 9.63E-01              | 1.52E+00          |
-| **Domains_OC2M**     | **3.71E-01**          | **3.63E-01**      |
-| Domains_SSE-PBE      | 5.90E-01              | 7.52E-01          |
-| **Domains_SemiCond** | **4.08E-01**          | **3.53E-01**      |
-| H2O_H2O-PD           | 7.29E-01              | 6.52E-01          |
-| Metals_AgAu-PBE      | 7.89E-01              | 1.03E+00          |
-| Metals_AlMgCu        | 5.93E-01              | 1.16E+00          |
-| Metals_Cu            | 5.97E-01              | 1.07E+00          |
-| Metals_Sn            | 5.50E-01              | 5.10E-01          |
-| Metals_Ti            | 6.24E-01              | 1.07E+00          |
-| Metals_V             | 8.64E-01              | 1.06E+00          |
-| Metals_W             | 1.03E+00              | 1.49E+00          |
-| Others_C12H26        | 9.38E-01              | 1.21E+00          |
-| Others_HfO2          | 8.49E-01              | 9.97E-01          |
+| -------------------- | --------------------- | ------------------- |
+| Domains_Alloy        | 4.13E-01              | 7.44E-01            |
+| Domains_Anode        | 6.71E-01              | 1.04E+00            |
+| Domains_Cluster      | 1.03E+00              | 1.71E+00            |
+| Domains_Drug         | 6.67E-01              | 7.86E-01            |
+| Domains_FerroEle     | 9.63E-01              | 1.52E+00            |
+| **Domains_OC2M**     | **3.71E-01**          | **3.63E-01**        |
+| Domains_SSE-PBE      | 5.90E-01              | 7.52E-01            |
+| **Domains_SemiCond** | **4.08E-01**          | **3.53E-01**        |
+| H2O_H2O-PD           | 7.29E-01              | 6.52E-01            |
+| Metals_AgAu-PBE      | 7.89E-01              | 1.03E+00            |
+| Metals_AlMgCu        | 5.93E-01              | 1.16E+00            |
+| Metals_Cu            | 5.97E-01              | 1.07E+00            |
+| Metals_Sn            | 5.50E-01              | 5.10E-01            |
+| Metals_Ti            | 6.24E-01              | 1.07E+00            |
+| Metals_V             | 8.64E-01              | 1.06E+00            |
+| Metals_W             | 1.03E+00              | 1.49E+00            |
+| Others_C12H26        | 9.38E-01              | 1.21E+00            |
+| Others_HfO2          | 8.49E-01              | 9.97E-01            |
 
 The energy and force std of this system is 0.96 eV/atom, and 0.73 eV/Å. For 28heads-10m model, the SemiCond branch's zero-shot RMSE for energy and force is 0.41 eV/atom. and 0.35 eV/Å, which indicate a good zero-shot generalization of the pretrained-model. Besides, this test also demonstrates that the selection of model branch in zero-shot has a large influence on the performance. Meanwhile, OC2M head also performs well in GeTe-Sb2Te3(GST) system.
 
@@ -200,7 +198,7 @@ We tested the training accuracy of the pretrained DPA2 medium model (`DPA2_mediu
 The test RMSEs of energy (ev/atom) and force (eV/Å) on 18 baseline systems:
 
 | Datasets           | Weight | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) E | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) E | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) F | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) F |
-|--------------------| ------ |-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| ------------------ | ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Domains_Alloy      | 2.0    | 2.17E-02                                                                                                    | 2.01E-02                                                                                             | 1.51E-01                                                                                                    | 1.41E-01                                                                                             |
 | Domains_Anode      | 1.0    | 1.33E-03                                                                                                    | 1.94E-03                                                                                             | 5.19E-02                                                                                                    | 4.36E-02                                                                                             |
 | Domains_Cluster    | 1.0    | 4.80E-02                                                                                                    | 4.75E-02                                                                                             | 1.46E-01                                                                                                    | 1.40E-01                                                                                             |
@@ -255,7 +253,7 @@ More details and data access can be refered to [Alloy-data](https://www.aissquar
 
 ## Drug
 
-​**model-branch**​: `Domains_Drug`
+**model-branch**: `Domains_Drug`
 
 * This dataset is generated using the DP-GEN approach and encompasses an extensive col- lection of over 1.4 million structures, comprising 8 elements H, C, N, O, F, Cl, S, and P, with the inclusion of up to 70 heavy atoms. The foundation for the initial training data was established by optimizing small molecules procured from the ChEMBL database with the aid of Gaussian software. To expand the dataset, high-temperature simulations were employed, and the data pool was further augmented by optimizing larger molecules from the ChEMBL database, followed by conducting supplementary simulations. In addition, unoptimized structures were randomly selected and subjected to simulations, resulting in the enlargement of the training set to encompass over 1 million conformations. To ensure comprehensive torsion coverage, structures originating from the ChEMBL torsion scans dataset were optimized and simulated, while enhanced sampling MD simulations performed with molecules contributed additional structures to the dataset.
 
@@ -332,4 +330,3 @@ If you use this model, please cite our paper:
       url={https://arxiv.org/abs/2312.15492}, 
 }
 ```
-
