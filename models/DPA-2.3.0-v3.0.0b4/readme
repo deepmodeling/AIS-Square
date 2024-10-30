@@ -6,7 +6,7 @@ In beta4 verion, the DPA2 model structure has been optimized, supporting three m
 **small**, **medium**, and **large**. This allows users to select the appropriate configuration based on different scenarios, Detailed configurations can be found [here](https://github.com/deepmodeling/deepmd-kit/tree/v3.0.0b4/examples/water/dpa2).
 
 Notably, the medium DPA2 model has better accuracy than the DPA2 model in beta3 while **doubling overall training and inference efficiency**.
-We compared both the models from scratch (`DPA2-b4-medium` and `DPA2-b3`) and the pretrained models (the pretrained DPA2 medium model `DPA2_medium_28_10M_beta4.pt` (short for `2.3.0-b4-medium`) and the [DPA-2.2.0-v3.0.0b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) model (short for `2.2.0-b3`)):
+We compared both the models from scratch (`DPA2-b4-medium` and `DPA2-b3`) and the pretrained models ([`2.3.0-b4-medium`](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) and the [`2.2.0-b3`](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272)):
 
 ## Efficiency comparison
 
@@ -36,7 +36,7 @@ Detailed test RMSEs of **pretrained models** on 18 baseline systems:
 (energy: ev/atom, force: eV/Å)
 
 | Datasets           | Weight | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) E | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) E | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) F | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) F |
-|--------------------| ------ |-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| ------------------ | ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Domains_Alloy      | 2.0    | 2.17E-02                                                                                                    | 2.01E-02                                                                                             | 1.51E-01                                                                                                    | 1.41E-01                                                                                             |
 | Domains_Anode      | 1.0    | 1.33E-03                                                                                                    | 1.94E-03                                                                                             | 5.19E-02                                                                                                    | 4.36E-02                                                                                             |
 | Domains_Cluster    | 1.0    | 4.80E-02                                                                                                    | 4.75E-02                                                                                             | 1.46E-01                                                                                                    | 1.40E-01                                                                                             |
@@ -208,7 +208,6 @@ We also use GST_GAP_22 as a practical example. The main training dataset for GST
 | Others_HfO2          | 8.49E-01              | 9.97E-01            |
 
 The energy and force std of this system is 0.96 eV/atom, and 0.73 eV/Å. For 28heads-10m model, the SemiCond branch's zero-shot RMSE for energy and force is 0.41 eV/atom. and 0.35 eV/Å, which indicate a good zero-shot generalization of the pretrained-model. Besides, this test also demonstrates that the selection of model branch in zero-shot has a large influence on the performance. Meanwhile, OC2M head also performs well in GeTe-Sb2Te3(GST) system.
-
 
 # Data used for pretraining
 
