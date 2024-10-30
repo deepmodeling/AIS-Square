@@ -7,7 +7,6 @@ First of all, we are excited to announce the **beta4 version of DeePMD-kit v3**.
 In beta4 verion, the DPA2 model structure has been optimized, supporting three model configurations:
 **small**, **medium**, and **large**. This allows users to select the appropriate configuration based on different scenarios:
 
-
 | Input                                                                                                                           | Repformer layers | Three-body embedding in Repinit | Pair-wise attention in Repformer | Tuned sub-structures in[#4089](https://github.com/deepmodeling/deepmd-kit/pull/4089) | Description                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
 | [input_torch_small.json](https://github.com/deepmodeling/deepmd-kit/blob/v3.0.0b4/examples/water/dpa2/input_torch_small.json)   | 3                | ✓                              | ✗                               | ✓                                                                                   | Smallest DPA-2 model, optimized for speed.                                   |
@@ -35,7 +34,7 @@ pip install torch torchvision torchaudio
 pip install git+https://github.com/deepmodeling/deepmd-kit@v3.0.0b4
 ```
 
-For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.0.0b4) page to download the off-line package for **deepmd-kit v3.0.0b4**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0b4/install/easy-install.html) for off-line installation instructions.
+For other installation options, please visit the [releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.0.0b4) to download the off-line package for **deepmd-kit v3.0.0b4**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0b4/install/easy-install.html) for off-line installation instructions.
 
 ## Use the pretrained model
 
@@ -141,7 +140,6 @@ to determine the energy bias of the downstream task, instead of those used in th
 
 We also use GST_GAP_22 as a practical example. The main training dataset for GST_GAP_22,is calculated using the PBEsol functional. GST_GAP_22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to [https://materials.colabfit.org/id/DS_r3hav37ufnmb_0](https://materials.colabfit.org/id/DS_r3hav37ufnmb_0). Notice that in the SemiCond branch of the pretrained model, the set of data contains structure-to-energy-force labels for 20 semiconductors, namely, Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. We first test the 28heads-10m-model's zero-genralization.
 
-
 | Model Branch         | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
 | -------------------- | --------------------- | ------------------- |
 | Domains_Alloy        | 4.13E-01              | 7.44E-01            |
@@ -171,7 +169,6 @@ We tested the training efficiency and accuracy of the newest DPA2 medium model (
 
 ## Average training speed on different systems
 
-
 | Model                         | DPA2 medium | old DPA2 large |
 | ----------------------------- | ----------- | -------------- |
 | Training speed  (s/100 steps) | **~10**     | ~20            |
@@ -181,7 +178,6 @@ We tested the training efficiency and accuracy of the newest DPA2 medium model (
 ## RMSE on 18 baseline systems
 
 The RMSE of energy (ev/atom) and force (eV/Å) on 18 baseline systems:
-
 
 | Datasets           | Weight | medium E     | old large E  | medium F     | old large F  |
 | ------------------ | ------ | ------------ | ------------ | ------------ | ------------ |
@@ -301,6 +297,18 @@ More details and data access can be refered to [Alloy-data](https://www.aissquar
 
 Additional datasets include Cu, Sn, Ti, V, W, C12H26, HfO2, In2Se3 H2O-DPLR, H2O-SCAN0, H2O-PBE0TS, and H2O-PBE0TS-MD.
 
-```
+# References
 
+If you use this model, please cite our paper:
+
+```markdown
+@misc{zhang2024dpa2largeatomicmodel,
+      title={DPA-2: a large atomic model as a multi-task learner}, 
+      author={Duo Zhang and Xinzijian Liu and Xiangyu Zhang and Chengqian Zhang and Chun Cai and Hangrui Bi and Yiming Du and Xuejian Qin and Anyang Peng and Jiameng Huang and Bowen Li and Yifan Shan and Jinzhe Zeng and Yuzhi Zhang and Siyuan Liu and Yifan Li and Junhan Chang and Xinyan Wang and Shuo Zhou and Jianchuan Liu and Xiaoshan Luo and Zhenyu Wang and Wanrun Jiang and Jing Wu and Yudi Yang and Jiyuan Yang and Manyi Yang and Fu-Qiang Gong and Linshuang Zhang and Mengchao Shi and Fu-Zhi Dai and Darrin M. York and Shi Liu and Tong Zhu and Zhicheng Zhong and Jian Lv and Jun Cheng and Weile Jia and Mohan Chen and Guolin Ke and Weinan E and Linfeng Zhang and Han Wang},
+      year={2024},
+      eprint={2312.15492},
+      archivePrefix={arXiv},
+      primaryClass={physics.chem-ph},
+      url={https://arxiv.org/abs/2312.15492}, 
+}
 ```
