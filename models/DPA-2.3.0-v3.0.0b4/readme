@@ -10,9 +10,11 @@ We compared both the models from scratch (`DPA2-b4-medium` and `DPA2-b3`) and th
 
 ## Efficiency comparison
 
+
 | Model                         | DPA2-b4-medium | DPA2-b3 |
 | ----------------------------- | -------------- | ------- |
 | Training speed  (s/100 steps) | **8.4**        | 15.9    |
+
 
 | Pretrained Model                      | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) |
 | ------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -27,6 +29,7 @@ Weighted test RMSEs of single-task trained models on 27 pretrain datasets used i
 
 (energy: ev/atom, force: eV/Å)
 
+
 | Datasets           | DPA2-b4-medium E | DPA2-b3 E | DPA2-b4-medium F | DPA2-b3 F    |
 | ------------------ | ---------------- | --------- | ---------------- | ------------ |
 | **Weighted Error** | **1.31E-02**     | 1.85E-02  | **1.13E-01**     | **1.31E-01** |
@@ -34,6 +37,7 @@ Weighted test RMSEs of single-task trained models on 27 pretrain datasets used i
 Detailed test RMSEs of **pretrained models** on 18 baseline systems:
 
 (energy: ev/atom, force: eV/Å)
+
 
 | Datasets           | Weight | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) E | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) E | [2.3.0-b4-medium](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.0-v3.0.0b4&id=279) F | [2.2.0-b3](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.2.0-v3.0.0b3&id=272) F |
 | ------------------ | ------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -57,7 +61,9 @@ Detailed test RMSEs of **pretrained models** on 18 baseline systems:
 | Others_HfO2        | 0.1    | 2.76E-03                                                                                                    | 2.12E-03                                                                                             | 1.24E-01                                                                                                    | 1.04E-01                                                                                             |
 | **Weighted Error** |        | **8.52E-03**                                                                                                | **7.99E-03**                                                                                         | **1.06E-01**                                                                                                | **9.17E-02**                                                                                         |
 
-This table demonstrates that this DPA2 medium model has **comparable accuracy to the older version of DPA2, but is twice as efficient**.
+This table demonstrates that this DPA2 medium model has **comparable accuracy to the older version of DPA2, but is twice as efficient**. 
+
+**Note**: Compared to 2.2.0-b3, the 2.3.0-b4-medium model features a reduced number of parameters in its descriptors and incorporates the new MPtraj dataset. While the weighted average RMSE has marginally increased in this baseline, the precision across most datasets remains consistent, with some instances demonstrating improved performance.
 
 It is worth noting that the weighted logarithmic mean is used to calculate the Weighted Error for each column, rather than the weighted arithmetic mean reported in the [DPA-2](https://arxiv.org/abs/2312.15492) paper.
 
@@ -185,6 +191,7 @@ dp --pt change-bias model.pt -s <your_system> --model-branch Domains_Alloy
 to determine the energy bias of the downstream task, instead of those used in the pretraining stage. Then we can directly test the zero-shot of the model by selecting the head via `dp --pt test`.
 
 We also use GST_GAP_22 as a practical example. The main training dataset for GST_GAP_22,is calculated using the PBEsol functional. GST_GAP_22 contains configurations of phase-change materials on the quasi-binary GeTe-Sb2Te3 (GST) line of chemical compositions. Data was used for training a machine learning interatomic potential to simulate a range of germanium-antimony-tellurium compositions under realistic device conditions. More details can be refered to [https://materials.colabfit.org/id/DS_r3hav37ufnmb_0](https://materials.colabfit.org/id/DS_r3hav37ufnmb_0). Notice that in the SemiCond branch of the pretrained model, the set of data contains structure-to-energy-force labels for 20 semiconductors, namely, Si, Ge, SiC, BAs, BN, AlN, AlP, AlAs, InP, InAs, InSb, GaN, GaP, GaAs, CdTe, InTe-In2Te3, CdSe-CdSe2, InSe-In2Se3, ZnS, CdS-CdS2. We first test the 28heads-10m-model's zero-genralization.
+
 
 | Model Branch         | Energy RMSE (eV/atom) | Force RMSE (eV/Å) |
 | -------------------- | --------------------- | ------------------- |
