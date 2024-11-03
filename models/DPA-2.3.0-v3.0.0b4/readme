@@ -49,7 +49,7 @@ Detailed test RMSEs of pretrained models on several baseline systems:
 
 This table demonstrates that this DPA2 medium model has **comparable accuracy to the older version of DPA2, but is twice as efficient**.
 
-**Additionally, the inclusion of the MPtraj dataset enables users to apply the model across a broad spectrum of applications with large configuration or composition spaces.**
+**Additionally, the inclusion of the MPtraj dataset enables users to apply the model across a broad spectrum of applications with large configuration and composition spaces.**
 
 **Note**: Compared to 2.2.0-b3, the 2.3.0-b4-medium model features a reduced number of parameters in its descriptors and incorporates the new MPtraj dataset. While the weighted average RMSE has marginally increased in this baseline, the precision across most datasets remains consistent, with some instances demonstrating improved performance.
 
