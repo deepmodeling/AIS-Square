@@ -1,0 +1,9 @@
+title: DNN_Combustion_Chemistry_v1
+publisher: hanli94
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/4e17ad18-0b16-4197-b3b0-5818d2e6e6b9/POF_DNN_cases.tar.gz
+reference:
+    - datasets/DNN_Combustion_Chemistry_v1
+    - models/dfODENet_DNNmodel_V0.2
+author: '[{"email":"han_li@pku.edu.cn","firstName":"Han","lastName":"Li","position":0,"id":0},{"email":"2401213256@stu.pku.edu.cn","firstName":"Yangchen","lastName":"Xu","position":1,"id":1},{"email":"chenzhi@pku.edu.cn","firstName":"Zhi","lastName":"Chen","position":2,"id":2}]'
