@@ -1,0 +1,58 @@
+## Background Introduction
+
+Metals and their alloys hold a significant position due to their widespread applications in industry, and their properties are greatly influenced by material composition and processing techniques. Metallurgy focuses on studying the physical, chemical, and mechanical properties of these materials. Although a preliminary theoretical framework has been established, the phase transitions and deformation mechanisms of metal materials are extremely complex, and currently, extensive experimentation is still required to explore the effects of different compositions and process combinations. This makes the R&D process both time-consuming and costly.
+
+The OpenLAM-Alloy project aims to significantly enhance the efficiency and accuracy of alloy design by building a comprehensive alloy foundation model, utilizing advanced computational tools to predict the phase transition paths, deformation behaviors, and mechanical properties of alloys. The innovation of this model lies in its integrated consideration of various properties and behaviors, which is expected to greatly reduce the need for experiments and accelerate the development cycle of new materials. In addition, the project's algorithms cover 53 types of metallic elements (such as Li, Na, K, Be, Mg, Ca, Sr, Sc, Y, La, Ti, Zr, Hf, V, Nb, Ta, Cr, Mo, W, Cu, Ag, Au, Zn, Cd, Mn, Re, Fe, Co, Ni, ****Os**,** ****Ir**,** ****Pt**,** ****Rh**,** ****Ru**,** ****Pd**,** ****Ce**,** ****Pr**, Nd,** ****Sm**, Gd,** ****Tb**,** ****Dy**, Ho,** ****Er**,** ****Tm**, Lu,** ****Al**,** ****Ga**, In,** ****Si**,** ****Ge**,** ****Sn**,** Pb), covering the vast majority of metals used in industry, and bringing transformative potential to materials science.
+
+
+## Training Strategy
+
+The project starts from the existing DPA-1 and DPA-2 ([https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.1.0-2024Q1&id=244](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.1.0-2024Q1&id=244)) pretrained atomic models and adopts a multitask fine-tuning active learning strategy, using DPGEN2 for concurrent exploration of the systems elements, compounds, solid solutions, and their respective defect structures (temperature range: 50 K to 3000 K; pressure range: -0.5 GPa to 5 GPa). ABACUS is used for DFT data annotation, followed by fine-tuning of the DPA1 and DPA2 pretrained atomic models with DeepMP-kit 3.0. Additional training data details based on the existing training data for DPA-2 are as follows:
+
+
+|                    | Single-element | Multi-component |
+| ------------------ | -------------- | --------------- |
+| Perturbed crystals | 12649          | 2780            |
+| Vacancy            | 808            | 1333            |
+| Interstitial       | 2938           | 3273            |
+| Surface            | 72             | 244             |
+| Total              | 16467          | 7630            |
+
+The Root Mean Square Errors (RMSE) between the predicted values and the DFT results for a series of configurations using the obtained DPA1, DPA2, and MACE-MP-0 models for **elastic constants** (normalized),**formation energies**, **vacancy formation energies**, and **interstitial formation energies** are as follows in the table below:
+
+
+| RMSE                          | DPA1  | DPA2  | MACE   |
+| ----------------------------- | ----- | ----- | ------ |
+| Formation Energy (eV/atom)    | 0.137 | 0.082 | 0.107  |
+| Elastic Constants             | 0.408 | 0.561 | 0.457  |
+| Surface Energy (eV/atom)      | 1.050 | 0.669 | 12.362 |
+| Vacancy Energy (eV/atom)      | 0.891 | 0.854 | 0.942  |
+| Interstitial Energy (eV/atom) | 1.747 | 2.096 | 2.576  |
+
+## Model Usage
+
+Please install corresponding version of `DeePMD-kit in advance`:
+
+<pre><div node="[object Object]"><code class="language-bash"><span>pip </span><span class="token token">install</span><span> torch torchvision torchaudio 
+</span><span>pip </span><span class="token token">install</span><span> git+https://github.com/deepmodeling/deepmd-kit@v3.0.0b4
+</span></code></div></pre>
+
+Use LAMMPS for molecular dynamics calculations with the model by referring to the following LAMMPS script in `plugin` mode to call the DeePMD-kit interface (for complete content, refer to the structural relaxation case attachment `demo_input.lammps`):
+
+<pre><div node="[object Object]"><code class="language-css"><span>clear
+</span>units   metal
+<span>dimension       </span><span class="token token">3</span><span>
+</span>boundary        p p p
+atom_style      atomic
+box         tilt large
+read_data   conf.lmp
+<span>mass            </span><span class="token token">1</span><span> </span><span class="token token">1.008</span><span>
+</span><span>mass            </span><span class="token token">2</span><span> </span><span class="token token">4.003</span><span>
+</span><span>mass            </span><span class="token token">3</span><span> </span><span class="token token">6.941</span><span>
+</span>.....
+<span>mass            </span><span class="token token">102</span><span> </span><span class="token token">259.000</span><span>
+</span><span>mass            </span><span class="token token">103</span><span> </span><span class="token token">262.000</span><span>
+</span><span>neigh_modify    every </span><span class="token token">1</span><span> delay </span><span class="token token">0</span><span> check no
+</span>plugin load /your/root/to/deepmd-kit/dp/lib/libdeepmd_lmp.so
+<span>pair_style deepmd dpa1-multitask-400</span><span class="token token">w</span><span>.pth
+</span><span>pair_coeff </span><span class="token token">*</span><span> </span><span class="token token">*</span><span> H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr</span></code></div></pre>
