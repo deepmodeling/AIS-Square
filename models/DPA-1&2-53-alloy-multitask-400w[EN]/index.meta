@@ -2,6 +2,8 @@ title: DPA-1&2-53-alloy-multitask-400w[EN]
 publisher: anyangml
 license: LGPL-3.0
 repo:
+    - https://store.aissquare.com/models/3b52b985-36d0-46b3-92f7-65a158a25dba/demo_input.lammps
     - https://store.aissquare.com/models/3b52b985-36d0-46b3-92f7-65a158a25dba/dpa1-multitask-400w.pth
+    - https://store.aissquare.com/models/3b52b985-36d0-46b3-92f7-65a158a25dba/dpa2-multitask-400w.pth
 reference: []
 author: '[{"email":"tongqwen@hku.hk","firstName":"Tongqi","lastName":"Wen","position":0,"id":0}]'
