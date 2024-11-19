@@ -1,0 +1,9 @@
+title: DPA-2.3.1-v3.0.0rc0
+publisher: iProzd
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/41d1cfb7-1a98-42a2-90a8-e6257db431ea/DPA2_medium_28_10M_rc0.pt
+    - https://store.aissquare.com/models/41d1cfb7-1a98-42a2-90a8-e6257db431ea/input_torch_medium.json
+    - https://store.aissquare.com/models/41d1cfb7-1a98-42a2-90a8-e6257db431ea/pretrain_input.json
+reference: []
+author: '[{"email":"zhduodyx@pku.edu.cn","firstName":"AIS-Square","lastName":" ","position":0,"id":0}]'
