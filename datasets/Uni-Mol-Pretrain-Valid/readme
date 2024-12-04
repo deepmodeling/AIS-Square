@@ -1,0 +1,49 @@
+Due to the file size limit, this dataset only contains the valid set for the pretraining of the Uni-Mol model.
+
+
+
+Molecule Pretrain
+
+1. Here is the data we used in the molecular pre-training
+   The raw data are the SMILES of 19 million molecules, stored in clean_smi.csv.gz.
+   We take out 100k molecules as the validation set and the remaining 18.9m molecules as the training set,
+   stored as valid.lmdb and train.lmdb, respectively.
+   We generated 11 conformations for each molecule using RDKit.
+
+schema: {idx: {atoms:[], coordinates:[], smi: string}}
+
+2. Details
+   atoms:atoms type
+   coordinates: 3D coordinates
+   smi: SMILES
+3. How to load data
+   you can read this data use lmdb.
+
+```python
+# pip install lmdb
+import lmdb
+import numpy as np
+import os
+import pickle
+env = lmdb.open(
+    lmdb_path,
+    subdir=False,
+    readonly=True,
+    lock=False,
+    readahead=False,
+    meminit=False,
+    max_readers=256,
+)
+txn = env.begin()
+keys = list(txn.cursor().iternext(values=False))
+for idx in keys:
+    datapoint_pickled = txn.get(idx)
+    data = pickle.loads(datapoint_pickled)
+```
+
+4. Others
+   A detailed description of this dataset can be found in our paper:
+   https://chemrxiv.org/engage/chemrxiv/article-details/628e5b4d5d948517f5ce6d72
+
+Please refer to our code repository for more information on how to load lmdb data:
+https://github.com/dptech-corp/Uni-Mol
