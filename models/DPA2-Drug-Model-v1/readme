@@ -1,0 +1,33 @@
+The DPA-2-Drug model referenced in [1] includes a trained model that is compatible with DeePMD-kit version 3.0.0b4, along with the associated training scripts.
+
+# Use the model
+
+To use the model, you need to first install the corresponding version of DeePMD-kit.
+You can try easy installation:
+
+```bash
+pip install torch torchvision torchaudio
+pip install git+https://github.com/deepmodeling/deepmd-kit@v3.0.0b4
+```
+
+For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.0.0b4) page to download the off-line package for **deepmd-kit v3.0.0b4**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0b4/install/easy-install.html) for off-line installation instructions.
+
+Then you can use it as an [ASE calculator](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html) with the following Python code:
+
+```python
+from deepmd.calculator import DP as DPCalculator
+dp = DPCalculator("DPA2-Drug-v1.pth")
+```
+
+# Training details
+
+The DPA-2-Drug model was trained on dataset from [1] with the DPA-2 framework [2], in which two primary components of **repinit** and **reformer** are included in the descriptor architecture.
+
+Specifically, In the repinit layer, the cutoff radius for two-body embeddings was smoothly decayed from 0.5 Å to 6.0 Å, while for three-body embeddings, it decayed from 3.5 Å to 4.0 Å. The maximum number of neighbors within the cutoff radius was set to 120 for two-body embeddings and 40 for three-body embeddings. The architecture comprised three hidden layers containing [25, 50, 100] nodes/layers for two-body embeddings and [2, 4, 8] nodes/layers for three-body embeddings.
+
+For the repformer layers, we used 6 layers, and the cutoff radius was set to decay from 3.5 Å to 4.0 Å smoothly. The maximum possible number of neighbors in the cutoff was set to 40. We designated the dimensions of the single-atom and pair-atom feature representations to be 128 and 32, respectively. For the gated multi-head self-attention layers, we opted for a dimension of 32 and configured both types of layers with four attention heads. The model utilized a residual-update mechanism, initializing the norm of the learnable vectors to 0.01. We used three hidden layers with [240, 240, 240] nodes/layers for fitting network.
+
+The DPA-2-Drug model was subjected to three training iterations to enhance accuracy. In each iteration, an automated batch size of $\lceil\frac{256}{N}\rceil$ was employed, where $N$ represents the number of atoms in the system and $\lceil \cdot \rceil$ denotes the ceiling function, which rounds up to the nearest integer. The training process was conducted over 8.0 $\times$ 10$^6$ steps using four GPU cards. During the first iteration, the learning rate was set to decay from 1.0 $\times$ 10$^{-3}$ to 3 $\times$ 10$^{-8}$. The prefactors for the energy and force terms in the loss function were dynamically adjusted from 0.02 to 2 and from 1000 to 100, respectively. For the subsequent two iterations, the model was initialized with the parameters from the preceding iteration. The learning rate was then decayed from 1.0 $\times$ 10$^{-4}$ to 3 $\times$ 10$^{-8}$. Additionally, the prefactors for the energy and force terms in the loss function were modified from 2 to 100 and from 100 to 1, respectively, throughout the training process.
+
+**[1] Yang, Manyi, Duo Zhang, Xinyan Wang, Lingfeng Zhang, Tong Zhu, and Han Wang. "Ab initio Accuracy Neural Network Potential for Drug-like Molecules." (2024).
+[2] Zhang, Duo, Xinzijian Liu, Xiangyu Zhang, Chengqian Zhang, Chun Cai, Hangrui Bi, Yiming Du et al. "DPA-2: Towards a universal large atomic model for molecular and material simulation." *arXiv e-prints* (2023): arXiv-2312.**
