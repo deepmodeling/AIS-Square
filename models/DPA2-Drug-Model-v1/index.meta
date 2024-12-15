@@ -1,0 +1,11 @@
+title: DPA2-Drug-Model-v1
+publisher: iProzd
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/36281a98-df13-400c-89fe-59b9f043e9cc/DPA2-Drug-v1.pth
+    - https://store.aissquare.com/models/36281a98-df13-400c-89fe-59b9f043e9cc/input_r1.json
+    - https://store.aissquare.com/models/36281a98-df13-400c-89fe-59b9f043e9cc/input_r2r3.json
+reference:
+    - models/DPA2-Drug-Model-v1
+    - datasets/Drug(drug-like-molecule)_DPA_v1_0
+author: '[{"email":"zhangd@dp.tech","firstName":"Duo","lastName":"Zhang","institution":"AISI/DP","position":0,"id":0}]'
