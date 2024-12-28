@@ -1,6 +1,6 @@
 ## Introduction
 
-A DP-SCAN+rVV10 model for CeO$_2$-ZrO$_2$ ceramics, developed using a transfer learning technique. Type 1, 2, and 3 are O, Zr, and Ce respectively. Users can find more details of its training, validation and application in Ref. [1].
+A DP-SCAN+rVV10 model for CeO$_2$-ZrO$_2$ ceramics, developed using a transfer learning technique. Type 1, 2, and 3 are O, Zr, and Ce respectively. Users can find more details of its training, validation and application in Ref. [1]. O-O bonds should be avoided in the simulated configurations using the potential, which are not included in the training dataset and will lead to unconverged force during the structure relaxation.
 
 ## Training
 
@@ -22,7 +22,7 @@ where $N$ is the number of atoms. $\Delta \epsilon$, $\left|\Delta \boldsymbol{F
 
 ## References
 
-[1] J.-Y. Zhang, G. Huynh, A. Tristan, F.-Z. Dai, D. Rodney, Transformation-induced plasticity in CeO$_2$-ZrO$_2$ ceramics: atomic-scale insights using a deep neural network potential (under review)
+[1] J.-Y. Zhang, G. Huynh, A. Tristan, F.-Z. Dai, D. Rodney, Transformation-induced plasticity in CeO$_2$-ZrO$_2$ ceramics: Atomic-scale insights using a deep neural network potential (2024) 120661.
 
 [2] L. Zhang, J. Han, H. Wang, W. Saidi, R. Car, W. E, End-to-end symmetry preserving inter-atomic potential energy model for finite and extended systems, in: Advances in neural information processing systems, Vol. 31, Curran Associates, Inc., 2018, pp. 4441–4451.
 
