@@ -1,7 +1,8 @@
 title: CeO2-ZrO2-SCAN+rVV10-model
 publisher: ZHANG-JINYU-1994
 license: LGPL-3.0
-repo: []
+repo:
+    - https://store.aissquare.com/models/b3d6a2d6-00e0-4087-9b63-7eec276bbbaf/CeO2-ZrO2_SCAN+rVV10.pb
 reference:
     - models/CeO2-ZrO2-SCAN+rVV10-model
     - datasets/CeO2-ZrO2-SCAN+rVV10
