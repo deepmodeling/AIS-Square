@@ -4,5 +4,6 @@ license: CC BY 4.0
 repo:
     - https://store.aissquare.com/datasets/432ac826-5fce-4bfe-af61-ee8fc7d20bfe/LAMBench-TestData-v1.tar
     - https://store.aissquare.com/datasets/432ac826-5fce-4bfe-af61-ee8fc7d20bfe/LAMBench-TestData-v1.zip
+    - https://store.aissquare.com/datasets/432ac826-5fce-4bfe-af61-ee8fc7d20bfe/ood_test_202501115.zip
 reference: []
 author: '[{"email":"pengay@aisi.ac.cn","firstName":"AISI","lastName":" ","position":0,"id":0}]'
