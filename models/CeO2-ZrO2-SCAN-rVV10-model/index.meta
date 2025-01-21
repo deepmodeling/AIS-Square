@@ -1,0 +1,9 @@
+title: CeO2-ZrO2-SCAN-rVV10-model
+publisher: ZHANG-JINYU-1994
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/b3d6a2d6-00e0-4087-9b63-7eec276bbbaf/CeO2-ZrO2_SCAN+rVV10.pb
+reference:
+    - models/CeO2-ZrO2-SCAN-rVV10-model
+    - datasets/CeO2-ZrO2-SCAN+rVV10
+author: '[{"email":"zhangjinyuchengqi@gmail.com","firstName":"Jin-Yu","lastName":"Zhang","position":0,"id":0},{"email":"gael.huynh@univ-lyon1.fr","firstName":"Gaël","lastName":"Huynh","position":1,"id":1},{"email":"tristan.albaret@univ-lyon1.fr","firstName":"Tristan","lastName":"Albaret","position":2,"id":2},{"email":"dfzshiwo@163.com","firstName":"Fu-Zhi","lastName":"Dai","position":3,"id":3},{"email":"david.rodney@univ-lyon1.fr","firstName":"David","lastName":"Rodney","position":4,"id":4}]'
