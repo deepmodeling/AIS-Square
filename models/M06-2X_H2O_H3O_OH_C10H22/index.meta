@@ -1,0 +1,8 @@
+title: M06-2X_H2O_H3O_OH_C10H22
+publisher: Zhang-pchao
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/430b961a-2315-48aa-a666-f805bc3a3bbe/frozen_model.pb
+    - https://store.aissquare.com/models/430b961a-2315-48aa-a666-f805bc3a3bbe/frozen_model_compressed.pb
+reference: []
+author: '[{"email":"zpc20@mails.tsinghua.edu.cn","firstName":"Pengchao","lastName":"Zhang","position":0,"id":0},{"email":"xuxuefei@tsinghua.edu.cn","firstName":"Xuefei","lastName":"Xu","position":1,"id":1}]'
