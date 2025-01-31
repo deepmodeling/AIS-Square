@@ -1,0 +1,9 @@
+title: M06-2X_H2O_H3O_OH_C10H22
+publisher: Zhang-pchao
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/835834d9-cb33-4d0d-9dea-42b2c532c10f/dc_dataset.tgz
+reference:
+    - datasets/M06-2X_H2O_H3O_OH_C10H22
+    - models/M06-2X_H2O_H3O_OH_C10H22
+author: '[{"email":"zpc20@mails.tsinghua.edu.cn","firstName":"Pengchao","lastName":"Zhang","position":0,"id":0},{"email":"xuxuefei@tsinghua.edu.cn","firstName":"Xuefei","lastName":"Xu","position":1,"id":1}]'
