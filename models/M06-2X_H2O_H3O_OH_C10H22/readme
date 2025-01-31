@@ -1,0 +1,9 @@
+## Introduction
+
+This model is capable of describing water autoionization as well as the behavior of hydronium and hydroxide ions around a decane droplet in water with the precision of M06-2X (a hybrid meta-GGA functional). The compressed version of the model offers enhanced efficiency for conducting molecular dynamics simulations. For further details, please refer to the associated paper and supporting information. [1]
+
+For predicting the atomic partial charge, the deep charge model can be found in [github](https://github.com/Zhang-pchao/OilWaterInterface/tree/main/DeePMD_Training/DC).
+
+## References
+
+[1] Zhang, Pengchao, et al. "[Propensity of Water Self-Ions at Air(Oil)–Water Interfaces Revealed by Deep Potential Molecular Dynamics with Enhanced Sampling.](https://pubs.acs.org/doi/full/10.1021/acs.langmuir.4c05004)" *Langmuir* (2025).
