@@ -1,0 +1,26 @@
+## Introduction
+
+This dataset consists of systems containing hydronium and hydroxide ions in the vicinity of water and decane, labeled using the M06-2X functional. The notation "dp" refers to the model for predicting energy and force, while "dc" indicates the model for predicting the Hirshfeld charge of configurations within the datasets. For additional information, please refer to the associated [paper](https://pubs.acs.org/doi/full/10.1021/acs.langmuir.4c05004) and [supporting information](https://pubs.acs.org/doi/suppl/10.1021/acs.langmuir.4c05004/suppl_file/la4c05004_si_001.pdf). [1]
+
+## Data Format
+
+A pbc unit system in DeePMD format usually has the following substructure:
+
+
+| Name      | Property           | Raw file      | Unit  | Shape                 | Description                                                                                  |
+| --------- | ------------------ | ------------- | ----- | --------------------- | -------------------------------------------------------------------------------------------- |
+| type      | Atom type indexes  | type.raw      |       | Natoms                | Integers that start with 0, represent the atomic type corresponding to type\_map.raw         |
+| type\_map | Atom type names    | type\_map.raw |       | Ntypes                | Atom names that map to atom type, which is unnecessart to be contained in the periodic table |
+| coord     | Atomic coordinates | coord.npy     | Å    | Nframes\* Natoms \* 3 | The atomic coordinates                                                                       |
+| box       | Boxes              | box.npy       | Å    | Nframes\* 3 \* 3      | The box axes in the order`XX XY XZ YX YY YZ ZX ZY ZZ`                                        |
+| energy    | Frame energies     | energy.npy    | eV    | Nframes               | The potential energy of snapshot                                                             |
+| force     | Atomic forces      | force.npy     | eV/Å | Nframes\* Natoms \* 3 | The atomic forces                                                                            |
+| virial    | Frame virial       | virial.npy    | eV    | Nframes\* 9           | The virial frames are in the order`XX XY XZ YX YY YZ ZX ZY ZZ`                               |
+
+In the dc datasets, atomic labels [atom_dos](https://docs.deepmodeling.com/projects/deepmd/en/master/model/train-fitting-dos.html) is provided for each atom in a frame.
+
+Check [here](https://github.com/iProzd/deepmd-kit/blob/devel/doc/data/system.md) for more details.
+
+## References
+
+[1] Zhang, Pengchao, et al. "[Propensity of Water Self-Ions at Air(Oil)–Water Interfaces Revealed by Deep Potential Molecular Dynamics with Enhanced Sampling.](https://pubs.acs.org/doi/full/10.1021/acs.langmuir.4c05004)" *Langmuir* (2025).
