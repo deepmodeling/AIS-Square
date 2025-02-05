@@ -1,0 +1,9 @@
+title: conjugated_molecular_ff_database
+publisher: zhengcheng233
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/f3ab0552-9c79-4396-89b9-def0b9cb4d4b/conjugated_mol_resp_q.hdf5
+    - https://store.aissquare.com/datasets/f3ab0552-9c79-4396-89b9-def0b9cb4d4b/data_qm_frommmopt_remain.pkl
+    - https://store.aissquare.com/datasets/f3ab0552-9c79-4396-89b9-def0b9cb4d4b/rot_torsion_params.pkl
+reference: []
+author: '[{"email":"2369561300@qq.com","firstName":"Zheng ","lastName":"Cheng ","position":0,"id":0}]'
