@@ -2,7 +2,11 @@ title: FT2DP-dataset-FeCHO-v1
 publisher: Quantum Misaka
 license: CC BY 4.0
 repo:
+    - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/FeCHO-30656.db
     - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/FeCHO-30656.extxyz
     - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/FeCHO-30656.tar.gz
-reference: []
+    - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/FeCHO-30656.traj
+reference:
+    - models/FT2DP-DPA-2.2.0-v1
+    - datasets/FT2DP-dataset-FeCHO-v1
 author: '[{"email":"quanmisaka@stu.pku.edu.cn","firstName":"Zhaoqing","lastName":"Liu","institution":"Peking University","position":0,"id":0}]'
