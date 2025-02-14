@@ -1,0 +1,29 @@
+The Fine-Tuned Fischer-Tropsch Deep Potential (FT$^2$DP model) in version 1.0 includes a trained model that is compatible with DeePMD-kit version 3.0.0-b3, along with the associated training scripts.
+
+# Use the model
+
+To use the model, you need to first install the corresponding version of DeePMD-kit. You can try easy installation:
+
+<pre><div node="[object Object]"><code class="language-bash"><span>pip </span><span class="token token">install</span><span> torch torchvision torchaudio
+</span><span>pip </span><span class="token token">install</span><span> git+https://github.com/deepmodeling/deepmd-kit@v3.0.0b3
+</span></code></div></pre>
+
+For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.0.0b3) page to download the off-line package for **deepmd-kit v3.0.0b3**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0b3/install/easy-install.html) for off-line installation instructions.
+
+Then you can use it as an [ASE calculator](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html) with the following Python code:
+
+<pre><div node="[object Object]"><code class="language-python"><span class="token token">from</span><span> deepmd</span><span class="token token">.</span><span>calculator </span><span class="token token">import</span><span> DP </span><span class="token token">as</span><span> DPCalculator
+</span><span>dp </span><span class="token token">=</span><span> DPCalculator</span><span class="token token">(</span><span class="token token">"FT2DP-FeCHO-dpa220-100-30656.pt"</span><span class="token token">)</span></code></div></pre>
+
+
+# Training detail
+
+The FT$^2$DP model in version 1.0 was fine-tuned on the dataset FT$^2$DP-dataset-FeCHO-v1 dataset with the DPA-2 framework [1], in which two primary components of **repinit** and **reformer** are included in the descriptor architecture.
+
+Our fine-tuning process was initialized by using the parameters of the global descriptor in pre-trained DPA-2.2.0 model and fitting network from the Domains\_OC2M branch. The fine-tuning process on our dataset is done by following the default training process of the DPA-2 model while the starting and ending learning rate is adjusted for better training process.
+
+All training details is on the provided input.json file.
+
+# Reference
+
+[1] Zhang D, Liu X, Zhang X, Zhang C, Cai C, et al. DPA-2: a large atomic model as a multi-task learner. Npj Comput Mater 2024;10:293
