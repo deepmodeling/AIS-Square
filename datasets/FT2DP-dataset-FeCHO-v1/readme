@@ -13,7 +13,7 @@ There are 30656 frames in this version of FT$^2$DP dataset.
 
 All spin-polarized DFT calculations were carried out by using Atomic-orbital Based \textit{Ab-initio} Computation at UStc (ABACUS) package. The SG15-optimized Norm-Conserving Vanderbilt (SG15-ONCV) multi-projector pseudopotentials were employed and the valence configurations were [H]1s$^2$, [C]2s$^2$ 2p and [Fe]3d$^8$ 4s$^2$. The generalized gradient approximation (GGA) in the Perdew-Burke-Ernzerhof (PBE) variant \cite{perdew_generalized_1996} was adopted for the exchange-correlation functional. The second generation of numerical atomic orbitals (NAOs) in the double-$\zeta$ plus polarization function (DZP) form [5] was used. The periodic boundary condition (PBC) and the $\Gamma$-centered Monkhorst–Pack scheme for sampling the Brillouin zone was adopted in the DFT calculations, with an automated mesh determined by k-spacing = 0.14 Bohr$^{-1}$ or only one k-point for the direction without or with vacuum layers, respectively. The dipole correction perpendicular to the surface was applied for all DFT calculations of surfaces. The electron density criterion for electron self-consistency was set at $1 \times 10^{-7}$ Ry with the first-order Methfessel-Paxton (MP) smearing for the occupation of orbitals. In geometry and transition state optimizations, the convergence criterion for the largest force among all atoms was set to 0.05 eV/Angstrom
 
-The provided dataset having four formats: deepmd/npy (in tar.gz file), extxyz, ase-db and ase-trajectory.
+There are 4 formats of provided dataset uploaded: deepmd/npy (in tar.gz file), extxyz, ase-db and ase-trajectory.
 
 ## References
 
