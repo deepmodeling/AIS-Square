@@ -1,0 +1,29 @@
+This is the dataset of DFT-PBE-LCAO data for Iron-based Fischer-Tropsch Synthesis containing Fe-C-H-O elements for training FT$^2$DP DPA-2.2.0 model in version 1.0.
+
+## Introduction
+
+The DFT dataset was prepared by using the structures in reference [1,2] followed by the belowing procedure:
+
+- Labeled by spin-polarized PBE-LCAO calculation using ABACUS (in version 3.4.3).
+- Data cleaning including:
+  - removing the structure frames having less than 12 atoms
+  - removing the structure frames having maximum deviation of 0.08 eV/atom for energy and 1 eV/Angstrom for atomic force after 1,000,000 batch fine-tuning on full dataset
+
+There are 30656 frames in this version of FT$^2$DP dataset.
+
+All spin-polarized DFT calculations were carried out by using Atomic-orbital Based \textit{Ab-initio} Computation at UStc (ABACUS) package. The SG15-optimized Norm-Conserving Vanderbilt (SG15-ONCV) multi-projector pseudopotentials were employed and the valence configurations were [H]1s$^2$, [C]2s$^2$ 2p and [Fe]3d$^8$ 4s$^2$. The generalized gradient approximation (GGA) in the Perdew-Burke-Ernzerhof (PBE) variant \cite{perdew_generalized_1996} was adopted for the exchange-correlation functional. The second generation of numerical atomic orbitals (NAOs) in the double-$\zeta$ plus polarization function (DZP) form [5] was used. The periodic boundary condition (PBC) and the $\Gamma$-centered Monkhorst–Pack scheme for sampling the Brillouin zone was adopted in the DFT calculations, with an automated mesh determined by k-spacing = 0.14 Bohr$^{-1}$ or only one k-point for the direction without or with vacuum layers, respectively. The dipole correction perpendicular to the surface was applied for all DFT calculations of surfaces. The electron density criterion for electron self-consistency was set at $1 \times 10^{-7}$ Ry with the first-order Methfessel-Paxton (MP) smearing for the occupation of orbitals. In geometry and transition state optimizations, the convergence criterion for the largest force among all atoms was set to 0.05 eV/Angstrom
+
+## References
+
+[1] Liu QY, Shang C, Liu ZP. In situ active site for CO activation in Fe-catalyzed Fischer-Tropsch synthesis from machine learning. J Am Chem
+Soc 2021;143:11109–20
+
+[2] Liu QY, Chen D, Shang C, Liu ZP. An optimal Fe–C coordination ensemble for hydrocarbon chain growth: a full Fischer–Tropsch synthesis
+mechanism from machine learning. Chem Sci 2023;14:9461–75
+
+[3] Quantum-simulation. SG15 ONCV Potentials; 2020. Available from: http://quantum-simulation.org/potentials/sg15 oncv.
+
+[4] Perdew JP, Burke K, Ernzerhof M. Generalized gradient approximation made simple. Phys Rev Lett 1996;77:3865–68.
+
+[5] Lin P, Ren X, He L. Strategy for constructing compact numerical atomic orbital basis sets by incorporating the gradients of reference
+wavefunctions. Phys Rev B 2021;103:235131.
