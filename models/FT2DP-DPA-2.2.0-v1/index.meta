@@ -4,5 +4,7 @@ license: LGPL-3.0
 repo:
     - https://store.aissquare.com/models/9081c1be-9f20-4fe8-b256-6904c17ca0a0/FT2DP-FeCHO-dpa220-100-30656.pt
     - https://store.aissquare.com/models/9081c1be-9f20-4fe8-b256-6904c17ca0a0/input.json
-reference: []
+reference:
+    - models/FT2DP-DPA-2.2.0-v1
+    - datasets/FT2DP-dataset-FeCHO-v1
 author: '[{"email":"quanmisaka@stu.pku.edu.cn","firstName":"Zhaoqing","lastName":"Liu","institution":"Peking University","contribution":"Model training and data collection","position":0,"id":0}]'
