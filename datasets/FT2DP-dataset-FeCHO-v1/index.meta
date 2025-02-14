@@ -6,6 +6,7 @@ repo:
     - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/FeCHO-30656.extxyz
     - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/FeCHO-30656.tar.gz
     - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/FeCHO-30656.traj
+    - https://store.aissquare.com/datasets/57740132-ab43-4aee-92dd-6805920914bd/INPUT
 reference:
     - models/FT2DP-DPA-2.2.0-v1
     - datasets/FT2DP-dataset-FeCHO-v1
