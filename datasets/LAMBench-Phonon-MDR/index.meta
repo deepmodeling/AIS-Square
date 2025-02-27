@@ -1,6 +1,7 @@
 title: LAMBench-Phonon-MDR
 publisher: anyangml
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/6f24559b-a06e-46d2-a3af-c3f5701f0126/MDR_PBE_phonon.zip
 reference: []
 author: '[{"email":"antoine.loew@rub.de","firstName":"Antoine","lastName":"Loew","position":0,"id":0}]'
