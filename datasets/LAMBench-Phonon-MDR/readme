@@ -1,0 +1,13 @@
+This is the PBE labeled MDR Phonon dataset used in the following paper. The data is provided by Antoine Loew. Alternatively, one can download the data [here](https://alexandria.icams.rub.de/).
+
+```
+@misc{loew2024universalmachinelearninginteratomic,
+      title={Universal Machine Learning Interatomic Potentials are Ready for Phonons},
+      author={Antoine Loew and Dewen Sun and Hai-Chen Wang and Silvana Botti and Miguel A. L. Marques},
+      year={2024},
+      eprint={2412.16551},
+      archivePrefix={arXiv},
+      primaryClass={cond-mat.mtrl-sci},
+      url={https://arxiv.org/abs/2412.16551},
+}
+```
