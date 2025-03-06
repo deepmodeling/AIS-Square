@@ -1,0 +1,10 @@
+title: DAP1-L0_EnergeticMaterials-v1
+publisher: Schrodinger's Cat
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/iter23_0.pb
+    - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/iter23_1.pb
+    - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/iter23_2.pb
+    - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/iter23_3.pb
+reference: []
+author: '[{"email":"guomy26@mail2.sysu.edu.cn","firstName":"Ming-Yu","lastName":"Guo","institution":"School of Chemistry, Sun Yat-sen University","position":0,"id":0},{"email":"chenp85@mail.sysu.edu.cn","firstName":"Pin","lastName":"Chen","institution":"National Supercomputer Center in Guangzhou, School of Computer Science and Engineering, Sun Yat-sen University","contribution":"Providing computational resources","position":1,"id":1}]'
