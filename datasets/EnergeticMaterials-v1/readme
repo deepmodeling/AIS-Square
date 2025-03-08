@@ -17,3 +17,6 @@ A dataset covering 20 energetic materials sampling via active learning with temp
 **Data cleaning**: Removed forces (abs.) > 50 eV/ang. Label Distribution:
 
 ![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWQ0YmQ4MDZlZjczYjE4ZjI3MWU0NTdiNGRlZDk1OWJfMGxPdlRFUVpJOUZDT2FSRzVhSnAzbHRUMTFSc1VSdldfVG9rZW46Vmw1S2JvVlBYb29pdER4WjVDWmMwdXVVbmlqXzE3NDEyNjMxNjk6MTc0MTI2Njc2OV9WNA)
+
+
+**How to cite**: https://arxiv.org/abs/2503.04540
