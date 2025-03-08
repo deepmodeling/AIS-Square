@@ -1,7 +1,5 @@
 Trained from [datasets/311/EnergeticMaterials-v1](https://aissquare.com/datasets/detail?pageType=datasets&name=EnergeticMaterials-v1&id=311)
 
-
-
 **Efficiency**
 
 ![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDIyNmUzZGJmNDI2MTI4YmM0NWY4MDA5YzA5NTdjZDBfeDVEZGZYTHJibDBDTmFMQ0Nlakp1ckl1V1hXdmQ3VFNfVG9rZW46RUx0QmI0d29Eb083Vlp4enZNbWNGZWNubmZkXzE3NDEyNTU2OTI6MTc0MTI1OTI5Ml9WNA)
@@ -10,10 +8,12 @@ Trained from [datasets/311/EnergeticMaterials-v1](https://aissquare.com/datasets
 
 ![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmFkOTk0NzFkOTRlM2EwOTZlNWVjNzJkYzMxMTBlNTNfd2VBSXJVUmpveHZoeW80N0dZbjZPU3BJcGZqb1pTdkRfVG9rZW46WkdDSGJoUGVxb1dLSUN4UU1YaWN2N09KbkdtXzE3NDEyNTU2OTI6MTc0MTI1OTI5Ml9WNA)
 
+
+**How to cite**: https://arxiv.org/abs/2503.04540
+
 Training Parameters
 
 ```json
-
 {
     "model": {
         "type_map": [
