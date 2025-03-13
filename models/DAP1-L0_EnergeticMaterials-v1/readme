@@ -1,15 +1,20 @@
+# DPA1-L0 Models
+
+
+
 Trained from [datasets/311/EnergeticMaterials-v1](https://aissquare.com/datasets/detail?pageType=datasets&name=EnergeticMaterials-v1&id=311)
 
-**Efficiency**
-
-![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDIyNmUzZGJmNDI2MTI4YmM0NWY4MDA5YzA5NTdjZDBfeDVEZGZYTHJibDBDTmFMQ0Nlakp1ckl1V1hXdmQ3VFNfVG9rZW46RUx0QmI0d29Eb083Vlp4enZNbWNGZWNubmZkXzE3NDEyNTU2OTI6MTc0MTI1OTI5Ml9WNA)
-
-**Accuracy**
-
-![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmFkOTk0NzFkOTRlM2EwOTZlNWVjNzJkYzMxMTBlNTNfd2VBSXJVUmpveHZoeW80N0dZbjZPU3BJcGZqb1pTdkRfVG9rZW46WkdDSGJoUGVxb1dLSUN4UU1YaWN2N09KbkdtXzE3NDEyNTU2OTI6MTc0MTI1OTI5Ml9WNA)
-
-
 **How to cite**: https://arxiv.org/abs/2503.04540
+
+**Efficiency and Accuracy**
+
+![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWU1NzMzNDc4ZTlkNzFjZjU3NjJlODFkMzgwMWNlY2Nfblp5SGc0aWN4N0RKVlpTSU4zMXV0ck1nbnRPNDVJbWFfVG9rZW46RUx0QmI0d29Eb083Vlp4enZNbWNGZWNubmZkXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+![Results on id-testset](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=MzQ5ZmM0NWI0ZDA5NjU5OTEyMTUwY2IxYjYxMjUyYTJfblVNZUc4cm5meXh4TzM0SW1VZFdITnFxbTZScnBjeHJfVG9rZW46WkdDSGJoUGVxb1dLSUN4UU1YaWN2N09KbkdtXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+
+**Training Parameters**
+
 
 Training Parameters
 
