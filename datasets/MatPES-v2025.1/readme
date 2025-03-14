@@ -1,9 +1,11 @@
 MatPES dataset download by https://matpes.ai/ and transferred to format dpdata/npy/mixed & extxyz
 
-- MultiSystems (71262 systems containing 387897 frames)
+- PBE: MultiSystems (85083 systems containing 434712 frames)
+- R2SCAN: MultiSystems (71262 systems containing 387897 frames)
 - Energy: eV
 - Force: eV/Ang
 - Stress: eV/Ang^3
+
 
 in PBE & R2SCAN fidelity
 
