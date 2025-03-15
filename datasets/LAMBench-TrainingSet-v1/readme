@@ -1,3 +1,22 @@
+# DPA-3 Pretraining Data
+
+**Total training samples**: 162,507,178
+**Total test/validation samples**: 5,724,749
+
+
+
+#### **Key Scientific Domains**
+
+1. **Catalysis & Interfaces**, e.g. *OC20M/OC22*， *ODAC23*;
+2. **Inorganic Materials**, e.g. *OMAT24*, *MP_traj*, *Alex2D*;
+3. **Drugs and Biochemical Systems**, e.g. *SPICE2\_new*, *Domains\_Drug*, *solvated\_protein\_fragments*;
+4. **Metals & Alloys**, e.g.*Metals\_AlMgCu/Ti/V/W/Sn*, *Domains_Alloy*, etc.
+5. **Energy Materials**, e.g. *Domains\_SSE\_PBE/PBESol*, *Hybrid\_Perovskite*;
+6. **Chemical Reactions**, e.g. *Organic\_Reactions*, *Transition-1x*.
+
+The following table show the details of training set.
+
+
 | Dataset Name                  | N Frames    | Downsample                                                                                        | Data Cleaning                                                                                        | Weights | References                                                                                                                                                                                                                                                                                      |
 | ----------------------------- | ----------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Domains\_Alloy                | 71482       |                                                                                                   |                                                                                                      | 1.0     | -                                                                                                                                                                                                                                                                                               |
