@@ -17,15 +17,7 @@ There are 4 formats of provided dataset uploaded: deepmd/npy (in tar.gz file), e
 
 ## References
 
-[1] Liu QY, Shang C, Liu ZP. In situ active site for CO activation in Fe-catalyzed Fischer-Tropsch synthesis from machine learning. J Am Chem
-Soc 2021;143:11109–20
+[1] Liu, Z.-Q.; Deng, Z.; Zhao, H.; Wang, H.; Chen, M.; Jiang, H. FT$^2$ DP: Large Atomic Model Fine-Tuned Machine Learning Potential for Accelerating Atomistic Simulation of Iron-Based Fischer-Tropsch Synthesis. *Journal of materials Informatics* . **2025**, *5* (2). [https://doi.org/10.20517/jmi.2024.105](https://doi.org/10.20517/jmi.2024.105).
 
 [2] Liu QY, Chen D, Shang C, Liu ZP. An optimal Fe–C coordination ensemble for hydrocarbon chain growth: a full Fischer–Tropsch synthesis
-mechanism from machine learning. Chem Sci 2023;14:9461–75
-
-[3] Quantum-simulation. SG15 ONCV Potentials; 2020. Available from: http://quantum-simulation.org/potentials/sg15 oncv.
-
-[4] Perdew JP, Burke K, Ernzerhof M. Generalized gradient approximation made simple. Phys Rev Lett 1996;77:3865–68.
-
-[5] Lin P, Ren X, He L. Strategy for constructing compact numerical atomic orbital basis sets by incorporating the gradients of reference
-wavefunctions. Phys Rev B 2021;103:235131.
+mechanism from machine learning. Chem Sci **2023**;*14*:9461–75
