@@ -15,7 +15,6 @@ Then you can use it as an [ASE calculator](https://wiki.fysik.dtu.dk/ase/ase/cal
 <pre><div node="[object Object]"><code class="language-python"><span class="token token">from</span><span> deepmd</span><span class="token token">.</span><span>calculator </span><span class="token token">import</span><span> DP </span><span class="token token">as</span><span> DPCalculator
 </span><span>dp </span><span class="token token">=</span><span> DPCalculator</span><span class="token token">(</span><span class="token token">"FT2DP-FeCHO-dpa220-100-30656.pt"</span><span class="token token">)</span></code></div></pre>
 
-
 # Training detail
 
 The FT$^2$DP model in version 1.0 was fine-tuned on the dataset FT$^2$DP-dataset-FeCHO-v1 dataset with the DPA-2 framework [1], in which two primary components of **repinit** and **reformer** are included in the descriptor architecture.
@@ -26,4 +25,6 @@ All training details is on the provided input.json file.
 
 # Reference
 
-[1] Zhang D, Liu X, Zhang X, Zhang C, Cai C, et al. DPA-2: a large atomic model as a multi-task learner. Npj Comput Mater 2024;10:293
+[1] Liu, Z.-Q.; Deng, Z.; Zhao, H.; Wang, H.; Chen, M.; Jiang, H. FT$^2$ DP: Large Atomic Model Fine-Tuned Machine Learning Potential for Accelerating Atomistic Simulation of Iron-Based Fischer-Tropsch Synthesis. *Journal of materials Informatics* . **2025**, *5* (2). [https://doi.org/10.20517/jmi.2024.105](https://doi.org/10.20517/jmi.2024.105).
+
+[2] Zhang D, Liu X, Zhang X, Zhang C, Cai C, et al. DPA-2: a large atomic model as a multi-task learner. Npj Comput Mater 2024;10:293
