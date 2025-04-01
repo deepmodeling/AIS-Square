@@ -1,0 +1,8 @@
+title: DP_HECN_dataset
+publisher: AlexanderKvashnin
+license: CC BY 4.0
+repo: []
+reference:
+    - datasets/DP_HECN_dataset
+    - models/DP_HECN_model
+author: '[{"email":"v.baidyshev@skoltech.ru","firstName":"Viktor","lastName":"Baidyshev","institution":"Skolkovo Institute of Science and Technology","contribution":"Main contributor","position":0,"id":0},{"email":"agkvashnin@gmail.com","firstName":"Alexander","lastName":"Kvashnin","institution":"Skolkovo Institute of Science and Technology","contribution":"Leader of the project","position":1,"id":1}]'
