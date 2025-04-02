@@ -6,11 +6,10 @@ There are two folders corresponding to (010) and (101) surfaces. The name of eac
 
 So `CO_1_101_initial.vasp` means that this structure for initial position of CO molecule in configuration 1 on the (101) surface of WB<sub>5-x</sub>.
 
-These structures can be used for DFT calculations and further training of model to calcualte adsorption or perform large-scale simulations.
+These structures can be used for DFT calculations and further training of model to calculate adsorption or perform large-scale simulations.
 
 ---
 
+By using this dataset please cite our paper
 
-By using this model please cite our paper
-
-[A. D. Radina, V. S. Baidyshev, I. V. Chepkasov, N. A. Matsokin, T. Altalhi, B. I. Yakobson, and A. G. Kvashnin, Theoretical study of adsorption properties and CO oxidation reaction on surfaces of higher tungsten boride, Sci Rep ​**14**​, 12788 (2024).](https://https://www.nature.com/articles/s41598-024-63676-7)
+[A. D. Radina, V. S. Baidyshev, I. V. Chepkasov, N. A. Matsokin, T. Altalhi, B. I. Yakobson, and A. G. Kvashnin, Theoretical study of adsorption properties and CO oxidation reaction on surfaces of higher tungsten boride, Sci Rep **14**, 12788 (2024).](https://https://www.nature.com/articles/s41598-024-63676-7)
