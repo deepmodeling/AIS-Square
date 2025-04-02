@@ -1,6 +1,8 @@
 title: WB5-x-surfaces-POSCARS
 publisher: AlexanderKvashnin
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/c2944512-7169-4529-a06d-9a1ce601c0f9/010_surface.zip
+    - https://store.aissquare.com/datasets/c2944512-7169-4529-a06d-9a1ce601c0f9/101_surface.zip
 reference: []
 author: '[{"email":"A.Kvashnin@skoltech.ru","firstName":"Alexander","lastName":"Kvashnin","institution":"Skolkovo Institute of Science and Technology","contribution":"Main contributor","position":0,"id":0}]'
