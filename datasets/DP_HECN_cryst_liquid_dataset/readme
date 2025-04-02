@@ -1,0 +1,13 @@
+This **DP_HECN_dataset** contains structural configuration of high-entropy carbides and carbonitrides studied in Refs [1,2].
+
+**DP_HECN_dataset** contains both **crystal** configurations and amorphous configurations corresponding to **liquid** phases of HEC and HECN.
+
+DAtaset in the DeePMD format.
+
+---
+
+References
+
+[1]       V. S. Baidyshev, C. Tantardini, and A. G. Kvashnin, Melting simulations of high-entropy carbonitrides by deep learning potentials, [Sci Rep **14**, 28678 (2024).](https://https://www.nature.com/articles/s41598-024-78377-4)
+
+[2]       D. S. Nikitin, I. I. Shanenkov, A. R. Nassyrbayev, A. A. Sivkov, V. S. Baidyshev, Y. A. Kvashnina, N. A. Matsokin, A. Ya. Pak, and A. G. Kvashnin, Synthesis of high-entropy Ti-Zr-Nb-Hf-Ta carbides and carbonitrides in high-speed arc discharge plasma jet, [Journal of Alloys and Compounds **1010**, 177178 (2025).](https://https://www.sciencedirect.com/science/article/pii/S0925838824037666)
