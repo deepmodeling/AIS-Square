@@ -1,0 +1,19 @@
+The reported dataset is used to calculate the mechanical properties of diamond polycrystals of different grain sizes [[1](https://https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adts.202301171)]. The dataset includes the results of the AIMD of diamond polycrystals and actively selected and extracted local atomic configurations from polycrystals.
+
+**Training procedure**
+
+As an initial training set, we actively selected atomistic configurations from *ab initio* molecular dynamics. The timestep for AIMD is chosen to be equal to 1 fs. The total time of each simulation is 2 ps. The plane wave energy cutoff of 500 eV, the Methfessel–Paxton smearing [2] of the electronic occupations, and Γ-centered k-point meshes with a resolution of 2𝜋 × 0.04 Å<sup>−1</sup> of the Brillouin zone sampling were used as implemented in VASP [3,4]. These settings ensured the convergence of energy differences and stress tensors. For more details on the training procedure, calculation of forces, the reader is encouraged to check Ref. [[1](https://https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adts.202301171)].
+
+Then, during the MD simulation, an additional local atomic configuration at the grain boundaries are detected and extracted from the polycrystalline structure. This configurations is used to calculate DFT energies, forces and stresses and was added to the initial training set.
+This active learning bootstrapping method allows the construction of the training set for the polycrystalline diamond.
+
+---
+
+**References**
+[1]       F. N. Jalolov, E. V. Podryabinkin, A. R. Oganov, A. V. Shapeev, and A. G. Kvashnin, Mechanical Properties of Single and Polycrystalline Solids from Machine Learning, [Adv. Theory Simul. ​**7**​, 2301171 (2024)](https://https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adts.202301171).
+
+[2]       H. J. Monkhorst and J. D. Pack, Special Points for Brillouin-Zone Integrations, Phys. Rev. B. ​**13**​, 5188 (1976).
+
+[3]       G. Kresse and J. Furthmüller, Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set, Phys. Rev. B ​**54**​, 11169 (1996).
+
+[4]       G. Kresse and J. Hafner, Ab initio molecular dynamics for liquid metals, Phys. Rev. B ​**47**​, 558 (1993).
