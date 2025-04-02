@@ -1,0 +1,13 @@
+Dataset of crystal structures obtained during the prediction of stable phases in Hf-Ta-C system using [USPEX ](https://https://uspex-team.org/en) evolutionary algorithm [[1](https://https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adfm.202206289)]. Most of the structures exhibit rocksalt crystal structures with different arrangment of Hf and Ta atoms.
+
+The **HfTaC_POSCARS** contains entire set of VASP output files incuding POSCAR, CONTCAR, OUTCAR, vasprun.xml.
+
+This makes it possible to parse it and train the ML model using initial and final coordinates, forces, stresses and energies.
+
+Raw crystal structure data obtained directly from the USPEX prediction for different types of calculations is presented in **HfTaC_USPEX dataset**
+
+---
+
+References
+
+[1]. Nassyrbayev, A. A. Sivkov, Z. Bolatova, and A. Ya. Pak, Large-Scale Synthesis and Applications of Hafnium–Tantalum Carbides,[ Advanced Functional Materials **32**, 2206289 (2022)](https://https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adfm.202206289).
