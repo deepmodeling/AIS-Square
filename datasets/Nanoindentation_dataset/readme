@@ -1,0 +1,15 @@
+Nanoindentation data set
+
+The reported data set is used to simulate nanoindentation of samples (diamond, Si, SiC, h-SiC, BC<sub>2</sub>N, AlN) [[1](https://https://pubs.acs.org/doi/abs/10.1021/acs.jctc.1c00783)].
+
+The results of single crystal AIMD are used as the initial training set.
+
+Then, during molecular dynamics simulation of nanoindentation of the samples, the new local atomic neighborhoods extracted from the whole structure are detected. For these new local atomic neighborhoods, the DFT energies, forces and stresses are calculated and added to the initial training set.
+
+This active learning bootstrapping method allows to simulate nanoindentation of the presented sample to be performed with the accuracy of ab initio methods.
+
+Dataset contains a set of **XYZ** files for diamond, Si, SiC, h-SiC, BC<sub>2</sub>N, AlN structures. Each **XYZ** file includes crystal structures, structures with free surfaces with different orientations and other, determined during the active learning procedure.
+
+**References**
+
+[1]. E. V. Podryabinkin, A. G. Kvashnin, M. Asgarpour, I. I. Maslenikov, D. A. Ovsyannikov, P. B. Sorokin, M. Y. Popov, and A. V. Shapeev, Nanohardness from First Principles with Active Learning on Atomic Environments, [J. Chem. Theory Comput. **18**, 1109 (2022)](https://https://pubs.acs.org/doi/abs/10.1021/acs.jctc.1c00783).
