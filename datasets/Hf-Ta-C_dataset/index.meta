@@ -1,0 +1,8 @@
+title: Hf-Ta-C_dataset
+publisher: AlexanderKvashnin
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/3167abb2-c4f1-4a2b-89e4-82d468e377f5/HfTaC_POSCARS.zip
+    - https://store.aissquare.com/datasets/3167abb2-c4f1-4a2b-89e4-82d468e377f5/HfTaC_USPEX.zip
+reference: []
+author: '[{"email":"A.Kvashnin@skoltech.ru","firstName":"Alexander","lastName":"Kvashnin","institution":"Skolkovo Institute of Science and Technology","contribution":"Main contributor","position":0,"id":0}]'
