@@ -1,0 +1,12 @@
+title: Nanoindentation_dataset
+publisher: AlexanderKvashnin
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/5d965366-994f-4c96-a872-bf33d19b04f7/AlN.xyz
+    - https://store.aissquare.com/datasets/5d965366-994f-4c96-a872-bf33d19b04f7/BC2N.xyz
+    - https://store.aissquare.com/datasets/5d965366-994f-4c96-a872-bf33d19b04f7/C.xyz
+    - https://store.aissquare.com/datasets/5d965366-994f-4c96-a872-bf33d19b04f7/Si.xyz
+    - https://store.aissquare.com/datasets/5d965366-994f-4c96-a872-bf33d19b04f7/SiC.xyz
+    - https://store.aissquare.com/datasets/5d965366-994f-4c96-a872-bf33d19b04f7/hSiC.xyz
+reference: []
+author: '[{"email":"A.Kvashnin@skoltech.ru","firstName":"Alexander","lastName":"Kvashnin","institution":"Skolkovo Institute of Science and Technology","contribution":"Main contributor","position":0,"id":0},{"email":"faridun.jalolov@skoltech.ru","firstName":"Faridun","lastName":"Jalolov","institution":"Skolkovo Institute of Science and Technology","contribution":"Main contributor","position":1,"id":1}]'
