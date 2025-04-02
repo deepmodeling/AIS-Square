@@ -1,6 +1,6 @@
-This **DP_HECN_dataset** contains structural configuration of high-entropy carbides and carbonitrides studied in Refs [1,2].
+This **DP_HECN_cryst_liquid_dataset** contains structural configuration of high-entropy carbides and carbonitrides studied in Refs [1,2].
 
-**DP_HECN_dataset** contains both **crystal** configurations and amorphous configurations corresponding to **liquid** phases of HEC and HECN.
+**DP_HECN_cryst_liquid_dataset** contains both **crystal** configurations and amorphous configurations corresponding to **liquid** phases of HEC and HECN.
 
 DAtaset in the DeePMD format.
 
