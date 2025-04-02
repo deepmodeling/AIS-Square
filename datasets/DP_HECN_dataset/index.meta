@@ -1,7 +1,8 @@
 title: DP_HECN_dataset
 publisher: AlexanderKvashnin
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/831fcaff-e8be-4fc4-bf66-225d77fc9ebb/HECN_dataset.zip
 reference:
     - datasets/DP_HECN_dataset
     - models/DP_HECN_model
