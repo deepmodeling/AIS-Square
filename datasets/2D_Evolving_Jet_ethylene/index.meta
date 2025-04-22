@@ -1,6 +1,7 @@
 title: 2D_Evolving_Jet_ethylene
 publisher: xu-23
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/ddb159a1-b95c-4a4b-9e08-9fa5b53319af/data.tar.gz
 reference: []
 author: '[{"email":"2401213256@stu.pku.edu.cn","firstName":"Humphrey","lastName":"Xu","position":0,"id":0}]'
