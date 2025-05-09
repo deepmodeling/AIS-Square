@@ -1,9 +1,8 @@
 # Description
 
-DPA-2.4-7M is trained using a multitask strategy on the Openlam datasets. The benchmark results can be found at the [LAMBench website.](https://www.aissquare.com/openlam?tab=Benchmark)
+DPA-2.4-7M is trained using a multitask strategy on the [OpenLAM datasets](https://www.aissquare.com/datasets/detail?pageType=datasets&name=OpenLAM-TrainingSet-v1&id=308). The benchmark results can be found at the [LAMBench website.](https://www.aissquare.com/openlam?tab=Benchmark)
 
 Please ensure the usage of the correct code version (**v3.1.0a0**) corresponding to this model.
-
 
 # How to use
 
@@ -17,7 +16,6 @@ pip install git+https://github.com/deepmodeling/deepmd-kit@v3.1.0a
 ```
 
 For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.0a0) page to download the off-line package for **deepmd-kit v3.1.0a0**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0rc0/install/easy-install.html) for off-line installation instructions.
-
 
 ## Use the pretrained model
 
