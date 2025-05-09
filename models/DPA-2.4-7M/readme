@@ -12,7 +12,7 @@ To use the pretrained model, you need to first install the corresponding version
 
 ```bash
 pip install torch torchvision torchaudio
-pip install git+https://github.com/deepmodeling/deepmd-kit@v3.1.0a
+pip install git+https://github.com/deepmodeling/deepmd-kit@v3.1.0a0
 ```
 
 For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.0a0) page to download the off-line package for **deepmd-kit v3.1.0a0**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0rc0/install/easy-install.html) for off-line installation instructions.
