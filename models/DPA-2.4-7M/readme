@@ -70,4 +70,4 @@ dyn.run(fmax=1e-6)
 print(water.get_positions())
 ```
 
-For more advanced usages like finetuning and zero-shot inference, please refer to the following [model card](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.1-v3.0.0rc0&id=287) .
+For more advanced usages like fine-tuning and zero-shot inference, please refer to the following [model card](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.1-v3.0.0rc0&id=287) .
