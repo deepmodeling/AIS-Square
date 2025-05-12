@@ -1,6 +1,7 @@
 title: OpenLAM-TrainingSet-v1
 publisher: Schrodinger's Cat
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/709f479a-3b94-4b43-9b90-6463e5a375ea/PretrainingData-v1.md
 reference: []
 author: '[{"email":"pengay@aisi.ac.cn","firstName":"AISI","lastName":" ","position":0,"id":0}]'
