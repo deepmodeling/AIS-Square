@@ -1,6 +1,7 @@
 title: LAMBench-DatasetCards
 publisher: Schrodinger's Cat
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/0f81604c-3852-4c15-9002-8d16843606ca/LAMbench
 reference: []
 author: '[{"email":"guomingyu@dp.tech","firstName":"AISI ","lastName":" ","position":0,"id":0}]'
