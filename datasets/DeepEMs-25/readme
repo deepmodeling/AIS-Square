@@ -1,0 +1,23 @@
+# Datasets
+
+A dataset covering 20 energetic materials sampling via active learning with temperature and pressure ranging from 100 K to 4000 K, and 0 to 120 GPa, respectively. The in-distribution (id-) testset was built via running another DFT-MD with a different initialization seed from init. training set. The out-of-distribution (ood-) testset was built for another 6 energetic materials).
+
+**How to cite**: https://arxiv.org/abs/2503.04540
+
+**Data cleaning**: Removed forces (abs.) > 50 eV/ang. Label Distribution after cleaning:
+
+![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=NmQxMTRlYjdiMTYwNzlmZTFjNGNhZjlmN2I5MDZmYjdfTUVuNG1KaXZXUDBJNE5NS3ltbVBvVTZ6VUFIdkF3NTRfVG9rZW46VEJiaWJPUklTb3RFYjF4SzZyUmNHbGhpblJiXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+**Configuration Coverage:**
+
+![The 20 energetic materials within 26 structures due to polymorphs, covered in training set and id. test set. (a) AN: ammonium nitrate; (b) AP: ammonium perchlorate; (c) Az2Cu: copper(II) azide; (d) Az2Hg: mercury(II) azide; (e–f) Az2Pb: lead (II) azide; (g) AzAg: silver(I) azide; (h) AzCu: copper(I) azide; (i) AzTl: thallium(I) azide; (j–l) CL-20; (m) DAP-1: (H2dabco)Na(ClO4)3; (n) DAP-2: (H2dabco)K(ClO4)3; (o) DAP-3: (H2dabco)Rb(ClO4)3; (p) DAP-4: (H2dabco)(NH4)(ClO4)3; (q) DAP-5: (H2dabco)Ag(ClO4)3; (r) DAP-6: (H2dabco)(NH3OH)(ClO4)3; (s) DAP-7: (H2dabco)(NH3NH2)(ClO4)3; (t) DAP-M4: (MeHdabco)(NH4)(ClO4)3; (u–w) HMX: 1,3,5,7-Tetranitro-1,3,5,7-tetrazocane (a.k.a. octogen); (x) RDX: 1,3,5-Trinitroperhydro-1,3,5-triazine (a.k.a hexogen); (y–z) TNT: 2-methyl-1,3,5-trinitrobenzene.](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=YmU0ZTVlYmIzZDhjNDM5Mzk0NDhhMzI4MTYzZGQ5YTZfOFVPVlZNUzlZRnRTcnZJUUVnakpMaXdTQ3ZFdzVZMkpfVG9rZW46QXF3OWJBd3BKb2xSY1J4dHlDT2NGOW9wblhnXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+![Crystal structures of ood test set.](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGI1NzViYmNiOGFhOGQzN2YxMTUxZWViMzM0M2ViYmZfUkoyVGNWNFlxM0FJSHpxSjFHWk1lVGd3RkVLWmlHclVfVG9rZW46SVExcGJOdXpKb1BoRHd4bmJzOGNZRkdxbkFlXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+**DFT details**: CP2K 2023, PBE-D3/MOLOPT-DZVP-SR-GTH, 800/60 Ry, gamma only. Convergence test for cutoff:
+
+![Energy](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=MjU2OWQ1YWNkYTI2MmNlY2VlZDJlNjZlYzkxZWY3YmVfcUtwbjdNOTNSWVdQcWVKSk85dzJqbFhqZW9zek5XeGNfVG9rZW46UUxZV2JYSURabzVjelB4OGRFcWNzNDk0bndkXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+![Force](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=NGU4Yjk3Y2IzYjc2ZTg5MGRmOGY4YWIxZWQxNWYzNTJfR24zWDAzR1ZGM0FGbllsSHhSM0FWMURRaTlqMUFKWmpfVG9rZW46VnpyWGJ1bDRlb2tLeUF4QTFQbGN0NU9Lbm9jXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+![Virial](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=OGMyYmQ3MGZiY2NlMWQwNmMwOTQ5ZGVhNmM0NzRlMGVfcXN3ZXBqZzlpb0FYNzZZVzVibm1lck9KNFRKdlZxNk9fVG9rZW46RDZYNGJ3YXFBb2FmR014ZThsNmN4MGZJblpiXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
