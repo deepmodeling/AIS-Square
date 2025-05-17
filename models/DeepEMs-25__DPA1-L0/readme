@@ -1,0 +1,200 @@
+# DPA1-L0 Models
+
+
+
+Trained from [datasets/311/EnergeticMaterials-v1](https://aissquare.com/datasets/detail?pageType=datasets&name=EnergeticMaterials-v1&id=311)
+
+**How to cite**: https://arxiv.org/abs/2503.04540
+
+**Efficiency and Accuracy**
+
+![](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWU1NzMzNDc4ZTlkNzFjZjU3NjJlODFkMzgwMWNlY2Nfblp5SGc0aWN4N0RKVlpTSU4zMXV0ck1nbnRPNDVJbWFfVG9rZW46RUx0QmI0d29Eb083Vlp4enZNbWNGZWNubmZkXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+![Results on id-testset](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=MzQ5ZmM0NWI0ZDA5NjU5OTEyMTUwY2IxYjYxMjUyYTJfblVNZUc4cm5meXh4TzM0SW1VZFdITnFxbTZScnBjeHJfVG9rZW46WkdDSGJoUGVxb1dLSUN4UU1YaWN2N09KbkdtXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
+
+
+**Training Parameters**
+
+
+Training Parameters
+
+```json
+{
+    "model": {
+        "type_map": [
+            "H",
+            "He",
+            "Li",
+            "Be",
+            "B",
+            "C",
+            "N",
+            "O",
+            "F",
+            "Ne",
+            "Na",
+            "Mg",
+            "Al",
+            "Si",
+            "P",
+            "S",
+            "Cl",
+            "Ar",
+            "K",
+            "Ca",
+            "Sc",
+            "Ti",
+            "V",
+            "Cr",
+            "Mn",
+            "Fe",
+            "Co",
+            "Ni",
+            "Cu",
+            "Zn",
+            "Ga",
+            "Ge",
+            "As",
+            "Se",
+            "Br",
+            "Kr",
+            "Rb",
+            "Sr",
+            "Y",
+            "Zr",
+            "Nb",
+            "Mo",
+            "Tc",
+            "Ru",
+            "Rh",
+            "Pd",
+            "Ag",
+            "Cd",
+            "In",
+            "Sn",
+            "Sb",
+            "Te",
+            "I",
+            "Xe",
+            "Cs",
+            "Ba",
+            "La",
+            "Ce",
+            "Pr",
+            "Nd",
+            "Pm",
+            "Sm",
+            "Eu",
+            "Gd",
+            "Tb",
+            "Dy",
+            "Ho",
+            "Er",
+            "Tm",
+            "Yb",
+            "Lu",
+            "Hf",
+            "Ta",
+            "W",
+            "Re",
+            "Os",
+            "Ir",
+            "Pt",
+            "Au",
+            "Hg",
+            "Tl",
+            "Pb",
+            "Bi",
+            "Po",
+            "At",
+            "Rn",
+            "Fr",
+            "Ra",
+            "Ac",
+            "Th",
+            "Pa",
+            "U",
+            "Np",
+            "Pu",
+            "Am",
+            "Cm",
+            "Bk",
+            "Cf",
+            "Es",
+            "Fm",
+            "Md",
+            "No",
+            "Lr",
+            "Rf",
+            "Db",
+            "Sg",
+            "Bh",
+            "Hs",
+            "Mt",
+            "Ds",
+            "Rg",
+            "Cn",
+            "Nh",
+            "Fl",
+            "Mc",
+            "Lv",
+            "Ts",
+            "Og"
+        ],
+        "descriptor": {
+            "type": "se_atten_v2",
+            "sel": 250,
+            "rcut_smth": 0.5,
+            "rcut": 6.0,
+            "_type_one_side": true,
+            "neuron": [
+                25,
+                50,
+                100
+            ],
+            "resnet_dt": false,
+            "axis_neuron": 12,
+            "attn": 128,
+            "attn_layer": 0,
+            "attn_dotr": true,
+            "seed": 42
+        },
+        "fitting_net": {
+            "neuron": [
+                240,
+                240,
+                240
+            ],
+            "resnet_dt": true,
+            "seed": 42
+        }
+    },
+    "learning_rate": {
+        "type": "exp",
+        "start_lr": 0.001,
+        "stop_lr": 3.5e-08,
+        "decay_steps": 20000
+    },
+    "loss": {
+        "start_pref_e": 0.1,
+        "limit_pref_e": 1,
+        "start_pref_f": 1000,
+        "limit_pref_f": 1,
+        "start_pref_v": 0.2,
+        "limit_pref_v": 1
+    },
+    "training": {
+        "training_data": {
+            "systems": [],
+            "batch_size": "auto",
+            "_comment": "that's all"
+        },
+        "numb_steps": 4000000,
+        "seed": 10,
+        "disp_file": "lcurve.out",
+        "disp_freq": 100,
+        "save_freq": 1000,
+        "_comment": "that's all"
+    }
+}
+```
