@@ -4,5 +4,7 @@ license: CC BY 4.0
 repo:
     - https://store.aissquare.com/datasets/8898cd32-8910-43f5-abfc-cd63c346ae22/30000_new_relax.lmp
     - https://store.aissquare.com/datasets/8898cd32-8910-43f5-abfc-cd63c346ae22/compress_model.pb
+    - https://store.aissquare.com/datasets/8898cd32-8910-43f5-abfc-cd63c346ae22/in.lammps
+    - https://store.aissquare.com/datasets/8898cd32-8910-43f5-abfc-cd63c346ae22/job-lmp-new
 reference: []
 author: '[{"email":"shiyubai@nimte.ac.cn","firstName":"Yubai","lastName":"Shi","institution":"Ningbo Institute of Materials Technology and Engineering, Chinese Academy of Sciences ","position":0,"id":0}]'
