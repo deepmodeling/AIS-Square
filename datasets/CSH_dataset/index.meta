@@ -1,0 +1,8 @@
+title: CSH_dataset
+publisher: l98y3j26
+license: CC BY 4.0
+repo: []
+reference:
+    - datasets/CSH_dataset
+    - models/CSH-MPL
+author: '[{"email":"liyunjian@must.edu.mo","firstName":"Yunjian","lastName":"Li","institution":"Macau University of Science and Technology","contribution":"Corresponding Author","position":0,"id":0},{"email":"1413301155@qq.com","firstName":"Cheng","lastName":"Chen","institution":"Macau University of Science and Technology","contribution":"Main Contributor","position":1,"id":1}]'
