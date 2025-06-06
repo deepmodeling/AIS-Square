@@ -1,0 +1,9 @@
+title: DPA-3.1-3M
+publisher: anyangml
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/models/35b4ce45-4f59-4868-9fd7-a0c0f5ad9464/DPA-3.1-3M.pt
+    - https://store.aissquare.com/models/35b4ce45-4f59-4868-9fd7-a0c0f5ad9464/input_finetune.json
+    - https://store.aissquare.com/models/35b4ce45-4f59-4868-9fd7-a0c0f5ad9464/input_pretrain.json
+reference: []
+author: '[{"email":"zhduodyx@pku.edu.cn","firstName":"Duo","lastName":"Zhang","position":2,"id":2},{"email":"pengay@aisi.ac.cn","firstName":"Anyang","lastName":"Peng","position":1,"id":1},{"email":"caich@dp.tech","firstName":"Chun","lastName":"Cai","position":2,"id":2}]'
