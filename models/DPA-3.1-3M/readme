@@ -47,7 +47,7 @@ Select a dataset id that closely matches your system. Ensure that the elements i
 Assuming you choose `H2O_H2O-PD`, you can first freeze the model branch from the multi-task pretrained model:
 
 ```bash
-dp --pt freeze -c DPA-3.1-3M.pt -o frozen_model.pth --head H2O_H2O-PD
+dp --pt freeze -c DPA-3.1-3M.pt -o frozen_model.pth --model-branch  H2O_H2O-PD
 ```
 
 Then you can use the following Python code for prediction or optimization:
