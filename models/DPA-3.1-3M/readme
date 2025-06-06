@@ -1,0 +1,72 @@
+# Description
+
+DPA-3.1-3M is trained using a multitask strategy on the [OpenLAM datasets](https://www.aissquare.com/datasets/detail?pageType=datasets&name=OpenLAM-TrainingSet-v1&id=308). The benchmark results can be found at the [LAMBench website.](https://www.aissquare.com/openlam?tab=Benchmark)
+
+Please ensure the usage of the correct code version (**devel**) corresponding to this model.
+
+# How to use
+
+## Installation
+
+To use the pretrained model, you need to first install the corresponding version of DeePMD-kit. You can try easy installation:
+
+```bash
+pip install torch torchvision torchaudio
+pip install git+https://github.com/deepmodeling/deepmd-kit@devel
+```
+
+For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.0a0) page to download the off-line package for **deepmd-kit devel**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0rc0/install/easy-install.html) for off-line installation instructions.
+
+## Use the pretrained model
+
+The pretrained model can be used directly for prediction tasks, such as serving as an ASE calculator.
+
+This model is pretrained in a multi-task manner, featuring a unified backbone (referred to as the unified descriptor and the unified fitting net) and an dataset encoding vector for different tasks. For detailed information, refer to the [DPA-3 paper](https://arxiv.org/abs/2506.01686).
+
+The first step involves selecting a specific dataset id from the model to make predictions. To list the available fitting nets (`model-branch`) in this pretrained model, use the following command:
+
+```bash
+dp --pt show DPA-3.1-3M.pt model-branch
+```
+
+This will generate an output similar to the following:
+
+```plaintext
+Available model branches are ['Domains_Alloy', 'Domains_Anode', 'Domains_Cluster',
+'Domains_Drug', 'Domains_FerroEle', 'Domains_SSE_PBE', 'Domains_SemiCond', 'H2O_H2O_PD', 
+'Metals_AlMgCu', 'Metals_Sn', 'Metals_Ti', 'Metals_V', 'Metals_W', 'Others_HfO2', 
+'Domains_SSE_PBESol', 'Domains_Transition1x', 'Metals_AgAu_PBED3', 'Others_In2Se3', 
+'MP_traj_v024_alldata_mixu', 'Alloy_tongqi', 'SSE_ABACUS', 'Hybrid_Perovskite', 
+'solvated_protein_fragments', 'Electrolyte', 'ODAC23', 'Alex2D', 'Omat24', 'SPICE2', 'OC20M',
+'OC22', 'Organic_Reactions', 'RANDOM'], where 'RANDOM' means using a randomly initialized 
+fitting net.
+```
+
+Select a dataset id that closely matches your system. Ensure that the elements in your system are included in the corresponding task if you are conducting direct predictions or simulations. For more information on the pretrained datasets, refer to [below](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.1-v3.0.0rc0&id=287#data-used-for-pretraining).
+
+Assuming you choose `H2O_H2O-PD`, you can first freeze the model branch from the multi-task pretrained model:
+
+```bash
+dp --pt freeze -c DPA-3.1-3M.pt -o frozen_model.pth --head H2O_H2O-PD
+```
+
+Then you can use the following Python code for prediction or optimization:
+
+```python
+## Compute potential energy
+from ase import Atoms
+from deepmd.calculator import DP as DPCalculator
+dp = DPCalculator("frozen_model.pth")
+water = Atoms('H2O', positions=[(0.7601, 1.9270, 1), (1.9575, 1, 1), (1., 1., 1.)], cell=[100, 100, 100])
+water.calc = dp
+print(water.get_potential_energy())
+print(water.get_forces())
+
+## Run BFGS structure optimization
+from ase.optimize import BFGS
+dyn = BFGS(water)
+dyn.run(fmax=1e-6)
+print(water.get_positions())
+```
+
+For more advanced usages like fine-tuning and zero-shot inference, please refer to the following [model card](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.3.1-v3.0.0rc0&id=287) .
