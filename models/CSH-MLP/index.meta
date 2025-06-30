@@ -1,0 +1,9 @@
+title: CSH-MLP
+publisher: l98y3j26
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/ee564014-e64b-4682-8b4f-162b7c30d83c/CSH-MLP.pb
+reference:
+    - datasets/CSH_dataset
+    - models/CSH-MLP
+author: '[{"email":"liyunjian@must.edu.mo","firstName":"Yunjian","lastName":"Li","institution":"Macau University of Science and Technology","contribution":"Corresponding Author","position":0,"id":0},{"email":"1413301155@qq.com","firstName":"Cheng","lastName":"Chen","institution":"Macau University of Science and Technology","contribution":"Main Contributor","position":1,"id":1}]'
