@@ -5,5 +5,5 @@ repo:
     - https://store.aissquare.com/datasets/d273f7fc-f303-4b7a-8810-66932afe318d/datasets.zip
 reference:
     - datasets/PlasticCrystal_TMIPA-InBr4
-    - models/PlasticCrystal_TMIPA-InBr
+    - models/PlasticCrystal_TMIPA-InBr4
 author: '[{"email":"guomy26@mail2.sysu.edu.cn","firstName":"Ming-Yu","lastName":"Guo","institution":"School of Chemistry, Sun Yat-sen University","position":0,"id":0}]'
