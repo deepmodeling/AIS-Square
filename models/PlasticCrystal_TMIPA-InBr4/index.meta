@@ -1,0 +1,9 @@
+title: PlasticCrystal_TMIPA-InBr4
+publisher: Schrodinger's Cat
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/e17ab792-8313-4d18-90d8-385d394c2e6a/models.zip
+reference:
+    - datasets/PlasticCrystal_TMIPA-InBr4
+    - models/PlasticCrystal_TMIPA-InBr4
+author: '[{"email":"gmy721212@163.com","firstName":"Ming-Yu","lastName":"Guo","institution":"School of Chemistry, Sun Yat-sen University","position":0,"id":0}]'
