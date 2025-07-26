@@ -1,0 +1,7 @@
+The first three frames, the last three frames of the track, and every 10 frames of the trajectory.
+
+
+Removed frames with energy/atom > 0eV/atom, max\_abs\_force > 5eV/A,max\_abs\_virial /atom> 8eV/atom.
+
+
+Ref: Hai-Chen Wang, Jonathan Schmidt, Miguel A. L. Marques, Ludger Wirtz, and Aldo H. Romero. Symmetry-based computational search for novel binary and ternary 2D materials.\*2D Materials\*, 10(3):035007 (2023)
