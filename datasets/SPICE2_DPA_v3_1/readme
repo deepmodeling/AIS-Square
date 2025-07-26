@@ -1,0 +1,4 @@
+Removed frames with energy/atom <-10000eV/atom, max\_abs\_force > 15eV/A
+
+
+Ref: J. Chem. Theory Comput. 2024, 20, 19, 8583–8593
