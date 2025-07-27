@@ -1,0 +1,5 @@
+The first three frames, the last three frames of the track, and every 20 frames of the trajectory
+
+Removed frames with energy/atom > 0.5eV/atom, energy/atom < -0.2eV/atom, max\_abs\_force > 25eV/A
+
+Ref: Anuroop Sriram, Sihoon Choi, Xiaohan Yu, Logan M. Brabson, Abhishek Das, Zachary Ulissi, Matt Uyttendaele, Andrew J. Medford, and David S. Sholl. Open Data for Advanced Catalysis (ODAC23): A Comprehensive Dataset for Machine Learning in Catalysis.\*ACS Central Science\*, 10(5):923–941 (2024).
