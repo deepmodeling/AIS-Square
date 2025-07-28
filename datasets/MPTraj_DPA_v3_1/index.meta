@@ -1,0 +1,10 @@
+title: MPTraj_DPA_v3_1
+publisher: Schrodinger's Cat
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/6424f244-a0b4-44e3-81aa-50a000ba7cf3/trn_MP_traj_v024_alldata_mixu.zip
+    - https://store.aissquare.com/datasets/6424f244-a0b4-44e3-81aa-50a000ba7cf3/val_MP_traj_v024_alldata_mixu.zip
+reference:
+    - datasets/MPTraj_DPA_v3_1
+    - datasets/MPtraj
+author: '[{"email":"guomy26@mail2.sysu.edu.cn","firstName":"AISI","lastName":" ","position":0,"id":0}]'
