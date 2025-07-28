@@ -1,0 +1,4 @@
+Exclude top 0.1% energy/force differences.
+
+
+Ref: Bing Deng, Peichen Zhong, Kihyun Jun, et al. CHGNet as a pretrained universal neural network potential for charge-informed atomistic modelling.\*Nature Machine Intelligence\*, 5:1031–1041 (2023).
