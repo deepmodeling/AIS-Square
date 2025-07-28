@@ -1,0 +1,4 @@
+Removed energy/atom > 0eV/atom, max\_abs\_force > 10eV/A.
+
+
+Ref: Richard Tran, Janice Lan, Muhammed Shuaibi, Brandon M. Wood, Siddharth Goyal, Abhishek Das, Javier Heras-Domingo, Adeesh Kolluru, Ammar Rizvi, Nima Shoghi, Anuroop Sriram, Félix Therrien, Jehad Abed, Oleksandr Voznyy, Edward H. Sargent, Zachary Ulissi, and C. Lawrence Zitnick. Open Catalyst 2022 (OC22) Dataset and Community Challenges.\*ACS Catalysis\*, 13(5):3066–3084 (2023).
