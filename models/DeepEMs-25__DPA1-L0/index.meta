@@ -2,6 +2,7 @@ title: DeepEMs-25__DPA1-L0
 publisher: Schrodinger's Cat
 license: LGPL-3.0
 repo:
+    - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/dpa1-l0_pt.zip
     - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/iter23_0.pb
     - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/iter23_1.pb
     - https://store.aissquare.com/models/83d1a999-dbed-470a-9af0-f6838934b229/iter23_2.pb
