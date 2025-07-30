@@ -2,7 +2,11 @@
 
 A dataset covering 20 energetic materials sampling via active learning with temperature and pressure ranging from 100 K to 4000 K, and 0 to 120 GPa, respectively. The in-distribution (id-) testset was built via running another DFT-MD with a different initialization seed from init. training set. The out-of-distribution (ood-) testset was built for another 6 energetic materials).
 
-**How to cite**: https://arxiv.org/abs/2503.04540
+**How to cite**:
+
+Guo, MY., Yan, YF., Chen, P. *et al.* DeepEMs-25: a deep-learning potential to decipher kinetic tug-of-war dictating thermal stability in energetic materials. *npj Comput Mater* **11**, 246 (2025). https://doi.org/10.1038/s41524-025-01739-7
+
+(https://arxiv.org/abs/2503.04540)
 
 **Data cleaning**: Removed forces (abs.) > 50 eV/ang. Label Distribution after cleaning:
 
