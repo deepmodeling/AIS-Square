@@ -1,10 +1,12 @@
 # DPA1-L0 Models
 
-
-
 Trained from [datasets/311/EnergeticMaterials-v1](https://aissquare.com/datasets/detail?pageType=datasets&name=EnergeticMaterials-v1&id=311)
 
-**How to cite**: https://arxiv.org/abs/2503.04540
+**How to cite**: 
+
+Guo, MY., Yan, YF., Chen, P. *et al.* DeepEMs-25: a deep-learning potential to decipher kinetic tug-of-war dictating thermal stability in energetic materials. *npj Comput Mater* **11**, 246 (2025). https://doi.org/10.1038/s41524-025-01739-7
+
+(https://arxiv.org/abs/2503.04540)
 
 **Efficiency and Accuracy**
 
@@ -12,9 +14,7 @@ Trained from [datasets/311/EnergeticMaterials-v1](https://aissquare.com/datasets
 
 ![Results on id-testset](https://dptechnology.feishu.cn/space/api/box/stream/download/asynccode/?code=MzQ5ZmM0NWI0ZDA5NjU5OTEyMTUwY2IxYjYxMjUyYTJfblVNZUc4cm5meXh4TzM0SW1VZFdITnFxbTZScnBjeHJfVG9rZW46WkdDSGJoUGVxb1dLSUN4UU1YaWN2N09KbkdtXzE3NDE4NTQ2MTQ6MTc0MTg1ODIxNF9WNA)
 
-
 **Training Parameters**
-
 
 Training Parameters
 
