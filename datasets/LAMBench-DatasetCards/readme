@@ -1,8 +1,12 @@
-| Benchmark Entries                                    | Links                                                                                                                               |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Benchmark Entries                                    | Links                                                                                                                            |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Zero-Shot Inference on Out-of-Distribution Test Sets | [datasets/295/LAMBench-TestData-v1](https://aissquare.com/datasets/detail?pageType=datasets&name=LAMBench-TestData-v1&id=295)       |
 | Property Prediction                                  | [datasets/337/LAMBench-PropertyData](https://aissquare.com/datasets/detail?pageType=datasets&name=LAMBench-PropertyData&id=337)     |
 | Property Calculation: Torsion500                     | [datasets/335/LAMBench-Torsion500](https://aissquare.com/datasets/detail?name=LAMBench-Torsion500&id=335&pageType=datasets)         |
 | Property Calculation: Phonon MDR                     | [datasets/310/LAMBench-Phonon-MDR](https://aissquare.com/datasets/detail?name=LAMBench-Phonon-MDR&id=310&pageType=datasets)         |
+| Property Calculation: Wiggle150                      | [datasets/367/LAMBench-Wiggle150](https://aissquare.com/datasets/detail?pageType=datasets&name=LAMBench-Wiggle150&id=367)           |
+| Property Calculation: NEB                            | [datasets/365/LAMBench-NEB](https://aissquare.com/datasets/detail?pageType=datasets&name=LAMBench-NEB&id=365)                       |
+| Property Calculation: Elastic                        | [datasets/366/LAMBench-Elastic](https://aissquare.com/datasets/detail?pageType=datasets&name=LAMBench-Elastic&id=366)               |
 | Inference Efficiency                                 | [datasets/334/LAMBench-EfficiencyTraj](https://aissquare.com/datasets/detail?pageType=datasets&name=LAMBench-EfficiencyTraj&id=334) |
-|                                                      |                                                                                                                                     |
+|                                                      |                                                                                                                                  |
+|                                                      |                                                                                                                                  |
