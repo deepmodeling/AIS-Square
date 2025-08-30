@@ -1,4 +1,5 @@
-用于 EAC-mp（EAC-Net）大模型的已训练权重。
+Pre-trained weights for the EAC-mp (EAC-Net) model.
 
-EAC-Net 为一种基于“等变原子贡献”（Equivariant Atomic Contributions）的电荷密度预测模型，将空间点的电子密度分解为临近原子的等变贡献，从而同时捕捉方向依赖与平移/旋转对称性。（模型详情见[论文](https://arxiv.org/abs/2508.04052)和[EAC-Net仓库](https://github.com/qin2xue3jian4/EAC-Net)）
-模型在从 Materials Project 下载并处理得到的 CHGCAR 派生数据上训练：训练集包含48183帧，每帧随机采样 5,000 个格点（详见[数据集条目](https://zenodo.org/records/16990467)）。使用本模型时请同时引用 EAC-Net 论文（arXiv:2508.04052）与 Materials Project 的相应引用。
+EAC-Net is a charge density prediction model based on Equivariant Atomic Contributions (EAC), which decomposes the electronic density at spatial grid points into equivariant contributions from neighboring atoms. This formulation enables the model to simultaneously capture directional dependencies as well as translational and rotational symmetries (see the [EAC-Net paper](https://arxiv.org/abs/2508.04052) and [repository](https://github.com/qin2xue3jian4/EAC-Net) for details).
+
+The model is trained on CHGCAR-derived data obtained and processed from the Materials Project: the training set contains 48,183 frames, with 5,000 grid points randomly sampled per frame (see [dataset entry](https://zenodo.org/records/16990467) for details). When using this model, please cite both the EAC-Net paper (arXiv:2508.04052) and the appropriate references for the Materials Project.
