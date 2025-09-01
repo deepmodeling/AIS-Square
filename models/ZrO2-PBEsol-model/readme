@@ -1,6 +1,6 @@
 ## Introduction
 
-A DP-PBEsol model for ZrO$_2$. Type 1 and 2 are O and Zr, respectively. Users can find more details of its training, validation and application in Ref. [1].
+A DP-PBEsol model for ZrO$_2$. Type 1 and 2 are O and Zr, respectively. Users can find more details of its training, validation and application in Ref. [1]. O-O bonds should be avoided in the simulated configurations using the potential, which are not included in the training dataset and will lead to unconverged force during the structure relaxation.
 
 ## Training
 
