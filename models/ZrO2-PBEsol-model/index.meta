@@ -6,4 +6,5 @@ repo:
 reference:
     - models/ZrO2-PBEsol-model
     - datasets/ZrO2-PBEsol
+    - datasets/CeO2-ZrO2-PBEsol
 author: Jinyu Zhang,Gael Huynh,Fuzhi Zhang,Tristan Albaret,Shigenobu Ogata,David Rodney
