@@ -1,7 +1,8 @@
 title: OC22_DPA_v3_1
 publisher: Schrodinger's Cat
 license: CC BY 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/7dd2720d-feb9-47df-8b9b-5d3b8f07fc20/val_OC22.zip
 reference:
     - datasets/OC22_DPA_v3_1
     - datasets/Open_Catalyst_2022(OC22_Dataset)
