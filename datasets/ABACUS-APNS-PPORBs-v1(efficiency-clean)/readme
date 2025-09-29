@@ -1,0 +1,1 @@
+Pseudo potential and orbit come from, apnsv1 (https://www.aissquare.com/datasets/detail?name=ABACUS-APNS-PPORBs-v1&id=326&pageType=datasets), and We combined the ordinary pseudopotential and lanthanide pseudopotential, as well as their corresponding efficiency orbitals (the 8au DZP for the lanthanide orbitals).
