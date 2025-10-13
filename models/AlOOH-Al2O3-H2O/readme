@@ -1,0 +1,8 @@
+Introduction:
+
+The pretraining of the attention-based model (DPA-1), implemented in the DeePMD-kit package (v2.2.7) , was employed for deep learning potential model training.  Six different structures, including δ-AlOOH, AlOOH (liquid), Al~2~O~3~ (Ru~2~O~3~-II structure), Ice X (body-centered cubic structure, bcc), Ice XVIII (face-centered cubic structure, fcc), and liquid water, were adopted in the DP-GEN iterations to calculate their energies, forces, and stresses for the training database. These iterations were conducted at temperatures ranging from 1000 to 5000 K and pressures from 60 to 160 GPa.
+
+All DFT labeling for deep potential training was performed using ABACUS (version 3.6.0) with a Linear Combination of Atomic Orbitals (LCAO) basis set. The calculations utilized double-zeta plus polarization (DZP) numerical atomic orbitals and norm-conserving pseudopotentials (SG15 ONCV). The PBE functional was applied, along with Grimme’s D3 dispersion correction.
+
+
+ref: He Y, Zhang W, Hu Q, et al. Absence of dehydration due to superionic transition at Earth's core-mantle boundary[J]. arXiv preprint arXiv:2503.17906, 2025.
