@@ -1,0 +1,3 @@
+**Introduction**
+
+This dataset contains raw AIMD training data for ZnO/GaN heterostructure systems at temperatures ranging from 100 to 400 K. The data is organized in three folders representing bulk GaN, bulk ZnO, and their interface configurations, suitable for training deep learning interatomic potentials using DeePMD-kit.
