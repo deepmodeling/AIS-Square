@@ -79,8 +79,6 @@ Data splitting is performed at the molecule level to avoid conformation leakage 
 
 Additional test cases include COMP6 tripeptides recomputed at the SPICE level of theory. However, because these tripeptides are not present in the SPICE-MACE-OFF test split, quantitative accuracy comparisons are restricted to the remaining molecular systems.
 
----
-
 ## Training Details
 
 We train the **DPA3** models in four depth configurations with 3, 6, 12, and 24 layers. All configurations are truncated within LiGS order 2.
@@ -99,24 +97,22 @@ We train the **DPA3** models in four depth configurations with 3, 6, 12, and 24 
 
 Other hyperparameters and training details can be found in DPA3 paper[1].
 
----
+## Performance
 
-## 3. Performance
-
-### 3.1 Accuracy
+### Accuracy
 
 Compared to baseline models, DPA3 demonstrates strong accuracy on both the SPICE-MACE-OFF test set and the TorsionNet500 benchmark:
 
 <p align="center">
   <img src="https://store-cn.aissquare.com/markdown/models/3a88b973-6780-4291-9cd3-9f01812ef9f5/spice.png"
        alt="spice"
-       style="width:50%;">
+       style="width:30%;">
 </p>
 
 <p align="center">
   <img src="https://store-cn.aissquare.com/markdown/models/5ed73749-8a1a-463e-a38b-858262ef2afc/torsion.png"
        alt="torsion"
-       style="width:50%;">
+       style="width:30%;">
 </p>
 
 Key observations on SPICE-MACE-OFF test set:
@@ -135,14 +131,14 @@ Key observations on SPICE-MACE-OFF test set:
   - Reduces **energy LWAMAE by ~66%**
   - Still uses **~30% fewer parameters**: **4.9M** vs **6.9M** for MACE(L)
 
-### 3.2 Efficiency
+### Efficiency
 
 We also compare the computational efficiency of **DPA3** with the **MACE-OFF family** (including CUDA-optimized variants):
 
 <p align="center">
   <img src="https://store-cn.aissquare.com/markdown/models/278348e5-adc9-47d0-88f7-1a535593b051/effi.png"
        alt="effi"
-       style="width:50%;">
+       style="width:30%;">
 </p>
 
 ## Reference
