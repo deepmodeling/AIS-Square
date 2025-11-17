@@ -1,0 +1,11 @@
+title: DPA3-SPICE-MACE-OFF
+publisher: iProzd
+license: LGPL-3.0
+repo:
+    - https://store.aissquare.com/models/ee047fff-ae7b-4965-98eb-33a646fd1545/DPA3-L12.pt
+    - https://store.aissquare.com/models/ee047fff-ae7b-4965-98eb-33a646fd1545/DPA3-L24.pt
+    - https://store.aissquare.com/models/ee047fff-ae7b-4965-98eb-33a646fd1545/DPA3-L3.pth
+    - https://store.aissquare.com/models/ee047fff-ae7b-4965-98eb-33a646fd1545/DPA3-L6.pt
+    - https://store.aissquare.com/models/ee047fff-ae7b-4965-98eb-33a646fd1545/potential.mod
+reference: []
+author: '[{"email":"zhduodyx@pku.edu.cn","firstName":"Duo","lastName":"Zhang","institution":"Peking University","position":0,"id":0}]'
