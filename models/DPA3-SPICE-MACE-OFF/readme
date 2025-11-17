@@ -1,5 +1,3 @@
-# DPA3 models trained on SPICE-MACE-OFF
-
 ## Model Summary
 
 This model card provides DPA3 models[1] trained on the SPICE-MACE-OFF[2] datasets. We provide four models with the following configurations:
@@ -109,9 +107,17 @@ Other hyperparameters and training details can be found in DPA3 paper[1].
 
 Compared to baseline models, DPA3 demonstrates strong accuracy on both the SPICE-MACE-OFF test set and the TorsionNet500 benchmark:
 
-![spice.png](https://store-cn.aissquare.com/markdown/models/3a88b973-6780-4291-9cd3-9f01812ef9f5/spice.png)
+<p align="center">
+  <img src="https://store-cn.aissquare.com/markdown/models/3a88b973-6780-4291-9cd3-9f01812ef9f5/spice.png"
+       alt="spice"
+       style="width:50%;">
+</p>
 
-![torsion.png](https://store-cn.aissquare.com/markdown/models/5ed73749-8a1a-463e-a38b-858262ef2afc/torsion.png)
+<p align="center">
+  <img src="https://store-cn.aissquare.com/markdown/models/5ed73749-8a1a-463e-a38b-858262ef2afc/torsion.png"
+       alt="torsion"
+       style="width:50%;">
+</p>
 
 Key observations on SPICE-MACE-OFF test set:
 
@@ -133,7 +139,11 @@ Key observations on SPICE-MACE-OFF test set:
 
 We also compare the computational efficiency of **DPA3** with the **MACE-OFF family** (including CUDA-optimized variants):
 
-![effi.png](https://store-cn.aissquare.com/markdown/models/278348e5-adc9-47d0-88f7-1a535593b051/effi.png)
+<p align="center">
+  <img src="https://store-cn.aissquare.com/markdown/models/278348e5-adc9-47d0-88f7-1a535593b051/effi.png"
+       alt="effi"
+       style="width:50%;">
+</p>
 
 ## Reference
 
