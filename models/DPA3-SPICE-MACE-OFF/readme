@@ -1,0 +1,144 @@
+# DPA3 models trained on SPICE-MACE-OFF
+
+## Model Summary
+
+This model card provides DPA3 models[1] trained on the SPICE-MACE-OFF[2] datasets. We provide four models with the following configurations:
+
+- `DPA3-L3` – 3 layers, smallest and fastest variant
+- `DPA3-L6` – 6 layers, accuracy–efficiency sweet spot
+- `DPA3-L12` – 12 layers, higher accuracy
+- `DPA3-L24` – 24 layers, highest accuracy among DPA3 models
+
+All models are compatible with **DeePMD-kit v3.1.0**. For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.0) page to download the off-line package for v3.1.0**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0/install/easy-install.html) for off-line installation instructions.
+
+## Usage
+
+### Model Evaluation
+
+Evaluate the models through the dp test command line:
+
+```bash
+dp --pt test -m DPA3-L6.pt -s path_to_your_system
+```
+
+### ASE Calculator
+
+You can directly use the following Python code for prediction or optimization with standard ASE calculator:
+
+```python
+## Compute potential energy
+from ase import Atoms
+from deepmd.calculator import DP as DPCalculator
+dp = DPCalculator("DPA3-L6.pt")
+water = Atoms('H2O', positions=[(0.7601, 1.9270, 1), (1.9575, 1, 1), (1., 1., 1.)], cell=[100, 100, 100])
+water.calc = dp
+print(water.get_potential_energy())
+print(water.get_forces())
+
+## Run BFGS structure optimization
+from ase.optimize import BFGS
+dyn = BFGS(water)
+dyn.run(fmax=1e-6)
+print(water.get_positions())
+```
+
+### LAMMPS
+
+Use LAMMPS for molecular dynamics calculation with DPA3 models, you first need to freeze the *.pt models into *.pth models use the following command:
+
+```bash
+dp --pt freeze -c DPA3-L6.pt -o DPA3-L6.pth
+```
+
+Then you can make the following modifications in the LAMMPS script to call the DeePMD-kit interface (also see `potential.md`):
+
+```bash
+pair_style      deepmd DPA3-L6.pth
+# If atom names (O H in this example) are not set in the pair_coeff command, the type_map defined by the training parameter will be used by default.
+pair_coeff      * * O H
+```
+
+
+## Training Dataset
+
+The models are trained on the **SPICE-MACE-OFF** dataset. This small-molecule dataset, originally developed for training the **MACE-OFF23** model, combines:
+
+- 85% of the SPICE v1 subset, consisting of neutral molecules containing
+  H, C, N, O, F, P, S, Cl, Br, and I
+- Geometries from classical MD simulations at 300 K and 500 K, providing diverse conformations for molecules with ≤ 50 atoms
+
+The dataset is further extended to larger systems via:
+
+- GFN2-xTB MD–generated molecules with 50–90 atoms, derived from QMugs
+- Water clusters (up to 50 molecules) extracted from liquid water MD trajectories
+
+All energies and forces are computed at the
+ωB97M-D3(BJ)/def2-TZVPPD level of theory using PSI4.
+
+Data splitting is performed at the molecule level to avoid conformation leakage between sets:
+
+- 95% of the data (951,005 structures) is used for training/validation
+- 5% of the data (50,195 structures) is used for testing
+
+Additional test cases include COMP6 tripeptides recomputed at the SPICE level of theory. However, because these tripeptides are not present in the SPICE-MACE-OFF test split, quantitative accuracy comparisons are restricted to the remaining molecular systems.
+
+---
+
+## Training Details
+
+We train the **DPA3** models in four depth configurations with 3, 6, 12, and 24 layers. All configurations are truncated within LiGS order 2.
+
+### Training setup
+
+- **Engine:** DeePMD-kit (`v3.1.0` required)
+- **Batch size:** `auto:256` (DeePMD-kit automatic batchsize)
+- **Hardware:** 8 × GPU cards
+- **Training schedule:**
+  - Two rounds of training
+  - Each round: **4 million steps**
+- **Cutoff radii:**
+  - `e_rcut = 6.0`
+  - `a_rcut = 4.0`
+
+Other hyperparameters and training details can be found in DPA3 paper[1].
+
+---
+
+## 3. Performance
+
+### 3.1 Accuracy
+
+Compared to baseline models, DPA3 demonstrates strong accuracy on both the **SPICE-MACE-OFF test set** and the **TorsionNet500** benchmark:
+
+![截屏2025-11-17 23.14.06.png](https://store-cn.aissquare.com/markdown/models/4c808554-cf4f-4b77-88c4-2532fbf67719/截屏2025-11-17 23.14.06.png)
+
+![截屏2025-11-17 23.14.14.png](https://store-cn.aissquare.com/markdown/models/e38ffbe7-d127-4f82-9e5c-a3fdd3c8092a/截屏2025-11-17 23.14.14.png)
+
+Key observations:
+
+- **DPA3-L3**
+
+  - Achieves **comparable energy logarithmic-weighted average MAE (LWAMAE)** to **MACE(M)**
+  - Uses only **~40%** of the parameters: **0.9M** vs **2.3M** for MACE(M)
+- **DPA3-L6**
+
+  - Achieves approximately **34% lower energy LWAMAE** than **MACE(L)**
+  - Uses only **~20%** of the parameters: **1.3M** vs **6.9M** for MACE(L)
+- **DPA3-L24**
+
+  - Significantly outperforms **MACE(L)**
+  - Reduces **energy LWAMAE by ~66%**
+  - Still uses **~30% fewer parameters**: **4.9M** vs **6.9M** for MACE(L)
+
+### 3.2 Efficiency
+
+We also compare the computational efficiency of **DPA3** with the **MACE-OFF family** (including CUDA-optimized variants):
+
+![截屏2025-11-17 23.14.33.png](https://store-cn.aissquare.com/markdown/models/8942c89e-876c-4f7f-999f-49f08942ee1e/截屏2025-11-17 23.14.33.png)
+
+
+## Reference
+
+[1] Duo Zhang, Anyang Peng, Chun Cai, Wentao Li, Yuanchang Zhou, Jinzhe Zeng, Mingyu Guo et al. "A Graph Neural Network for the Era of Large Atomistic Models." *arXiv preprint arXiv:2506.01686* (2025).
+
+[2] Dávid Péter Kovács, J. Harry Moore, Nicholas J. Browning, Ilyes Batatia, Joshua T. Horton, Yixuan Pu, Venkat Kapil et al. "Mace-OFF: Short Range Transferable Machine Learning Force Fields for Organic Molecules." *Journal of the American Chemical Society* 147, no. 21 (2025): 17598-17611.
