@@ -1,7 +1,7 @@
 # Description
 
 DPA-3.2-5M is trained using a multitask strategy on the [OpenLAM datasets V2](https://www.aissquare.com/datasets/detail?pageType=datasets&name=OpenLAM-TrainingSet-v2&id=391).
-Please ensure the usage of the correct code version (​**v3.1.2**​) corresponding to this model.
+Please ensure the usage of the correct code version [**v3.1.2**](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.2) corresponding to this model.
 Compared with DPA-3.1-3M, the following changes were made:
 
 1. The model depth was increased from 16 layers to 24 layers.
@@ -16,38 +16,38 @@ Compared with DPA-3.1-3M, the following changes were made:
 
 *Note: this tests were carried out with the latest version of LAMBench, new tasks and test datasets were added. The results may differ from the published version.*
 
-| Model                     | Generalizability - ForceField↓|  Generalizability - PropertyCalculation↓ | Efficiency↑|Instability↓|
-|-------------------------- |-------------------------------|------------------------------------------|------------|------------|
-| DPA-3.1-3M                |   0.187                       |   0.293                                  |    0.261   |   0.000    |
-| DPA-3.2-5M                |   0.147                       |   0.260                                  |    0.200   |   0.000    |
+| Model      | Generalizability - ForceField↓ | Generalizability - PropertyCalculation↓ | Efficiency↑ | Instability↓ |
+| ---------- | ------------------------------- | ---------------------------------------- | ------------ | ------------- |
+| DPA-3.1-3M | 0.187                           | 0.293                                    | 0.261        | 0.000         |
+| DPA-3.2-5M | 0.147                           | 0.260                                    | 0.200        | 0.000         |
 
 ## Wiggle150
 
-| Model       | MAE (kcal/mol) ↓ | RMSE (kcal/mol) ↓ |
-|-------------|------------------|-------------------|
-| DPA-3.1-3M  | 1.722            | 2.239             |
-| DPA-3.2-5M  | 1.192            | 1.543             |
+| Model      | MAE (kcal/mol) ↓ | RMSE (kcal/mol) ↓ |
+| ---------- | ----------------- | ------------------ |
+| DPA-3.1-3M | 1.722             | 2.239              |
+| DPA-3.2-5M | 1.192             | 1.543              |
 
 ## TorsionNet-500
 
-| Model       | MAE (kcal/mol) ↓ | MAEB (kcal/mol) ↓ | NABH  ↓ |
-|-------------|------------------|-------------------|---------|
-| DPA-3.1-3M  | 0.338            |  0.551            |  76     |
-| DPA-3.2-5M  | 0.295            |  0.466            |  50     |
+| Model      | MAE (kcal/mol) ↓ | MAEB (kcal/mol) ↓ | NABH  ↓ |
+| ---------- | ----------------- | ------------------ | -------- |
+| DPA-3.1-3M | 0.338             | 0.551              | 76       |
+| DPA-3.2-5M | 0.295             | 0.466              | 50       |
 
 ## PhononMDR
 
-| Model       |  MAE ω_max ↓ |  MAE S ↓ |  MAE F ↓ |  MAE Cv ↓ |
-|-------------|--------------|----------|----------|-----------|
-| DPA-3.1-3M  |   13.24      |  13.06   |   4.03   |   3.88    |
-| DPA-3.2-5M  |   11.97      |  11.57   |   3.60   |   3.25    |
+| Model      | MAE ω_max ↓ | MAE S ↓ | MAE F ↓ | MAE Cv ↓ |
+| ---------- | ------------- | -------- | -------- | --------- |
+| DPA-3.1-3M | 13.24         | 13.06    | 4.03     | 3.88      |
+| DPA-3.2-5M | 11.97         | 11.57    | 3.60     | 3.25      |
 
 ## OC20NEB
 
-| Model       | MAE Ea (eV) ↓  | MAE dE (eV) ↓  | φ_Transfer ↓  | φ_Dissociation ↓ | φ_Desorption ↓ |
-|-------------|----------------|----------------|---------------|------------------|----------------|
-| DPA-3.1-3M  |    1.172       |    0.158       |    65.1       |     69.0         |    59.8        |
-| DPA-3.2-5M  |    1.183       |    0.164       |    69.7       |     75.3         |    63.0        |
+| Model      | MAE Ea (eV) ↓ | MAE dE (eV) ↓ | φ_Transfer ↓ | φ_Dissociation ↓ | φ_Desorption ↓ |
+| ---------- | -------------- | -------------- | -------------- | ------------------ | ---------------- |
+| DPA-3.1-3M | 1.172          | 0.158          | 65.1           | 69.0               | 59.8             |
+| DPA-3.2-5M | 1.183          | 0.164          | 69.7           | 75.3               | 63.0             |
 
 # How to use
 
@@ -60,7 +60,7 @@ pip install torch torchvision torchaudio
 pip install git+https://github.com/deepmodeling/deepmd-kit@v3.1.2
 ```
 
-For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.0a0) page to download the off-line package for **deepmd-kit devel**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0rc0/install/easy-install.html) for off-line installation instructions.
+For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.2) page to download the off-line package for **deepmd-kit devel**, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.0.0rc0/install/easy-install.html) for off-line installation instructions.
 
 ## Use the pretrained model
 
