@@ -3,5 +3,7 @@ publisher: anyangml
 license: CC BY 4.0
 repo:
     - https://store.aissquare.com/models/d4d4f8e6-e96a-4707-b387-2ad6e1d8ef87/DPA-3.2-5M.pt
+    - https://store.aissquare.com/models/d4d4f8e6-e96a-4707-b387-2ad6e1d8ef87/input_finetune.json
+    - https://store.aissquare.com/models/d4d4f8e6-e96a-4707-b387-2ad6e1d8ef87/input_pretrain.json
 reference: []
 author: '[{"email":"pengay@aisi.ac.cn","firstName":"Anyang","lastName":"Peng","position":0,"id":0},{"email":"zhangd@dp.tech","firstName":"Duo","lastName":"Zhang","position":1,"id":1}]'
