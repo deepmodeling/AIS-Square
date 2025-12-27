@@ -1,0 +1,10 @@
+title: DeePMD_doped_PbTe_mechanics
+publisher: AlexanderKvashnin
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/643b73f9-4bd7-4139-b4f3-c9eb07ae88b6/TePbBiNa.zip
+    - https://store.aissquare.com/datasets/643b73f9-4bd7-4139-b4f3-c9eb07ae88b6/TePbCuAg.zip
+reference:
+    - datasets/DeePMD_doped_PbTe_mechanics
+    - models/PbTe_mechanics
+author: '[{"email":"v.baidyshev@skoltech.ru","firstName":"Viktor","lastName":"Baidyshev","institution":"Skolkovo Institute of Science and Technology","contribution":"Main contributor","position":0,"id":0},{"email":"A.Kvashnin@skoltech.ru","firstName":"Alexander","lastName":"Kvashnin","institution":"Skolkovo Institute of Science and Technology","contribution":"Main contributor","position":1,"id":1}]'
