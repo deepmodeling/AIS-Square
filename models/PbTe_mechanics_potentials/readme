@@ -1,0 +1,11 @@
+Trained DeePMD potentials for simulations of mechanical properties of doped PbTe materials
+
+![image.png](https://store.aissquare.com/markdown/models/2c8b47e0-a618-4091-905f-70c46fa12c65/image.png)
+
+TePbBiNa_pot.pb - is the potential designed for simulations of mechanical properties of PbTe with presence of substitutional defects of Bi and Na together with intrinsic defects like Pb/Te vacancies, Pb-to-Te substitutions
+
+TePbCuAg_pot.pb) - is the potential designed for simulations of mechanical properties of PbTe with presence of interstitial defects of Cu and Ag together with intrinsic defects like Pb/Te vacancies, Pb-to-Te substitutions
+
+If use this models please cite the following paper
+
+I.V. Chepkasov, A.D. Radina, V.S. Baidyshev, M. Polovinkin, N. Rybin, A. Shapeev, A.A. Krikorov, A.R. Oganov, Z. Dashevsky, D.G. Kvashnin, A.G. Kvashnin, Tuning of Mechanical Properties of doped PbTe-based Thermoelectric Material Driven by Intrinsic Defects, J. Mat. Chem A., 13, 31170-31181 (2025), (DOI: [10.1039/D5TA00823A](https://pubs.rsc.org/en/content/articlelanding/2025/ta/d5ta00823a)),
