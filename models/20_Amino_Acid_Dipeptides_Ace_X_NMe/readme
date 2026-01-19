@@ -1,0 +1,6 @@
+A deep learning-based machine learning potential for accurate and efficient simulations of amino acid dipeptides, trained using the DeePMD-kit framework with DFT reference data from ABACUS.
+
+This model is a DeepMD potential trained on all 20 standard amino acid dipeptides (Ace-X-NMe) across diverse backbone conformations. The model achieves near-chemical accuracy while providing ~1000× speedup compared to DFT calculations.
+
+
+[The Github link](https://github.com/raphaelobinna/DeepMd-Amini-Acid-Model)
