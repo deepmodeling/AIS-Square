@@ -1,6 +1,7 @@
 title: TKX-50/AP
 publisher: 2021879009@qq.com
 license: CC BY NC 4.0
-repo: []
+repo:
+    - https://store.aissquare.com/datasets/dacbdd6b-4a84-4a6b-9d4b-a3a7cca1df7a/TKX-50-AP-Dataset.rar
 reference: []
 author: '[{"email":"chinup1016@163.com","firstName":"Xiaohe","lastName":"Wang","position":0,"id":0}]'
