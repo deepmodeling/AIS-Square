@@ -2,6 +2,7 @@ title: DPA3-Omol-Large
 publisher: anyangml
 license: CC BY 4.0
 repo:
+    - https://store.aissquare.com/models/da9a8c37-5841-4ffd-8947-8a622eb6b67e/DPA3-Omol-Large.pt
     - https://store.aissquare.com/models/da9a8c37-5841-4ffd-8947-8a622eb6b67e/input.json
     - https://store.aissquare.com/models/da9a8c37-5841-4ffd-8947-8a622eb6b67e/input_finetune.json
 reference: []
