@@ -1,0 +1,196 @@
+## Model Summary
+
+This model card provides a DPA3 model[1] trained on the OMol25[2] dataset. We provide one model:
+
+- `DPA3-Omol-Large` – 12 layers, large-scale model for broad molecular chemistry
+
+The model is trained with **charge** and **spin** as input frame parameters, following the OMol25 dataset convention. Here **spin** refers to the **spin multiplicity** (2S+1), not the spin quantum number S. Users can specify `charge` and `spin` when running simulations; if not specified, defaults of `charge=0` and `spin=1` (singlet) are used.
+
+The model is compatible with **DeePMD-kit v3.1.3**. For other installation options, please visit the [Releases page](https://github.com/deepmodeling/deepmd-kit/releases/tag/v3.1.3) to download the off-line package for v3.1.3, and refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/v3.1.3/install/easy-install.html) for off-line installation instructions.
+
+## Usage
+
+### Model Evaluation
+
+Evaluate the model through the dp test command line:
+
+```bash
+dp --pt test -m DPA3-Omol-Large.pt -s path_to_your_system
+```
+
+### ASE Calculator
+
+You can directly use the following Python code for prediction or optimization with standard ASE calculator.
+
+**Charge and spin** can be explicitly specified via `fparam` keyword in `atoms.info`. Note that `spin` here means **spin multiplicity** (2S+1). If not set, the default values `charge=0` and `spin=1` (singlet) will be used.
+
+```python
+## Compute potential energy
+from ase import Atoms
+from deepmd.calculator import DP as DPCalculator
+
+dp = DPCalculator("DPA3-Omol-Large.pt")
+
+# Example: ethanol molecule
+ethanol = Atoms(
+    "C2H6O",
+    positions=[
+        (-0.7472, -0.0575, 0.0000),
+        ( 0.7209,  0.0178, 0.0000),
+        ( 1.1431,  1.4297, 0.0000),
+        (-1.1576, -1.0720, 0.0000),
+        (-1.1267,  0.4548, -0.8932),
+        (-1.1267,  0.4548,  0.8932),
+        ( 1.0797, -0.5050, -0.8946),
+        ( 1.0797, -0.5050,  0.8946),
+        ( 2.1108,  1.4520,  0.0000),
+    ],
+    cell=[100, 100, 100],
+)
+
+# Specify charge and spin multiplicity (optional)
+# If not set, defaults are charge=0, spin=1 (singlet)
+ethanol.info.update(
+  {"fparam": [0.0, 1.0]} # charge=0, spin multiplicity=1 (singlet)
+)
+
+ethanol.calc = dp
+print(ethanol.get_potential_energy())
+print(ethanol.get_forces())
+
+## Run BFGS structure optimization
+from ase.optimize import BFGS
+
+dyn = BFGS(ethanol)
+dyn.run(fmax=1e-6)
+print(ethanol.get_positions())
+```
+
+### LAMMPS
+
+Use LAMMPS for molecular dynamics calculation with the DPA3 model, you first need to freeze the *.pt model into a *.pth model using the following command:
+
+```bash
+dp --pt freeze -c DPA3-Omol-Large.pt -o DPA3-Omol-Large.pth
+```
+
+Then you can make the following modifications in the LAMMPS script to call the DeePMD-kit interface (also see `potential.md`).
+
+**Charge and spin** are provided via the `fparam` keyword in the order of **charge, spin** (spin = spin multiplicity, 2S+1). If `fparam` is not specified, the default values `0.0 1.0` (charge=0, spin multiplicity=1, i.e. singlet) will be used.
+
+```bash
+# With explicit charge and spin multiplicity (e.g., charge=2, multiplicity=1)
+pair_style      deepmd DPA3-Omol-Large.pth fparam 2.0 1.0
+pair_coeff      * * C H O
+```
+
+```bash
+# Without fparam: defaults to charge=0, spin multiplicity=1
+pair_style      deepmd DPA3-Omol-Large.pth
+pair_coeff      * * C H O
+```
+
+For more details on the `fparam` keyword, see the [DeePMD-kit LAMMPS documentation](https://docs.deepmodeling.com/projects/deepmd/en/stable/third-party/lammps-command.html#pair-style-deepmd).
+
+## Training Dataset
+
+The model is trained on the **Open Molecules 2025 (OMol25)** dataset[2], a large-scale resource for molecular chemistry ML models introduced by Meta FAIR. OMol25 comprises over **100 million** DFT single-point calculations at the **ωB97M-V/def2-TZVPD** level of theory.
+
+Key characteristics of OMol25:
+
+- **83 elements** across the periodic table
+- **~83M unique molecular systems**, including small molecules, biomolecules, metal complexes, and electrolytes
+- System sizes up to **350 atoms** (50 on average)
+- Diverse charge states (−10 to +10) and spin multiplicities (1 to 11)
+- Explicit solvation, conformers, and reactive structures
+
+The dataset is organized into four major domains:
+
+- **Biomolecules:** protein–ligand, protein–protein, and nucleic acid interactions extracted from BioLiP2 and other structural databases, sampled via classical MD
+- **Metal Complexes:** diverse monometallic transition metal, main group metal, and lanthanide systems with varied ligands and spin states, generated using the Architector package
+- **Electrolytes:** aqueous and non-aqueous solutions, ionic liquids, and molten salts, sampled via MD (including Ring Polymer MD for nuclear quantum effects) and electrolyte reactivity networks
+- **Community:** recomputed existing datasets (ANI-2X, Transition-1X, SPICE2, GEOM, etc.) at consistent ωB97M-V/def2-TZVPD level of theory, plus interpolated reactivity datasets
+
+Compositional splitting ensures that validation and test sets contain out-of-distribution molecular formulas relative to training data.
+
+## Training Details
+
+We train the **DPA3** model in its large (12-layer) configuration, truncated within LiGS order 2.
+
+### Model configuration
+
+| Parameter | Value |
+| --------- | ----- |
+| `n_dim`   | 256   |
+| `e_dim`   | 256   |
+| `a_dim`   | 256   |
+| `nlayers` | 12    |
+
+### Training setup
+
+- **Engine:** DeePMD-kit (`v3.1.0` required)
+- **Batch size:** `auto:2048` (DeePMD-kit automatic batchsize)
+- **Hardware:** 32 × NVIDIA A800 GPUs
+- **Training steps:** 2 million steps
+- **Learning rate schedule:** Cosine annealing
+- **Cutoff radii and neighbor selections:**
+  - `e_rcut = 6.0`, `e_rcut_smth = 5.3`, `e_sel = 30`
+  - `a_rcut = 4.5`, `a_rcut_smth = 4.0`, `a_sel = 15`
+
+Other hyperparameters and training details can be found in the DPA3 paper[1].
+
+## Performance
+
+### Accuracy on OMol25 Validation Set
+
+We report energy and force errors on the OMol25 validation set. All values are in **meV** (energy per atom) and **meV/Å** (force).
+
+| Model               | Energy MAE/atom (meV) | Energy RMSE/atom (meV) | Force MAE (meV/Å) | Force RMSE (meV/Å) |
+| ------------------- | :-------------------: | :--------------------: | :----------------: | :-----------------: |
+| MACE-OMol-L         |         1.917         |         11.727         |       10.690       |       63.754       |
+| **DPA3-Omol-Large** |         1.328         |         11.347         |       12.362       |       62.934       |
+
+### Accuracy on LAMBench
+
+We evaluate DPA3-Omol-Large on molecule property calculation tasks from **LAMBench**[3]. The following results compare **DPA3-Omol-Large (ours)** with DPA-3.2-5M and MACE-OMol-L.
+
+#### Ligand Binding
+
+| Model               | RMSE (kcal/mol) | MAE (kcal/mol) |
+| ------------------- | :-------------: | :------------: |
+| DPA-3.2-5M          |      3.40      |      6.90      |
+| MACE-OMol-L         |      1.75      |      0.84      |
+| **DPA3-Omol-Large** |      1.29      |      0.65      |
+
+#### TorsionNet500
+
+| Model               | MAEB (kcal/mol) | MAE (kcal/mol) | RMSE (kcal/mol) | NAHB_h |
+| ------------------- | :-------------: | :------------: | :-------------: | :----: |
+| DPA-3.2-5M          |      0.47      |      0.29      |      0.43      |   50   |
+| MACE-OMol-L         |      0.23      |      0.14      |      0.23      |   9   |
+| **DPA3-Omol-Large** |      0.24      |      0.16      |      0.25      |   13   |
+
+#### Wiggle150
+
+| Model               | RMSE (kcal/mol) | MAE (kcal/mol) |
+| ------------------- | :-------------: | :------------: |
+| DPA-3.2-5M          |      1.54      |      1.19      |
+| MACE-OMol-L         |      1.18      |      0.89      |
+| **DPA3-Omol-Large** |      1.25      |      0.94      |
+
+#### Reaction Barrier
+
+| Model               | RMSE (kcal/mol) | MAE (kcal/mol) |
+| ------------------- | :-------------: | :------------: |
+| DPA-3.2-5M          |      12.37      |      6.30      |
+| MACE-OMol-L         |      3.53      |      2.12      |
+| **DPA3-Omol-Large** |      12.42      |      3.36      |
+
+## Reference
+
+[1] Duo Zhang, Anyang Peng, Chun Cai, Wentao Li, Yuanchang Zhou, Jinzhe Zeng, Mingyu Guo et al. "A Graph Neural Network for the Era of Large Atomistic Models." *arXiv preprint arXiv:2506.01686* (2025).
+
+[2] Daniel S. Levine, Muhammed Shuaibi, Evan Walter Clark Spotte-Smith, Michael G. Taylor, Muhammad R. Hasyim, Kyle Michel, Ilyes Batatia et al. "The Open Molecules 2025 (OMol25) Dataset, Evaluations, and Models." *arXiv preprint arXiv:2505.08762* (2025).
+
+[3] Anyang Peng, Chun Cai, Mingyu Guo, Duo Zhang, Chengqian Zhang, Wanrun Jiang, Yinan Wang et al. "LAMBench: a benchmark for large atomistic models." *npj Computational Materials* (2026).
+
