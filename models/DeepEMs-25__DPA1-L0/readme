@@ -1,8 +1,12 @@
 # DPA1-L0 Models
 
+A DPA1 model for energetic materials, covering CHNO, perovskites, perchlorates, nitrates, azides, etc.
+
+
+
 Trained from [datasets/311/EnergeticMaterials-v1](https://aissquare.com/datasets/detail?pageType=datasets&name=EnergeticMaterials-v1&id=311)
 
-**How to cite**: 
+**How to cite**:
 
 Guo, MY., Yan, YF., Chen, P. *et al.* DeepEMs-25: a deep-learning potential to decipher kinetic tug-of-war dictating thermal stability in energetic materials. *npj Comput Mater* **11**, 246 (2025). https://doi.org/10.1038/s41524-025-01739-7
 
