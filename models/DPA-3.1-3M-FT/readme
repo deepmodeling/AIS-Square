@@ -1,0 +1,6 @@
+
+This model is a fine-tuned version of DPA-3.1-3M, trained on the MPtrj and sAlex datasets.
+
+The checkpoint provided here is the one submitted to the [Matbench-Discovery Leaderboard](https://matbench-discovery.materialsproject.org/models/dpa-3.1-3m-ft).
+
+For usage instructions and additional details, please refer to the DPA-3.1-3M model card.
