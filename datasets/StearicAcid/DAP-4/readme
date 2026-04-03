@@ -1,0 +1,12 @@
+## DeePMD Dataset
+
+- **Training Data**: Ab initio (first-principles) calculated energies (E), forces (F), and virials (V) for DAP-4 system
+- **Test Set Evaluation**: Direct inference results of energies (E), forces (F), and virials (V) on test sets (Figure S4)
+- **Loss Function Labels**:
+  - **Energy (E)**: Energy per atom
+  - **Force (F)**: Force per atom in each direction (x, y, z)
+  - **Virial (V)**: Virial tensor (3×3 matrix)
+- **Loss Definition**: L(p_e, p_f, p_v) = p_e/N · ‖ΔE‖² + p_f/(3N) · Σ‖ΔF‖² + p_v/(9N) · ‖ΔV‖²
+  - Δ denotes RMSE between predicted label and ground truth
+  - N denotes the atom number
+- **Loss Prefactors**: p_e, p_f, p_v adjusted from (0.1, 1000, 0.2) to (1.0, 1.0, 1.0) respectively
