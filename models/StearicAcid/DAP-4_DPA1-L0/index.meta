@@ -1,0 +1,9 @@
+title: StearicAcid/DAP-4_DPA1-L0
+publisher: Schrodinger's Cat
+license: LGPL-3.0
+repo: []
+reference:
+    - models/StearicAcid/DAP-4_DPA1-L0
+    - datasets/StearicAcid/DAP-4
+    - models/DeepEMs-25__DPA1-L0
+author: '[{"email":"guomy26@mail2.sysu.edu.cn","firstName":"Ming-Yu","lastName":"Guo","position":0,"id":0}]'
