@@ -1,0 +1,9 @@
+title: StearicAcid/DAP-4
+publisher: Schrodinger's Cat
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/1b267a20-6bde-4f7f-9b01-a35b6ab9c295/SA_DAP-4.zip
+reference:
+    - datasets/StearicAcid/DAP-4
+    - datasets/DeepEMs-25
+author: '[{"email":"guomy26@mail2.sysu.edu.cn","firstName":"Ming-Yu","lastName":"Guo","position":0,"id":0}]'
