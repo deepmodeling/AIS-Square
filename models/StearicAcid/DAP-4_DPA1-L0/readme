@@ -1,0 +1,23 @@
+## DeePMD Model
+
+- **Architecture**: DeepPot-Attention without the attention layer (DPA1-L0)
+- **Software**: DeePMD-kit
+- **Precision**: float64 (all parameters)
+- **Embedding Network**:
+  - Layer sizes: (25, 50, 100)
+  - Number of columns of the submatrix of the embedding matrix: 12
+- **Fitting Network**:
+  - Layer sizes: (240, 240, 240)
+  - Maps embedded features to atomic energies
+- **Descriptor Settings**:
+  - Cutoff radius (Rc): 6.0 Å
+  - Smooth decay range: 0.5 Å to 6.0 Å
+  - Maximum number of neighbors: 250
+- **Training Hyperparameters**:
+  - Total training steps: 1,000,000
+  - Batch size: 1
+  - Initial learning rate: 0.001
+  - Learning rate decay: every 5,000 steps
+  - Final learning rate: 3.51 × 10⁻⁸
+- **Energy Representation**: E = ΣᵢEᵢ (total potential energy as summation of per-atom energies)
+- **Acceleration**: Model compression applied to speed up inference
