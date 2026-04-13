@@ -1,0 +1,5 @@
+This model is a Deep Learning Potential (DLP) for the ZnO/GaN heterostructure system, developed using the **DeePMD-kit** package. The potential describes the relationship between atomic configurations and total system energy via a multilayer neural network.
+
+The **DeepPot-SE** (Smooth Edition of Deep Potential) framework was adopted as the structural descriptor to ensure translational, rotational, and permutational invariances are preserved. The embedding network consisted of layers with **40 and 80 neurons**, while the fitting network contained **three hidden layers with 200 neurons each**.
+
+Training was carried out over **one million steps**, with the learning rate exponentially decaying from **1×10⁻³ to 3.51×10⁻⁸**. The cutoff radius *r*c and smooth cutoff parameter *r*cs were set to **6 Å** and **5.5 Å**, respectively.
