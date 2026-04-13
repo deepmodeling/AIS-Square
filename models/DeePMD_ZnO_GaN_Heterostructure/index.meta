@@ -1,0 +1,8 @@
+title: DeePMD_ZnO_GaN_Heterostructure
+publisher: Pedram Mirchi
+license: LGPL-3.0
+repo: []
+reference:
+    - models/DeePMD_ZnO_GaN_Heterostructure
+    - datasets/DeePMD_ZnO_GaN_Heterostructure
+author: '[{"email":"pedrammirchi@gmail.com","firstName":"Pedram","lastName":"Mirchi","position":0,"id":0},{"email":"shirin.sabokdast1@yahoo.com","firstName":"Shirin","lastName":"Sabokdast","position":1,"id":1},{"email":"a.rajabpour@gmail.com","firstName":"Ali","lastName":"Rajabpour","position":2,"id":2}]'
