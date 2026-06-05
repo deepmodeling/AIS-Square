@@ -4,5 +4,8 @@ license: CC BY 4.0
 repo:
     - https://store.aissquare.com/models/85c3d312-e846-430a-913e-e4f79f2650ec/dpa-2.4-7M.pt
     - https://store.aissquare.com/models/85c3d312-e846-430a-913e-e4f79f2650ec/input.json
-reference: []
+reference:
+    - models/DPA-2.1.0-202603
+    - models/DPA-2.4-7M
+    - models/DPA-2.4-7M-patched
 author: '[{"email":"pengay@aisi.ac.cn","firstName":"Anyang","lastName":"Peng","position":0,"id":0}]'
