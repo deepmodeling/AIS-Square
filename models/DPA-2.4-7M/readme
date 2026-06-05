@@ -4,6 +4,8 @@ DPA-2.4-7M is trained using a multitask strategy on the [OpenLAM datasets](https
 
 Please ensure the usage of the correct code version (**v3.1.0a0**) corresponding to this model.
 
+**Note: A patched ckpt that is compatible with v3.1.3 can be found** [here]([https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.4-7M-patched&id=416](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.4-7M-patched&id=416)).
+
 # How to use
 
 ## Installation
