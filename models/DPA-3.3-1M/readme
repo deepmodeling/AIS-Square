@@ -1,5 +1,3 @@
-
-
 # Description
 
 DPA-3.3-1M is trained using a multitask strategy on the [OpenLAM datasets V2](https://www.aissquare.com/datasets/detail?pageType=datasets&name=OpenLAM-TrainingSet-v2&id=391) with ***modification***. Compared with DPA-3.2-5M, the following changes were made:
@@ -60,7 +58,7 @@ To use the pretrained model, you need to first install the corresponding version
 
 ```bash
 pip install torch torchvision torchaudio
-pip install git+https://github.com/deepmodeling/deepmd-kit@master
+pip install git+https://github.com/deepmodeling/deepmd-kit@v3.2.0b0
 ```
 
 For other installation options, please refer to the [official documentation](https://docs.deepmodeling.com/projects/deepmd/en/latest/install/easy-install.html) for off-line installation instructions.
@@ -180,4 +178,3 @@ To prepare for fine-tuning, replace the model/type_map and training/training(val
 ```bash
 dp --pt train input_finetune.json --finetune DPA-3.3-1M.pt --model-branch OMat24
 ```
-
