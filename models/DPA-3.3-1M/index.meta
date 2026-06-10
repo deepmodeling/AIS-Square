@@ -2,6 +2,7 @@ title: DPA-3.3-1M
 publisher: anyangml
 license: CC BY 4.0
 repo:
+    - https://store.aissquare.com/models/1c58192f-9781-4582-ae0d-a9e7609e418b/DPA-3.3-1M.pt
     - https://store.aissquare.com/models/1c58192f-9781-4582-ae0d-a9e7609e418b/input.json
     - https://store.aissquare.com/models/1c58192f-9781-4582-ae0d-a9e7609e418b/input_finetune.json
 reference: []
