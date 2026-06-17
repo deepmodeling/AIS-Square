@@ -1,0 +1,127 @@
+# DPA4 OMol Checkpoint Quick Test
+
+This note gives a minimal setup for testing the DPA4 OMol checkpoints with ASE.
+
+## Files
+
+I am sharing two PyTorch checkpoint files:
+
+```text
+dpa4_omol_air_tmp.pt
+dpa4_omol_neo_tmp.pt
+```
+
+By default it uses:
+
+```python
+import numpy as np
+from ase import Atoms
+from ase.build import molecule
+from deepmd.calculator import DP
+
+atoms = molecule("CH2_s1A1d")
+# Add charge and spin multiplicity to atoms.info for DPA4 model
+atoms.info.update({"charge_spin": np.array([0, 1])})
+calc = DP(model="dpa4_omol_air_tmp.pt")
+# or a small one
+# calc = DP(model="dpa4_omol_neo_tmp.pt")
+atoms.calc = calc
+energy = atoms.get_potential_energy()
+forces = atoms.get_forces()
+print(energy, forces)
+```
+
+## Environment
+
+Recommended:
+
+```text
+Python >= 3.10
+PyTorch == 2.11 (recommended) if using compile mode else 2.10
+ASE
+DeePMD-kit from the current PyTorch/DPA4-compatible branch
+```
+
+Install the current branch:
+
+```bash
+pip install git+https://github.com/wanghan-iapcm/deepmd-kit@fix-pt-eager-tabulate-import
+```
+
+This branch is being merged upstream. If the branch disappears, it likely means the fix has been merged into `master`, in which case use:
+
+```bash
+pip install git+https://github.com/deepmodeling/deepmd-kit@master
+```
+
+Please also install a recent PyTorch build. Compile mode requires PyTorch 2.11 or newer.
+
+## Charge and Spin
+
+OMol-style models expect charge and spin information through `atoms.info`.
+
+In the test script:
+
+```python
+atoms.info.update({"charge_spin": np.array([0, 1])})
+```
+
+Here:
+
+```text
+total charge = 0
+spin multiplicity = 1
+```
+
+Please modify this field for systems with different charge or spin. (if not default [0,1] will be used.)
+
+For example:
+
+```python
+# neutral singlet
+atoms.info.update({"charge_spin": np.array([0, 1])})
+
+# cation doublet
+atoms.info.update({"charge_spin": np.array([1, 2])})
+
+# anion singlet
+atoms.info.update({"charge_spin": np.array([-1, 1])})
+```
+
+## Compile Mode
+
+Inference compile is controlled by the environment variable:
+
+```bash
+DP_COMPILE_INFER
+```
+
+Eager inference, no compile:
+
+```bash
+export DP_COMPILE_INFER=0
+python test.py
+```
+
+Compile inference:
+
+```bash
+export DP_COMPILE_INFER=1
+python test.py
+```
+
+Notes:
+
+- `DP_COMPILE_INFER=0` runs eager inference.
+- `DP_COMPILE_INFER=1` enables compile inference.
+- Compile mode requires PyTorch >= 2.11.
+- The first call in compile mode has a one-time compilation overhead.
+- Later calls with the same input shape should be faster.
+- If the number of atoms or input shape changes, recompilation may be triggered.
+- The `.pt` files are PyTorch DPA4 OMol checkpoints.
+- Use `DP_COMPILE_INFER=0` first for a quick sanity check.
+- Use `DP_COMPILE_INFER=1` for speed tests after confirming the setup works.
+- Compile mode is most useful when repeatedly evaluating systems with the same atom count and input shape.
+- If you see element mapping or `charge_spin` issues, please send me the structure and I can check the setup.
+
+
