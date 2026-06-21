@@ -1,0 +1,7 @@
+Training set for calcium carbonate from aqueous solution to the solid state, reported in "Ab initio machine learning simulation of calcium carbonate from aqueous solutions to the solid state" PNAS (2025) by Piaggi, Gale, and Raiteri. https://doi.org/10.1073/pnas.2415663122 . Energies and forces computed using the SCAN functional. The dataset covers CaCO3 polymorphs, water, aqueous solutions with up to four Ca and CO3 ions, ion pairing with proton transfer, and solid/water interfaces.
+
+Other resources related to this dataset:
+
+* https://github.com/AMLS-PRG/CaCO3-SCAN-ML
+* https://arxiv.org/abs/2409.18562
+* https://doi.org/10.5281/zenodo.13834650
