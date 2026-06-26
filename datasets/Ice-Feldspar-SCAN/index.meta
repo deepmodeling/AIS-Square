@@ -1,0 +1,7 @@
+title: Ice-Feldspar-SCAN
+publisher: PabloPiaggi
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/c0956467-c97e-4a02-9d51-c58071ebc09e/input-files.zip
+reference: []
+author: '[{"email":"w.zhou@nanogune.eu","firstName":"Wanqi","lastName":"Zhou","institution":"CIC nanoGUNE","contribution":"Extension of dataset and creation of final models","position":0,"id":1},{"email":"pm.piaggi@nanogune.eu","firstName":"Pablo","lastName":"Piaggi","institution":"CIC nanoGUNE and Ikerbasque, Spain","contribution":"Initial dataset","position":0,"id":0}]'
