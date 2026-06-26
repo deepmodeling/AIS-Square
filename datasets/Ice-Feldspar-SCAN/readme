@@ -1,0 +1,9 @@
+Input files, training set, and final machine learning models to reproduce the results reported in the manuscript "Molecular mechanism of ice nucleation on feldspar" by W. Zhou and P. M. Piaggi (https://arxiv.org/abs/2511.13402).
+
+The training set contains configurations of bulk water and ice, and many different feldspar-water interfaces. The energies and forces were  calculated with the SCAN DFT functional using Quantum Espresso.
+
+See also the associated GitHub repository: https://github.com/AMLS-PRG/ice-nucleation-on-feldspar
+
+See also the associated arXiv preprint: https://arxiv.org/abs/2511.13402
+
+See also the Zenodo record: https://doi.org/10.5281/zenodo.17610332
