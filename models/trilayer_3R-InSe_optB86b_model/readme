@@ -1,3 +1,15 @@
 A Deep Potential model for van der Waals trilayer γ-InSe.
 
+
+
 The DPs also provide results with accuracy that is comparable to that of AIMD and efficiency that is similar to that of empirical potentials. The partial radial distribution functions and angle distribution functions predicted using the DPs are in close agreement with those derived from AIMD. The estimated densities, self-diffusion coefficients, shear viscosities, and electrical conductivities also matched well with the AIMD and experimental data.
+
+
+
+Use model
+
+1. Download and install LAMMPS: [https://docs.lammps.org/Manual.html](https://docs.lammps.org/Manual.html)
+2. Download and install DeePMD-kit: [https://github.com/deepmodeling/deepmd-kit](https://github.com/deepmodeling/deepmd-kit)
+3. Prepare input data for LAMMPS
+4. Download the model
+5. Run MD with LAMMPS: [https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md](https://github.com/deepmodeling/deepmd-kit/blob/master/doc/third-party/lammps.md)
