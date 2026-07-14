@@ -4,6 +4,8 @@ DPA4-Beta is trained using a multitask strategy on the modified [OpenLAM dataset
 
 # Benchmark Results
 
+![image.png](https://store.aissquare.com/markdown/models/81ace10c-5e2c-4509-885b-6e6c45daf8d4/image.png)
+
 ## Wiggle150
 
 | Model      | MAE (kcal/mol) ↓ | RMSE (kcal/mol) ↓ |
@@ -11,7 +13,7 @@ DPA4-Beta is trained using a multitask strategy on the modified [OpenLAM dataset
 | DPA-3.1-3M | 1.722             | 2.239              |
 | DPA-3.2-5M | 1.192             | 1.543              |
 | DPA-3.3-1M | 1.527             | 2.067              |
-| DPA4-Beta | 1.064             | 1.387             |
+| DPA4-Beta  | 1.064             | 1.387              |
 
 ## TorsionNet-500
 
@@ -20,7 +22,7 @@ DPA4-Beta is trained using a multitask strategy on the modified [OpenLAM dataset
 | DPA-3.1-3M | 0.338             | 0.551              | 76       |
 | DPA-3.2-5M | 0.295             | 0.466              | 50       |
 | DPA-3.3-1M | 0.324             | 0.503              | 54       |
-| DPA4-Beta | 0.191             | 0.306              | 19       |
+| DPA4-Beta  | 0.191             | 0.306              | 19       |
 
 ## PhononMDR
 
@@ -29,7 +31,7 @@ DPA4-Beta is trained using a multitask strategy on the modified [OpenLAM dataset
 | DPA-3.1-3M | 13.24         | 13.06    | 4.03     | 3.88      |
 | DPA-3.2-5M | 11.97         | 11.57    | 3.60     | 3.25      |
 | DPA-3.3-1M | 15.87         | 15.01    | 4.81     | 4.73      |
-| DPA4-Beta | 38.12         | 15.44    | 3.51     | 6.48      |
+| DPA4-Beta  | 38.12         | 15.44    | 3.51     | 6.48      |
 
 ## OC20NEB
 
@@ -38,7 +40,7 @@ DPA4-Beta is trained using a multitask strategy on the modified [OpenLAM dataset
 | DPA-3.1-3M | 1.172          | 0.158          | 65.1           | 69.0               | 59.8             |
 | DPA-3.2-5M | 1.183          | 0.164          | 69.7           | 75.3               | 63.0             |
 | DPA-3.3-1M | 1.098          | 0.109          | 44.0           | 49.4               | 29.9             |
-| DPA4-Beta | 1.047          | 0.064          | 16.6           | 17.7               | 11.0             |
+| DPA4-Beta  | 1.047          | 0.064          | 16.6           | 17.7               | 11.0             |
 
 ## Inference throuput
 
@@ -129,8 +131,8 @@ running `dp --pt freeze`:
 
 | Variable          | Default       | Effect                                                                                                                                                                                                                                                                                                                                                                                |
 | ----------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `DP_TF32_INFER`   | `0` (highest) | float32 matmul precision: `0` highest, `1` high, `2` medium. Keep `0` for MD and other PES-smoothness-sensitive workflows.                                                                                                                                                                                                                                                            |
-| `DP_TRITON_INFER` | `0`           | Opt-in fused Triton inference kernels (CUDA), cumulative: `0` off; `1` universal kernels; `2` adds table-tuned SO(2) value-path kernels; `3` adds fp16 tensor-core mixing GEMMs. Levels `0`–`2` keep full float32 accumulation; `3`'s accuracy impact is negligible (it does not affect even second-order PES smoothness) and gives a large speedup on GPUs with strong tensor cores. |
+| `DP_TF32_INFER`   | `0` (highest) | float32 matmul precision:`0` highest, `1` high, `2` medium. Keep `0` for MD and other PES-smoothness-sensitive workflows.                                                                                                                                                                                                                                                             |
+| `DP_TRITON_INFER` | `0`           | Opt-in fused Triton inference kernels (CUDA), cumulative:`0` off; `1` universal kernels; `2` adds table-tuned SO(2) value-path kernels; `3` adds fp16 tensor-core mixing GEMMs. Levels `0`–`2` keep full float32 accumulation; `3`'s accuracy impact is negligible (it does not affect even second-order PES smoothness) and gives a large speedup on GPUs with strong tensor cores. |
 
 Accepted boolean values: `1`/`true`/`yes`/`on` and `0`/`false`/`no`/`off`.
 
@@ -188,4 +190,3 @@ To prepare for fine-tuning, replace the model/type_map and training/training(val
 ```bash
 dp --pt train input_finetune.json --finetune DPA4-Beta.pt --model-branch OMat24
 ```
-
