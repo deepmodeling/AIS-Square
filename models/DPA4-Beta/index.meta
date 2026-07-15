@@ -4,6 +4,5 @@ license: CC BY NC 4.0
 repo:
     - https://store.aissquare.com/models/8e96d46a-5956-4313-8390-5b7ce34d055a/DPA4-beta.pt
     - https://store.aissquare.com/models/8e96d46a-5956-4313-8390-5b7ce34d055a/input.json
-    - https://store.aissquare.com/models/8e96d46a-5956-4313-8390-5b7ce34d055a/input_finetune.json
 reference: []
 author: '[{"email":"pengay@aisi.ac.cn","firstName":"Anyang","lastName":"Peng","position":0,"id":0}]'
