@@ -1,0 +1,9 @@
+title: SiO2-MgSiO3-DFT-Labeled-CSP-Data
+publisher: moliyes
+license: CC BY 4.0
+repo:
+    - https://store.aissquare.com/datasets/d35d00c8-3e14-4b45-8dc5-e7abb44845c6/INCAR&POTACR.zip
+    - https://store.aissquare.com/datasets/d35d00c8-3e14-4b45-8dc5-e7abb44845c6/MgSiO3_MLFF_relax.zip
+    - https://store.aissquare.com/datasets/d35d00c8-3e14-4b45-8dc5-e7abb44845c6/SiO2_MLFF_relax.zip
+reference: []
+author: '[{"email":"ustc_hs@ustc.mail.edu.cn","firstName":"Shuang","lastName":"Hu","position":0,"id":0}]'
