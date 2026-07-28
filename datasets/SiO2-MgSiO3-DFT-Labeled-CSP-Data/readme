@@ -1,0 +1,15 @@
+This dataset contains the DFT-labeled crystal structure prediction data used in the study “Accelerating Crystal Structure Prediction through Active Learning of a Foundation Interatomic Potential.”
+
+The dataset includes relaxation-trajectory configurations generated from CALYPSO searches using the DPA3-OMat24 and DPA3-MP pretrained model branches for SiO2 and MgSiO3. For each DFT-labeled configuration, the dataset provides atomic structures, total energies, atomic forces, virial tensors when available, and the corresponding VASP calculation settings.
+
+The data are organized by material system, pretrained model branch, pressure, and active-learning round. They support reproduction of the model fine-tuning, validation, candidate-ranking, and cross-pressure transferability analyses reported in the manuscript.
+
+Main contents:
+
+1. SiO2 CSP trajectory frames and DFT labels generated from the OMat24 branch.
+2. SiO2 CSP trajectory frames and DFT labels generated from the MP branch, including data from the additional active-learning round.
+3. MgSiO3 CSP trajectory frames and DFT labels generated from the OMat24 and MP branches.
+4. Representative VASP INCAR files and calculation metadata.
+5. Data mappings and directory information needed to associate trajectory frames with DFT calculations.
+
+The dataset is intended for research on machine-learning interatomic potentials, crystal structure prediction, active learning, and high-pressure materials.
