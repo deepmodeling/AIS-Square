@@ -1,6 +1,9 @@
 title: Lateral_MoSe2/MoS2
 publisher: Pedram Mirchi
 license: LGPL-3.0
-repo: []
-reference: []
+repo:
+    - https://store.aissquare.com/models/b36c96ad-bf59-4cf1-b472-e6cb3b650687/MoS2_Mose2.pb
+reference:
+    - datasets/Lateral_MoSe2/MoS2
+    - models/Lateral_MoSe2/MoS2
 author: '[{"email":"pedrammirchi@gmail.com","firstName":"Pedram","lastName":"Mirchi","position":0,"id":0},{"email":"shirin.sabokdast1@yahoo.com","firstName":"Shirin","lastName":"Sabokdast","position":1,"id":1},{"email":"a.rajabpour@gmail.com","firstName":"Ali","lastName":"Rajabpour","position":2,"id":2}]'
