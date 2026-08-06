@@ -1,0 +1,5 @@
+**Dataset**
+
+This dataset contains DFT training data for the MoSe₂/MoS₂ heterostructure at 300–500 K, generated using the PBE exchange-correlation functional with Γ-point sampling and a 300 eV plane-wave cutoff. SCF convergence was set at 1×10⁻⁴ eV/atom.
+
+The full dataset comprises 22,040 configurations: 5,040 from pristine monolayer MoS₂/MoSe₂, and 8,500 each from the armchair and zigzag interfaces, ensuring balanced representation across temperatures. Data were split 90/10 for training and testing to verify generalization.
