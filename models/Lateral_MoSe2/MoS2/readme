@@ -1,0 +1,5 @@
+**Description**
+
+To represent the local atomic environment while preserving translational, rotational, and permutational symmetry , we used the Smooth Edition of Deep Potential (DeepPot-SE). The cutoff radius rc was set to 6 Å and the smoothing cutoff rcs to 5.50 Å, allowing interactions to decay smoothly near the boundary. The hyperbolic tangent function served as the activation function.
+
+The embedding network had layer sizes [50, 100], and the fitting network consisted of three hidden layers of 240 neurons each. Training ran for 1,000,000 steps, with the learning rate decaying exponentially from 1×10⁻³ to 3.51×10⁻⁸. The loss function combined both energy and force errors.
