@@ -1,8 +1,7 @@
 title: Lateral_MoSe2/MoS2
 publisher: Pedram Mirchi
 license: LGPL-3.0
-repo:
-    - https://store.aissquare.com/models/b36c96ad-bf59-4cf1-b472-e6cb3b650687/MoS2_Mose2.pb
+repo: []
 reference:
     - datasets/Lateral_MoSe2/MoS2
     - models/Lateral_MoSe2/MoS2
