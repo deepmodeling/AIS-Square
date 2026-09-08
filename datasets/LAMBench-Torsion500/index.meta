@@ -1,6 +1,7 @@
 title: LAMBench-Torsion500
 publisher: Schrodinger's Cat
-license: CC BY 4.0
-repo: []
+license: CC0 1.0
+repo:
+    - https://store.aissquare.com/datasets/3d23fddc-46f0-4efa-b722-5fc7f4263ea9/LAMBench-Torsion500.zip
 reference: []
 author: '[{"email":"guomingyu@dp.tech","firstName":"AISI","lastName":" ","position":0,"id":0}]'
