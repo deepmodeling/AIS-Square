@@ -2,6 +2,7 @@ title: ICA_research_models
 publisher: Schrodinger's Cat
 license: MIT
 repo:
+    - https://store.aissquare.com/models/8070570f-2710-4a54-95ec-16736ca610a8/dpa1-l0.zip
     - https://store.aissquare.com/models/8070570f-2710-4a54-95ec-16736ca610a8/dpa3.pth
 reference: []
 author: '[{"firstName":"ICA","lastName":"Research","contribution":"Computational workflow artifact","position":0}]'
