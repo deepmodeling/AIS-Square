@@ -1,0 +1,231 @@
+# MPHam
+
+MPHam provides spin–orbit-coupled DFT Hamiltonians in an atomic-orbital basis, used to train and test
+[UniTB: Physical structure as an organizing principle for universal Hamiltonian learning](https://arxiv.org/abs/2610.36135).
+All structures come from the [Materials Project](https://materialsproject.org/). The entry also holds the trained UniTB
+model of the paper, its source code and a reproducible band-structure example (see "UniTB model weights, code and a
+band-structure example").
+
+| Subset               | Structures | Role                                                                                         |      Data | Archive parts |
+| -------------------- | ---------: | -------------------------------------------------------------------------------------------- | --------: | ------------: |
+| `MPHam-NextHam-test` |      3,000 | Test set: the full NextHAM test benchmark, with recomputed labels                            |  16.52 GB |             5 |
+| `MPHam-12K`          |     11,953 | Training set: the NextHAM training list after deduplication                                  |  62.00 GB |            17 |
+| `MPHam-29K`          |     29,242 | Training set: MPHam-12K plus 17,289 MP-20-derived structures                                 | 131.75 GB |            36 |
+| `MPHam-hard`         |        500 | Benchmark: complex crystals newly added to the Materials Project, as DFT outputs (see below) | 195.88 GB |            52 |
+
+Sizes are decimal GB (LMDB data for the first three subsets). MPHam-12K is contained in MPHam-29K; it is offered separately
+for convenience (see "Using MPHam-12K from an MPHam-29K download" below). MPHam-hard is licensed differently from the rest
+(see "License").
+
+## Labels
+
+The labels were computed with ABACUS using PBE, fully relativistic PseudoDojo ONCV pseudopotentials, spin–orbit coupling,
+a 120 Ry cutoff and an SCF density threshold of 1e-6. For the NextHAM-list structures (MPHam-NextHam-test and MPHam-12K),
+the k-point setting is as in Appendix H of NextHAM. The 17,289 MP-20-derived structures added in MPHam-29K use Γ-centred grids
+with a k-point spacing of 0.08 bohr⁻¹.
+
+Each record stores the real spin-up–spin-up block of H − H(0), H − P, H(0) and P on every atom and on every retained edge,
+where P is the McWEDA-corrected non-self-consistent prior. The dimensionless
+overlap S is stored in aligned sidecar shards. Energies are in eV; positions and cells are in Å.
+Values are float32 with 729 shell-pair-packed slots per atom or edge; decode them with the supplied orbital map
+(`basis.json`, `slot_map.json`), not as a row-major 27 × 27 matrix. Records contain only edges within the training cutoff and
+cannot reconstruct the complete complex spinor Hamiltonian. `FORMAT.md` gives the full record format.
+
+## Download and unpack
+
+Files are named `<subset>.partNNN.tar`. Every part is a plain tar archive (the records inside are already zstd-compressed)
+holding complete shards, main and overlap together, so the parts of a subset can be extracted in any order into one directory:
+
+```bash
+sha256sum -c MANIFEST.sha256 --ignore-missing      # check what you downloaded
+for f in MPHam-29K.part*.tar; do tar -xf "$f"; done
+```
+
+This creates `MPHam-29K/train/data.train.sNNN.lmdb/data.mdb` and `MPHam-29K/overlap_sidecar/train/data.train.sNNN.lmdb/data.mdb`;
+the other subsets follow the same pattern (`MPHam-NextHam-test/test/...`). `SHARD_MAP.json` gives the part, size and SHA-256 of
+every shard, and `RECORDS.jsonl` lists every structure with its shard and shard-local index.
+
+To read two records (requires `numpy`, `lmdb` and `zstandard`):
+
+```bash
+python read_example.py MPHam-NextHam-test/test/data.test.s000.lmdb \
+  --overlap-shard MPHam-NextHam-test/overlap_sidecar/test/data.test.s000.lmdb --count 2
+```
+
+Only unpickle records after checking the files against `MANIFEST.sha256`.
+
+## Using MPHam-12K from an MPHam-29K download
+
+The 11,953 structures of MPHam-12K are 11,953 of the 29,242 training structures of MPHam-29K. With MPHam-29K downloaded,
+`MPHam-12K_in_29K.csv` gives each of them its 29K shard and shard-local index, and `use_12k_from_29k.py` reads exactly those records:
+
+```bash
+python use_12k_from_29k.py --root MPHam-29K --list MPHam-12K_in_29K.csv --count 2
+python use_12k_from_29k.py --root MPHam-29K --list MPHam-12K_in_29K.csv --all --overlap
+```
+
+The 12K structures are spread over 190 of the 229 training shards of MPHam-29K. Every numerical array of these records is
+byte-identical in both subsets (checked for all 11,953 records); only the shard-local `idx` and the `provenance` field differ.
+
+## Deduplication
+
+The test set keeps all 3,000 NextHAM test entries. Two structures appear twice in it, once under a truncated Materials Project ID;
+skipping `mp-16504` and `mp-63` gives the 2,998-entry deduplicated benchmark. The training sets exclude records that duplicate a
+test structure or another training structure. `DEDUPLICATION.md`, `TRAINING_EXCLUSIONS.jsonl` and `NEXTHAM_TRUNCATED_IDS.jsonl` list
+every case. In the `provenance` field of the training records, notes that pointed to internal working files now point to
+`DEDUPLICATION.md`; all numerical arrays are byte-identical to the data used in the paper.
+
+## MPHam-hard
+
+`MPHam-hard` is a benchmark of 500 complex nonmagnetic crystals that the Materials Project added in its database release
+v2026.04.13 (30–80 atoms and four or five elements per primitive cell; no identifier or reduced formula shared with
+MPHam-29K or MPHam-NextHam-test). Unlike the three LMDB subsets it is distributed as DFT outputs: for every crystal an
+ABACUS reference in the basis of the MPHam labels (H, S and the non-self-consistent prior H(0) as sparse matrices) and an
+OpenMX reference in the basis of Uni-HamGNN (`openmx.scfout`), both with spin–orbit coupling on the same Γ-centred k mesh,
+together with reference band energies, band-edge effective masses and the per-structure errors of every model reported on
+MPHam-hard in the UniTB paper.
+
+| Group               | Content                                                                                                                                                                  |      Size | Archive parts |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------: | ------------: |
+| `MPHam-hard.meta`   | `MPHam-hard.csv`, structures, DFT settings with pseudopotentials and orbitals, reference eigenvalues, evaluation tables, readers, `README.md`, `FORMAT.md`, `SHA256SUMS` |   2.04 GB |             1 |
+| `MPHam-hard.abacus` | ABACUS inputs and logs, H(R), S(R), H(0)(R)                                                                                                                              |  90.61 GB |            24 |
+| `MPHam-hard.openmx` | OpenMX inputs, outputs and `openmx.scfout`                                                                                                                                | 103.23 GB |            27 |
+
+```bash
+for f in MPHam-hard.meta.part*.tar; do tar -xf "$f"; done      # add the .abacus / .openmx parts as needed
+sha256sum -c MPHam-hard/SHA256SUMS --ignore-missing
+```
+
+The `meta` part alone is enough to run a model on the structures and compare its band energies with both references;
+`MPHam-hard/README.md` explains which files inference, evaluation, recomputation and training need. A tool and a tutorial for
+converting ABACUS outputs such as these into LMDB records like those of the other subsets will come with a later release of
+the UniTB code.
+Results reported on MPHam-hard should come from models that were not trained on it.
+
+## UniTB model weights, code and a band-structure example
+
+Three archives in this entry hold the trained UniTB model of the paper, its source code
+and a reproducible band calculation.
+
+| Archive                   | Size              | Content                                                                                                                                                                                                                                                                            |
+| ------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `UniTB.checkpoint.tar`    | 137,051,648 bytes | `UniTB_checkpoint/`: the onsite and hopping networks of UniTB trained on MPHam-29K with the H(0) prior (`unitb_mpham29k_onsite.pth`, `unitb_mpham29k_hopping.pth`, 8,025,099 parameters each), their training configurations and validation records, `MODEL_CARD.md`, `SHA256SUMS` |
+| `UniTB.code.tar`          | 22,675,968 bytes  | `UniTB_code/`: the complete UniTB source code (repository DeePTB-Lab/UniTB, commit `d730e47`; Python package `dptb`), `INSTALL.md`, `LICENSE` (LGPL-3.0), `SHA256SUMS`                                                                                                             |
+| `UniTB.example_bands.tar` | 6,705,152 bytes   | `UniTB_example_bands/`: `predict_bands.py`, the inputs for RbMgF3 (mp-8402), the DFT reference bands, the expected output and `README.md`                                                                                                                                          |
+
+**The model.** UniTB predicts the self-consistent correction
+Re[(H − H(0))↑↑] of the ABACUS Hamiltonian (real spin-up–spin-up block, eV) from the
+zeroth-step Hamiltonian H(0) and the overlap S, in the 729-slot layout of the MPHam records
+(`FORMAT.md` of the MPHam release). The complete spin–orbit Hamiltonian is H(0) plus this correction in both
+spin-diagonal blocks. These weights give the paper's MPHam-29K results: on the NextHAM
+benchmark (Table 1), a matrix error of 0.493 meV and a band error fw10 of 49.05 meV (mean
+over 200 structures); on MPHam-hard (Table 2), 0.82 meV and 38.0 meV.
+
+**Unpack and check.**
+
+```bash
+tar -xf UniTB.checkpoint.tar
+tar -xf UniTB.code.tar
+tar -xf UniTB.example_bands.tar
+(cd UniTB_checkpoint && sha256sum -c SHA256SUMS)
+(cd UniTB_code && sha256sum -c SHA256SUMS)
+(cd UniTB_example_bands && sha256sum -c SHA256SUMS)
+```
+
+**Install the code.** Python 3.10 and PyTorch 2.8.0 are needed. The commands below use
+the CPU wheels; `UniTB_code/INSTALL.md` gives the CUDA variant and further notes.
+
+```bash
+# no venv module (Debian/Ubuntu without python3.10-venv)? use conda for the next two lines:
+#   conda create -n unitb python=3.10 -y && conda activate unitb
+python3.10 -m venv unitb-env
+source unitb-env/bin/activate
+python -m pip install --upgrade pip
+pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+pip install torch-scatter==2.1.2 -f https://data.pyg.org/whl/torch-2.8.0+cpu.html
+POETRY_DYNAMIC_VERSIONING_BYPASS=2.0.1+d730e47 pip install -e ./UniTB_code \
+    torch_geometric==2.7.0 tqdm==4.67.1 e3nn==0.5.8 numpy==2.2.5 scipy==1.15.3 matplotlib==3.10.7
+```
+
+The archive has no git history, so `POETRY_DYNAMIC_VERSIONING_BYPASS` supplies the
+package version.
+
+**Run the example.** The script predicts the Hamiltonian of RbMgF3, one of the test
+crystals in the paper's band figure. It then solves the bands with spin–orbit coupling on
+the DFT k path and compares them with DFT. This takes about 25 s on a CPU:
+
+```bash
+cd UniTB_example_bands
+python predict_bands.py
+# RbMgF3 (mp-8402): fw10 UniTB = 13.5183 meV (paper 13.5186 meV, tolerance 0.050 meV: OK); H(0) alone = 982.6 meV
+```
+
+The figure is written to `output/bands_RbMgF3_mp-8402.png`. The last digit of fw10 can
+differ with other PyTorch builds (float32 rounding): with the CUDA builds run on CPU it
+reads 13.5182, on an NVIDIA L40S GPU 13.5183.
+`python predict_bands.py --residual expected/residual.npz` runs only the band part, with
+the saved prediction (it prints 13.5182).
+
+**License and citation.** The weights and the example are released under CC BY 4.0, like
+MPHam-12K, MPHam-29K and MPHam-NextHam-test. The code in `UniTB.code.tar` is licensed
+under LGPL-3.0; its third-party parts keep their own licenses, which
+`UniTB_code/INSTALL.md` lists. Please cite M. Liu, Z. Zhouyin, G. Wang, D. Zheng, L. Shen
+and Q. Gu, *Physical structure as an organizing principle for universal Hamiltonian
+learning*, arXiv:2610.36135.
+
+## Files
+
+| File                                                                                            | Content                                                           |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `MPHam-NextHam-test.partNNN.tar`, `MPHam-12K.partNNN.tar`, `MPHam-29K.partNNN.tar`              | LMDB shards with their overlap sidecars                           |
+| `MPHam-hard.meta.part000.tar`, `MPHam-hard.abacus.partNNN.tar`, `MPHam-hard.openmx.partNNN.tar` | MPHam-hard (see above)                                            |
+| `UniTB.checkpoint.tar`, `UniTB.code.tar`, `UniTB.example_bands.tar`                             | UniTB weights, source code and band-structure example (see above) |
+| `README.md`, `FORMAT.md`                                                                        | This description and the full record format                       |
+| `read_example.py`, `basis.json`, `slot_map.json`                                                | Reader and orbital maps                                           |
+| `RECORDS.jsonl`, `SHARD_MAP.json`                                                               | Per-structure index and per-shard map                             |
+| `MPHam-12K_in_29K.csv`, `use_12k_from_29k.py`                                                   | Reading MPHam-12K from MPHam-29K                                  |
+| `DEDUPLICATION.md`, `TRAINING_EXCLUSIONS.jsonl`, `NEXTHAM_TRUNCATED_IDS.jsonl`                  | Deduplication record                                              |
+| `MANIFEST.sha256`                                                                               | SHA-256 of every other file                                       |
+
+## License
+
+MPHam-NextHam-test, MPHam-12K and MPHam-29K are released under the
+[Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+
+MPHam-hard (its structures and the data computed on them) is released under the
+[Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/):
+488 of its 500 structures come from the GNoME batch of the Materials Project, which marks them `BY-NC`
+(`builder_meta.license` in `structures/<id>/mp_record.json`). The pseudopotential and orbital files in its `dft_settings/`
+keep the terms of their sources, listed in `dft_settings/README.md`.
+
+The UniTB weights and the band-structure example are released under CC BY 4.0. The UniTB source code in `UniTB.code.tar`
+is licensed under LGPL-3.0; its third-party parts keep their own licenses, listed in `UniTB_code/INSTALL.md`.
+
+Please cite UniTB and NextHAM when you use the data, follow the Materials Project citation guidance for the structures,
+and cite A. Merchant et al., Nature 624, 80 (2023) for the GNoME structures in MPHam-hard.
+
+## References
+
+- Mingkang Liu, Zhanghao Zhouyin, Guanghui Wang, Daye Zheng, Lei Shen, and Qiangqiang Gu.
+  [Physical structure as an organizing principle for universal Hamiltonian learning](https://arxiv.org/abs/2610.36135). arXiv:2610.36135, 2026.
+- Shi Yin, Zujian Dai, Xinyang Pan, and Lixin He.
+  [Advancing Universal Deep Learning for Electronic-Structure Hamiltonian Prediction of Materials](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f77012b463892a3f2ac56d3a6086fc5b-Abstract-Conference.html). ICLR 2026.
+- [Materials Project citation guide](https://materialsproject.org/about/cite) and the [MP-20/CDVAE](https://github.com/txie-93/cdvae) structure source.
+
+```bibtex
+@misc{liu2026unitb,
+  title = {Physical structure as an organizing principle for universal Hamiltonian learning},
+  author = {Liu, Mingkang and Zhouyin, Zhanghao and Wang, Guanghui and Zheng, Daye and Shen, Lei and Gu, Qiangqiang},
+  year = {2026},
+  eprint = {2610.36135},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2610.36135}
+}
+@inproceedings{yin2026nextham,
+  title = {Advancing Universal Deep Learning for Electronic-Structure Hamiltonian Prediction of Materials},
+  author = {Yin, Shi and Dai, Zujian and Pan, Xinyang and He, Lixin},
+  year = {2026},
+  booktitle = {International Conference on Learning Representations},
+  url = {https://proceedings.iclr.cc/paper_files/paper/2026/hash/f77012b463892a3f2ac56d3a6086fc5b-Abstract-Conference.html}
+}
+```
