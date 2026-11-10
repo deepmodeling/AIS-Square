@@ -2,8 +2,6 @@ title: MPHam(UniTB_datasets)
 publisher: Franklalalala
 license: CC BY 4.0
 repo:
-    - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/DEDUPLICATION.md
-    - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/FORMAT.md
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MANIFEST.sha256
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-12K.part001.tar
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-12K.part002.tar
@@ -22,7 +20,6 @@ repo:
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-12K.part015.tar
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-12K.part016.tar
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-12K.part017.tar
-    - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-12K_in_29K.csv
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-29K.part001.tar
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-29K.part002.tar
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-29K.part003.tar
@@ -102,5 +99,8 @@ repo:
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-hard.openmx.part010.tar
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-hard.openmx.part011.tar
     - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-hard.openmx.part012.tar
+    - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-hard.openmx.part013.tar
+    - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-hard.openmx.part014.tar
+    - https://store.aissquare.com/datasets/cb9f845b-3c87-4969-85c7-6f0ba027d9d2/MPHam-hard.openmx.part015.tar
 reference: []
 author: '[{"email":"guqq@ustc.edu.cn","firstName":"Qiangqiang","lastName":"Gu","institution":"University of Science and Technology of China","position":0,"id":0}]'
